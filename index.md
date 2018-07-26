@@ -1,6 +1,7 @@
 ---
 title: Preesm Site
 name: Preesm Site
+description: "Documentation for the Preesm project"
 sidebar:
   nav: "docs"
 ---
