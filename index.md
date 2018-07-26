@@ -1,5 +1,6 @@
 ---
 title: Preesm Site
+name: Preesm Site
 sidebar:
   nav: "docs"
 ---
