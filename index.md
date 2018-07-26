@@ -2,6 +2,8 @@
 title: Preesm Site
 name: Preesm Site
 description: "Documentation for the Preesm project"
+repository: "preesm/preesm"
+
 sidebar:
   nav: "docs"
 ---
