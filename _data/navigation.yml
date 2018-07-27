@@ -25,10 +25,14 @@ docs_nav:
         url: /docs/buildpreesm/
       - title: "New Workflow Task"
         url: /docs/newtask/
-      - title: "Building Spider"
+      - title: "Building Spider - [BETA]"
         url: /docs/buildspider/
+  - title: Extras
+    children:
       - title: "Git Tips and Tricks"
         url: /docs/gittips/
+      - title: "Build from Graphiti or DFTools Sources"
+        url: /docs/buildfromgraphiti-dftools/
 
 tutos_nav:
   - title: Tutorials
