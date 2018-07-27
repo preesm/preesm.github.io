@@ -9,6 +9,8 @@ main:
     url: /docs/
   - title: "Tutorials"
     url: /tutos/
+  - title: "Publications"
+    url: /publis/
   - title: "Get Preesm"
     url: /get/
 
