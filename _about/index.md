@@ -23,3 +23,35 @@ Instructions for installing Preesm can be found in the [documentation](/docs/). 
 For general information, do not hesitate to contact as at [contact@preesm.insa-rennes.fr](contact@preesm.insa-rennes.fr)
 
 For technical issues, please contact us via [GitHub Issues](https://github.com/preesm/preesm/issues) tracker.
+
+## Hall of Fame
+
+Following is the list of contributors to this project:
+
+*  Yaset Oliva
+*  Sudeep Kanur
+*  Hamza Deroui
+*  Jérôme Croizer
+*  Thanh Hai Dao
+*  Karol Desnos
+*  Clément Guy
+*  Julien Hascoët
+*  Julien Heulot
+*  Robert McNeill
+*  Judicaël Menant
+*  Daniel Ménard
+*  Pierrick Menuet
+*  Hugo Miomandre
+*  Pengcheng Mu
+*  Jean-François Nezan
+*  Erwan Nogues
+*  Ronan Parois
+*  Maxime Pelcat
+*  Jonathan Piat
+*  Romina Racca
+*  Alexandre Honorat
+*  Florian Arrestier
+*  Daniel Madronal
+*  Antoine Morvan
+*  Matthieu Wipliez
+*  Leonardo Suriano
