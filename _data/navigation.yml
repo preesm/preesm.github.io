@@ -18,7 +18,17 @@ main:
 docs_nav:
   - title: Documentation
     url: /docs/
-
+    children:
+      - title: "Install and Configure git"
+        url: /docs/gitsetup/
+      - title: "Building Preesm"
+        url: /docs/buildpreesm/
+      - title: "New Workflow Task"
+        url: /docs/newtask/
+      - title: "Building Spider"
+        url: /docs/buildspider/
+      - title: "Git Tips and Tricks"
+        url: /docs/gittips/
 
 tutos_nav:
   - title: Tutorials
