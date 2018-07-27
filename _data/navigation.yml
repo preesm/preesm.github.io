@@ -1,18 +1,61 @@
 # main links
 main:
-  - title: "Get Preesm"
-    url: /download/
+  - title: "Home"
+    url: /
+    image: /assets/img/Logo_preesm.png
+  - title: "About"
+    url: /about/
+  - title: "Documentation"
+    url: /docs/
   - title: "Tutorials"
     url: /tutos/
+  - title: "Get Preesm"
+    url: /get/
 
 
-docs:
-  - title: Getting Started
-    url: /download/
+docs_nav:
+  - title: Documentation
+    url: /docs/
 
 
-sidebar-sample:
-  - title: "Sidebar navigation"
+tutos_nav:
+  - title: Tutorials
+    url: /tutos/
+    children:
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
+      - title: "Tuto 1"
+        url: /tutos/tuto1/
 
-foo:
-  - title: "Footer navigation"
+get_nav:
+  - title: Getting Preesm
+    url: /get/
+    children:
+      - title: "Source Code"
+        url: /get/source/
+      - title: "Releases"
+        url: /get/releases/
+      - title: "Update-Site"
+        url: /get/update-site/

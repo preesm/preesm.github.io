@@ -102,6 +102,7 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jemoji
+  - jekyll-twitter-plugin
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -110,6 +111,7 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jemoji
+  - jekyll-twitter-plugin
 
 
 # Archives
@@ -149,24 +151,21 @@ compress_html:
     envs: development
 
 collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
   tutos:
+    output: true
+    permalink: /:collection/:path/
+  get:
+    output: true
+    permalink: /:collection/:path/
+  about:
     output: true
     permalink: /:collection/:path/
 
 # Defaults
 defaults:
-  - scope:
-      path: ""
-      type: home
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: # true
-      share: true
-      related: true
-      sidebar:
-        nav: "docs"
   # _posts
   - scope:
       path: ""
@@ -179,8 +178,41 @@ defaults:
       share: true
       related: true
       toc: true
+  # _docs
+  - scope:
+      path: ""
+      type: docs
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comments: false
       sidebar:
-        nav: "docs"
+        nav: "docs_nav"
+  # _get
+  - scope:
+      path: ""
+      type: get
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comments: false
+      sidebar:
+        nav: "get_nav"
+  # _about
+  - scope:
+      path: ""
+      type: about
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comments: false
+  # _tutos
   - scope:
       path: ""
       type: tutos
@@ -191,4 +223,4 @@ defaults:
       share: false
       comments: false
       sidebar:
-        nav: "docs"
+        nav: "tutos_nav"
