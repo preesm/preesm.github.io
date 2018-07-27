@@ -14,6 +14,36 @@ main:
   - title: "Get Preesm"
     url: /get/
 
+tutos_nav:
+  - title: Tutorials
+    url: /tutos/
+    children:
+      - title: "01 - Eclipse Preparation"
+        url: /tutos/eclipse/
+      - title: "02 - Tutorial Introduction"
+        url: /tutos/intro/
+      - title: "03 - Parallelize an Application on a Multicore CPU"
+        url: /tutos/parasobel/
+      - title: "04 -  Code Generation for Multicore DSP"
+        url: /tutos/mpsoccodegen/
+      - title: "05 - Software Pipelining for Throughput Optimization"
+        url: /tutos/softwarepipeline/
+      - title: "06 - Memory Footprint Reduction"
+        url: /tutos/memory/
+      - title: "07 - Advanced Memory Footprint Reduction"
+        url: /tutos/advancedmemory/
+      - title: "08 - Automated Actor Execution Time Measurement"
+        url: /tutos/instrumentation/
+      - title: "09 - Import/Export an SDF3 Graph"
+        url: /tutos/importexport/
+      - title: "10 - Reconfigurable Application with SPIDER - [BETA]"
+        url: /tutos/spider/
+      - title: "11 - Papify tutorial - [BETA]"
+        url: /tutos/papify/
+      - title: "12 - HW/SW Codegeneration for ZedBoard - [BETA]"
+        url: /tutos/sdsoc/
+      - title: "13 - Throughput Evaluation for Hierarchical graphs"
+        url: /tutos/throughputeval/
 
 docs_nav:
   - title: Documentation
@@ -33,37 +63,9 @@ docs_nav:
         url: /docs/gittips/
       - title: "Build from Graphiti or DFTools Sources"
         url: /docs/buildfromgraphiti-dftools/
+      - title: "CCS Setup"
+        url: /docs/ccssetup/
 
-tutos_nav:
-  - title: Tutorials
-    url: /tutos/
-    children:
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
-      - title: "Tuto 1"
-        url: /tutos/tuto1/
 
 get_nav:
   - title: Getting Preesm
