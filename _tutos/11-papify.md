@@ -48,13 +48,13 @@ In order to get access to the Performance Monitor Counters (PMCs) existing in th
 To include Papify in the project, there are two options. The first one is the starting project with all the changes included while the second explians, step by step, all the required changes to work with both PAPI and Papify:
 
 
-1.  The starting project with all the changes included is available [\[here\]](data/uploads/tutorial_papify/tutorialpapify.zip).
-2.  Download Papify from the repository:
-3.  Option A.- Clone from ```https://github.com/dmadronal/Papify.git```
-4.  Option B.- Download it from ```https://github.com/dmadronal/Papify/archive/master.zip```
-5.  Copy "src/eventLib.c" to "org.ietr.preesm.sobel/Code/src/" directory
-6.  Copy "include/eventLib.h" to "org.ietr.preesm.sobel/Code/include/" directory
-7.  Open "CMakeLists.txt" and insert the following lines after the pthread section
+- (1) The starting project with all the changes included is available [\[here\]](data/uploads/tutorial_papify/tutorialpapify.zip).
+- (2) Download Papify from the repository:
+  - (a) Clone from [https://github.com/dmadronal/Papify.git](https://github.com/dmadronal/Papify.git)
+  - or (b) Download it from [https://github.com/dmadronal/Papify/archive/master.zip](https://github.com/dmadronal/Papify/archive/master.zip)
+- (3) Copy "src/eventLib.c" to "org.ietr.preesm.sobel/Code/src/" directory
+- (4) Copy "include/eventLib.h" to "org.ietr.preesm.sobel/Code/include/" directory
+- (5) Open "CMakeLists.txt" and insert the following lines after the pthread section 
 
 ```cmake
 # *******************************************
@@ -64,20 +64,14 @@ To include Papify in the project, there are two options. The first one is the st
 find_library(papi_LIBRARY papi)
 ```
 
-8.  Change the target\_link\_libraries to add PAPI linkage
+- (6) Change the target\_link\_libraries to add PAPI linkage 
 
 ```cmake
 target_link_libraries(sobel ${SDL2_LIBRARY} ${SDL2TTF_LIBRARY} ${CMAKE_THREAD_LIBS_INIT} ${papi_LIBRARY})
 ```
 
-9.  In case it is not present, add this line at the end of the CMakeLists.txt
-
-```cmake
-set(CMAKE_C_FLAGS "-std=gnu99")
-```
-
-
-10.  Finally, in order to find Papify library in compilation time, add these lines in the /include/preesm.h file
+- (7) In case it is not present, add this line at the end of the CMakeLists.txt ```set(CMAKE_C_FLAGS "-std=gnu99")```
+- (8) Finally, in order to find Papify library in compilation time, add these lines in the /include/preesm.h file
 
 ```c
 #define _PREESM_MONITOR_INIT
@@ -85,7 +79,6 @@ set(CMAKE_C_FLAGS "-std=gnu99")
 #include "eventLib.h"
 #endif
 ```
-
 
 3\. Generate the platform supported PAPI events
 -----------------------------------------------
