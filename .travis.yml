@@ -2,7 +2,8 @@ language: ruby
 cache: bundler
 gemfile: ./Gemfile
 script:
-  - bundle exec jekyll algolia --source ./ --destination ./_site --config ./_config.yml
+  - bundle exec jekyll build
+  #algolia --source ./ --destination ./_site --config ./_config.yml
 branches:
   only:
   - gh-pages
