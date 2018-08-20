@@ -3,6 +3,9 @@ cache: bundler
 gemfile: ./Gemfile
 script:
   - bundle exec jekyll algolia --source ./ --destination ./_site --config ./_config.yml
-branches: .*
+branches:
+  only:
+  - gh-pages
+  - /.*/
 rvm:
  - 2.4
