@@ -60,7 +60,10 @@
     margin-top: -0.5em;
   }
 }
-
+img {
+    margin: 0 auto;
+    display: block;
+}
 .page__lead {
   font-family: $global-font-family;
   font-size: $type-size-4;
@@ -71,7 +74,6 @@
     padding-bottom: 0.5em;
     border-bottom: 1px solid $border-color;
   }
-
   p,
   li,
   dl {
