@@ -75,7 +75,7 @@
   p,
   li,
   dl {
-    font-size: 1em;
+    font-size: 0.75em;
   }
 
   /* paragraph indents */
@@ -89,6 +89,7 @@
         margin-top: -($indent-var);
       }
     }
+    text-align: justify;
   }
 
   a:not(.btn) {

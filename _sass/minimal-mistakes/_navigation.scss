@@ -500,7 +500,7 @@
 
   .nav__title {
     color: #fff;
-    font-size: $type-size-6;
+    font-size: $type-size-7;
     background: $primary-color;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
@@ -512,13 +512,13 @@
   padding: 0;
   width: 100%;
   list-style: none;
-  font-size: 0.8rem;
+  font-size: 1rem;
 
   a {
     display: block;
     padding: 0.5rem 1rem;
     color: $muted-text-color;
-    font-size: $type-size-7;
+    font-size: $type-size-6;
     font-weight: bold;
     line-height: 1.5;
     border-bottom: 1px solid $border-color;
