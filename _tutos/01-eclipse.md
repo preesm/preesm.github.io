@@ -17,7 +17,7 @@ Eclipse is an extensible platform programmed in Java that allows developers to w
 Download and Installation
 -------------------------
 
-You can download Eclipse here: [http://www.eclipse.org/downloads/](http://www.eclipse.org/downloads/). Please download the **"Neon Eclipse"** package to develop in Preesm. Install or extract Eclipse in a folder where you have write access.
+You can download Eclipse here: [http://www.eclipse.org/downloads/](http://www.eclipse.org/downloads/). Please download the **"Photon Eclipse"** package to develop in Preesm. Install or extract Eclipse in a folder where you have write access.
 
 Run Eclipse, you need to choose a workspace, i.e. a directory where your projects will be stored.
 
