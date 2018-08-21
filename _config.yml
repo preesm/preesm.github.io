@@ -22,7 +22,7 @@ name                     : "IETR VAADER"
 description              : "Preesm Documentation Website"
 repository               : "preesm/preesm"
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+#words_per_minute         : 200
 
 # Reading Files
 include:
@@ -73,13 +73,13 @@ incremental: false
 # Markdown Processing
 kramdown:
   input: GFM
-  hard_wrap: false
+  hard_wrap: true
   auto_ids: true
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
+  enable_coderay: true
 
 
 # Sass/SCSS
@@ -176,7 +176,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      read_time: true
+      read_time: false
       comments: # true
       share: true
       related: true

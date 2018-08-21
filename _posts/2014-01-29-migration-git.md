@@ -1,7 +1,6 @@
 ---
 title:  "Migration to git and release"
 search: false
-last_modified_at: 2014-01-29T07:06:00-05:00
 toc: false
 ---
 

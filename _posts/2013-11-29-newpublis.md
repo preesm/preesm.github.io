@@ -1,11 +1,11 @@
 ---
 title:  "New publications"
 search: false
-last_modified_at: 2013-11-29T06:06:00-05:00
 toc: false
+last_modified_at: 2018-08-21T10:10:00-00:00
 ---
 
-Five new publications are now available on the "[Publications](http://preesm.insa-rennes.fr/website/index.php?id=publications)" page:
+Five new publications are now available on the "[Publications](/publis)" page:
 
 *   Desnos, Karol; Pelcat, Maxime; Nezan, Jean-François; Bhattacharyya, Shuvra S.; Aridhi, Slaheddine (2013) ["PiMM: Parameterized and Interfaced Dataflow Meta-Model for MPSoCs Runtime Reconfiguration"](http://hal.inria.fr/hal-00877492). [SAMOS XIII](http://www.samos-conference.com/), Samos, Greece.
   

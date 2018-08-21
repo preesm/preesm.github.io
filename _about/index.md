@@ -20,7 +20,7 @@ Instructions for installing Preesm can be found in the [documentation](/docs/). 
 
 ## Contact
 
-For general information, do not hesitate to contact as at [contact@preesm.insa-rennes.fr](contact@preesm.insa-rennes.fr)
+For general information, do not hesitate to contact as at [contact@preesm.insa-rennes.fr](mailto:contact@preesm.insa-rennes.fr)
 
 For technical issues, please contact us via [GitHub Issues](https://github.com/preesm/preesm/issues) tracker.
 

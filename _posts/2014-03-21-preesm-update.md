@@ -1,11 +1,11 @@
 ---
 title:  "Simultaneous release of PREESM, DFTools and Graphiti"
 search: false
-last_modified_at: 2014-03-21T08:06:00-05:00
 toc: false
+last_modified_at: 2018-08-21T10:10:00-00:00
 ---
 
-We just released version 1.1.0 of PREESM, version 1.1.0 of DFTools and version 1.3.12 of Graphiti. You can find these new versions on our update site : [http://preesm.sourceforge.net/eclipse/update-site/](http://preesm.sourceforge.net/eclipse/update-site/).
+We just released version 1.1.0 of PREESM, version 1.1.0 of DFTools and version 1.3.12 of Graphiti. You can find these new versions on our [update site](http://preesm.insa-rennes.fr/repo/complete/).
 
 ### PREESM v1.1.0
 

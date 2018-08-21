@@ -1,11 +1,11 @@
 ---
 title:  "Tutorial 1 Update"
 search: false
-last_modified_at: 2016-09-21T08:06:00-05:00
 toc: false
+last_modified_at: 2018-08-21T10:10:00-00:00
 ---
 
-The tutorial [Parallelize an Application on a Multicore CPU](http://preesm.insa-rennes.fr/website/index.php?id=parallelize-an-application-on-a-multicore-cpu) has been updated.
+The tutorial [Parallelize an Application on a Multicore CPU](/tutos/parasobel) has been updated.
 
 The following changes have been made:
 
