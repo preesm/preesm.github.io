@@ -32,7 +32,7 @@ The following topics are covered in this tutorial:
 *   Compilation and Execution of Preesm
 
 
-### [New Workflow Task](/docs/newtask/))
+### [New Workflow Task](/docs/newtask/)
 
 The following topics are covered in this tutorial:
 
@@ -41,6 +41,10 @@ The following topics are covered in this tutorial:
 *   Implementation of a new workflow task
 *   Using a new workflow task
 
-### [Building Spider](/docs/buildspider/))
+### [Building Spider](/docs/buildspider/)
 
-### [Git Tips and Tricks](/docs/gittips/))
+Guide lines to build spider with GCC, Visual Studio or CodeBlocks.
+
+### [Git Tips and Tricks](/docs/gittips/)
+
+You'll find here a few tips & tricks to use git and manage mistakes (erroneous commits and pushes).

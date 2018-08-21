@@ -4,37 +4,24 @@ permalink: /docs/buildpreesm/
 toc: true
 ---
 
-
-Disclaimers
------------
-
-1.  When building PREESM, you have to **run a second Eclipse Application** (the guest) within the Eclipse where the source code is improted (the host). This is explained below in  the "Execution of Preesm" section;
-2.  When using unreleased source code (that is any other commit different from the last tag), there could be some **inconsistencies** between SourceForge hosted zip files used in tutorials and the tool;
-
---
-
-The following topics are covered in this tutorial:
-
-*   Installation of Eclipse and all necessary plug-ins
-*   Retrieving the source code for Preesm and related projects
-*   Buidling and Executing of Preesm
-*   Coding Policies
-*   Troubleshooting
-
-Prerequisite: [Install and Configure git](http://preesm.insa-rennes.fr/website/index.php?id=install-and-configure-git)
+Prerequisite: [Install and Configure git](/docs/gitsetup)
 
 Note: if you need to work with Graphiti and/or DFTools source code, please read [these instructions](/docs/buildfromgraphiti-dftools/) first.
 
 ###### Tutorial created the 04.24.2012 by [M. Pelcat](mailto:mpelcat@insa-rennes.fr)  
 Updated the 04.19.2017 by [A. Morvan](mailto:antoine.morvan@insa-rennes.fr)
 
-Eclipse installation
---------------------
+## Disclaimers
 
-Follow the instructions of the [Eclipse Preparation](http://preesm.insa-rennes.fr/website/index.php?id=eclipse-preparation) tutorial to obtain an Eclipse installation, in which you will install all necessary tools for Preesm development. Make sure you have the Neon version.
+1.  When building PREESM, you have to **run a second Eclipse Application** (the guest) within the Eclipse where the source code is improted (the host). This is explained below in  the "Execution of Preesm" section;
+2.  When using unreleased source code (that is any other commit different from the last tag), there could be some **inconsistencies** between SourceForge hosted zip files used in tutorials and the tool;
 
-Install XTend, GEF SDK, Graphiti, Maven, DFTools, ...
------------------------------------------------------
+
+## Eclipse installation
+
+Follow the instructions of the [Eclipse Preparation](/tutos/eclipse/) tutorial to obtain an Eclipse installation, in which you will install all necessary tools for Preesm development. Make sure you have the Neon version.
+
+## Install XTend, GEF SDK, Graphiti, Maven, ...
 
 1.  Go to "Help > Install New Software...";
 2.  In "work with:", add a new location named "Preesm" with location "http://preesm.sourceforge.net/eclipse/update-site/"
@@ -44,14 +31,13 @@ Install XTend, GEF SDK, Graphiti, Maven, DFTools, ...
 5.  During the installation process, a security warning for unsigned content will appear. Click on OK to continue the installation.
 6.  Restart eclipse to complete the installation.
 
-Import Preesm projects
-----------------------
+## Import Preesm projects
 
-You need to get the code from the git repository and import the projects into Eclipse. Our git repository is hosted by [Github](https://github.com/) (see the [Preesm team page on Github](https://github.com/orgs/preesm/)).
+You need to get the code from the git repository and import the projects into Eclipse. Our git repository is hosted by [Github](https://github.com/) (see the [Preesm team page on Github](https://github.com/preesm/)).
 
 Clone the following repository (git clone <url>, in the folder where you want to place your local repository):
 
-*   [Preesm](https://github.com/preesm/preesm): https://github.com/preesm/preesm.git (https) or git@github.com:preesm/preesm.git (SSH)
+*   [Preesm](https://github.com/preesm/preesm): [https://github.com/preesm/preesm.git](https://github.com/preesm/preesm.git) (https) or [git@github.com:preesm/preesm.git](git@github.com:preesm/preesm.git) (SSH)
 
 **Switch to the develop** branch (git checkout develop) to get the latest developer version of our source.
 
@@ -69,8 +55,7 @@ The PREESM plugins are plain Maven projects. In order to import them in Eclipse,
     *   Note : releng/* projects are for Release Engineering, and can be omitted.
 *   Click on finish.
 
-Compilation of Preesm
----------------------
+## Compilation of Preesm
 
 **Change perspective**  
 For a better user experience in eclipse, we strongly advice that you use the "Plug-In Development" perspective of eclipse. To use this perspective, select "Plug-In Development" in Windows > Open Perspective > Others...
@@ -78,13 +63,11 @@ For a better user experience in eclipse, we strongly advice that you use the "Pl
 **Compilation**  
 If there still are errors after applying the previous operations, try again to clean, refresh and build the projects.
 
-Execution of Preesm
--------------------
+## Execution of Preesm
 
 In the Java or 'Plug-in Development' perspective, right-click on the 'org.ietr.preesm.ui' plug-in, the click on Debug As > Eclipse Application. A new Eclipse session is launched that behaves like the one obtained by Preesm users from the update site. The difference is that you can debug and modify code in the first Eclipse and test at the same time in the second Eclipse. You can see the tutorials to learn how to use the second Eclipse, import Preesm projects and test.
 
-Coding Policies
----------------
+## Coding Policies
 
 The Preesm code base respects some coding policy. If you intend to develop within Preesm, we strongly advise you to follow these policy to prevent the continuous integration server to reject your contributions. These policies are simple :
 
@@ -104,8 +87,7 @@ To receive the build status notifications, you have to sign in on travis-ci.org 
 
 Preesm team repositories set the notification policies to the Travis default : [https://docs.travis-ci.com/user/notifications/](https://docs.travis-ci.com/user/notifications/)
 
-Troubleshooting
----------------
+## Troubleshooting
 
 *   **I updated the source code and many errors appeared. Why ?**
     *   **(1)** The usual reason is that upstream API changed. Try "Help / Chek for updates". It may be required to [clean the Eclipse cache](https://stackoverflow.com/questions/9250041/how-to-clear-cache-of-eclipse-indigo) after such update.

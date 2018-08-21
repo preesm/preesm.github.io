@@ -6,14 +6,7 @@ toc: true
 
 git is the Decentralized Version Control System (DVCS) used by the Preesm development team to version the PREESM, DFTools and Graphiti sources. In order to get the sources of these projects and to contribute to them, you will need to install git and to create a Github account.
 
-The following topics are covered in this tutorial:
-
-*   Installation and configuration of the git Decentralized Version Control System
-*   Creation and configuration of a Github account
-*   Development workflow for PREESM, DFTools and Graphiti
-
-Learning git
-------------
+## Learning git
 
 If you're not familiar with git and plan to contribute to PREESM, DFTools or Graphiti projects, you should first learn a little bit about git.
 
@@ -21,12 +14,12 @@ The [git book](http://git-scm.com/book/) is available in several languages and w
 
 The --help option after the different git commands will also help you to understand their goals and the way to use it.
 
-You can also find a few git tips & tricks more specific to PREESM development on [this page](http://preesm.insa-rennes.fr/website/index.php?id=git-tips-tricks).
+You can also find a few git tips & tricks more specific to PREESM development on [this page](/docs/gittips).
 
 Finally, the Internet is full of resources about git (see for example StackOverflow questions related to git: [https://stackoverflow.com/questions/tagged/git](https://stackoverflow.com/questions/tagged/git)).
 
-Install git & git-gui
----------------------
+## Install git & git-gui
+
 
 ### Windows
 
@@ -34,23 +27,23 @@ Download & launch the installer: [http://msysgit.github.com/](http://msysgit.git
 
 ### Ubuntu
 
+```bash
 apt-get install git  
 apt-get install git-gui
+```
 
 ### Mac
 
 Download & launch the installer: [http://code.google.com/p/git-osx-installer](http://code.google.com/p/git-osx-installer)
 
-Configure git
--------------
+## Configure git
 
 git uses your email address to identify your commits, as well as a user name (basically your full name) to make it easier to trace commits. In order to set the email address and user name git will use in your commits, you need to launch the following commandlines, where <name> is the name you want git to use to identify your commits and <mail> the email address you want git to attach to your commits.
 
 *   git config --global user.name <name>
 *   git config --global user.email <mail>
 
-Create a github account
------------------------
+## Create a github account
 
 PREESM, DFTools and Graphiti sources are hosted on [Github](https://github.com) repositories.
 
@@ -62,8 +55,7 @@ You can also add one or more SSH key to your Github account (Github > Account se
 
 _Note: You can also get the code and propose contributions without being part of the teams of contributors through the Fork & Pull request process ([learn more about the Fork & Pull model](https://help.github.com/articles/using-pull-requests))._
 
-Development workflow for PREESM, DFTools and Graphiti
------------------------------------------------------
+## Development workflow for PREESM, DFTools and Graphiti
 
 Each of our repositories get two main branches (which are permanent):
 
@@ -72,12 +64,40 @@ Each of our repositories get two main branches (which are permanent):
 
 As a contributor of the PREESM, DFTools and/or Graphiti projects, we ask you to follow the following wokflow when developing:
 
-*   Clone the needed repositories (git clone <url>, see also [Building Preesm](http://preesm.insa-rennes.fr/website/index.php?id=building-preesm))
+*   Clone the needed repositories (git clone \<url\>, see also [Building Preesm](/docs/buildpreesm))
 *   Switch to the develop branches (git checkout develop)
-*   Start your own development branch(es) dedicated to the new features you want to add/the bug you want to fix (git checkout -b <new-branch-name>)
+*   Start your own development branch(es) dedicated to the new features you want to add/the bug you want to fix (git checkout -b \<new-branch-name\>)
 *   Frequently check for latest version of the code in order to stay up to date with the remote repositories (git fetch)
-*   When finished, merge your branch into your up to date local develop branch (git checkout develop + git pull + git merge <new-branch-name>), before to push your local develop branch (git push)
+*   When finished, merge your branch into your up to date local develop branch, after rebasing it (see [below](/docs/gitsetup/#clean-mergerebase-of-your-branches-into-develop)):
+
+```bash
+##
+## 1. sync develop with remote repository
+##
+
+git checkout develop
+git pull #there should be no conflict since you should not commit on develop
+
+##
+## 2. rebase new branch on develop
+## note: the conflicts will occur during this step
+##  -> use 'git mergetool' and 'git rebase --continue'
+##
+
+git checkout <new-branch-name>
+git rebase develop
+
+##
+## 3. merge the rebased branch
+##
+
+git checkout develop
+git merge --no-ff <new-branch-name>
+git push
+```
 
 ### Clean merge/rebase of your branches into develop
 
-Depending what is the branch you want to merge into develop, you should prefer to use rebase before merging or to use merge -no-ff. See the following article: [getting solid at git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa).
+Depending what is the branch you want to merge into develop, it is prefered to use rebase before merging and to use ```git merge --no-ff```. See the following articles: 
+*  [git merge vs rebase whats the diff?](https://hackernoon.com/git-merge-vs-rebase-whats-the-diff-76413c117333)
+*  [getting solid at git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
