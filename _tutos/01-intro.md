@@ -25,35 +25,59 @@ A Tutorial Project can be found [here](/assets/tutos/intro/org.ietr.preesm.tutor
 
 Once these steps are completed, the unzipped project files can be accessed either from the "Package Explorer" view of Eclipse, or directly in the "Workspace" directory of eclipse (using your favorite browser).
 
-## Requirements for Running Tutorial Demos
+## Requirements for Running Tutorial Generated Code
 
-All the tutorial projects are built using CMake (see below). Most of them use PThread for parallel execution. In addition, some materials can be downloaded for running (input video, fonts, ...): follow the instruction given in ```Code/lib/ReadMe.txt``` of each project to make sure that the required files are in the right place.
+All the tutorial generated code is built using **CMake** (see below). Most of the demos use **PThread** for parallel execution and **SLD2** for image and video manipulation. In addition, some materials have to be downloaded for proper execution (input video, fonts, ...): follow the instruction given in ```Code/lib/ReadMe.txt``` of each project to make sure that the required files are in the right place.
 
 ### CMake
 
 CMake is used to generate C compilation projects for Microsoft Visual, Codeblocks, Eclipse CDT... For more information on CMake, go to [http://www.cmake.org](http://www.cmake.org/).
 
-#### Ubuntu 
+#### Linux
+
+On Ubuntu 16.04
 
 ```bash
 sudo apt-get install cmake cmake-curses-gui
 ```
 
+For other distributions, see appropriate documentation. Package names should be very similar.
+
 #### Windows / MacOSX
 
-Refer to instructions from [CMake Download Page](https://cmake.org/download/).
+Use installer from [CMake Download Page](https://cmake.org/download/).
 
 ### PThread
 
 Pthread (POSIX Threads) library is used to obtain a portable code with threads. For more information on POSIX threads, see [https://computing.llnl.gov/tutorials/pthreads](https://computing.llnl.gov/tutorials/pthreads).
 
-#### Linux
+#### Unix
 
-PThread is bundle in almost all Linux distribution. If not, refer to your distribution documentation.
+PThread is bundled by default in almost all Linux / MacOSX distribution. If not, refer to your distribution documentation.
 
 #### Windows 
 
 Use the [pthread-2.10.0](/assets/downloads/pthread-2.10.0.zip) version.
+
+### SDL 2
+
+From SDL about page : 
+
+  _Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D._
+
+#### Linux
+
+On Ubuntu 16.04
+
+```bash
+sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev
+```
+
+For other distributions, see appropriate documentation. Package names should be very similar.
+
+#### Windows / MacOSX
+
+Download the development library (v. 2.0+) from [libsdl.org](https://www.libsdl.org/download-2.0.php). **Do take the "Development library"** and not the runtime library.
 
 ## Understand the Inputs and Run the Workflow
 
