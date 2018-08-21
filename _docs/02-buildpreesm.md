@@ -35,9 +35,10 @@ Follow the instructions of the [Eclipse Preparation](/tutos/eclipse/) tutorial t
 
 You need to get the code from the git repository and import the projects into Eclipse. Our git repository is hosted by [Github](https://github.com/) (see the [Preesm team page on Github](https://github.com/preesm/)).
 
-Clone the following repository (git clone <url>, in the folder where you want to place your local repository):
+Clone the [Preesm](https://github.com/preesm/preesm) repository (git clone \<url\>, in the folder where you want to place your local repository):
 
-*   [Preesm](https://github.com/preesm/preesm): [https://github.com/preesm/preesm.git](https://github.com/preesm/preesm.git) (https) or [git@github.com:preesm/preesm.git](git@github.com:preesm/preesm.git) (SSH)
+*   [https://github.com/preesm/preesm.git](https://github.com/preesm/preesm.git) (https)
+*   or ```git@github.com:preesm/preesm.git``` (SSH)
 
 **Switch to the develop** branch (git checkout develop) to get the latest developer version of our source.
 
@@ -80,8 +81,7 @@ To help enforcing the checkstyle format, the "on-the-fly" checkstyle analyser us
 
 To receive the build status notifications, you have to sign in on travis-ci.org with your github account and make sure your local git config mail address matches one of the github verified mail address:
 
-1.  Check your local git config mail address, and change it to a valid one if it is not already the case  
-    'git config --global --edit'
+1.  Check your local git config mail address, and change it to a valid one if it is not already the case: ```git config --global --edit```
 2.  Sign in on GitHub, got to Settings / Emails, and check that the mail address is present. If not, add it to the list and make sure that it is verified before going further.
 3.  Got to [https://travis-ci.org/](https://travis-ci.org/) and Sign In with your GitHub account. This will allow Travis-CI to read the permissions on the repositories to make sure you have push access and also check that your mail address is verified.
 
@@ -94,9 +94,9 @@ Preesm team repositories set the notification policies to the Travis default : [
     *   **(2)** Another reason would be the Maven configuration files that are not up to date. To update them, select all the Preesm related projects in the workspace, and press Alt+F5 then press OK.
     *   **(3)** Also, the build state of the Eclipse workspace can be corrupted after an update. To fix that, restart Eclipse then clean and rebuild your workspace.
     *   **(4)** Finaly, some updates can introduce new Preesm plug-ins that you would have to add in your workspace (File / Import ... > Maven / Existing Maven Projects > select the root folder of the git repository. Eclipse will automatically detect new plugins). If the procedures did not solve the errors, please contact us.
-*   **Check for Updates is failing:** We moved the update site because of instability of the previous server. If you still have the old URL, you may have the following error: "HTTP Server 'Service Unavailable': \[....\] error response code 503." It is best to use the new update site:
+*   **Check for Updates is failing:** We moved the update site because of instability of the previous server. If you still have the old URL, you may have the following error: ```HTTP Server 'Service Unavailable': [...] error response code 503.``` It is best to use the new update site:
     *   Go to Window > Preferences then Install/Update > Available Software Sites;
     *   Look for the PREESM site and Edit its URL;
-    *   Paste the new URL : http://preesm.insa-rennes.fr/repo/complete/;
-    *   Click on Apply and Close then try to check for updates again.If this does not solve the issue, please contact us.
-*   **Missing artifact com.sun:tools:jar:1.8.0 is missing:** This happens because Eclipse is running using a JRE instead of a JDK. Some Eclipse plugins needs Java packages that are not bundled with the JRE, but only with the JDK. If you installed the JDK, note that by default the JDK distribution for Windows also installs a JRE. Also, the installer adds a section in the PATH variable, that points to 'C:\\ProgramData\\Oracle\\Java\\javapath', which is an alias to the JRE binaries. Please refer to [this page](https://douglascayers.com/2015/05/30/how-to-set-custom-java-path-after-installing-jdk-8/) for fixing the issue. Basically, it tells to prepend the PATH variable with the path to the JDK, while not removing the '...\\javapath' section.
+    *   Paste the new URL : [http://preesm.insa-rennes.fr/repo/complete/](http://preesm.insa-rennes.fr/repo/complete/);
+    *   Click on Apply and Close then try to check for updates again. If this does not solve the issue, please contact us.
+*   **Missing artifact com.sun:tools:jar:1.8.0 is missing:** This happens because Eclipse is running using a JRE instead of a JDK. Some Eclipse plugins needs Java packages that are not bundled with the JRE, but only with the JDK. If you installed the JDK, note that by default the JDK distribution for Windows also installs a JRE. Also, the installer adds a section in the PATH variable, that points to ```C:\ProgramData\Oracle\Java\javapath```, which is an alias to the JRE binaries. Please refer to [this page](https://douglascayers.com/2015/05/30/how-to-set-custom-java-path-after-installing-jdk-8/) for fixing the issue. Basically, it tells to prepend the PATH variable with the path to the JDK, while not removing the ```...\javapath``` section.

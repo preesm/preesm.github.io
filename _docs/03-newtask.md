@@ -4,42 +4,27 @@ permalink: /docs/newtask/
 toc: true
 ---
 
-The following topics are covered in this tutorial:
+Before proceeding you need to do: [Building Preesm](/docs/buildpreesm) and [Tutorial Introduction](/tutos/intro).
 
-*   Reminder of the role of a workflow task
-*   Creation and configuration of a new workflow task
-*   Implementation of a new workflow task
-*   Using a new workflow task
-
-Before proceeding you need to do: [Building Preesm](index.php?id=building-preesm) & [Tutorial Introduction](index.php?id=tutorial-introduction).
-
-Note that the two Eclipse installation asked for these two tutorials are different, you should use in the following the Preesm developer installation from [Building Preesm](index.php?id=building-preesm).
+Note that the two Eclipse installation asked for these two tutorials are different, you should use in the following the Preesm developer installation from [Building Preesm](/docs/buildpreesm).
 
 ###### Tutorial created the 12.10.2012 by [K. Desnos](mailto:kdesnos@insa-rennes.fr)
 
-What is a Workflow Task?
-------------------------
+## What is a Workflow Task?
 
-A workflow is an executable graph that applies transformations to models (architecture, algorithm, ...). For example, the following workflow which is used in [Tutorial Introduction](index.php?id=tutorial-introduction), is designed to map and schedule an algorithm on an architecture, both defined in the executed scenario, and to generate the corresponding source code.
+A workflow is an executable graph that applies transformations to models (architecture, algorithm, ...). For example, the following workflow which is used in [Tutorial Introduction](/tutos/intro), is designed to map and schedule an algorithm on an architecture, both defined in the executed scenario, and to generate the corresponding source code.
 
-![](/assets/docs/03-newtask-assets//workflow-example.png)
+![](/assets/docs/03-newtask-assets/workflow-example.png)
 
 Within the workflow graph, each "vertex" - or "workflow task" - performs a specific action on one or several inputs. For example, the "HierarchyFlattening" workflow element takes as input an algorithm modeled with a hierarchical graph and outputs a flattened version of this graph.
 
-How to create your own Workflow Task
-------------------------------------
+## How to create your own Workflow Task
 
-In the remainder of this tutorial, we will create a new dummy workflow task whose purpose is to multiply by a given factor all the production and consumption rates of an algorithm graph. The tutorial is composed of the following steps:
+In the remainder of this tutorial, we will create a new dummy workflow task whose purpose is to multiply by a given factor all the production and consumption rates of an algorithm graph.
 
-1.  [Creation and configuration of a new eclipse plugin](#1)
-2.  [Creation of a new workflow task](#2)
-3.  [Implementation of the new workflow task](#3)
-4.  [Registration of the new workflow task](#4)
-5.  [Test of the new workflow task](#5)
+### Creation and configuration of a new eclipse plugin
 
-### 1\. Creation and configuration of a new eclipse plugin
-
-The Eclipse IDE integrates a powerful plugin mechanism that allows the seamless integration of new functionalities to the IDE. For example, Graphiti, DFTools, and Preesm each consist of a set of Eclipse plugins. Consequently, the easiest way to add new features to Preesm is to create your own plugin. To create a new plugin, in the Eclipse instance where the [Building Preesm](index.php?id=building-preesm) tutorial was done:
+The Eclipse IDE integrates a powerful plugin mechanism that allows the seamless integration of new functionalities to the IDE. For example, Graphiti, DFTools, and Preesm each consist of a set of Eclipse plugins. Consequently, the easiest way to add new features to Preesm is to create your own plugin. To create a new plugin, in the Eclipse instance where the [Building Preesm](/docs/buildpreesm) tutorial was done:
 
 1.  Right-click in the package explorer and select "New->Other...".
 2.  In the wizard, select "Plug-in Project" and click Next.
@@ -54,7 +39,7 @@ The Eclipse IDE integrates a powerful plugin mechanism that allows the seamless 
 
 The following project appears in your Package Explorer:
 
-![](/assets/docs/03-newtask-assets//screenshot_plugin_3.png)
+![](/assets/docs/03-newtask-assets/screenshot_plugin_3.png)
 
 Before creating a new workflow task, you must first configure the dependencies of the plugin project:
 
@@ -70,18 +55,18 @@ To complete the plugin configuration, repeat steps 2 to 5 and add the following 
 *   org.clojars.gilesc.jgrapht
 *   org.eclipse.core.runtime
 
-### 2\. Creation of a new workflow task
+### Creation of a new workflow task
 
 The next step consists of creating the class that will implement the behavior of the workflow task:
 
 1.  In the package Explorer, right-click on the plugin project and select “New->Class”
 2.  Give a name the class and make it inherit from “AbstractTaskImplementation”.
 
-![](/assets/docs/03-newtask-assets//screenshot_task_1.png)
+![](/assets/docs/03-newtask-assets/screenshot_task_1.png)
 
 3.  Click on Finish. The new class file will automatically open.
 
-### 3\. Implementation of the new workflow task
+### Implementation of the new workflow task
 
 The **monitorMessage()** method returns a message that will be displayed in the Console of Preesm when the workflow task is executed. Here is an example of implementation for this task:
 
@@ -109,9 +94,9 @@ The **execute(...)** method is called when the workflow task is executed. Its in
 *   A String containing the name given to the instance of the workflow task
 *   The Workflow where the workflow task is instantiated
 
-The code of the execute method for our example is [available here](/assets/docs/03-newtask-assets//exampletask.java).
+The code of the execute method for our example is [available here](/assets/docs/03-newtask-assets/exampletask.java).
 
-### 4\. Registration of the new workflow task
+### Registration of the new workflow task
 
 Before being executed, the new workflow task must first be registered as an extension of org.ietr.dftools.workflow.tasks. To do that:
 
@@ -120,17 +105,17 @@ Before being executed, the new workflow task must first be registered as an exte
 3.  Select "org.ietr.dftools.workflow.tasks" and click "Finish".
 4.  Fill the "Extension Element Details" as follows and save:
 
-![](/assets/docs/03-newtask-assets//screenshot_task_2.png)
+![](/assets/docs/03-newtask-assets/screenshot_task_2.png)
 
 5.  Right-click on your extension name in the extension list and select "New->inputs"
 6.  Right-click on "(inputs)" and select "New->input"
 7.  Fill the "Extension Element Details" of the input as follows:
 
-![](/assets/docs/03-newtask-assets//screenshot_task_3.png)
+![](/assets/docs/03-newtask-assets/screenshot_task_3.png)
 
 8.  Save and repeat steps 5 to 7 to add an output "SDF" to your workflow task. The extensions list should look like this:
 
-![](/assets/docs/03-newtask-assets//screenshot_task_4.png)
+![](/assets/docs/03-newtask-assets/screenshot_task_4.png)
 
 Finally, the package containing the workflow task must be exported by the plugin in order to be usable by the workflow manager.
 
@@ -139,25 +124,21 @@ Finally, the package containing the workflow task must be exported by the plugin
 3.  Select the package containing the task class and click "OK"
 4.  Save the MANIFEST.MF. The new Workflow task is now ready to be used.
 
-### 5\. Test of the new workflow task
+### Test of the new workflow task
 
-1.  Launch Preesm as explained in the [Building Preesm](index.php?id=building-preesm#ExecutePreesm) tutorial.
-2.  Open a workflow (for example, the one given in [Tutorial 1](index.php?id=tutorial-1)).
+1.  Launch Preesm as explained in the [Building Preesm](/docs/buildpreesm#execution-of-preesm) tutorial.
+2.  Open a workflow (for example, the one given in [introductory tutorial](/tutos/intro/)).
 3.  In the workflow, create a new Task using the "Palette" on the right of the workflow editor.
 4.  Give a name to your task.
 5.  Select the newly added task and edit its "Basic" properties in the bottom of the window.
 6.  Set the "plugin identifier" property with the id used to register the workflow.tasks extension.
-
-![](/assets/docs/03-newtask-assets//screenshot_task_5.png)
-
+![](/assets/docs/03-newtask-assets/screenshot_task_5.png)
 7.  Save and go to the "Task Variables" properties of the workflow task. The "factor" parameter should appear. (If not, go back to the Preesm project, clean, rebuild and launch).
 8.  Set the value of the "factor" parameter.
 9.  Connect the task in the workflow. For example, insert it between the "srSDF" and the "LIST scheduler" tasks. To add a new connection, select "Data transfers" in the editor Palette and successively click on the source and target of the connection.
-
-![](/assets/docs/03-newtask-assets//screenshot_task_6.png)
-
-10.  Save the workflow and execute it as explained in [Tutorial Introduction](index.php?id=tutorial-introduction).
+![](/assets/docs/03-newtask-assets/screenshot_task_6.png)
+10.  Save the workflow and execute it as explained in [introductory tutorial](/tutos/intro/).
 
 You can now do a few tests with the new workflow task. For example, try changing the factor parameter into a negative number or a string of characters. You can also put breakpoints in the code of the task to follow its execution step-by-step.
 
-The complete plugin project built along this tutorial is [available here](/assets/docs/03-newtask-assets//org.ietr.preesm.tutorial.example.zip).
+The complete plugin project built along this tutorial is [available here](/assets/docs/03-newtask-assets/org.ietr.preesm.tutorial.example.zip).

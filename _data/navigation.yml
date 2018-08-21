@@ -71,9 +71,9 @@ get_nav:
   - title: Getting Preesm
     url: /get/
     children:
-      - title: "Source Code"
-        url: /get/source/
       - title: "Releases"
         url: /get/releases/
+      - title: "Source Code"
+        url: /get/source/
       - title: "Update-Site"
         url: /get/update-site/
