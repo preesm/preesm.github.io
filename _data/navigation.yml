@@ -18,31 +18,29 @@ tutos_nav:
   - title: Tutorials
     url: /tutos/
     children:
-      - title: "01 - Eclipse Preparation"
-        url: /tutos/eclipse/
-      - title: "02 - Tutorial Introduction"
+      - title: "01 - Tutorial Introduction"
         url: /tutos/intro/
-      - title: "03 - Parallelize an Application on a Multicore CPU"
+      - title: "02 - Parallelize an Application on a Multicore CPU"
         url: /tutos/parasobel/
-      - title: "04 -  Code Generation for Multicore DSP"
+      - title: "03 -  Code Generation for Multicore DSP"
         url: /tutos/mpsoccodegen/
-      - title: "05 - Software Pipelining for Throughput Optimization"
+      - title: "04 - Software Pipelining for Throughput Optimization"
         url: /tutos/softwarepipeline/
-      - title: "06 - Memory Footprint Reduction"
+      - title: "05 - Memory Footprint Reduction"
         url: /tutos/memory/
-      - title: "07 - Advanced Memory Footprint Reduction"
+      - title: "06 - Advanced Memory Footprint Reduction"
         url: /tutos/advancedmemory/
-      - title: "08 - Automated Actor Execution Time Measurement"
+      - title: "07 - Automated Actor Execution Time Measurement"
         url: /tutos/instrumentation/
-      - title: "09 - Import/Export an SDF3 Graph"
+      - title: "08 - Import/Export an SDF3 Graph"
         url: /tutos/importexport/
-      - title: "10 - Reconfigurable Application with SPIDER - [BETA]"
+      - title: "09 - Reconfigurable Application with SPIDER - [BETA]"
         url: /tutos/spider/
-      - title: "11 - Papify tutorial - [BETA]"
+      - title: "10 - Papify tutorial - [BETA]"
         url: /tutos/papify/
-      - title: "12 - HW/SW Codegeneration for ZedBoard - [BETA]"
+      - title: "11 - HW/SW Codegeneration for ZedBoard - [BETA]"
         url: /tutos/sdsoc/
-      - title: "13 - Throughput Evaluation for Hierarchical graphs"
+      - title: "12 - Throughput Evaluation for Hierarchical graphs"
         url: /tutos/throughputeval/
 
 docs_nav:

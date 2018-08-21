@@ -4,15 +4,7 @@ permalink: /tutos/
 toc: true
 ---
 
-Migration of the tutorials to the PiSDF model
----------------------------------------------
-
-We recently migrated all of our tutorials from the IBSDF (Interface-Based Synchronous Data-Flow) model to the PiSDF (Parameterized and interfaced Synchronous Data-Flow) model.
-
-If ever you find an error, a broken link or any other problem with the tutorials, please do not hesitate to [contact us](mailto:cguy@insa-rennes.fr, kdesnos@insa-rennes.fr, mpelcat@insa-rennes.fr) about it.
-
-1. [Tutorial Introduction](http://preesm.insa-rennes.fr/website/index.php?id=tutorial-introduction)
----------------------------------------------------------------------------------------------------
+## [Tutorial Introduction](/tutos/intro)
 
 The following topics are covered in this tutorial:
 
@@ -23,8 +15,7 @@ The following topics are covered in this tutorial:
 
 Prerequisites: None
 
-2. [Parallelize an Application on a Multicore CPU](http://preesm.insa-rennes.fr/website/index.php?id=parallelize-an-application-on-a-multicore-cpu)
----------------------------------------------------------------------------------------------------------------------------------------------------
+## [Parallelize an Application on a Multicore CPU](/tutos/parasobel)
 
 The following topics are covered in this tutorial:
 
@@ -32,10 +23,10 @@ The following topics are covered in this tutorial:
 *   C Code generation
 *   Parallelization for multi-threaded environment
 
-Prerequisites: [Tutorial Introduction](http://preesm.insa-rennes.fr/website/index.php?id=tutorial-introduction)
+Prerequisites: 
+* [Tutorial Introduction](/tutos/intro)
 
-3. [Program the 8 cores of your Texas Instruments C6678 EVM](http://preesm.insa-rennes.fr/website/index.php?id=code-generation-for-multicore-dsp)
--------------------------------------------------------------------------------------------------------------------------------------------------
+## [Program the 8 cores of your Texas Instruments C6678 EVM](/tutos/mpsoccodegen)
 
 The following topics are covered in this tutorial:
 
@@ -44,19 +35,21 @@ The following topics are covered in this tutorial:
 *   Execution on a Multicore C6x DSP (EVM6678)
 *   Performance optimization of the application
 
-Prerequisite: [Tutorial Introduction](http://preesm.insa-rennes.fr/website/index.php?id=tutorial-introduction) [Parallelize an Application on a Multicore CPU](http://preesm.insa-rennes.fr/website/index.php?id=parallelize-an-application-on-a-multicore-cpu)
+Prerequisite: 
+* [Tutorial Introduction](/tutos/intro) 
+* [Parallelize an Application on a Multicore CPU](/tutos/parasobel)
 
-4. [Software Pipelining for Throughput Optimization](http://preesm.insa-rennes.fr/website/index.php?id=software-pipelining-for-throughput-optimization)
--------------------------------------------------------------------------------------------------------------------------------------------------------
+## [Software Pipelining for Throughput Optimization](/tutos/softwarepipeline)
 
 The following topics are covered in this tutorial:
 
 *   Software Pipelining of an Application for Throughput Optimization
 
-Prerequisite: [Tutorial Introduction](http://preesm.insa-rennes.fr/website/index.php?id=tutorial-introduction) [Parallelize an Application on a Multicore CPU](http://preesm.insa-rennes.fr/website/index.php?id=parallelize-an-application-on-a-multicore-cpu)
+Prerequisite: 
+* [Tutorial Introduction](/tutos/intro) 
+* [Parallelize an Application on a Multicore CPU](/tutos/parasobel)
 
-5. [Memory Footprint Reduction](http://preesm.insa-rennes.fr/website/index.php?id=memory-footprint-reduction)
--------------------------------------------------------------------------------------------------------------
+## [Memory Footprint Reduction](/tutos/memory)
 
 The following topics are covered in this tutorial:
 
@@ -65,10 +58,11 @@ The following topics are covered in this tutorial:
 *   Derive bounds for the memory allocation
 *   Post-scheduling optimization of the memory allocation
 
-Prerequisite: [Tutorial Introduction](http://preesm.insa-rennes.fr/website/index.php?id=tutorial-introduction) [Parallelize an Application on a Multicore CPU](http://preesm.insa-rennes.fr/website/index.php?id=parallelize-an-application-on-a-multicore-cpu)
+Prerequisite: 
+* [Tutorial Introduction](/tutos/intro) 
+* [Parallelize an Application on a Multicore CPU](/tutos/parasobel)
 
-6\. [Advanced Memory Footprint Reduction](http://preesm.insa-rennes.fr/website/index.php?id=advanced-memory-footprint-reduction)
---------------------------------------------------------------------------------------------------------------------------------
+## [Advanced Memory Footprint Reduction](/tutos/advancedmemory)
 
 The following topics are covered in this tutorial:
 
@@ -76,10 +70,10 @@ The following topics are covered in this tutorial:
 *   Dataflow ports annotation
 *   Performance optimization by removing useless memory operations
 
-Prerequisite: [Memory Footprint Reduction](http://preesm.insa-rennes.fr/website/index.php?id=memory-footprint-reduction)
+Prerequisite: 
+* [Memory Footprint Reduction](/tutos/memory)
 
-7. [Automated Measurement of Actor Execution Time](http://preesm.insa-rennes.fr/website/index.php?id=automated-actor-execution-time-measurement)
-------------------------------------------------------------------------------------------------------------------------------------------------
+## [Automated Measurement of Actor Execution Time](/tutos/instrumentation)
 
 The following topics are covered in this tutorial:
 
@@ -87,15 +81,18 @@ The following topics are covered in this tutorial:
 *   Analysis of measured execution time
 *   Scenario timings update for increased performance
 
-Prerequisite: [Tutorial Introduction](http://preesm.insa-rennes.fr/website/index.php?id=tutorial-introduction) [Parallelize an Application on a Multicore CPU](http://preesm.insa-rennes.fr/website/index.php?id=parallelize-an-application-on-a-multicore-cpu)
+Prerequisite: 
+* [Tutorial Introduction](/tutos/intro) 
+* [Parallelize an Application on a Multicore CPU](/tutos/parasobel)
 
-8. [Import or Export a SDF3 Graph](http://preesm.insa-rennes.fr/website/index.php?id=importexport-an-sdf3-graph)
-----------------------------------------------------------------------------------------------------------------
+## [Import or Export a SDF3 Graph](/tutos/importexport)
+
 
 The following topics are covered in this tutorial:
 
 *   Creation of a new Workflow
 *   Importation of [SDF3](http://www.es.ele.tue.nl/sdf3/) SDF Graphs
 
-Prerequisites: [Tutorial Introduction](http://preesm.insa-rennes.fr/website/index.php?id=tutorial-introduction)
+Prerequisite: 
+* [Tutorial Introduction](/tutos/intro) 
 

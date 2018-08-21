@@ -1,7 +1,7 @@
 ---
 title: "Getting Preesm | Update-Site"
 permalink: /get/update-site/
-toc: true
+toc: false
 ---
 
 Update site is another name for P2 repository. Update sites usually hold OSGi bundles (Elcipse features, plugins, etc.). This is usefull when integrating Preesm within an existing Eclipse installation.
