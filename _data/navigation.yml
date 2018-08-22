@@ -55,6 +55,8 @@ docs_nav:
         url: /docs/newtask/
       - title: "Building Spider - [BETA]"
         url: /docs/buildspider/
+      - title: "Workflow Tasks Reference"
+        url: /docs/workflowtasksref/
   - title: Extras
     children:
       - title: "Git Tips and Tricks"
