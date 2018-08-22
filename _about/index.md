@@ -4,6 +4,7 @@ permalink: /about/
 toc: true
 ---
 
+
 ## Presentation
 
 **PREESM** is an **open source rapid prototyping tool**. It simulates signal processing applications and generates code for **heterogeneous multi/many-core embedded systems**. Its dataflow language eases the description of parallel signal processing applications.
@@ -13,6 +14,28 @@ The PREESM tool inputs are an **algorithm graph**, an **architecture graph**, an
 ![Sobel PiSDF Graph](http://preesm.insa-rennes.fr/website/data/uploads/tutorial_sobel/sequential_sobel_pisdf.png)
 
 This image pictures a sobel filter application expressed using PiSDF.
+
+PREESM supports and has been used to generate code for:
+
+*   x86 multiprocessors over Linux & Windows
+*   Texas Instruments Keystone I & II
+*   Kalray MPPA many-core (Bostan)
+*   Xilinx Zynq SoC
+*   ARM Big.LITTLE & Multi-core ARM over Linux
+
+## Partners
+
+*   The project originates from the [VAADER Team](https://www.ietr.fr/spip.php?article1619) part of the [IETR](https://www.ietr.fr/?lang=en) UMR and hosted at [INSA Rennes](https://www.insa-rennes.fr/en.html)  
+    [![Logo VAADER](/assets/logos/logo-vaader-blue-inverted-tagged.svg){:height="90px" width="200px"}](https://www.ietr.fr/spip.php?article1619) [![Logo IETR](/assets/logos/logo_IETR_rvb.jpg){:height="90px" width="180px"}](https://www.ietr.fr/?lang=en) [![Logo INSA Rennes](/assets/logos/Insa-rennes-logo.svg){:height="90px" width="230px"}](https://www.insa-rennes.fr/en.html)
+*   Current work is funded by the [Cerbero European Project](http://www.cerbero-h2020.eu/) under the [H2020 Research Program](https://ec.europa.eu/programmes/horizon2020/)  
+    [![Logo CERBERO](/assets/logos/cropped-cerbero-1.png){:height="90px" width="150px"}](http://www.cerbero-h2020.eu) [![Logo H2020](/assets/logos/EU-Logo-H2020_sc.svg){:height="90px" width="230px"}](https://ec.europa.eu/programmes/horizon2020/)
+*   We would like to thank project contributors:
+    *   [Texas Instruments](http://www.ti.com/)
+    *   [Åbo Akademi University](http://www.abo.fi/)
+    *   [Universidad Politécnica de Madrid (UPM)](http://www.upm.es/internacional)
+    *   [Kalray](http://www.kalray.eu/)
+
+[![Logo Abo Akademi](/assets/logos/aalogo.svg){:height="90px" width="90px"}](http://www.abo.fi) [![Logo UPM](/assets/logos/LogoUPM.svg){:height="90px" width="200px"}](http://www.upm.es/internacional) [![Logo Texas Instruments](/assets/logos/TexasInstruments-Logo.svg){:height="90px" width="200px"}](http://www.ti.com) [![Logo Kalray](/assets/logos/kalray.png){:height="90px" width="200px"}](http://www.kalray.eu/)
 
 ## Installation
 
@@ -55,3 +78,4 @@ Following is the list of contributors to this project:
 *  Antoine Morvan
 *  Matthieu Wipliez
 *  Leonardo Suriano
+
