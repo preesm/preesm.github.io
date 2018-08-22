@@ -6,7 +6,7 @@ toc: true
 ---
 
 *  [Changelog](https://github.com/preesm/preesm/blob/master/release_notes.md) : This document gathers a list of new features, changes and bug fixes for latest releases of preesm.
-*  [Workflow tasks](http://preesm.insa-rennes.fr/website/data/uploads/doc/workflow_tasks.pdf) : Reference document describing the purpose and usage of existing workflow tasks.
+*  [Workflow tasks](/docs/workflowtasksref) : Reference document describing the purpose and usage of existing workflow tasks.
 
 ## Tutorials
 
