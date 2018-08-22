@@ -10,21 +10,20 @@ The following topics are covered in this tutorial:
 *   Dataflow ports annotation
 *   Performance optimization by removing useless memory operations
 
-Prerequisite: [Memory Footprint Reduction](index.php?id=memory-footprint-reduction) Tutorial
+Prerequisite:
+* [Memory Footprint Reduction](/tutos/memory) Tutorial
 
 ###### Tutorial created the 07.29.2014 by [K. Desnos](mailto:kdesnos@insa-rennes.fr)
 
-1\. Project setup
------------------
+## Project setup
 
-The starting point of this tutorial is the Preesm project obtained as a result of the [Memory Footprint Reduction](index.php?id=memory-footprint-reduction) tutorial. The project resulting from this tutorial is available [\[here\]](data/uploads/tutorial_zips/tutorial1_result.zip). The external libraries, the YUV sequence and the generated C code are not included in this archive. Explanations on how to setup these external elements, compile and run the project are available [\[here\]](index.php?id=parallelize-an-application-on-a-multicore-cpu).
+The starting point of this tutorial is the Preesm project obtained as a result of the [Memory Footprint Reduction](/tutos/memory) tutorial.
 
-2\. Advanced Memory Optimization
---------------------------------
+## Advanced Memory Optimization
 
 In the optimization technique presented in the Memory Footprint Reduction tutorial, it is assumed that an actor keeps access to all its input and output buffers during its firings. From the memory allocation perspective, this assumption implies that input and output buffers of an actor must always be allocated in non-overlapping memory spaces. The purpose of the techniques presented in this tutorial is to relax this constraint by allowing Preesm to allocate input and output buffers of certain actors in overlapping memory range.
 
-An example of actor whose input and output buffers can be allocated in overlapping memory spaces is the _Split_ actor from the Sobel application. As illustrated in the following figure, the purpose of this actor is to divide the input image into several overlapping slices. Using the memory allocation technique presented in the [Memory Footprint Reduction](index.php?id=memory-footprint-reduction) tutorial, the input and output buffers of the Split actor would be allocated in distinct memory spaces. With an input image of 8x9 pixels, 72+120=192 bytes of memory would thus be necessary for the allocation of the input and output buffers.
+An example of actor whose input and output buffers can be allocated in overlapping memory spaces is the _Split_ actor from the Sobel application. As illustrated in the following figure, the purpose of this actor is to divide the input image into several overlapping slices. Using the memory allocation technique presented in the [Memory Footprint Reduction](/tutos/memory) tutorial, the input and output buffers of the Split actor would be allocated in distinct memory spaces. With an input image of 8x9 pixels, 72+120=192 bytes of memory would thus be necessary for the allocation of the input and output buffers.
 
 ![](/assets/tutos/advancedmemory/split_example.png)
 
@@ -38,7 +37,7 @@ A memory script is a small program associated to an actor of a dataflow graph. C
 
 Through the example of the Sobel application and its Split actor, the following sections explain how to create, write and execute a new memory script.
 
-#### 3.1. Associate a New Memory Script to an Actor
+### Associate a New Memory Script to an Actor
 
 To create a new memory script and associate it to the Split actor, follow these steps:
 
@@ -50,9 +49,9 @@ To create a new memory script and associate it to the Split actor, follow these 
 6.  Click on the Edit button of the "Memory script" property and select the file you just created.
 7.  Save "top_display.diagram".
 
-#### 3.2. Scripting Syntax
+### Scripting Syntax
 
-The language used to for the implementation of the memory script is the BeanShell scripting language [\[1\]](#ref). The syntax of the BeanShell language is based on the Java programming language, and supports most of its features (including object programming). In addition to the Java syntax, BeanShell also supports advanced scripting features such as untyped variables. For more information about BeanShell, go to [\[1\]](#ref).
+The language used to for the implementation of the memory script is the BeanShell scripting language [\[1\]](#references). The syntax of the BeanShell language is based on the Java programming language, and supports most of its features (including object programming). In addition to the Java syntax, BeanShell also supports advanced scripting features such as untyped variables. For more information about BeanShell, go to [\[1\]](#references).
 
 In Preesm, the memory script associated to an actor of the application graph is executed once for each firing of this actor (i.e. once for each instance of this actor in the single-rate graph). The inputs of a memory script are similar to those provided for the execution of the corresponding actors:
 
@@ -70,7 +69,7 @@ The _Buffer_ class is used in memory scripts to represents the bytes associated 
 *   **String getName()**: returns the name of the port, without the 'i_' or 'o_' prefix of the symbol.
 *   **int getNbTokens()**: returns the production or consumption rate of the associated port.
 *   **int getTokenSize()**: returns the size of a token in bytes.
-*   **String toString()**: returns a String: "<vertexName>.<portName>\[<sizeInBytes>\]".
+*   **String toString()**: returns a String: ```<vertexName>.<portName>[<sizeInBytes>]```.
 
 Finally, two methods can be used to match ranges of bytes of two buffers b1 and b2:
 
@@ -87,9 +86,9 @@ Finally, two methods can be used to match ranges of bytes of two buffers b1 and 
     *   **int remoteStart**: start index in the remote buffer (in bytes).
     *   **int matchLength**: Number of bytes involved in the match.
 
-In the first methods, the data type of the tokens of the two buffers must be identical (b1.getTokenSize() == b2.getTokenSize()), and all indexes and lengths are expressed as a number of tokens. In the second method, the two buffers can have different types since all indexes and lengths are expressed as a number of bytes.
+In the first methods, the data type of the tokens of the two buffers must be identical ```(b1.getTokenSize() == b2.getTokenSize())```, and all indexes and lengths are expressed as a number of tokens. In the second method, the two buffers can have different types since all indexes and lengths are expressed as a number of bytes.
 
-#### 3.3. Write a Memory Script
+### Write a Memory Script
 
 The following code presents the memory script associated to the Split actor. Copy-paste this code into the "/Code/Scripts/split.bsh" file. The corresponding file can also be downloaded [\[here\]](/assets/tutos/advancedmemory/split.bsh).
 
@@ -120,9 +119,11 @@ When executed, this code creates a match for each output slice produced by the S
 
 ![](/assets/tutos/advancedmemory/treesplit.png)
 
-Each output range corresponding to a slice is matched in the corresponding range of the input buffer, thus creating overlaps between the matched input ranges. It is interesting to note that the first and the last ranges of the output buffer are partially matched outside the boundaries of the input byte range \[0; 72\[. The bytes within the \[0, nbTokens*tokenSize\[ range of a buffer are called "real" bytes, and bytes outside this range are called "virtual" bytes.
+Each output range corresponding to a slice is matched in the corresponding range of the input buffer, thus creating overlaps between the matched input ranges. It is interesting to note that the first and the last ranges of the output buffer are partially matched outside the boundaries of the input byte range ```[0, 72[```. The bytes within the ```[0, nbTokens*tokenSize[``` range of a buffer are called "real" bytes, and bytes outside this range are called "virtual" bytes.
 
- When writing a new memory script, the following rules must be respected:
+#### Script Rules
+
+When writing a new memory script, the following rules must be respected:
 
 *   A match can be created only between an input and an output buffer. It is strictly forbidden to match an input with another input or an output with another output.
 *   A range of byte of an output buffer can not be matched several times by overlapping matches.
@@ -131,7 +132,7 @@ Each output range corresponding to a slice is matched in the corresponding range
 
 If one of these conditions is not met, an error message will be displayed in the console during the script execution.
 
-#### 3.4. Configure the Workflow and Execute the Scripts
+### Configure the Workflow and Execute the Scripts
 
 A new workflow task must be added to the workflow in order to execute the memory scripts of an application. To do so:
 
@@ -142,7 +143,7 @@ A new workflow task must be added to the workflow in order to execute the memory
 5.  In the "Basic" Tab, set the "plugin identifier" property to "org.ietr.preesm.memory.script.MemoryScriptTask".
 6.  Save the workflow before opening the "Task Variables" tab of the "Properties" of the new task.
 7.  Set the "Check" property to "Thorough". When learning how to write new memory scripts, the "Thorough" error checking will generate error messages with a detailed description of the source of the error. Once you feel more comfortable with memory scripts, you can set this property to "Fast". In he "Fast" mode, all errors are still detected, but the generated error messages are less informative. Finally, this property can be set to "None" once all memory scripts have been validated in order to speed-up the workflow execution.
-8.  Set the "Data alignment" property to "None". The data alignment property should always have the same value as the one set in the properties of the "Mem Alloc" task. (cf. [Cache Activation section of the Code Generation for Multicore DSP](index.php?id=code-generation-on-dsp#6) tutorial).
+8.  Set the "Data alignment" property to "None". The data alignment property should always have the same value as the one set in the properties of the "Mem Alloc" task. (cf. [Cache Activation section of the Code Generation for Multicore DSP](/tutos/mpsoccodegen#generation-of-cache-coherent-code) tutorial).
 9.  Leave the "Log Path" value unchanged. The path given in this property is relative to the "Code generation directory" defined in the executed scenario. If this property is left empty, no log will be generated.
 10.  Set the "Verbose" property to "True".
 11.  Copy the connection of the following figure in your workflow.
@@ -179,28 +180,27 @@ An independent match tree is a chain of buffers and matches formed by the execut
 The next two lines of the log give the number of independent buffers, and the total size of these buffers before and after the matches were applied. The following section of the log detail the optimization process for each independent tree. For each tree, the log contains:
 
 1.  The list of buffers belonging to this tree.
-2.  The step-by-step order in which the matches were applied (cf. [\[2\]](#ref) for more information).
+2.  The step-by-step order in which the matches were applied (cf. [\[2\]](#references) for more information).
 3.  The summary of the optimization process for this independent match tree.
 4.  The list of matches that were not applied for this independent match tree (if any).
 
-#### 3.5. Problematical Matching Patterns
+### Problematical Matching Patterns
 
-##### 3.5.1. Matching overlapping ranges in input buffers.
+#### Matching overlapping ranges in input buffers.
 
-As presented in the generated log, none of the match of the Split actor were applied during the workflow execution. As illustrated in the Split-Explode match trees, the matches created by the Split memory script have overlapping ranges of bytes in the input buffer. If these matches are applied, each output buffer of the explode actor will be merged directly within the input buffer of the Split actor. Consequently, each instance of the Sobel actor connected to an output port of the Explode actor will have a direct access to a part of the input buffer of the Split actor. Since several instances of the Sobel actor can access the same memory space, if one of the instances of the Sobel actor overwrites the bytes contained in its input buffer, it may corrupt the input of other instances. To avoid this issue, matches with overlapping input buffers are not applied unless read_only port annotations, presented in [section 4](#4), are used.
+As presented in the generated log, none of the match of the Split actor were applied during the workflow execution. As illustrated in the Split-Explode match trees, the matches created by the Split memory script have overlapping ranges of bytes in the input buffer. If these matches are applied, each output buffer of the explode actor will be merged directly within the input buffer of the Split actor. Consequently, each instance of the Sobel actor connected to an output port of the Explode actor will have a direct access to a part of the input buffer of the Split actor. Since several instances of the Sobel actor can access the same memory space, if one of the instances of the Sobel actor overwrites the bytes contained in its input buffer, it may corrupt the input of other instances. To avoid this issue, matches with overlapping input buffers are not applied unless read_only port annotations, presented in [the next section](#port-annotations), are used.
 
-##### 3.5.2. Matching overlapping ranges in output buffers.
+#### Matching overlapping ranges in output buffers.
 
-As presented in the rules of [Section 3.3](#3.3), it is strictly forbidden to overlap the matched ranges of bytes on the output side of an actor as it would systematically corrupt the behavior of an application. The next figure presents an illustration of this issue.
+As presented in the rules [above](#script-rules), it is strictly forbidden to overlap the matched ranges of bytes on the output side of an actor as it would systematically corrupt the behavior of an application. The next figure presents an illustration of this issue.
 
 ![](/assets/tutos/advancedmemory/treedestinationissue.png)
 
-A chain of matches cannot be applied if it results in merging several ranges of bytes in overlapping ranges of an output buffer. In the figure, if all matches were applied, the output buffers of actors A and C would be merged in range \[0; 15\[ and \[10; 20\[ respectively of the output buffer of the Join actor. Hence, if all matches were applied actor A and C would access overlapping memory spaces on their output port. In such a case, if actor A was scheduled after actor C, then actor A would partially overwrite the data tokens already produced by actor C, thus corrupting the application behavior. **Contrary to matches with overlapping ranges in input buffers, no port annotation can be used to relax this constraint.**
+A chain of matches cannot be applied if it results in merging several ranges of bytes in overlapping ranges of an output buffer. In the figure, if all matches were applied, the output buffers of actors A and C would be merged in range ```[0; 15[``` and ```[10; 20[``` respectively of the output buffer of the Join actor. Hence, if all matches were applied actor A and C would access overlapping memory spaces on their output port. In such a case, if actor A was scheduled after actor C, then actor A would partially overwrite the data tokens already produced by actor C, thus corrupting the application behavior. **Contrary to matches with overlapping ranges in input buffers, no port annotation can be used to relax this constraint.**
 
-4\. Port Annotations
---------------------
+## Port Annotations
 
-#### 4.1. Read\_only, Write\_only, and Unused Annotations
+### Read\_only, Write\_only, and Unused Annotations
 
 In the dataflow graph, annotations can be associated to the ports of an actor to specify how this actor will access data on this port. 3 annotations can be used:
 
@@ -210,7 +210,7 @@ In the dataflow graph, annotations can be associated to the ports of an actor to
 
 It is important to note that if the application of a match created by a memory script results in merging an input buffer into an output buffer written by the actor, then the input buffer should not be marked as read\_only. This condition holds even if all write operations are performed in ranges of the output buffer that fall outside the ranges merged with the input buffer. For example, the input port of the Split actor cannot be marked as read\_only because it is matched in an output buffer whose first and last lines of pixel will be written by the Split actor.
 
-#### 4.2. Associate an Annotation to a Port
+### Associate an Annotation to a Port
 
 The following steps explain how to assign the "read_only" annotation to the input port of the Sobel actor.
 
@@ -226,10 +226,9 @@ Once the workflow completes its execution, open the log of the memory scripts. N
 
 The next section presents the positive impact of this memory optimization process on the performance of the application as well as code modifications to apply before compiling and running the generated code.
 
-5\. Impact on Application
--------------------------
+## Impact on Application
 
-#### 5.1. Impact on Generated Code
+### Impact on Generated Code
 
 The code generated by Preesm after the application of memory scripts is optimized to increase the application performance. In particular, the code generated for the "special" actors (explode, implode, Broadcast, and Roundbuffer) added during graph transformations is optimized to remove the unnecessary memcpy calls.
 
@@ -259,7 +258,7 @@ When the matches created by the memory scripts are applied, the generated code b
 
 As a result of the memory script execution, all input buffers of the implode actors have been merged directly within the output buffer. Hence, copying the data from input buffers to the output buffer becomes unnecessary, and the memcpy calls can be removed during the code generation.
 
-#### 5.2. Divided Buffers Replaced With Null Pointers
+### Divided Buffers Replaced With Null Pointers
 
 When the matches of the Split actor are applied, the buffer corresponding to the output port of this actor is divided into several parts that are merged separately into the input buffer. In such a case, the memory space corresponding to the output port of the Split actor consists of a non-contiguous memory space that can no longer be accessed with a regular pointer. If the "Verbose" property of the "Scripts" workflow task is set to "True", the following warning will appear in the console during the workflow execution:  
 
@@ -267,7 +266,7 @@ When the matches of the Split actor are applied, the buffer corresponding to the
 10:53:25 Buffer explode_Split_output.input[107008] was divided and will be replaced by a NULL pointer in the generated code. 
 ```
 
-A buffer can be divided and matched into non-contiguous ranges of bytes if an only if all actors accessing this buffer expect this division. An actor expects a buffer to be divided if it is associated to a memory script that matches several ranges of bytes of a buffer into non-contiguous remote ranges. In the sobel application, the buffer corresponding to the FIFO between the Split and explode actor fulfill this requirement. Additional requirements for a buffer to be divisible are presented in [\[2\]](#ref).
+A buffer can be divided and matched into non-contiguous ranges of bytes if an only if all actors accessing this buffer expect this division. An actor expects a buffer to be divided if it is associated to a memory script that matches several ranges of bytes of a buffer into non-contiguous remote ranges. In the sobel application, the buffer corresponding to the FIFO between the Split and explode actor fulfill this requirement. Additional requirements for a buffer to be divisible are presented in [\[2\]](#references).
 
 To ensure the correct behavior of the application, the C code of the Split actor should be changed as follows (null check on the output and specific behavior in case of split):
 
@@ -310,17 +309,16 @@ void split(int nbSlice, int width, int height, unsigned char *input, unsigned ch
 
 Like the explode and implode actors, most of the memcpy calls of the Split actor can be removed when the memory script optimization is used.
 
-#### 5.3. Impact on Memory Footprint and Application Performance
+### Impact on Memory Footprint and Application Performance
 
-On the sobel application, the application of the memory script reduces the memory footprint allocated to the application by 20%, in addition to the 32% reduction obtained when applying techniques presented in the [Memory Footprint Reduction](index.php?id=memory-footprint-reduction) tutorial. Overall, the techniques presented in these two tutorials helped reduce the memory footprint by 62% compared to the basic allocation, from 666kBytes to 254kBytes. On larger applications, such as the one presented in [\[3\]](#ref), a reduction of the memory footprint by up to 95% were observed.
+On the sobel application, the application of the memory script reduces the memory footprint allocated to the application by 20%, in addition to the 32% reduction obtained when applying techniques presented in the [Memory Footprint Reduction](/tutos/memory) tutorial. Overall, the techniques presented in these two tutorials helped reduce the memory footprint by 62% compared to the basic allocation, from 666kBytes to 254kBytes. On larger applications, such as the one presented in [\[3\]](#references), a reduction of the memory footprint by up to 95% were observed.
 
-On a 4core CPU, the application of memory scripts also leads to an increase of the Sobel application throughput by 5%. On larger applications, such as the one presented in [\[3\]](#ref), increase of the throughput by up to 90% were observed.
+On a 4core CPU, the application of memory scripts also leads to an increase of the Sobel application throughput by 5%. On larger applications, such as the one presented in [\[3\]](#references), increase of the throughput by up to 90% were observed.
 
-References
-----------
+## References
 
 **\[1\]** BeanShell WebPage - [http://www.beanshell.org/intro.html](http://www.beanshell.org/intro.html)
 
-**\[2\]** K. Desnos, "_Memory Study and Dataflow Representations for Rapid Prototyping of Signal Processing Applications on MPSoCs_", PhD Thesis, 2014. (Soon available)
+**\[2\]** K. Desnos, "_Memory Study and Dataflow Representations for Rapid Prototyping of Signal Processing Applications on MPSoCs_", PhD Thesis, 2014. ([PDF](https://tel.archives-ouvertes.fr/tel-01127297/file/2014ISAR0004.pdf))
 
-**\[3\]** K. Desnos, M. Pelcat, J.-F. Nezan, S. Aridhi, _"Memory Analysis and Optimized Allocation of Dataflow Applications on Shared-Memory MPSoCs"_, Journal of Signal Processing Systems (JSPS), Springer, 2014. (Soon available)
+**\[3\]** K. Desnos, M. Pelcat, J.-F. Nezan, S. Aridhi, _"Memory Analysis and Optimized Allocation of Dataflow Applications on Shared-Memory MPSoCs"_, Journal of Signal Processing Systems (JSPS), Springer, 2014. ([link](https://hal.archives-ouvertes.fr/hal-01083576v2))
