@@ -4,51 +4,43 @@ permalink: /tutos/papify/
 toc: true
 ---
 
-
 **Writing of this tutorial is currently in progress. If you wish to follow this tutorial, please consider yourself a beta tester (and don't hesitate to send us any improvement suggestions).**
 
-Tutorial prerequisites
-----------------------
-
+Tutorial prerequisites:
 *   This tutorial has been developed and tested for Ubuntu distributions
-
-Tutorial contents
------------------
-
-*   Performance API (PAPI) library installation
-*   Papify configuration within PREESM environment
-*   Instrumented C code generation and execution
-*   Example of result analysis
 
 ###### Tutorial created the 06.20.2018 by [D. Madroñal](mailto:daniel.madronal@upm.es)
 
-1\. Project setup
------------------
+## Project setup
 
-The starting point of this tutorial is the Preesm project obtained as a result of the [Parallelize an Application on a Multicore CPU tutorial](http://preesm.insa-rennes.fr/website/index.php?id=parallelize-an-application-on-a-multicore-cpu). The external libraries, the YUV sequence and the generated C code are not included in this archive. Explanation on how to setup these external elements, compile and run the project are available [\[here\]](index.php?id=parallelize-an-application-on-a-multicore-cpu). To complete this tutorial PAPI and Papify libraries should be installed, included and linked to the current project.
+In addition to the default requirements (see [Requirements for Running Tutorial Generated Code](/tutos/intro/#requirements-for-running-tutorial-generated-code)), download the following files:
 
-2\. PAPI and Papify instalation
--------------------------------
+*   Complete [Sobel Preesm Project](/assets/tutos/parasobel/tutorial1_result.zip)
+*   [YUV Sequence (7zip)](/assets/downloads/akiyo_cif.7z) (9 MB)
+*   [DejaVu TTF Font](/assets/downloads/DejaVuSans.ttf) (757KB)
+*   Papify (see below).
+
+## PAPI and Papify Setup
 
 In order to get access to the Performance Monitor Counters (PMCs) existing in the current processors, it is necessary to install the Performance API (PAPI) library. Additionally, to increase the abstraction layer and to reduce the length of the auto-generated papified code, Papify tool will be used.
 
-#### 2.1. PAPI instalation
+### PAPI instalation
 
 1.  Create a new directory to download PAPI repository
-2.  Clone it using git --> git clone https://bitbucket.org/icl/papi.git
+2.  Clone it using git -> git clone https://bitbucket.org/icl/papi.git
 3.  Go to papi/src ('cd papi/src')
 4.  Run './configure'
 5.  Run 'make'
-6.  Run 'make fulltest' --> This will run the testing part of PAPI (it may take a while)
-7.  Run 'sudo make install-all' --> This will install the library as a system library
-8.  Run 'papi_avail' --> This command will display the available events on your system and will help you to check whether the library has been correctly installed
+6.  Run 'make fulltest' -> This will run the testing part of PAPI (it may take a while)
+7.  Run 'sudo make install-all' -> This will install the library as a system library
+8.  Run 'papi_avail' -> This command will display the available events on your system and will help you to check whether the library has been correctly installed
 
-#### 2.2. Papify installation
+### Papify installation
 
 To include Papify in the project, there are two options. The first one is the starting project with all the changes included while the second explians, step by step, all the required changes to work with both PAPI and Papify:
 
 
-- (1) The starting project with all the changes included is available [\[here\]](data/uploads/tutorial_papify/tutorialpapify.zip).
+- (1) The starting project with all the changes included is available [\[here\]](/assets/tutos/papify/tutorialpapify.zip).
 - (2) Download Papify from the repository:
   - (a) Clone from [https://github.com/dmadronal/Papify.git](https://github.com/dmadronal/Papify.git)
   - or (b) Download it from [https://github.com/dmadronal/Papify/archive/master.zip](https://github.com/dmadronal/Papify/archive/master.zip)
@@ -80,16 +72,14 @@ target_link_libraries(sobel ${SDL2_LIBRARY} ${SDL2TTF_LIBRARY} ${CMAKE_THREAD_LI
 #endif
 ```
 
-3\. Generate the platform supported PAPI events
------------------------------------------------
+## Generate the platform supported PAPI events
 
 1.  Open a terminal and go to your project directory
-2.  run 'papi\_xml\_event\_info > PAPI\_info.xml'
+2.  run ```papi_xml_event_info > PAPI_info.xml```
 
 This will generate an xml file with the available PAPI components and events of your computer. If you want to develop code for a different platform, run this command on the target platform and its monitoring options will be gathered in that file.
 
-4\. Configure the monitoring of the project
--------------------------------------------
+## Configure the monitoring of the project
 
 1.  Go to the Scenarios folder a duplicate the 4core.scenario by creating a new one called 4corePapify.scenario
 2.  Open the new 4corePapify.scenario and go to the Papify tab
@@ -106,8 +96,7 @@ The resulting aspect of, for example, Read_YUV actor should be the equivalent to
 
 ![](/assets/tutos/papify/scenariopapify2.png)
 
-5\. Configure the workflow of the project
------------------------------------------
+## Configure the workflow of the project
 
 1.  In the Workflows folder copy the one called Codegen.workflow and create a new one called CodegenPapify.workflow
 2.  Create a new Task and call it Papify Engine Task
@@ -121,8 +110,7 @@ As a result, the workflow should look like the one displayed in the following im
 
 ![](/assets/tutos/papify/codegenpapifyworkflowtask.png)
 
-6\. Generate and run the application
-------------------------------------
+## Generate and run the application
 
 1.  Run the workflow selecting as Scenario the one called 4corePapify.scenario
 2.  Run the CMakeGCC.sh file --> sh CMakeGCC.sh
@@ -133,10 +121,9 @@ As a result, the workflow should look like the one displayed in the following im
 7.  Run 'make'
 8.  Run the application './Release/sobel' (Don't forget to add the akiyo_cif.yuv and the DejaVuSans.ttf files in the /Code/dat folder)
 
-If any error appears, please, create an issue on github
+If any error appears, please, create an issue on github.
 
-7\. Check the results
----------------------
+## Check the results
 
 Once the application finishes, a new folder called papify-output should have appeared. In this folder, a different file for each actor is created. In each of them, a new line is printed after every actor execution gathering the monitoring information.
 
