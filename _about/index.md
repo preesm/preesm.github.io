@@ -23,20 +23,6 @@ PREESM supports and has been used to generate code for:
 *   Xilinx Zynq SoC
 *   ARM Big.LITTLE & Multi-core ARM over Linux
 
-## Partners
-
-*   The project originates from the [VAADER Team](https://www.ietr.fr/spip.php?article1619) part of the [IETR](https://www.ietr.fr/?lang=en) UMR and hosted at [INSA Rennes](https://www.insa-rennes.fr/en.html)  
-    [![Logo VAADER](/assets/logos/logo-vaader-blue-inverted-tagged.svg){:height="90px" width="200px"}](https://www.ietr.fr/spip.php?article1619) [![Logo IETR](/assets/logos/logo_IETR_rvb.jpg){:height="90px" width="180px"}](https://www.ietr.fr/?lang=en) [![Logo INSA Rennes](/assets/logos/Insa-rennes-logo.svg){:height="90px" width="230px"}](https://www.insa-rennes.fr/en.html)
-*   Current work is funded by the [Cerbero European Project](http://www.cerbero-h2020.eu/) under the [H2020 Research Program](https://ec.europa.eu/programmes/horizon2020/)  
-    [![Logo CERBERO](/assets/logos/cropped-cerbero-1.png){:height="90px" width="150px"}](http://www.cerbero-h2020.eu) [![Logo H2020](/assets/logos/EU-Logo-H2020_sc.svg){:height="90px" width="230px"}](https://ec.europa.eu/programmes/horizon2020/)
-*   We would like to thank project contributors:
-    *   [Texas Instruments](http://www.ti.com/)
-    *   [Åbo Akademi University](http://www.abo.fi/)
-    *   [Universidad Politécnica de Madrid (UPM)](http://www.upm.es/internacional)
-    *   [Kalray](http://www.kalray.eu/)
-
-[![Logo Abo Akademi](/assets/logos/aalogo.svg){:height="90px" width="90px"}](http://www.abo.fi) [![Logo UPM](/assets/logos/LogoUPM.svg){:height="90px" width="200px"}](http://www.upm.es/internacional) [![Logo Texas Instruments](/assets/logos/TexasInstruments-Logo.svg){:height="90px" width="200px"}](http://www.ti.com) [![Logo Kalray](/assets/logos/kalray.png){:height="90px" width="200px"}](http://www.kalray.eu/)
-
 ## Installation
 
 Instructions for installing Preesm can be found in the [documentation](/docs/). Preesm consists in Eclipse plug-ins. If you are already familiar with Eclipse update sites, the different ways for getting Preesm are detailed in the [Getting Preesm](/get/) part.
@@ -46,6 +32,21 @@ Instructions for installing Preesm can be found in the [documentation](/docs/). 
 For general information, do not hesitate to contact as at [contact@preesm.insa-rennes.fr](mailto:contact@preesm.insa-rennes.fr)
 
 For technical issues, please contact us via [GitHub Issues](https://github.com/preesm/preesm/issues) tracker.
+
+## Partners
+
+*   The project originates from the [VAADER Team](https://www.ietr.fr/spip.php?article1619) part of the [IETR](https://www.ietr.fr/?lang=en) UMR and hosted at [INSA Rennes](https://www.insa-rennes.fr/en.html)  
+
+| [![Logo VAADER](/assets/logos/logo-vaader-blue-inverted-tagged.svg){:height="60px" width="200px"}](https://www.ietr.fr/spip.php?article1619) | [![Logo IETR](/assets/logos/logo_IETR_rvb.jpg){:height="80px" width="170px"}](https://www.ietr.fr/?lang=en) | [![Logo INSA Rennes](/assets/logos/Insa-rennes-logo.svg){:height="70px" width="230px"}](https://www.insa-rennes.fr/en.html) |
+
+*   Current work is funded by the [Cerbero European Project](http://www.cerbero-h2020.eu/) under the [H2020 Research Program](https://ec.europa.eu/programmes/horizon2020/)
+
+| [![Logo CERBERO](/assets/logos/cropped-cerbero-1.png){:height="90px" width="150px"}](http://www.cerbero-h2020.eu) | [![Logo H2020](/assets/logos/EU-Logo-H2020_sc.svg){:height="90px" width="230px"}](https://ec.europa.eu/programmes/horizon2020/) |
+    
+*   We would like to thank project contributors:
+
+| [![Logo Abo Akademi](/assets/logos/aalogo.svg){:height="90px" width="90px"}](http://www.abo.fi) | [![Logo UPM](/assets/logos/LogoUPM.svg){:height="90px" width="200px"}](http://www.upm.es/internacional) |
+| [![Logo Texas Instruments](/assets/logos/TexasInstruments-Logo.svg){:height="90px" width="200px"}](http://www.ti.com) | [![Logo Kalray](/assets/logos/kalray.png){:height="90px" width="200px"}](http://www.kalray.eu/) |
 
 ## Hall of Fame
 
