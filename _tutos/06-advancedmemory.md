@@ -32,8 +32,7 @@ Since each slice produced by the Split actor corresponds to a part of the input 
 
 To allow memory reuse between input and output buffers of actors, new information must be provided to Preesm about the internal behavior of actors and how they access the data contained in their input and output buffer. This new information is provided by two new inputs defined by application developers: **Memory Scripts** and **Dataflow Ports Annotations**.
 
-3\. Memory Scripts
-------------------
+## Memory Scripts
 
 A memory script is a small program associated to an actor of a dataflow graph. Contrary to the source code describing the functional behavior of an actor, the only purpose of a memory script is to match ranges of bytes of input and output buffers that can be allocated in a common memory space.
 

@@ -4,8 +4,7 @@ permalink: /tutos/instrumentation/
 toc: true
 ---
 
-Disclaimer
-----------
+## Disclaimer
 
 Values measured during execution of the instrumented code can be high. This can cause some spreadsheet editors (e.g. LibreOffice Calc or Google Sheet) to fail when computing average execution times.
 
@@ -19,19 +18,17 @@ The following topics are covered in this tutorial:
 
 Prerequisite: [Tutorial 1](index.php?id=tutorial-introduction), [Parallelize an Application on a Multicore CPU](index.php?id=parallelize-an-application-on-a-multicore-cpu)
 
-1\. Project setup
------------------
+## Project setup
 
 The starting point of this tutorial is the Preesm project obtained as a result of the [Parallelize an Application on a Multicore CPU](index.php?id=parallelize-an-application-on-a-multicore-cpu) tutorial. The project resulting from this tutorial is available [\[here\]](data/uploads/tutorial_zips/tutorial1_result.zip). The external libraries, the YUV sequence and the generated C code are not included in this archive. Explanation on how to setup these external elements, compile and run the project are available [\[here\]](index.php?id=parallelize-an-application-on-a-multicore-cpu).
 
-2\. Semi-Automated Measurement
-------------------------------
+## Semi-Automated Measurement
 
 In the current version of the Sobel project, the scheduling algorithm considers that all the actors of the application graph have an identical execution time of 100 time units. As illustrated in the [Software Pipelining tutorial](index.php?id=software-pipelining-for-throughput-optimization), this inaccurate knowledge of the actors execution times results in bad decisions from the scheduler which has a negative impact on the application performance.
 
 ![](/assets/tutos/instrumentation/4coregantt_1pipeline.png)
 
-#### 2.1. Instrumented C Code generation
+### Instrumented C Code generation
 
 The first step of this tutorial consists of generating instrumented C code that will automatically measure the runtime of the different actors on CPU. To do so, follow the following steps:
 
@@ -42,7 +39,7 @@ The first step of this tutorial consists of generating instrumented C code that 
 5.  Save the workflow.
 6.  Run the workflow with the "/Scenarios/1core.scenario".
 
-#### 2.2. Automated measurement principle
+### Automated measurement principle
 
 The execution of the workflow generated two files in the "/Code/generated/" directory:
 
@@ -65,7 +62,7 @@ The execution of the generated code is composed of two phases:
 1.  **Initialization phase**: During this first phase, the number of execution of each actor is progressively incremented until each for-loop has significant execution time (150.103 ms on Windows). This phase ends when all for-loop have reached the threshold.
 2.  **Measurement phase**: During this phase, the 1core schedule is executed repeatedly with a fixed number of execution for all for-loops. At the end of each execution of the schedule, the runtime of all actors is written to an output file for a future analysis.
 
-#### 2.3. Execution of the instrumented code
+### Execution of the instrumented code
 
 To execute the generated instrumented C code, follow the following steps:
 
@@ -75,7 +72,7 @@ To execute the generated instrumented C code, follow the following steps:
 
 As you will notice, the execution of the instrumented C code is much slower than the execution of the normal C code. Once the initialization phase is over, "--" will be printed in the console at the beginning of each execution of the mono-core schedule.  In order to get reliable data, we advise you to wait for at least 10 iterations of the schedule before stopping the application.
 
-#### 2.4. Data analysis and scenario update
+### Data analysis and scenario update
 
 During its execution, the instrumented application has written its measures in the "/Code/generated/analysis.csv" spreadsheet. To see the result of the instrumented execution, open the spreadsheet with your favorite editor (e.g. Excel, google doc, LibreOffice...). It may happen that your editor does not support english formula, in such case, open the csv file with a text editor and simply replace all appearance of the "=AVERAGE(" string with the equivalent formula in your language. Also note that the decimal separator used in the analysis file is a dot '.' and that the character used to separate columns is a semi-colon ';'. The spreadsheet is structured as follow:
 
@@ -90,7 +87,7 @@ The next step consists of updating the scenarios of the Sobel project with the m
 4.  Save the scenario
 5.  Run the "/Workflows/Codegen.workflow" workflow with the updated scenario.
 
-#### 2.5. Performance Gain
+### Performance Gain
 
 With a better knowledge of the actor execution time, the scheduler can make better decisions to optimize the throughput of the application.
 

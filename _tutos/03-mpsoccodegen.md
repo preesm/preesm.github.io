@@ -11,47 +11,48 @@ The following topics are covered in this tutorial:
 *   Execution on a Multicore C6x DSP (EVM6678)
 *   Performance optimization of the application
 
-Prerequisite: [Tutorial Introduction](index.php?id=tutorial-introduction) [Parallelize an Application on a Multicore CPU](index.php?id=parallelize-an-application-on-a-multicore-cpu)
+Prerequisite: 
+* [Tutorial Introduction](/tutos/intro)
+* [Parallelize an Application on a Multicore CPU](/tutos/parasobel)
 
 ###### Tutorial created the 10.14.2013 by [K. Desnos](mailto:kdesnos@insa-rennes.fr)
 
-## 1. Project setup
+## Project setup
 
-In order to follow this tutorial, you first need to gather the following elements:
+In addition to the default requirements (see [Requirements for Running Tutorial Generated Code](/tutos/intro/#requirements-for-running-tutorial-generated-code)), download the following files:
 
-*   Complete Sobel Preesm Project: [\[link\]](data/uploads/tutorial_zips/tutorial1_result.zip)
-*   A TMS320C6678 Evaluation Module (EVM): [\[link\]](http://www.ti.com/tool/tmdsevm6678)
-*   Code Composer Studio (CCS) v5.2.1 with MCSDK 2.x: [\[link\]](http://processors.wiki.ti.com/index.php/Download_CCS) [\[setup\]](http://preesm.insa-rennes.fr/website/index.php?id=ccs-setup)
+*   Complete [Sobel Preesm Project](/assets/tutos/parasobel/tutorial1_result.zip)
+*   A [TMS320C6678 Evaluation Module (EVM)](http://www.ti.com/tool/tmdsevm6678)
+*   [Code Composer Studio (CCS)](http://processors.wiki.ti.com/index.php/Download_CCS) v5.2.1 with [MCSDK 2.x](http://preesm.insa-rennes.fr/website/index.php?id=ccs-setup)
 
-**/!\ Linux and Windows users:** CCS versions 5.3 and greater for Linux and Windows do not support the installation of necessary plugins (BIOS MCSDK 2.x) for the use of Keystone I multi-core processors. We thus highly recommend to use a CSS version 5.2.1 and the offline installer. More information on MCSDK versions can be found [here](http://software-dl.ti.com/sdoemb/sdoemb_public_sw/bios_mcsdk/latest/index_FDS.html). Please read the [CCS Setup](http://preesm.insa-rennes.fr/website/index.php?id=ccs-setup) page for detailed information about the installation and configuration.
+⚠ **Linux and Windows users:** CCS versions 5.3 and greater for Linux and Windows do not support the installation of necessary plugins (BIOS MCSDK 2.x) for the use of Keystone I multi-core processors. We thus highly recommend to use a CSS version 5.2.1 and the offline installer. More information on MCSDK versions can be found [here](http://software-dl.ti.com/sdoemb/sdoemb_public_sw/bios_mcsdk/latest/index_FDS.html). ~~Please read the [CCS Setup](/docs/ccssetup) page for detailed information about the installation and configuration.~~
 
-The starting point of this tutorial is the Preesm project obtained as a result of the [Parallelize an Application on a Multicore CPU](index.php?id=parallelize-an-application-on-a-multicore-cpu) tutorial.
+The starting point of this tutorial is the Preesm project obtained as a result of the [Parallelize an Application on a Multicore CPU](/tutos/parasobel) tutorial.
 
-Note: The supplied project has been designed and tested only with the TMDSEVM6678L EVM. However, we see no obvious reason why this project should not work with other Multicore DSPs from TI, provided that appropriate settings are made in the CCS project (cf. [section 3](#3)).
+Note: The supplied project has been designed and tested only with the TMDSEVM6678L EVM. However, we see no obvious reason why this project should not work with other Multicore DSPs from TI, provided that appropriate settings are made in the [CCS project](#code-composer-studio-project).
 
-## 2. Preesm Code Generation for DSP
+## Preesm Code Generation for DSP
 
-To begin this tutorial, open your own copy of the Sobel project in Preesm or simply unzip and import in Preesm the downloaded project. This project contains an implementation of the Sobel filter application obtained as a result of the [Parallelize an Application on a Multicore CPU](index.php?id=parallelize-an-application-on-a-multicore-cpu) tutorial) 
-The project modifications needed to generate code for multicore DSP from Preesm are presented in this section.
+To begin this tutorial, open your own copy of the Sobel project in Preesm or simply unzip and import in Preesm the downloaded project. This project contains an implementation of the Sobel filter application obtained as a result of the [Parallelize an Application on a Multicore CPU](/tutos/parasobel) tutorial). The project modifications needed to generate code for multicore DSP from Preesm are presented in this section.
 
-### 2.1. Definition of the Target Architecture
+### Definition of the Target Architecture
 
 In the "Package Explorer" of Preesm, open the /Archi/ directory and create a copy of the "4CoreX86.slam" architecture named "8CoreC6678.slam". Open the editor for the newly created architecture. Add 4 new cores to the architecture and name them Core4 to Core7) 
 For each of the 8 cores, open the "Properties" view and change the value of the "definition" attribute from "x86" do "c6678". The "definition" attribute of the cores of the architecture is used during the workflow execution to generate adequate code for the specified targets. Save the S-LAM model and close the architecture editor.
 
-### 2.2. Scenario Creation
+### Scenario Creation
 
 In the "Package Explorer" of Preesm, create a new directory /CodeC6678/ and create a subdirectory named "generated". Follow the following steps to configure a new scenario:
 
 - (1) In /Scenario/, create a copy of the "4core.scenario". Name it "8coreC6678.scenario" and open it with the scenario editor.
 - (2) In the "Overview" tab, set the path to the "8coreC6678.slam" architecture, save, close and re-open the scenario editor to validate this change.
 - (3) In the "Constraints" tab, allow the execution of all actors on all 8 cores of the architecture.
-- (4) In the "Timings" tab, set the "memcopy speed" (scroll-down to make it appear) for c6678 cores with: memcpySetupTime:=1 and memcpySpeed:=20000. (These values do not represent the reality but we need to set them to prevent the memcpy speed from dominating the simulation cost.).
+- (4) In the "Timings" tab, set the "memcopy speed" (scroll-down to make it appear) for c6678 cores with: ```memcpySetupTime:=1``` and ```memcpySpeed:=20000```. (These values do not represent the reality but we need to set them to prevent the memcpy speed from dominating the simulation cost.).
 - (5) In the "Simulation" tab, allow the execution of broadcast/explode/implode on all 8 cores.
 - (6) In the "Codegen" tab, set the code generation directory to "/CodeC6678/generated".
 - (7) Save and close the scenario.
 
-### 2.3. Code generation
+### Code generation
 
 You are now all set to generate code for the multicore DSP. To do so, simply launch the Codegen.workflow on the newly created scenario.
 
@@ -59,7 +60,7 @@ You are now all set to generate code for the multicore DSP. To do so, simply lau
 
 In this section, we will guide you through the creation and configuration of the CCS project needed to compile and run the generated code. As CCS is an Eclipse-based tool, the behavior of CCS projects is equivalent to the one of Preesm projects.
 
-### 3.1. Platform definition
+### Platform definition
 
 The code generated by Preesm for multicore DSP relies on the definition of a custom target platform in CCS. This platform is used to specify the memory regions in which the code and data will be stored when running an application on the EVM. To create a custom platform:
 
@@ -84,7 +85,7 @@ The code generated by Preesm for multicore DSP relies on the definition of a cus
 
 ![](/assets/tutos/mpsoccodegen/tuto6678-platform_creation2.png)
 
-### 3.2. Project Creation
+### Project Creation
 
 The following steps will guide you through the creation and the configuration of the CCS project:
 
@@ -104,28 +105,28 @@ If the "Build Automatically" option of CCS is activated, the compilation of your
 - (3) Open the properties of your project and open the "Build/C6000 Compiler/Include Options" tab. Add two new directories to the "#include search path": **"${workspace_loc:/${ProjName}/include}"** and **"${CCS\_INSTALL\_ROOT}/../pdk\_C6678\_1\_1\_2_6/packages"**. Make sure the path corresponds to the version of the PDK installed on your computer. To know the version of the PDK installed on your computer, you can go to "Window > Preferences > Code Composer Studio > RTSC > Products" and scroll dow to "MCSDK PDK TMS320C6678".
 - (4) Select the "Release" configuration in the properties editor and repeat these 3 steps to complete the configuration.
 
-To compile the project, you now need to add to your project the source code that implements the communication and the synchronization primitives used in the generated code as well as the actor code. A zip file containing all necessary files is available [\[here\]](data/uploads/tutorial_zips/sobel_6678_sources.zip). This file should be merged with the "/Code6678/" directory. This file also contains a small C project that can be used to convert a raw YUV video into a *.dat file. Make sure this project is not built by CCS. To do so, right-click on the "yuv2dat" folder in the project explorer and select "Resource configuration->Exclude from Build") 
+To compile the project, you now need to add to your project the source code that implements the communication and the synchronization primitives used in the generated code as well as the actor code. A zip file containing all necessary files is available \[[here](/assets/tutos/mpsoccodegen/sobel_6678_sources.zip)]. This file should be merged with the "/Code6678/" directory. This file also contains a small C project that can be used to convert a raw YUV video into a *.dat file. Make sure this project is not built by CCS. To do so, right-click on the "yuv2dat" folder in the project explorer and select "Resource configuration->Exclude from Build") 
 Here is a short description of some of the files contained in the archive:
 
-*   ****modelPreesm.cfg**:** This RTSC configuration file is used to select and configure different modules used by Sys/Bios when running the application. In particular, the entry point of the program is declared in this file (i.e. the function called when a DSP calls BIOS\_start()). The sections within which data can be allocated using a "#pragma DATA\_SECTION" directive are also defined in this file.
+*   **modelPreesm.cfg**: This RTSC configuration file is used to select and configure different modules used by Sys/Bios when running the application. In particular, the entry point of the program is declared in this file (i.e. the function called when a DSP calls BIOS\_start()). The sections within which data can be allocated using a ```#pragma DATA_SECTION``` directive are also defined in this file.
 *   **/include/cores.h:** This file contains the definition of preprocessing variables that can be used to modify the behavior of the compiled code. For example, the COREx variables provide a convenient way to remove the declaration of a core that does not run any actor.
 *   **/src/c6678.h:** This header file contains the preprocessing #include directives for all header files containing prototypes of the actor functions.
 *   **/src/main.c:** The main program ensures that each of the 8 DSP Cores of the EVM executes the right code.
 
 After the archive is unzipped, refresh the CCS Workspace and compile the project. At this point, the compilation should be successful.
 
-## 4. Execution of the Sobel filter on an EVMC6678
+## Execution of the Sobel filter on an EVMC6678
 
 After building the CCS project successfully, this section will show you how to load your application on the 8 cores of the DSP and how to check that the application works properly.
 
-### 4.1. Loading the application on the EVM
+### Loading the application on the EVM
 
 Before loading the application on the EVM, we are going to configure the project to automate the tedious and repetitive task of loading the GEL files on each core of the EVM. To do so:
 
 - (1) In the "Project Explorer", double click on the "/sobel-6678/TMS320C6678.ccxml" (or "/sobel-6678/targetConfigs/TMS320C6678.ccxml") to open the associated editor.
 - (2) Open the "Advanced" tab of the editor.
 - (3) In the left part of this tab, select the "C66xx_0" element.
-- (4) In the right part of the tab, set the "initialization script" to the GEL file associated to your EVM. For the 6678, the path should be something like: "..\\..\\emulation\\boards\\evmc6678l\\gel\\evmc6678l.gel" or "C:\\ti\\ccsv5\\ccs_base\\emulation\\boards\\evmc6678l\\gel\\evmc6678l.gel".
+- (4) In the right part of the tab, set the "initialization script" to the GEL file associated to your EVM. For the 6678, the path should be something like: ```..\..\emulation\boards\evmc6678l\gel\evmc6678l.gel``` or ```C:\ti\ccsv5\ccs_base\emulation\boards\evmc6678l\gel\evmc6678l.gel```.
 - (5) Repeat the last two steps for the 7 remaining cores.
 - (6) Save and close the editor.
 
@@ -149,11 +150,11 @@ To load the application on the EVM:
 - (6) Click on OK twice and wait for the completion of the loading process which may last a few tens of seconds... per core.
 - (7) Once all cores are loaded, click on the play button to launch the execution. When running, the application will print a number of FPS in the console.
 
-### 4.2. Load the video in memory
+### Load the video in memory
 
 In the map file generated next to the program (back in the "CCS Edit" perspective, in the "/sobel-6678/Debug/" directory), check where in memory is allocated the section ".myInputVideoMem". It is certainly at the beginning of DDR, thus 0x80000000. In this section, we want to load the video. This section is defined as "NOINIT" in the SYS/BIOS cfg file so it will not be erased if you reload the code.
 
-A program with a CMake builder is available in the project to convert the YUV video into a .dat hexadecimal file compatible with CCS (we also provide comand line static binaries for [\[win64\]](http://preesm.sourceforge.net/downloads/yuv2dat.exe) and [\[linux64\]](http://preesm.sourceforge.net/downloads/yuv2dat))) The program is named yuv2dat. To use this program, simply compile it with your favorite IDE and launch the executable in a command window; this will tell you the required parameters to convert a *.yuv file. Set the number of frame to convert to 10 ("-f=10"). If you want a different value, you will need to change the pre-processing variable NB_FRAMES in the yuvRead.h file of your CCS project. Once you converted your input video, you can load the dat file in the DSP memory. To do so,
+A program with a CMake builder is available in the project to convert the YUV video into a .dat hexadecimal file compatible with CCS (we also provide comand line static binaries for [\[win64\]](/assets/downloads/yuv2dat.exe) and [\[linux64\]](/assets/downloads/yuv2dat))) The program is named yuv2dat. To use this program, simply compile it with your favorite IDE and launch the executable in a command window; this will tell you the required parameters to convert a *.yuv file. Set the number of frame to convert to 10 ("-f=10"). If you want a different value, you will need to change the pre-processing variable NB_FRAMES in the yuvRead.h file of your CCS project. Once you converted your input video, you can load the dat file in the DSP memory. To do so,
 
 - (1) Pause all executions in the debugger perspective.
 - (2) Select one of the cores in the in "Debug" tab.
@@ -194,7 +195,7 @@ In order to check that the video was correctly loaded, you can use the CCS "Imag
 
 Back to the Image tab, click on the Refresh button. You should now see an image from the video you loaded on the board.
 
-### 4.3. Check the application functionality
+### Check the application functionality
 
 The number of FPS displayed in the console when running the application is not a very convincing way to prove the correct operating of the Sobel application. The following steps will help you visualize the result of the Sobel application from the memory of the DSP.
 
@@ -226,36 +227,36 @@ The number of FPS displayed in the console when running the application is not a
 
 It sometimes happens that only white noise appears in the image view. This issue usually arises when something went wrong during the loading process. The best way to solve this issue seems to be to reload the binary on the EVM and re-launch the execution.
 
-## 5. Instrumented C Code Generation, Execution and Analysis
+## Instrumented C Code Generation, Execution and Analysis
 
-Similarly to what is presented in the [Automated Measurement of Actor Execution Time tutorial](index.php?id=automated-actor-execution-time-measurement) for CPU, it is possible to print instrumented code for DSPs. To do so:
+Similarly to what is presented in the [Automated Measurement of Actor Execution Time tutorial](/tutos/instrumentation) for CPU, it is possible to print instrumented code for DSPs. To do so:
 
-- (1) Re-open the Sobel project in Preesm and follow the steps of [section 2.1 of the CPU tutorial.](index.php?id=automated-actor-execution-time-measurement) In the last step, you can run the workflow on the existing "8coreC6678.scenario".
+- (1) Re-open the Sobel project in Preesm and follow the steps of [the CPU tutorial](/tutos/instrumentation#instrumented-c-code-generation). In the last step, you can run the workflow on the existing "8coreC6678.scenario".
 - (2) Following the instruction presented earlier in this tutorial, compile, load, and run the generated code. If the CCS project is located as advised in the subdirectory "CodeC6678" of your Preesm project, then a simple refresh, rebuild and reload of your CCS project will suffice.
 - (3) Execute the instrumented code for a few seconds. At the end of each iteration, statistics on the execution time of all actors will be printed in the console.
 - (4) Open with your favorite notepad the "/CodeC6678/generated/analysis.csv". Copy the content of the console and paste it at the end of the csv file.
-- (5) Using a "Search and replace" wizard, delete all occurrences of "\[C66xx_?\] ". Manually remove the second line of the console (which displays a number of fps).
+- (5) Using a "Search and replace" wizard, delete all occurrences of "\[C66xx_?] ". Manually remove the second line of the console (which displays a number of fps).
 - (6) Do not forget to adapt the decimal separator and the formula to your spreadsheet editor language.
 - (7) Open the spreadsheet to see the results.
 
 You now have all the information you need to update the "Timing" tab of the Preesm scenario. Keep in mind that this method is experimental and the precision of the measured execution time might not be optimal. Moreover, the overhead induced by inserting instrumentation calls into the generated code has not been evaluated. Finally, using profiling tools from CCS might be a good idea. (Feel free to contact us if you want to help us improve this tutorial by using such techniques).
 
-## 6. Generation of Cache Coherent Code
+## Generation of Cache Coherent Code
 
 Despite the use of the 8 cores of the c6678, the performances obtained are still quite poor (~34fps in debug and ~50fps in release). The main reason for these bad performances is the memory allocation scheme used in the generated project. Indeed, the allocation scheme used in this project consists of mapping all the buffers used to transmit data from an actor to the next in the DDR3 memory. Because the DD3 memory is an external memory, memory accesses to data stored in this memory considerably slow down the execution of the program. To solve this issue, we are going to activate the DSP cache.
 
-### 6.1. Activate the L1 Cache
+### Activate the L1 Cache
 
 Each one of the 8 cores of the EVM possesses a private L1 cache of 32kB. To activate this cache, simply follow these steps:
 
 - (1) Open “include/cache.h” file in CCS.
 - (2) Set the CACHEABLE pre-processing variable to 1.
-- (3) Make sure that “#define L1” is not commented.
+- (3) Make sure that ```#define L1``` is not commented.
 - (4) Rebuild your project.
 
 Then, simply load the program on the 8 cores of the EVM and launch it. Activating the cache should result in a performance increase by a factor 10. (~333fps in debug and ~500fps in release). Check the correct behavior of the application (cf. section 4.3 of the previous tutorial).
 
-**NOTE:** This optimization may seem artificial at first glance. Indeed, the files we provide include manual disabling of the cache (line 19 in cache.h #define CACHEABLE 0 enables lines 98 to 104 of main.c)) However, because of the memory alignment issues with this kind of DSP, that is a feature that we usually want disabled by default. The example application in this tutorial is using buffers that are always aligned (see section 6.3 below). There is, however, no warranty that the writebacks will not overlap in the general case. But because the performance gains are significant, we want the cache enabled for all applications. This motivates having proper memory allocation. We discuss this topic further in next sections and tutorials.
+**NOTE:** This optimization may seem artificial at first glance. Indeed, the files we provide include manual disabling of the cache (line 19 in cache.h ```#define CACHEABLE 0``` enables lines 98 to 104 of main.c)). However, because of the memory alignment issues with this kind of DSP, that is a feature that we usually want disabled by default. The example application in this tutorial is using buffers that are always aligned (see section 6.3 below). There is, however, no warranty that the writebacks will not overlap in the general case. But because the performance gains are significant, we want the cache enabled for all applications. This motivates having proper memory allocation. We discuss this topic further in next sections and tutorials.
 
 The Debug environment of CCS allows you to visualize which address ranges are cached. To do so:
 
@@ -269,7 +270,7 @@ The Debug environment of CCS allows you to visualize which address ranges are ca
 - (8) Execute call to cache_inv() by pressing F6.
 - (9) The values now appear on a white background which indicates that the displayed values belong to the DDR3 memory.
 
-### 6.2. Cache Coherency on the Multicore DSP
+### Cache Coherency on the Multicore DSP
 
 **Contrary to multicore x86 architectures, the multicore c6x hardware does not guarantee any cache coherence between the 8 cores of the chip**. For this reason, when Preesm generates code for the DSP, it automatically includes calls to the cache coherency primitives: writeback, invalidate, and writebackInvalidate.
 
@@ -284,11 +285,11 @@ In order to experiment what would happen without these primitives, simply add th
 #define cache_inv(buffer,size)
 ```
 
-Rebuild and launch the project. Using the image analyzer, observe the result of the algorithm. The observed result may vary depending on the memory allocation strategy you are using (cf. [Memory Footprint Reduction](index.php?id=memory-footprint-reduction) tutorial).
+Rebuild and launch the project. Using the image analyzer, observe the result of the algorithm. The observed result may vary depending on the memory allocation strategy you are using (cf. [Memory Footprint Reduction](/tutos/memory) tutorial).
 
 Note: There is no noticeable artifact really visible with the sobel demo application.
 
-### 6.3. Cache Alignment
+### Cache Alignment
 
 In addition to the cache coherency, the programmer of a multicore DSP must also take great care of the alignment of data in memory. Indeed, if two buffers are not aligned properly in memory, they might be allocated in contiguous address ranges that will be cached simultaneously.
 
@@ -303,7 +304,7 @@ To ensure that the buffers of an application are always aligned in memory, follo
 - (3) In the “Task Variables” tab, set the value of “Data Alignment” to “Fixed:=64”. This forces the allocation algorithm to align all buffers on addresses that are multiples of 64 bytes (i.e. the L1 cache line size). Other possible values for this parameter are:
     - (a) “None”: No special care is taken to align the buffers in memory.
     - (b) “Data”: All buffers are aligned on addresses that are multiples of their size. For example, a 4bytes integer is aligned on 4bytes address. When generating code for the DSP with data types different than char, the memory allocation should always be aligned either on Data or on Cache line size.
-- (4) Repeat step 3 for the Memory Script workflow task if you previously followed the [Advanced Memory Footprint Reduction tutorial](index.php?id=advanced-memory-footprint-reduction).
+- (4) Repeat step 3 for the Memory Script workflow task if you previously followed the [Advanced Memory Footprint Reduction tutorial](/tutos/advancedmemory/#memory-scripts).
 - (5) Save the workflow and run it on the c6678 scenario.
 - (6) Once the code is generated, re-compile the project in CCS and launch it on the EVM.
 
@@ -311,4 +312,4 @@ To simulate the effect of cache misalignment on the Sobel application, force the
 
 ![](/assets/tutos/mpsoccodegen/corruptedakiyo.png){: .center-image }
 
-Finally, all techniques presented in the CPU tutorials, such as the [memory footprint reduction](index.php?id=memory-footprint-reduction) or the [pipelining techniques](index.php?id=software-pipelinint-for-throughput-optimization) can successfully be used to seamlessly improve the performance of an application on a multicore DSP.
+Finally, all techniques presented in the CPU tutorials, such as the [memory footprint reduction](/tutos/memory) or the [pipelining techniques](/tutos/softwarepipeline) can successfully be used to seamlessly improve the performance of an application on a multicore DSP.
