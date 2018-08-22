@@ -10,22 +10,26 @@ The following topics are covered in this tutorial:
 
 *   Software Pipelining of an Application for Throughput Optimization
 
-Prerequisite: [Tutorial Introduction](index.php?id=tutorial-introduction), [Parallelize an Application on a Multicore CPU](index.php?id=parallelize-an-application-on-a-multicore-cpu)
+Prerequisite: 
+* [Tutorial Introduction](/tutos/intro)
+* [Parallelize an Application on a Multicore CPU](/tutos/parasobel)
 
 
 ###### Tutorial created the 10.14.2013 by [K. Desnos](mailto:kdesnos@insa-rennes.fr)
 
-1\. Project setup
------------------
+## Project setup
 
-The starting point of this tutorial is the Preesm project obtained as a result of the [Parallelize an Application on a Multicore CPU](index.php?id=parallelize-an-application-on-a-multicore-cpu) tutorial. The project resulting from this tutorial is available [\[here\]](data/uploads/tutorial_zips/tutorial1_result.zip). The external libraries, the YUV sequence and the generated C code are not included in this archive. Explanation on how to setup these external elements, compile and run the project are available [\[here\]](index.php?id=parallelize-an-application-on-a-multicore-cpu).
+In addition to the default requirements (see [Requirements for Running Tutorial Generated Code](/tutos/intro/#requirements-for-running-tutorial-generated-code)), download the following files:
 
-2\. Software Pipelining of an Application
------------------------------------------
+*   Complete [Sobel Preesm Project](/assets/tutos/parasobel/tutorial1_result.zip)
+*   [YUV Sequence (7zip)](/assets/downloads/akiyo_cif.7z) (9 MB)
+*   [DejaVu TTF Font](/assets/downloads/DejaVuSans.ttf) (757KB)
 
-#### 2.1. What is the software pipelining?
+## Software Pipelining of an Application
 
-Software pipelining (also called blocking or block scheduling) is a popular technique used to increase the throughput of an application. The throughput of an application is usually limited by the latency of its critical path. In Synchronous Dataflow (SDF) graphs, the critical path is the chain of actors whose sum of actor execution times is the largest. In the Sobel application, the critical path is composed of the following actors: (read\_YUV)-(Split)-(Sobel\_x)-(Merge)-(display). The basic idea behind the software pipelining technique is to break the critical path into shortest parts by introducing "delays" in the path. The introduction of delays relaxes the dependency constraints between actors and makes possible the concurrent execution of the different stages of the pipelined critical path. More information on software pipelining can be found in [\[1\]](#ref).
+### What is Software Pipelining?
+
+Software pipelining (also called blocking or block scheduling) is a popular technique used to increase the throughput of an application. The throughput of an application is usually limited by the latency of its critical path. In Synchronous Dataflow (SDF) graphs, the critical path is the chain of actors whose sum of actor execution times is the largest. In the Sobel application, the critical path is composed of the following actors: ```(read_YUV)-(Split)-(Sobel_x)-(Merge)-(display)```. The basic idea behind the software pipelining technique is to break the critical path into shortest parts by introducing "delays" in the path. The introduction of delays relaxes the dependency constraints between actors and makes possible the concurrent execution of the different stages of the pipelined critical path. More information on software pipelining can be found in [\[1\]](#references).
 
 [![](/assets/tutos/softwarepipeline/sobel_pipelining.png)](/assets/tutos/softwarepipeline/sobel_pipelining.png)
 

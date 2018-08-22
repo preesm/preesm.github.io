@@ -22,6 +22,8 @@ Prerequisite:
 In addition to the default requirements (see [Requirements for Running Tutorial Generated Code](/tutos/intro/#requirements-for-running-tutorial-generated-code)), download the following files:
 
 *   Complete [Sobel Preesm Project](/assets/tutos/parasobel/tutorial1_result.zip)
+*   [YUV Sequence (7zip)](/assets/downloads/akiyo_cif.7z) (9 MB)
+*   [DejaVu TTF Font](/assets/downloads/DejaVuSans.ttf) (757KB)
 *   A [TMS320C6678 Evaluation Module (EVM)](http://www.ti.com/tool/tmdsevm6678)
 *   [Code Composer Studio (CCS)](http://processors.wiki.ti.com/index.php/Download_CCS) v5.2.1 with [MCSDK 2.x](http://preesm.insa-rennes.fr/website/index.php?id=ccs-setup)
 
