@@ -425,6 +425,10 @@
 .nav__list .nav__items {
   margin: 0;
   font-size: 1.25rem;
+  border: 2px;
+  //border-style: outset;
+  padding: 3px;
+  background-color: #EEEEEE;
 
   a {
     color: inherit;
@@ -497,6 +501,10 @@
   border: 1px solid $border-color;
   border-radius: $border-radius;
   box-shadow: $box-shadow;
+  
+  margin-top: -65px;
+  position:fixed;
+  width: 276px;
 
   .nav__title {
     color: #fff;
