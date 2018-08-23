@@ -1,5 +1,5 @@
 ---
-title: "Documentation | Git Tips and Tricks"
+title: "Git Tips and Tricks"
 permalink: /docs/gittips/
 toc: true
 ---

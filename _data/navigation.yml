@@ -34,13 +34,15 @@ tutos_nav:
         url: /tutos/instrumentation/
       - title: "08 - Import/Export an SDF3 Graph"
         url: /tutos/importexport/
-      - title: "09 - Reconfigurable Application with SPIDER - [BETA]"
+  - title: Beta Tutorials
+    children:
+      - title: "09 - Spider"
         url: /tutos/spider/
-      - title: "10 - Papify tutorial - [BETA]"
+      - title: "10 - Papify"
         url: /tutos/papify/
-      - title: "11 - HW/SW Codegeneration for ZedBoard - [BETA]"
+      - title: "11 - HW/SW Code Generation for ZedBoard"
         url: /tutos/sdsoc/
-      - title: "12 - Throughput Evaluation for Hierarchical graphs"
+      - title: "12 - Throughput Evaluation for Hierarchical Graphs"
         url: /tutos/throughputeval/
 
 docs_nav:

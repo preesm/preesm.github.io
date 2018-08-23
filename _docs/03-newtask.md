@@ -1,5 +1,5 @@
 ---
-title: "Documentation | New Workflow Task"
+title: "New Workflow Task"
 permalink: /docs/newtask/
 toc: true
 ---

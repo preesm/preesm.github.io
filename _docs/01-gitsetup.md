@@ -1,5 +1,5 @@
 ---
-title: "Documentation | Install and Configure git"
+title: "Install and Configure git"
 permalink: /docs/gitsetup/
 toc: true
 ---

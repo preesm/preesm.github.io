@@ -1,5 +1,5 @@
 ---
-title: "Documentation | Building Spider - [BETA]"
+title: "Building Spider - [BETA]"
 permalink: /docs/buildspider/
 toc: true
 ---

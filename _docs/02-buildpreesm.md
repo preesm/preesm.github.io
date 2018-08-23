@@ -1,5 +1,5 @@
 ---
-title: "Documentation | Building Preesm"
+title: "Building Preesm"
 permalink: /docs/buildpreesm/
 toc: true
 ---

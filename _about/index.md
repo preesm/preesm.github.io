@@ -11,7 +11,7 @@ toc: true
 
 The PREESM tool inputs are an **algorithm graph**, an **architecture graph**, and a **scenario** which is a set of parameters and constraints that specify the conditions under which the deployment will run. The chosen type of algorithm graph is a parameterized and hierarchical extension of Synchronous Dataflow (SDF) graphs named PiSDF. The architecture graph is named System-Level Architecture Model (S-LAM). From these inputs, **PREESM maps and schedules automatically** the code over the multiple processing elements and generates multi-core code.
 
-![Sobel PiSDF Graph](http://preesm.insa-rennes.fr/website/data/uploads/tutorial_sobel/sequential_sobel_pisdf.png)
+![Sobel PiSDF Graph](/assets/about/sequential_sobel_pisdf.png)
 
 This image pictures a sobel filter application expressed using PiSDF.
 

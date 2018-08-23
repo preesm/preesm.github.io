@@ -1,5 +1,5 @@
 ---
-title: "Documentation | Workflow Tasks Reference"
+title: "Workflow Tasks Reference"
 permalink: /docs/workflowtasksref/
 toc: false
 ---
