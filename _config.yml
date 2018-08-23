@@ -23,6 +23,7 @@ description              : "Preesm Documentation Website"
 repository               : "preesm/preesm"
 # breadcrumbs            : false # true, false (default)
 #words_per_minute         : 200
+#baseurl: /ghp
 
 # Reading Files
 include:
