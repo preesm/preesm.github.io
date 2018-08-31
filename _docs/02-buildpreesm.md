@@ -46,14 +46,6 @@ sudo update-java-alternatives -l
 sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 ```
 
-### If Using Ubuntu 16.04
-
-As documented in many places, Eclipse in Linux Ubuntu 16.04 is very slow unless GTK3 is disabled. One can solve the problem by adding:
-```bash
-export SWT_GTK3=0
-```
-in ~/.bashrc.
-
 ### Ensure UTF8 text file encoding
 
 In Eclipse, go to: Window > Preference > General > Workspace > Text file encoding and choose UTF-8.
