@@ -12,7 +12,7 @@ See [Jekyll Documentation](https://jekyllrb.com/docs/home/).
 
 ## Adding Content
 
-Note: Editing/adding content to the site requires proper permissions in the [Preesm Team](https://github.com/preesm).
+Note: Editing/adding content to the site requires proper permissions in the [Preesm Team](https://github.com/preesm). If you do not have the permission to push, you can submit new content or modifications using pull requests.
 
 ### Site Structure
 
