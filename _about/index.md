@@ -4,6 +4,7 @@ permalink: /about/
 toc: true
 ---
 
+[See the brochure](/assets/about/preesm_brochure.pdf)
 
 ## Presentation
 
