@@ -76,13 +76,7 @@ The Spider runtime is currently compatible with x86 architectures (Windows, Linu
 
 ## Spider library
 
-The Spider runtime is provided as a library when building a dynamically reconfigurable application. Pre-built versions of the Spider library are available in the [release page on GitHub](https://github.com/preesm/spider/releases), with both a debug and a release versions. Currently provided library binaries are compatible with:
-
-*   **GCC**: libSpider.so.
-*   **Visual Studio**: Spider.dll and Spider.lib.
-*   **CodeBlocks**: libSpider.dll and libSpider.dll.a.
-
-To use one of these versions, simply copy-paste the content of the Debug or Release folder into "/Code/lib/spider/". Instead, if you want to get the latest version of Spider, go to the [Building Spider](/docs/buildspider) tutorial to compile it yourself.
+The Spider runtime is provided as a library when building a dynamically reconfigurable application. See [Building Spider](/docs/buildspider) to build it on your machine.
 
 ## Modification of the Sobel algorithm
 
