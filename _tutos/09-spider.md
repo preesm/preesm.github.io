@@ -76,7 +76,7 @@ The Spider runtime is currently compatible with x86 architectures (Windows, Linu
 
 ## Spider library
 
-The Spider runtime is provided as a library when building a dynamically reconfigurable application. Pre-built versions of the Spider library are available in the following archive \[[link](/assets/tutos/spider/spider_lib.zip)\], with both a debug and a release versions. Currently provided library binaries are compatible with:
+The Spider runtime is provided as a library when building a dynamically reconfigurable application. Pre-built versions of the Spider library are available in the [release page on GitHub](https://github.com/preesm/spider/releases), with both a debug and a release versions. Currently provided library binaries are compatible with:
 
 *   **GCC**: libSpider.so.
 *   **Visual Studio**: Spider.dll and Spider.lib.
