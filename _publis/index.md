@@ -52,6 +52,12 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 
 ### Conference and Workshop papers
 
+#### 2018
+
+*   Miomandre, Hugo; Hascoët, Julien; Desnos, Karol; Martin, Kevin; Dinechin, Benoît Dupont De; Nezan, Jean-François (2018). _"[Embedded Runtime for Reconfigurable Dataflow Graphs on Manycore Architectures](https://hal.inria.fr/hal-01704702)"_. PARMA-DITAM.
+*   Madroñal, Daniel; Lazcano, Raquel; Morvan, Antoine; Salvador, Ruben; Desnos, Karol; Juarez, Eduardo; Sanz, Cesar (2018). _"[Automatic Instrumentation of Dataflow Application using PAPI Inproceedings Forthcoming](http://oa.upm.es/51789/1/CF18_PAPIFY-PREESM.pdf)"_. Computing Frontiers.
+*   Arrestier, Florian; Desnos, Karol; Pelcat, Maxime; Heulot, Julien; Eduardo, Juarez; Daniel, Menard (2018). _"[Delays and States in Dataflow Models of Computation Inproceedings Forthcoming](https://hal.inria.fr/hal-01850252)"_. International Conference on Embedded Computer Systems: Architectures, Modeling, and Simulation (SAMOS).
+
 #### 2017
 
 *   Deroui, Hamza; Desnos, Karol; Nezan, Jean-François; Munier-Kordon, Alix (2017) "[Throughput Evaluation of DSP Applications based on Hierarchical Dataflow Models](https://hal.archives-ouvertes.fr/hal-01514641)". [ISCAS 2017](http://iscas2017.org/), Baltimore, MD, USA.
