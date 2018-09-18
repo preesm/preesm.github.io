@@ -36,102 +36,97 @@ knowledge of the CeCILL-C license and that you accept its terms.
 
 package org.ietr.preesm.tutorial.example;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.eclipse.core.runtime.IProgressMonitor;
-
-import net.sf.dftools.algorithm.model.parameters.InvalidExpressionException;
-import net.sf.dftools.algorithm.model.sdf.SDFEdge;
-import net.sf.dftools.algorithm.model.sdf.SDFGraph;
-import net.sf.dftools.algorithm.model.sdf.types.SDFIntEdgePropertyType;
-import net.sf.dftools.workflow.WorkflowException;
-import net.sf.dftools.workflow.elements.Workflow;
-import net.sf.dftools.workflow.implement.AbstractTaskImplementation;
-import net.sf.dftools.workflow.tools.WorkflowLogger;
+import org.ietr.dftools.algorithm.model.parameters.InvalidExpressionException;
+import org.ietr.dftools.algorithm.model.sdf.SDFEdge;
+import org.ietr.dftools.algorithm.model.sdf.SDFGraph;
+import org.ietr.dftools.algorithm.model.sdf.types.SDFIntEdgePropertyType;
+import org.ietr.dftools.workflow.WorkflowException;
+import org.ietr.dftools.workflow.elements.Workflow;
+import org.ietr.dftools.workflow.implement.AbstractTaskImplementation;
+import org.ietr.dftools.workflow.tools.WorkflowLogger;
 
 /**
- * {@link ExampleTask} is an dummy workflow task that multiply all the
- * production and consumption rates of a {@link SDFGraph} by a factor given as a
- * parameter to the task.
- * 
+ * {@link ExampleTask} is an dummy workflow task that multiply all the production and consumption rates of a
+ * {@link SDFGraph} by a factor given as a parameter to the task.
+ *
  * @author kdesnos
- * 
+ *
  */
 public class ExampleTask extends AbstractTaskImplementation {
 
-	@Override
-	public Map<String, Object> execute(Map<String, Object> inputs,
-			Map<String, String> parameters, IProgressMonitor monitor,
-			String nodeName, Workflow workflow) throws WorkflowException {
+  @Override
+  public Map<String, Object> execute(final Map<String, Object> inputs, final Map<String, String> parameters,
+      final IProgressMonitor monitor, final String nodeName, final Workflow workflow) throws WorkflowException {
 
-		// The logger is used to display messages in the console
-		// Message can have different colors depending of their severity.
-		// The severity of a message is set when calling logger.log()
-		Logger logger = WorkflowLogger.getLogger();
+    // The logger is used to display messages in the console
+    // Message can have different colors depending of their severity.
+    // The severity of a message is set when calling logger.log()
+    final Logger logger = WorkflowLogger.getLogger();
 
-		// Retrieve the task parameter
-		String paramString = parameters.get("factor");
-		int factor;
-		try {
-			factor = (paramString != null) ? Integer.decode(paramString) : 1;
-		} catch (NumberFormatException e) {
-			String message = "Factor parameter of task " + nodeName
-					+ " is not an integer.";
-			logger.log(Level.SEVERE, message);
-			throw new WorkflowException(message);
-		}
+    // Retrieve the task parameter
+    final String paramString = parameters.get("factor");
+    int factor;
+    try {
+      factor = (paramString != null) ? Integer.decode(paramString) : 1;
+    } catch (final NumberFormatException e) {
+      final String message = "Factor parameter of task " + nodeName + " is not an integer.";
+      logger.log(Level.SEVERE, message);
+      throw new WorkflowException(message);
+    }
 
-		// Check if the factor is greater than 0
-		if (factor <= 0) {
-			logger.log(Level.WARNING,
-					"Factor cannot be less than or equal to 0, default value is used instead.");
-			factor = 1;
-		}
+    // Check if the factor is greater than 0
+    if (factor <= 0) {
+      logger.log(Level.WARNING, "Factor cannot be less than or equal to 0, default value is used instead.");
+      factor = 1;
+    }
 
-		// Retrieve the task input
-		SDFGraph algo = (SDFGraph) inputs.get("SDF");
+    // Retrieve the task input
+    final SDFGraph algo = (SDFGraph) inputs.get("SDF");
 
-		// Do the work: Multiply all production/consumption rates of the graph
-		// with the factor.
-		// NB. A proper implementation should use the Visitor design pattern
-		for (SDFEdge edge : algo.edgeSet()) {
+    // Do the work: Multiply all production/consumption rates of the graph
+    // with the factor.
+    // NB. A proper implementation should use the Visitor design pattern
+    for (final SDFEdge edge : algo.edgeSet()) {
 
-			// Retrieve the production/consumption rates
-			int prod = 0, cons = 0;
-			try {
-				prod = edge.getProd().intValue();
-				cons = edge.getCons().intValue();
-			} catch (InvalidExpressionException e) {
-				e.printStackTrace();
-			}
+      // Retrieve the production/consumption rates
+      int prod = 0;
+      int cons = 0;
+      try {
+        prod = edge.getProd().intValue();
+        cons = edge.getCons().intValue();
+      } catch (final InvalidExpressionException e) {
+        e.printStackTrace();
+      }
 
-			// Set with the new values
-			edge.setProd(new SDFIntEdgePropertyType(prod * factor));
-			edge.setCons(new SDFIntEdgePropertyType(cons * factor));
-		}
+      // Set with the new values
+      edge.setProd(new SDFIntEdgePropertyType(prod * factor));
+      edge.setCons(new SDFIntEdgePropertyType(cons * factor));
+    }
 
-		// Display a message in the console
-		logger.log(Level.INFO, algo.edgeSet().size() + " edges were treated.");
+    // Display a message in the console
+    logger.log(Level.INFO, algo.edgeSet().size() + " edges were treated.");
 
-		// Put the resulting graph in the output map
-		Map<String, Object> outputs = new HashMap<String, Object>();
-		outputs.put("SDF", algo);
+    // Put the resulting graph in the output map
+    final Map<String, Object> outputs = new LinkedHashMap<>();
+    outputs.put("SDF", algo);
 
-		return outputs;
-	}
+    return outputs;
+  }
 
-	@Override
-	public Map<String, String> getDefaultParameters() {
-		Map<String, String> defaultParams = new HashMap<String, String>();
-		defaultParams.put("factor", "1");
-		return defaultParams;
-	}
+  @Override
+  public Map<String, String> getDefaultParameters() {
+    final Map<String, String> defaultParams = new LinkedHashMap<>();
+    defaultParams.put("factor", "1");
+    return defaultParams;
+  }
 
-	@Override
-	public String monitorMessage() {
-		return "Starting Execution of Example Task ";
-	}
+  @Override
+  public String monitorMessage() {
+    return "Starting Execution of Example Task ";
+  }
 }

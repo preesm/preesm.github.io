@@ -52,7 +52,7 @@ Before creating a new workflow task, you must first configure the dependencies o
 To complete the plugin configuration, repeat steps 2 to 5 and add the following plugins to the list:
 
 *   org.ietr.dftools.algorithm
-*   org.clojars.gilesc.jgrapht
+*   org.jgrapht.core
 *   org.eclipse.core.runtime
 
 ### Creation of a new workflow task
@@ -104,18 +104,15 @@ Before being executed, the new workflow task must first be registered as an exte
 2.  Click on "Add..." to open the "New Extension" Wizard.
 3.  Select "org.ietr.dftools.workflow.tasks" and click "Finish".
 4.  Fill the "Extension Element Details" as follows and save:
-
 ![](/assets/docs/03-newtask-assets/screenshot_task_2.png)
-
 5.  Right-click on your extension name in the extension list and select "New->inputs"
 6.  Right-click on "(inputs)" and select "New->input"
 7.  Fill the "Extension Element Details" of the input as follows:
-
 ![](/assets/docs/03-newtask-assets/screenshot_task_3.png)
-
 8.  Save and repeat steps 5 to 7 to add an output "SDF" to your workflow task. The extensions list should look like this:
-
 ![](/assets/docs/03-newtask-assets/screenshot_task_4.png)
+
+**Note:** In the extension details of step 4, the field ```id``` is what makes the link with the tasks defined in the Workflows (see step 6 of next section).
 
 Finally, the package containing the workflow task must be exported by the plugin in order to be usable by the workflow manager.
 
