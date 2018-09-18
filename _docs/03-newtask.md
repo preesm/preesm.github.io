@@ -103,7 +103,7 @@ Before being executed, the new workflow task must first be registered as an exte
 1.  Open the MANIFEST.MF file of your plugin and go to the "Extensions" tab.
 2.  Click on "Add..." to open the "New Extension" Wizard.
 3.  Select "org.ietr.dftools.workflow.tasks" and click "Finish".
-4.  Fill the "Extension Element Details" as follows and save:
+4.  Fill the "Extension Element Details" as follows and save (field ```id``` will be used in the workflow later on):
 ![](/assets/docs/03-newtask-assets/screenshot_task_2.png)
 5.  Right-click on your extension name in the extension list and select "New->inputs"
 6.  Right-click on "(inputs)" and select "New->input"
