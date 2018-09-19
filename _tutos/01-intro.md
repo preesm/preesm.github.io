@@ -27,7 +27,7 @@ Once these steps are completed, the unzipped project files can be accessed eithe
 
 ## Requirements for Running Tutorial Generated Code
 
-All the tutorial generated code is built using **CMake** (see below). Most of the demos use **PThread** for parallel execution and **SLD2** for image and video manipulation. In addition, some materials have to be downloaded for proper execution (input video, fonts, ...): follow the instruction given in ```Code/lib/ReadMe.txt``` of each project to make sure that the required files are in the right place.
+All the tutorial generated code is built using **CMake** (see below). Most of the demos use **PThread** for parallel execution and **SLD2** for image and video manipulation. In addition, some materials have to be downloaded for proper execution (input video, fonts, ...): follow the instruction given in ```Code/lib/ReadMe.txt``` and ```Code/dat/ReadMe.txt``` of each project to make sure that the required files are in the right place.
 
 ### CMake
 

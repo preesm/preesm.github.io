@@ -76,13 +76,7 @@ The Spider runtime is currently compatible with x86 architectures (Windows, Linu
 
 ## Spider library
 
-The Spider runtime is provided as a library when building a dynamically reconfigurable application. Pre-built versions of the Spider library are available in the following archive \[[link](/assets/tutos/spider/spider_lib.zip)\], with both a debug and a release versions. Currently provided library binaries are compatible with:
-
-*   **GCC**: libSpider.so.
-*   **Visual Studio**: Spider.dll and Spider.lib.
-*   **CodeBlocks**: libSpider.dll and libSpider.dll.a.
-
-To use one of these versions, simply copy-paste the content of the Debug or Release folder into "/Code/lib/spider/". Instead, if you want to get the latest version of Spider, go to the [Building Spider](/docs/buildspider) tutorial to compile it yourself.
+The Spider runtime is provided as a library when building a dynamically reconfigurable application. See [Building Spider](/docs/buildspider) to build it on your machine.
 
 ## Modification of the Sobel algorithm
 
@@ -92,23 +86,8 @@ We need to modify the current Sobel algorithm to add a configuration actor and m
 
 It is important to note that the project resulting from this tutorial will no longer be compatible with the workflows used in tutorials 1 to 7. Hence, we strongly advise you to back up your current sobel project.
 
-Remove the following files from the "/Code/" directory:
 
-*   In "include/":
-    *   communication.h
-    *   dump.h
-    *   fifo.h
-    *   memory.h
-    *   x86.
-
-*   In "src/":
-    *   communication.c
-    *   dump.c
-    *   fifo.c
-    *   memory.c
-    *   main.c
-
-Empty the "/Code/generated/" directory and change the extension of every .c file in "/Code/src/" to .cpp.
+If "/Code/generated/" is not empty, delete its content. Also change the extension of every .c file in "/Code/src/" to .cpp.
 
 ### Update algorithm model
 
@@ -125,12 +104,13 @@ The next steps will add a configuration actor in our Sobel algorithm graph to ma
 4.  Right-click on the new actor and select "Add new configuration output port", name it "**nbSlice**".
 5.  Select "Dependency" in the left-hand palette of the graph editor, and connect the "nbSlice" configuration output port to the nbSlice parameter.
 6.  Using the procedure presented in previous tutorials, set "nbSliceSetter.h" as the refinement for the configuration actor.
+7.  The ```height``` parameter input of the configuration actor is used for initializing the value of ```nbSlice``` when the application starts.
 
 The resulting graph should look like this:
 
 ![](/assets/tutos/spider/top_display.png)
 
-The white dots that appear on the **nbSliceSetter** actor, and on the **nbSlice** and **height** parameters show that these graph elements constitute a reconfigurable part of the graph. It should be noted that a configuration actor changing the value of a parameter can not receive data tokens from another actor of its graph. As detailed in [\[1\]](#references), hierarchy levels must be used to allow a configuration actor to consume data tokens.
+The white dots that appear on the **nbSliceSetter** actor, and on the **nbSlice** and **sliceHeight** parameters show that these graph elements constitute a reconfigurable part of the graph. It should be noted that a configuration actor changing the value of a parameter can not receive data tokens from another actor of its graph. As detailed in [\[1\]](#references), hierarchy levels must be used to allow a configuration actor to consume data tokens.
 
 At this step, you must update the mapping constraints specified in the scenario to allow the execution of the newly created configuration actor on at least 1 core.
 
@@ -145,9 +125,10 @@ We now need to tell Preesm to use the Spider codegen instead of the C code gener
 3.  Add a "Task" bloc with:
     *   id : "Spider Codegen"
     *   plugin identifier : "org.ietr.preesm.pimm.algorithm.spider.codegen.SpiderCodegenTask"
-4.  Link them with two "Data transfer" connections:
+4.  Link them with three "Data transfer" connections:
     *   "scenario"
-    *   "PiMM".
+    *   "architecture"
+    *   "PiMM"
 
 ![](/assets/tutos/spider/spidercodegen-workflow.png)
 
@@ -162,7 +143,7 @@ Some actors like Read_YUV need to run an initialisation function in order to wor
 We need to change the CMake behavior to have it look for and link the Spider library.
 
 - (1) Copy "FindSpider.cmake" from the provided archive into "/Code/lib/cmake_modules/"
-- (2) Open "CMakeLists.txt" and insert the following text **AFTER** the pthread section:
+- (2) Open "/Code/CMakeLists.txt" and insert the following text **AFTER** the pthread section:
 
 ```cmake
 # *******************************************
@@ -201,10 +182,6 @@ endif()
 - (6) Add **${SPIDER_LIBRARY}** as an argument of **target\_link\_libraries()**.
 
 ### Set up Spider
-
-As Spider is a library, it needs to be initialised and called from the main function. For that purpose, we are providing a "main.cpp" file. Copy the "main.cpp" provided in the archive to "/Code/src/". It is currently needed to edit it manually, though it might be generated by the Spider codegen in the future. For now, you need to replace every occurence of ```<topgraph_name_in_preesm>``` by the name given to the top level graph in Preesm. In this example, the top level graph should be "top_display" (you need to match the upper case in one place).
-
-We saw earlier that the Spider codegen in Preesm is not able to handle initialisation/finalisation function (yet). You need to check concerned actors in the Preesm console and manually insert their initialisation/finalisation function in main.cpp (check commentary in the code to know where to insert them) and include their respective header files.
 
 When it's done, simply run the updated CMake script to set up the project and compile the program.
 
