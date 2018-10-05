@@ -4,7 +4,7 @@ permalink: /get/update-site/
 toc: false
 ---
 
-Update site is another name for P2 repository. Update sites usually hold OSGi bundles (Elcipse features, plugins, etc.). This is usefull when integrating Preesm within an existing Eclipse installation.
+Update site is another name for P2 repository. Update sites usually hold OSGi bundles (Elcipse features, plugins, etc.). This is usefull when integrating Preesm within an existing Eclipse installation. Note that the latest versions of Preesm will only work with Eclipse Photon or more recent. If you have Oxygen or older version, you may end up with an older version of Preesm.
 
 To install Preesm using the update-site:
 
