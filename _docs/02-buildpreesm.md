@@ -14,7 +14,7 @@ Updated the 04.19.2017 by [A. Morvan](mailto:antoine.morvan@insa-rennes.fr)
 ## Disclaimers
 
 1.  When building PREESM, you have to **run a second Eclipse Application** (the guest) within the Eclipse where the source code is improted (the host). This is explained below in  the "Execution of Preesm" section;
-2.  When using unreleased source code (that is any other commit different from the last tag), there could be some **inconsistencies** between SourceForge hosted zip files used in tutorials and the tool;
+2.  When using unreleased source code (that is any other commit different from the last tag), there could be some **inconsistencies** between released zip files used in tutorials and the tool;
 
 
 ## Eclipse installation
@@ -56,7 +56,7 @@ At that stage, you may install Preesm from the [update site](http://preesm.insa-
 ### Install Development Requirements
 
 1.  Go to "Help > Install New Software...";
-2.  In "work with:", add a new location named "Preesm" with location "http://preesm.sourceforge.net/eclipse/update-site/"
+2.  In "work with:", add a new location named "Preesm" with location "http://preesm.insa-rennes.fr/repo/complete/"
 3.  Select the "Developper Resources > PREESM  Developper Requirements (Meta Feature)"  
     (this Eclipse feature contains all requirements for developping Preesm)
 4.  Click Next twice, agree on the terms of the license, and click on Finish to install the features. This step will take a few minutes.
