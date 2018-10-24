@@ -9,7 +9,7 @@ toc: true
 Tutorial prerequisites:
 *   This tutorial has been developed and tested for Ubuntu distributions
 
-###### Tutorial created the 06.20.2018 by [D. Madroñal](mailto:daniel.madronal@upm.es)
+###### Last update the 10.24.2018 -  Tutorial created the 06.20.2018 by [D. Madroñal](mailto:daniel.madronal@upm.es)
 
 ## Project setup
 
@@ -32,20 +32,22 @@ In order to get access to the Performance Monitor Counters (PMCs) existing in th
 4.  Run './configure'
 5.  Run 'make'
 6.  Run 'make fulltest' -> This will run the testing part of PAPI (it may take a while)
-7.  Run 'sudo make install-all' -> This will install the library as a system library
-8.  Run 'papi_avail' -> This command will display the available events on your system and will help you to check whether the library has been correctly installed
+    - Please, if several errors appear, check **Issue 1** at the PAPIFY troubleshooting section at the end of this tutorial before continuing
+8.  Run 'sudo make install-all' -> This will install the library as a system library
+9.  Run 'papi_avail' -> This command will display the available events on your system and will help you to check whether the library has been correctly installed
 
 ### Papify installation
 
 To include Papify in the project, there are two options. The first one is the starting project with all the changes included while the second explians, step by step, all the required changes to work with both PAPI and Papify:
 
 
-- (1) The starting project with all the changes included is available [\[here\]](/assets/tutos/papify/tutorialpapify.zip).
+- (1) The starting project with all the changes included is available [\[here\]](/assets/tutos/papify/org.ietr.preesm.sobel_PapifyTutorial.zip).
 - (2) Download Papify from the repository:
-  - (a) Clone from [https://github.com/dmadronal/Papify.git](https://github.com/dmadronal/Papify.git)
-  - or (b) Download it from [https://github.com/dmadronal/Papify/archive/master.zip](https://github.com/dmadronal/Papify/archive/master.zip)
-- (3) Copy "src/eventLib.c" to "org.ietr.preesm.sobel/Code/src/" directory
-- (4) Copy "include/eventLib.h" to "org.ietr.preesm.sobel/Code/include/" directory
+  - (a) Clone using ssh from [git@gitlab.citsem.upm.es:papify/papify.git](git@gitlab.citsem.upm.es:papify/papify.git)
+  - or (b) Clone using http from [https://gitlab.citsem.upm.es/papify/papify.git](https://gitlab.citsem.upm.es/papify/papify.git)
+  - or (b) Download it from [https://gitlab.citsem.upm.es/papify/papify/repository/master/archive.zip](https://gitlab.citsem.upm.es/papify/papify/repository/master/archive.zip)
+- (3) Copy "eventLib/src/eventLib.c" to "org.ietr.preesm.sobel/Code/src/" directory
+- (4) Copy "eventLib/include/eventLib.h" to "org.ietr.preesm.sobel/Code/include/" directory
 - (5) Open "CMakeLists.txt" and insert the following lines after the pthread section 
 
 ```cmake
@@ -77,24 +79,27 @@ target_link_libraries(sobel ${SDL2_LIBRARY} ${SDL2TTF_LIBRARY} ${CMAKE_THREAD_LI
 1.  Open a terminal and go to your project directory
 2.  run ```papi_xml_event_info > PAPI_info.xml```
 
-This will generate an xml file with the available PAPI components and events of your computer. If you want to develop code for a different platform, run this command on the target platform and its monitoring options will be gathered in that file.
+This will generate an xml file with the available PAPI components and events of your computer. If you want to develop code for a different platform, run this command on the target platform and its monitoring options will be gathered in that file. In this case, copy the generated file on your project directory to gain access to the information from PREESM.
 
 ## Configure the monitoring of the project
 
 1.  Go to the Scenarios folder a duplicate the 4core.scenario by creating a new one called 4corePapify.scenario
-2.  Open the new 4corePapify.scenario and go to the Papify tab
-3.  Click on the browse button and select the PAPI_info.xml file previously generated
-4.  Select Split actor (for example) in the comboBox selector
-5.  First, select the PAPI component: perf_event for the CPU
-6.  Secondly, select the PAPI events --> For example, select 'Timing' (for monitoring execution time)
-7.  Repeat 4.3 to 4.5 steps for the cores you want to monitor. For example, to check all the possible monitoring options:
-8.  Sobel --> perf\_event --> PAPI\_L1\_DCM and PAPI\_L1_ICM
-9.  Read\_YUV --> perf\_event --> Timing, PAPI\_L1\_DCM and PAPI\_L1\_ICM
-10.  display --> No selection (no monitoring)
+2.  Open the new 4corePapify.scenario and go to the PAPIFY tab, which has three different sections
+    - **PAPIFY file path**: to import the xml information previously generated
+    - **PAPIFY PE configuration**: to associate the different types of Processing Elements (PE) defined in the architecture with a PAPI component
+    - **PAPIFY actor configuration**: to define, for each actor defined in the algorithm, the events that will be monitored during the execution
+        - To obtain a short description of one event, please, place the mouse over it and the description will appear
+3.  To import the monitoring data, in the PAPIFY file path section, click on the browse button and select the PAPI\_info.xml file previously generated
+4.  After that, in the PAPIFY PE configuration, select the PAPI component for the x86 type of PE: perf_event for the CPU
+5.  Finally, in the PAPIFY actor configuration, select the PAPI events:
+    - Read\_YUV: Timing (for monitoring execution time)
+    - Sobel: PAPI\_L1\_DCM and PAPI\_L1_ICM (data and instruction misses from the Level 1 Cache memory)
+    - Read\_YUV: Timing, PAPI\_L1\_DCM and PAPI\_L1\_ICM
+    - display and Merge --> No selection (no monitoring)
 
-The resulting aspect of, for example, Read_YUV actor should be the equivalent to the one displayed on the following image.
+The resulting scenario tab be the equivalent to the one displayed on the following image.
 
-![](/assets/tutos/papify/scenariopapify2.png)
+![](/assets/tutos/papify/scenarioPapify2D.png)
 
 ## Configure the workflow of the project
 
@@ -114,9 +119,9 @@ As a result, the workflow should look like the one displayed in the following im
 
 1.  Run the workflow selecting as Scenario the one called 4corePapify.scenario
 2.  Run the CMakeGCC.sh file --> sh CMakeGCC.sh
-3.  If not done yet, please, copy the Papify files:
-4.  src/eventLib.c into org.ietr.preesm.sobel/Codet/src
-5.  include/eventLib.h into org.ietr.preesm.sobel/Code/include
+3.  If not done yet, please, copy the Papify files from the Papify repository:
+4.  eventLib/src/eventLib.c into org.ietr.preesm.sobel/Codet/src
+5.  eventLib/include/eventLib.h into org.ietr.preesm.sobel/Code/include
 6.  Go to make/bin --> 'cd bin/make'
 7.  Run 'make'
 8.  Run the application './Release/sobel' (Don't forget to add the akiyo_cif.yuv and the DejaVuSans.ttf files in the /Code/dat folder)
