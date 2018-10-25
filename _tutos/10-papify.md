@@ -27,14 +27,14 @@ In order to get access to the Performance Monitor Counters (PMCs) existing in th
 ### PAPI instalation
 
 1.  Create a new directory to download PAPI repository
-2.  Clone it using git -> git clone https://bitbucket.org/icl/papi.git
-3.  Go to papi/src ('cd papi/src')
-4.  Run './configure'
-5.  Run 'make'
-6.  Run 'make fulltest' -> This will run the testing part of PAPI (it may take a while)
-    - Please, if several errors appear, check **Issue 1** at the PAPIFY troubleshooting section at the end of this tutorial before continuing
-8.  Run 'sudo make install-all' -> This will install the library as a system library
-9.  Run 'papi_avail' -> This command will display the available events on your system and will help you to check whether the library has been correctly installed
+2.  Clone it using git -> ```git clone https://bitbucket.org/icl/papi.git```
+3.  Go to papi/src (```cd papi/src```)
+4.  Run ```./configure```
+5.  Run ```make```
+6.  Run ```make fulltest``` -> This will run the testing part of PAPI (it may take a while)
+    - Please, if several errors appear, check **Issue 1** at the Papify troubleshooting section at the end of this tutorial before continuing
+8.  Run ```sudo make install-all``` -> This will install the library as a system library
+9.  Run ```papi_avail``` -> This command will display the available events on your system and will help you to check whether the library has been correctly installed
 
 ### Papify installation
 
@@ -87,8 +87,7 @@ This will generate an xml file with the available PAPI components and events of 
 2.  Open the new 4corePapify.scenario and go to the PAPIFY tab, which has three different sections
     - **PAPIFY file path**: to import the xml information previously generated
     - **PAPIFY PE configuration**: to associate the different types of Processing Elements (PE) defined in the architecture with a PAPI component
-    - **PAPIFY actor configuration**: to define, for each actor defined in the algorithm, the events that will be monitored during the execution
-        - To obtain a short description of one event, please, place the mouse over it and the description will appear
+    - **PAPIFY actor configuration**: to define, for each actor defined in the algorithm, the events that will be monitored during the execution. To obtain a short description of one event, please, place the mouse over it and the description will appear
 3.  To import the monitoring data, in the PAPIFY file path section, click on the browse button and select the PAPI\_info.xml file previously generated
 4.  After that, in the PAPIFY PE configuration, select the PAPI component for the x86 type of PE: perf_event for the CPU
 5.  Finally, in the PAPIFY actor configuration, select the PAPI events:
@@ -118,13 +117,13 @@ As a result, the workflow should look like the one displayed in the following im
 ## Generate and run the application
 
 1.  Run the workflow selecting as Scenario the one called 4corePapify.scenario
-2.  Run the CMakeGCC.sh file --> sh CMakeGCC.sh
+2.  Run the CMakeGCC.sh file --> ```sh CMakeGCC.sh```
 3.  If not done yet, please, copy the Papify files from the Papify repository:
 4.  eventLib/src/eventLib.c into org.ietr.preesm.sobel/Codet/src
 5.  eventLib/include/eventLib.h into org.ietr.preesm.sobel/Code/include
-6.  Go to make/bin --> 'cd bin/make'
-7.  Run 'make'
-8.  Run the application './Release/sobel' (Don't forget to add the akiyo_cif.yuv and the DejaVuSans.ttf files in the /Code/dat folder)
+6.  Go to make/bin --> ```cd bin/make```
+7.  Run ```make```
+8.  Run the application ```./Release/sobel``` (Don't forget to add the akiyo_cif.yuv and the DejaVuSans.ttf files in the /Code/dat folder)
 
 If any error appears, please, create an issue on github.
 
@@ -159,3 +158,11 @@ for ACTOR in ${ACTORS}; do
   echo "Actor '${ACTOR}' timing (min/mean/max) over ${COUNT} measures: $MIN / $MEAN / $MAX"
 done
 ```
+### Papify troubleshooting
+
+- **Issue 1**: *PAPI library has no access to the Performance Monitoring Counters*
+	- In this situation, it is highly likely your computer has a high level of paranoid (see [this link](https://linuxsecurity.expert/kb/sysctl/kernel_perf_event_paranoid/) for more information) regarding the access to performance monitoring. To solve this issue and reduce the paranoia level, as mentioned [here](https://superuser.com/questions/980632/run-perf-without-root-rights), the user should execute:
+	- (1) To use during this system boot: ```sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'```
+	- (2) To make the change persist across reboots: ```sudo sh -c 'echo kernel.perf_event_paranoid=1 > /etc/sysctl.d/local.conf'```
+
+
