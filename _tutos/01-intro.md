@@ -19,7 +19,7 @@ A Tutorial Project can be found [here](/assets/tutos/intro/org.ietr.preesm.tutor
 1.  Go to "File > Import..."
 2.  In the wizard, select  "General > Existing Projects into Workspace".
 3.  Click "Next"
-4.  Selec "Select archive file", then "Browse..."
+4.  Select "Select archive file", then "Browse..."
 5.  Select the zip archive you downloaded
 6.  Click "Next".
 
@@ -55,13 +55,13 @@ Pthread (POSIX Threads) library is used to obtain a portable code with threads. 
 
 PThread is bundled by default in almost all Linux / MacOSX distribution. If not, refer to your distribution documentation.
 
-#### Windows 
+#### Windows
 
 Use the [pthread-2.10.0](/assets/downloads/pthread-2.10.0.zip) version.
 
 ### SDL 2
 
-From SDL about page : 
+From SDL about page :
 
   _Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D._
 
