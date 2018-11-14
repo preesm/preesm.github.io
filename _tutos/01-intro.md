@@ -91,8 +91,8 @@ The tested algorithm is a dummy graph called "TestCom".
 
 A workflow is an executable graph that applies transformations to models. The workflow file available in Tutorial Introduction calls simulation and code generation for a dummy application running on 2 cores communicating via shared memory. To run the workflow, follow these steps:
 
-1.  Right click on the Codegen.workflow file in the "Workflows" directory
-2.  Click "Run As > Preesm Workflow"
+1.  In the Project explorer of Preesm, right-click on the Codegen.workflow file in the "Workflows" directory
+2.  Click "Preesm > Preesm Workflow"
 3.  Choose the TestComPC.scenario file in the "Scenarios" directory
 4.  A Gantt chart is displayed and you can find the code that has been generated in "/Code/generated".
 5.  The code can be compiled and run using MS Visual Studio, Codeblocks, GCC, Eclipse CDT... from "/Code". Scripts are included for generating gnu Makefile, MS Visual Studio 2013 project or Codeblocks project.
