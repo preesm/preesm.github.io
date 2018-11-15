@@ -229,7 +229,7 @@ After executing the workflow on the mono-core scenario, open the graph generated
 
 Before proceeding to the next step, we strongly advise you to compile and run the application on 1 core. Even though a monocore execution will not benefit from the exposed parallelism, this step is often necessary to ensure the correct functionnal behavior of the application. Indeed, once parallelized on multiple threads/core, the debugging task often become more complex and tiresome.
 
-To compile the application, simply follow the steps presented [above](/tutos/parasobel/#run-the-generated-c-project) and do not forget to add the "#include splitMerge.h" directive to "/Code/include/x86.h".
+To compile the application, simply follow the steps presented [above](/tutos/parasobel/#run-the-generated-c-project).
 
 ## Multicore/Multithreaded execution
 
