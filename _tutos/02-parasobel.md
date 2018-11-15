@@ -211,10 +211,10 @@ Set the data type of all new FIFOs to "uchar", then, define the following produc
 
 | FIFO             |   Source Production              |   Target Consumption             |
 |------------------|----------------------------------|----------------------------------|
-| read_YUV → Split | height*width                     | height*width                     |
-| Split → Sobel    | nbSlice * width*(height/nbSlice+2) | height*width                     |
-| Sobel → Merge    | height*width                     | nbSlice * width*(height/nbSlice+2) |
-| Merge → display  | height*width                     | height*width                     |
+| read_YUV → Split | height * width                     | height * width                     |
+| Split → Sobel    | nbSlice * width * (height/nbSlice+2) | height * width                     |
+| Sobel → Merge    | height * width                     | nbSlice * width * (height/nbSlice+2) |
+| Merge → display  | height * width                     | height * width                     |
 
 Before executing the workflow, you must:
 
