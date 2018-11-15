@@ -123,7 +123,7 @@ Add a new Sobel actor to the application graph. To do so:
 
 ### Run the sequential Sobel
 
-The objective of this step is to confirm the correct behavior of the filter sequential implementation before parallelizing and optimizing it. Before compiling the application, add "#include sobel.h" in the "/Code/include/x86.h" header file.
+The objective of this step is to confirm the correct behavior of the filter sequential implementation before parallelizing and optimizing it. After the workflow has completed its execution, recompile the application and run it.
 
 The performance obtained with the sequential implementation will serve as a comparison point to measure the benefits of future optimizations. To run the application, simply follow the steps presented [above](/tutos/parasobel/#run-the-generated-c-project).
 
