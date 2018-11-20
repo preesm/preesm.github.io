@@ -119,7 +119,7 @@ At this step, you must update the mapping constraints specified in the scenario 
 We now need to tell Preesm to use the Spider codegen instead of the C code generation used in previous tutorials.
 
 1.  Right-click in the "Package Explorer" and select "New > Other". In the opened wizard, select "Preesm > Preesm Workflow" to create a new workflow in the "/Workflows/" directory and name it "SpiderCodegen.workflow".
-2.  Add a "Scenario" source bloc from the Palette with:
+2.  Add a "Scenario" source bloc from the Workflow editor Palette with:
     *   id : "scenario"
     *   plugin identifier : "org.ietr.preesm.scenario.task"
 3.  Add a "Task" bloc with:
