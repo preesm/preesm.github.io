@@ -57,7 +57,7 @@ At that stage, you may install Preesm from the [update site](http://preesm.insa-
 
 1.  Go to "Help > Install New Software...";
 2.  In "work with:", add a new location named "Preesm" with location "http://preesm.insa-rennes.fr/repo/complete/"
-3.  Select the "Developper Resources > PREESM  Developper Requirements (Meta Feature)"  
+3.  Select the "Developper Resources > **PREESM  Developper Requirements (Meta Feature)**"
     (this Eclipse feature contains all requirements for developping Preesm)
 4.  Click Next twice, agree on the terms of the license, and click on Finish to install the features. This step will take a few minutes.
 5.  During the installation process, a security warning for unsigned content will appear. Click on OK to continue the installation.

@@ -1,39 +1,3 @@
-/*********************************************************
-Copyright or © or Copr. IETR/INSA: Maxime Pelcat, Jean-François Nezan,
-Karol Desnos
-
-[mpelcat,jnezan,kdesnos]@insa-rennes.fr
-
-This software is a computer program whose purpose is to prototype
-parallel applications.
-
-This software is governed by the CeCILL-C license under French law and
-abiding by the rules of distribution of free software.  You can  use, 
-modify and/ or redistribute the software under the terms of the CeCILL-C
-license as circulated by CEA, CNRS and INRIA at the following URL
-"http://www.cecill.info". 
-
-As a counterpart to the access to the source code and  rights to copy,
-modify and redistribute granted by the license, users are provided only
-with a limited warranty  and the software's author,  the holder of the
-economic rights,  and the successive licensors  have only  limited
-liability. 
-
-In this respect, the user's attention is drawn to the risks associated
-with loading,  using,  modifying and/or developing or reproducing the
-software by the user in light of its specific status of free software,
-that may mean  that it is complicated to manipulate,  and  that  also
-therefore means  that it is reserved for developers  and  experienced
-professionals having in-depth computer knowledge. Users are therefore
-encouraged to load and test the software's suitability as regards their
-requirements in conditions enabling the security of their systems and/or 
-data to be ensured and,  more generally, to use and operate it in the 
-same conditions as regards security. 
-
-The fact that you are presently reading this means that you have had
-knowledge of the CeCILL-C license and that you accept its terms.
- *********************************************************/
-
 package org.ietr.preesm.tutorial.example;
 
 import java.util.LinkedHashMap;
@@ -41,14 +5,14 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.ietr.dftools.algorithm.model.parameters.InvalidExpressionException;
-import org.ietr.dftools.algorithm.model.sdf.SDFEdge;
-import org.ietr.dftools.algorithm.model.sdf.SDFGraph;
-import org.ietr.dftools.algorithm.model.sdf.types.SDFIntEdgePropertyType;
-import org.ietr.dftools.workflow.WorkflowException;
-import org.ietr.dftools.workflow.elements.Workflow;
-import org.ietr.dftools.workflow.implement.AbstractTaskImplementation;
-import org.ietr.dftools.workflow.tools.WorkflowLogger;
+import org.preesm.algorithm.model.parameters.InvalidExpressionException;
+import org.preesm.algorithm.model.sdf.SDFEdge;
+import org.preesm.algorithm.model.sdf.SDFGraph;
+import org.preesm.algorithm.model.types.LongEdgePropertyType;
+import org.preesm.commons.logger.PreesmLogger;
+import org.preesm.workflow.WorkflowException;
+import org.preesm.workflow.elements.Workflow;
+import org.preesm.workflow.implement.AbstractTaskImplementation;
 
 /**
  * {@link ExampleTask} is an dummy workflow task that multiply all the production and consumption rates of a
@@ -66,7 +30,7 @@ public class ExampleTask extends AbstractTaskImplementation {
     // The logger is used to display messages in the console
     // Message can have different colors depending of their severity.
     // The severity of a message is set when calling logger.log()
-    final Logger logger = WorkflowLogger.getLogger();
+    final Logger logger = PreesmLogger.getLogger();
 
     // Retrieve the task parameter
     final String paramString = parameters.get("factor");
@@ -94,18 +58,18 @@ public class ExampleTask extends AbstractTaskImplementation {
     for (final SDFEdge edge : algo.edgeSet()) {
 
       // Retrieve the production/consumption rates
-      int prod = 0;
-      int cons = 0;
+      long prod = 0;
+      long cons = 0;
       try {
-        prod = edge.getProd().intValue();
-        cons = edge.getCons().intValue();
+        prod = edge.getProd().longValue();
+        cons = edge.getCons().longValue();
       } catch (final InvalidExpressionException e) {
         e.printStackTrace();
       }
 
       // Set with the new values
-      edge.setProd(new SDFIntEdgePropertyType(prod * factor));
-      edge.setCons(new SDFIntEdgePropertyType(cons * factor));
+      edge.setProd(new LongEdgePropertyType(prod * factor));
+      edge.setCons(new LongEdgePropertyType(cons * factor));
     }
 
     // Display a message in the console
