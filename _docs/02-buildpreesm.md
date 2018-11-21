@@ -6,10 +6,10 @@ toc: true
 
 Prerequisite: [Install and Configure git](/docs/gitsetup)
 
-Note: if you need to work with Graphiti and/or DFTools source code, please read [these instructions](/docs/buildfromgraphiti-dftools/) first.
+Note: if you need to work with Graphiti source code, please read [these instructions](/docs/buildfromgraphiti-dftools/) first.
 
 ###### Tutorial created the 04.24.2012 by [M. Pelcat](mailto:mpelcat@insa-rennes.fr)  
-Updated the 04.19.2017 by [A. Morvan](mailto:antoine.morvan@insa-rennes.fr)
+Updated the 21.11.2018 by [A. Morvan](mailto:antoine.morvan@insa-rennes.fr)
 
 ## Disclaimers
 
@@ -46,19 +46,15 @@ sudo update-java-alternatives -l
 sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 ```
 
-### Ensure UTF8 text file encoding
-
-In Eclipse, go to: Window > Preference > General > Workspace > Text file encoding and choose UTF-8.
-
-At that stage, you may install Preesm from the [update site](http://preesm.insa-rennes.fr/website/index.php?id=tutorials) to use Preesm or install its [sources](http://preesm.insa-rennes.fr/website/index.php?id=developer) to program in Preesm.
-
-
 ### Install Development Requirements
+
+In Eclipse:
 
 1.  Go to "Help > Install New Software...";
 2.  In "work with:", add a new location named "Preesm" with location "http://preesm.insa-rennes.fr/repo/complete/"
 3.  Select the "Developper Resources > **PREESM  Developper Requirements (Meta Feature)**"
-    (this Eclipse feature contains all requirements for developping Preesm)
+    (this Eclipse feature contains all requirements for developping Preesm):
+    ![](/assets/docs/02-buildingpreesm/dev_feature.png)
 4.  Click Next twice, agree on the terms of the license, and click on Finish to install the features. This step will take a few minutes.
 5.  During the installation process, a security warning for unsigned content will appear. Click on OK to continue the installation.
 6.  Restart eclipse to complete the installation.
@@ -85,7 +81,8 @@ The PREESM plugins are plain Maven projects. In order to import them in Eclipse,
 *   In the Java perspetive, click on File > Import... then Maven > Existing Maven Projects;
 *   In the next window, browse to the git repository location (the Preesm root folder);
 *   The project import wizard should automatically find all the projects;
-    *   Note : releng/* projects are for Release Engineering, and can be omitted.
+    *   Note : releng/* projects are for Release Engineering, and can be omitted.:
+        ![](/assets/docs/02-buildingpreesm/unselect-releng.png)
 *   Click on finish.
 
 ## Compilation of Preesm
@@ -99,6 +96,8 @@ If there still are errors after applying the previous operations, try again to c
 ## Execution of Preesm
 
 In the Java or 'Plug-in Development' perspective, right-click on the 'org.ietr.preesm.ui' plug-in, the click on Debug As > Eclipse Application. A new Eclipse session is launched that behaves like the one obtained by Preesm users from the update site. The difference is that you can debug and modify code in the first Eclipse and test at the same time in the second Eclipse. You can see the tutorials to learn how to use the second Eclipse, import Preesm projects and test.
+
+![](/assets/docs/02-buildingpreesm/debug_ui.png)
 
 ## Coding Policies
 
