@@ -27,7 +27,7 @@ Preesm requires the Eclipse environment, which runs on the Java platform. If you
 
 Eclipse is an extensible platform programmed in Java that allows developers to write their own IDE (Integrated Development Environment).
 
-You can download Eclipse here: [http://www.eclipse.org/downloads/](http://www.eclipse.org/downloads/). Please download the **"Photon Eclipse"** package to develop in Preesm. Install or extract Eclipse in a folder where you have write access.
+You can download Eclipse here: [https://www.eclipse.org/downloads/packages/](https://www.eclipse.org/downloads/packages/). Please download the **"Photon Eclipse"** package to develop in Preesm. Install or extract Eclipse in a folder where you have write access.
 
 Run Eclipse, you need to choose a workspace, i.e. a directory where your projects will be stored.
 
