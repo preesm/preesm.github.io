@@ -27,7 +27,7 @@ Once these steps are completed, the unzipped project files can be accessed eithe
 
 ## Requirements for Running Tutorial Generated Code
 
-All the tutorial generated code is built using **CMake** (see below). Most of the demos use **PThread** for parallel execution and **SLD2** for image and video manipulation. In addition, some materials have to be downloaded for proper execution (input video, fonts, ...): follow the instruction given in ```Code/lib/ReadMe.txt``` and ```Code/dat/ReadMe.txt``` of each project to make sure that the required files are in the right place.
+All the tutorial generated code is built using **CMake** (see below). Most of the demos use **PThread** for parallel execution and **SDL2** and **SDL2_ttf** for image and video manipulation. In addition, some materials have to be downloaded for proper execution (input video, fonts, ...): follow the instruction given in ```Code/lib/ReadMe.txt``` and ```Code/dat/ReadMe.txt``` of each project to make sure that the required files are in the right place.
 
 ### CMake
 
@@ -59,7 +59,7 @@ PThread is bundled by default in almost all Linux / MacOSX distribution. If not,
 
 Use the [pthread-2.10.0](/assets/downloads/pthread-2.10.0.zip) version.
 
-### SDL 2
+### SDL2 and SDL2_ttf
 
 From SDL about page :
 
@@ -77,7 +77,10 @@ For other distributions, see appropriate documentation. Package names should be 
 
 #### Windows / MacOSX
 
-Download the development library (v. 2.0+) from [libsdl.org](https://www.libsdl.org/download-2.0.php). **Do take the "Development library"** and not the runtime library.
+Download the SDL2 development library (v. 2.0+) from [libsdl.org](https://www.libsdl.org/download-2.0.php). **Do take the "Development library"** and not the runtime library.
+
+Similarly, download the SDL2_ttf development library corresponding to your IDE from [SDL2_TTF Download Webpage](https://www.libsdl.org/projects/SDL_ttf/).
+   
 
 ## Understand the Inputs and Run the Workflow
 
