@@ -6,10 +6,10 @@ toc: true
 
 Prerequisite: [Install and Configure git](/docs/gitsetup)
 
-Note: if you need to work with Graphiti and/or DFTools source code, please read [these instructions](/docs/buildfromgraphiti-dftools/) first.
+Note: if you need to work with Graphiti source code, please read [these instructions](/docs/buildfromgraphiti-dftools/) first.
 
 ###### Tutorial created the 04.24.2012 by [M. Pelcat](mailto:mpelcat@insa-rennes.fr)  
-Updated the 04.19.2017 by [A. Morvan](mailto:antoine.morvan@insa-rennes.fr)
+Updated the 21.11.2018 by [A. Morvan](mailto:antoine.morvan@insa-rennes.fr)
 
 ## Disclaimers
 
@@ -27,9 +27,9 @@ Preesm requires the Eclipse environment, which runs on the Java platform. If you
 
 Eclipse is an extensible platform programmed in Java that allows developers to write their own IDE (Integrated Development Environment).
 
-You can download Eclipse here: [http://www.eclipse.org/downloads/](http://www.eclipse.org/downloads/). Please download the **"Photon Eclipse"** package to develop in Preesm. Install or extract Eclipse in a folder where you have write access.
+You can download Eclipse here: [https://www.eclipse.org/downloads/packages/](https://www.eclipse.org/downloads/packages/). Please download the **"Eclipse IDE for Java Developers"** package to develop in Preesm. Install or extract Eclipse in a folder where you have write access.
 
-Run Eclipse, you need to choose a workspace, i.e. a directory where your projects will be stored.
+Run Eclipse, you need to choose a workspace, i.e. a directory where the metadata of and/or your projects will be stored.
 
 ### Ensure use of Java 8 or higher in Eclipse
 
@@ -46,19 +46,15 @@ sudo update-java-alternatives -l
 sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 ```
 
-### Ensure UTF8 text file encoding
-
-In Eclipse, go to: Window > Preference > General > Workspace > Text file encoding and choose UTF-8.
-
-At that stage, you may install Preesm from the [update site](http://preesm.insa-rennes.fr/website/index.php?id=tutorials) to use Preesm or install its [sources](http://preesm.insa-rennes.fr/website/index.php?id=developer) to program in Preesm.
-
-
 ### Install Development Requirements
+
+In Eclipse:
 
 1.  Go to "Help > Install New Software...";
 2.  In "work with:", add a new location named "Preesm" with location "http://preesm.insa-rennes.fr/repo/complete/"
-3.  Select the "Developper Resources > PREESM  Developper Requirements (Meta Feature)"  
-    (this Eclipse feature contains all requirements for developping Preesm)
+3.  Select the "Developper Resources > **PREESM  Developper Requirements (Meta Feature)**"
+    (this Eclipse feature contains all requirements for developping Preesm):
+    ![](/assets/docs/02-buildingpreesm/dev_feature.png)
 4.  Click Next twice, agree on the terms of the license, and click on Finish to install the features. This step will take a few minutes.
 5.  During the installation process, a security warning for unsigned content will appear. Click on OK to continue the installation.
 6.  Restart eclipse to complete the installation.
@@ -85,7 +81,8 @@ The PREESM plugins are plain Maven projects. In order to import them in Eclipse,
 *   In the Java perspetive, click on File > Import... then Maven > Existing Maven Projects;
 *   In the next window, browse to the git repository location (the Preesm root folder);
 *   The project import wizard should automatically find all the projects;
-    *   Note : releng/* projects are for Release Engineering, and can be omitted.
+    *   Note : releng/* projects are for Release Engineering, and can be omitted.:
+        ![](/assets/docs/02-buildingpreesm/unselect-releng.png)
 *   Click on finish.
 
 ## Compilation of Preesm
@@ -99,6 +96,8 @@ If there still are errors after applying the previous operations, try again to c
 ## Execution of Preesm
 
 In the Java or 'Plug-in Development' perspective, right-click on the 'org.ietr.preesm.ui' plug-in, the click on Debug As > Eclipse Application. A new Eclipse session is launched that behaves like the one obtained by Preesm users from the update site. The difference is that you can debug and modify code in the first Eclipse and test at the same time in the second Eclipse. You can see the tutorials to learn how to use the second Eclipse, import Preesm projects and test.
+
+![](/assets/docs/02-buildingpreesm/debug_ui.png)
 
 ## Coding Policies
 
@@ -125,7 +124,7 @@ Preesm team repositories set the notification policies to the Travis default : [
     *   **(1)** The usual reason is that upstream API changed. Try "Help / Chek for updates". It may be required to [clean the Eclipse cache](https://stackoverflow.com/questions/9250041/how-to-clear-cache-of-eclipse-indigo) after such update.
     *   **(2)** Another reason would be the Maven configuration files that are not up to date. To update them, select all the Preesm related projects in the workspace, and press Alt+F5 then press OK.
     *   **(3)** Also, the build state of the Eclipse workspace can be corrupted after an update. To fix that, restart Eclipse then clean and rebuild your workspace.
-    *   **(4)** Finaly, some updates can introduce new Preesm plug-ins that you would have to add in your workspace (File / Import ... > Maven / Existing Maven Projects > select the root folder of the git repository. Eclipse will automatically detect new plugins). If the procedures did not solve the errors, please contact us.
+    *   **(4)** Finaly, some updates can remove or introduce new Preesm plug-ins that you would have to add in your workspace. The safest way is to (1) remove the plugins from the workspace (select all then delete, without removing from file system); (2) clean the git repository (```git clean -xdf```); (3) then reimport the plugins (File / Import ... > Maven / Existing Maven Projects > select the root folder of the git repository. Eclipse will automatically detect plugins). If the procedures did not solve the errors, please contact us.
 *   **Check for Updates is failing:** We moved the update site because of instability of the previous server. If you still have the old URL, you may have the following error: ```HTTP Server 'Service Unavailable': [...] error response code 503.``` It is best to use the new update site:
     *   Go to Window > Preferences then Install/Update > Available Software Sites;
     *   Look for the PREESM site and Edit its URL;

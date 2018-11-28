@@ -10,7 +10,7 @@ toc: true
 
 ## Compile Spider library with PThread
 
-**Note**: CodeBlocks users, make sure you do not use the version of MinGW provided with CodeBlocks installer (4.9.2) as it ships with its own outdated, incompatible version of PThread. Please install the latest version (5.3.0+) from the [MinGW website](https://sourceforge.net/projects/mingw/files/).
+**Note**: For CodeBlocks users **only**: make sure you do not use the version of MinGW provided with CodeBlocks installer (4.9.2) as it ships with its own outdated, incompatible version of PThread. Please install the latest version (5.3.0+) from the [MinGW website](https://sourceforge.net/projects/mingw/files/).
 
 1.  Go on [Spider GitHub page](https://github.com/preesm/spider.git), choose the **master** branch and download the source code: 
 ```bash

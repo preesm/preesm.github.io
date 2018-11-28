@@ -123,7 +123,7 @@ Add a new Sobel actor to the application graph. To do so:
 
 ### Run the sequential Sobel
 
-The objective of this step is to confirm the correct behavior of the filter sequential implementation before parallelizing and optimizing it. Before compiling the application, add "#include sobel.h" in the "/Code/include/x86.h" header file.
+The objective of this step is to confirm the correct behavior of the filter sequential implementation before parallelizing and optimizing it. After the workflow has completed its execution, recompile the application and run it.
 
 The performance obtained with the sequential implementation will serve as a comparison point to measure the benefits of future optimizations. To run the application, simply follow the steps presented [above](/tutos/parasobel/#run-the-generated-c-project).
 
@@ -211,10 +211,10 @@ Set the data type of all new FIFOs to "uchar", then, define the following produc
 
 | FIFO             |   Source Production              |   Target Consumption             |
 |------------------|----------------------------------|----------------------------------|
-| read_YUV → Split | height*width                     | height*width                     |
-| Split → Sobel    | nbSlice*width*(height/nbSlice+2) | height*width                     |
-| Sobel → Merge    | height*width                     | nbSlice*width*(height/nbSlice+2) |
-| Merge → display  | height*width                     | height*width                     |
+| read_YUV → Split | height * width                     | height * width                     |
+| Split → Sobel    | nbSlice * width * (height/nbSlice+2) | height * width                     |
+| Sobel → Merge    | height * width                     | nbSlice * width * (height/nbSlice+2) |
+| Merge → display  | height * width                     | height * width                     |
 
 Before executing the workflow, you must:
 
@@ -229,7 +229,7 @@ After executing the workflow on the mono-core scenario, open the graph generated
 
 Before proceeding to the next step, we strongly advise you to compile and run the application on 1 core. Even though a monocore execution will not benefit from the exposed parallelism, this step is often necessary to ensure the correct functionnal behavior of the application. Indeed, once parallelized on multiple threads/core, the debugging task often become more complex and tiresome.
 
-To compile the application, simply follow the steps presented [above](/tutos/parasobel/#run-the-generated-c-project) and do not forget to add the "#include splitMerge.h" directive to "/Code/include/x86.h".
+To compile the application, simply follow the steps presented [above](/tutos/parasobel/#run-the-generated-c-project).
 
 ## Multicore/Multithreaded execution
 
