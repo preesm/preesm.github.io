@@ -6,14 +6,14 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.preesm.algorithm.model.parameters.InvalidExpressionException;
+import org.preesm.commons.exceptions.PreesmException;
 import org.preesm.commons.logger.PreesmLogger;
+import org.preesm.commons.math.ExpressionEvaluationException;
 import org.preesm.model.pisdf.DataInputPort;
 import org.preesm.model.pisdf.DataOutputPort;
 import org.preesm.model.pisdf.Expression;
 import org.preesm.model.pisdf.Fifo;
 import org.preesm.model.pisdf.PiGraph;
-import org.preesm.workflow.WorkflowException;
 import org.preesm.workflow.elements.Workflow;
 import org.preesm.workflow.implement.AbstractTaskImplementation;
 
@@ -38,7 +38,7 @@ public class ExampleTask extends AbstractTaskImplementation {
       factor = (paramString != null) ? Long.decode(paramString) : 1;
     } catch (final NumberFormatException e) {
       final String message = "Factor parameter '" + paramString + "' of task '" + nodeName + "' is not an integer.";
-      throw new WorkflowException(message);
+      throw new PreesmException(message);
     }
 
     // Check if the factor is greater than 0
@@ -66,8 +66,8 @@ public class ExampleTask extends AbstractTaskImplementation {
       try {
         prod = sourceRateExpr.evaluate();
         cons = targetRateExpr.evaluate();
-      } catch (final InvalidExpressionException e) {
-        throw new WorkflowException("Could not evaluate rates. Make sure your input algorithm is static.");
+      } catch (final ExpressionEvaluationException e) {
+        throw new PreesmException("Could not evaluate rates. Make sure your input algorithm is static.");
       }
 
       targetPort.setExpression(prod * factor);
