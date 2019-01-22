@@ -5,7 +5,7 @@ toc: true
 ---
 
 
-⚠️ ** Note: The lastest versions of Preesm, since 3.1.0, do not support this tutorial. Please use version 3.0.1 or earlier to run this tutorial. ** ⚠️
+⚠️ **Note: The lastest versions of Preesm, since 3.1.0, do not support this tutorial. Please use version 3.0.1 or earlier to run this tutorial.** ⚠️
 
 
 The following topics are covered in this tutorial:
