@@ -32,6 +32,8 @@ tutos_nav:
         url: /tutos/advancedmemory/
       - title: "07 - Automated Actor Execution Time Measurement"
         url: /tutos/instrumentation/
+  - title: Deprecated
+    children:
       - title: "08 - Import/Export an SDF3 Graph"
         url: /tutos/importexport/
   - title: Beta Tutorials
