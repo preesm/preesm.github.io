@@ -51,7 +51,7 @@ sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 In Eclipse:
 
 1.  Go to "Help > Install New Software...";
-2.  In "work with:", add a new location named "Preesm" with location "http://preesm.insa-rennes.fr/repo/complete/"
+2.  In "work with:", add a new location named "Preesm" with location "http://preesm.insa-rennes.fr/repo/"
 3.  Select the "Developper Resources > **PREESM  Developper Requirements (Meta Feature)**"
     (this Eclipse feature contains all requirements for developping Preesm):
     ![](/assets/docs/02-buildingpreesm/dev_feature.png)
