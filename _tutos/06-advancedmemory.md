@@ -260,10 +260,10 @@ As a result of the memory script execution, all input buffers of the implode act
 
 ### Divided Buffers Replaced With Null Pointers
 
-When the matches of the Split actor are applied, the buffer corresponding to the output port of this actor is divided into several parts that are merged separately into the input buffer. In such a case, the memory space corresponding to the output port of the Split actor consists of a non-contiguous memory space that can no longer be accessed with a regular pointer. If the "Verbose" property of the "Scripts" workflow task is set to "True", the following warning will appear in the console during the workflow execution:  
+When the matches of the Split actor are applied, the buffer corresponding to the output port of this actor is divided into several parts that are merged separately into the input buffer. In such a case, the memory space corresponding to the output port of the Split actor consists of a non-contiguous memory space that can no longer be accessed with a regular pointer. If the "Verbose" property of the "Scripts" workflow task is set to "True", the following log entry will appear in the console during the workflow execution:
 
 ```
-10:53:25 Buffer explode_Split_output.input[107008] was divided and will be replaced by a NULL pointer in the generated code. 
+XX:XX:XX Buffer explode_Split_output.input[107008] was divided and will be replaced by a NULL pointer in the generated code.
 ```
 
 A buffer can be divided and matched into non-contiguous ranges of bytes if an only if all actors accessing this buffer expect this division. An actor expects a buffer to be divided if it is associated to a memory script that matches several ranges of bytes of a buffer into non-contiguous remote ranges. In the sobel application, the buffer corresponding to the FIFO between the Split and explode actor fulfill this requirement. Additional requirements for a buffer to be divisible are presented in [\[2\]](#references).
