@@ -88,7 +88,7 @@ The Introduction project contains folders with the name "Algo" for the algorithm
 
 The tested algorithm is a dummy graph called "TestCom".
 
-![](/assets/tutos/intro/editeur_testcom_pisdf.png)
+[![](/assets/tutos/intro/editeur_testcom_pisdf.png)](/assets/tutos/intro/editeur_testcom_pisdf.png)
 
 "size" is a parameter influencing the productions and consumption rates of tokens on the data FIFO queues.
 
@@ -102,7 +102,7 @@ A workflow is an executable graph that applies transformations to models. The wo
 
 The execution Gantt chart on two cores looks as the following figure.
 
-![](/assets/tutos/intro/editeur_gantt_pisdf.png)
+[![](/assets/tutos/intro/editeur_gantt_pisdf.png)](/assets/tutos/intro/editeur_gantt_pisdf.png)
 
 The obtained code simply displays OK if the data was correctly transmitted between data generators and data getters. You can look at the code in "/Code/generated" to understand its shape.
 
