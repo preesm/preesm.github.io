@@ -44,7 +44,7 @@ To create a new memory script and associate it to the Split actor, follow these 
 1.  Create a subdirectory "/Code/Scripts".
 2.  Right-click on the new "Scripts" directory, and select "New->File".
 3.  Name the new file "split.bsh"
-4.  Double-click on "/Algo/top_display.graphml" to open the graph editor.
+4.  Double-click on "/Algo/top_display.diagram" to open the graph editor.
 5.  In the graph editor, select the "Split" actor .
 6.  Click on the Edit button of the "Memory script" property and select the file you just created.
 7.  Save "top_display.diagram".
