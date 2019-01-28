@@ -17,7 +17,7 @@ Prerequisite:
 
 ## Initial project setup
 
-The first task of this tutorial consists of retrieving and compiling a dummy project that will serve as a basis for the remainder of this tutorial. This first application simply consists of 2 actors and 3 parameters:
+The first task of this tutorial consists of retrieving and compiling a sample Preesm project that will serve as a basis for the remainder of this tutorial. This first application simply consists of 2 actors and 3 parameters:
 
 ![](/assets/tutos/parasobel/read_display_pisdf.png)
 
@@ -30,7 +30,7 @@ The first task of this tutorial consists of retrieving and compiling a dummy pro
 
 In addition to the default requirements (see [Requirements for Running Tutorial Generated Code](/tutos/intro/#requirements-for-running-tutorial-generated-code)), download the following files:
 
-*   [Preesm Sobel Project](/assets/tutos/parasobel/org.ietr.preesm.sobel.zip) (34 KB)
+*   [Preesm Sobel Project](/assets/tutos/parasobel/org.ietr.preesm.sobel.zip) (28 KB)
 *   [YUV Sequence (7zip)](/assets/downloads/akiyo_cif.7z) (9 MB)
 *   [DejaVu TTF Font](/assets/downloads/DejaVuSans.ttf) (757KB)
 
