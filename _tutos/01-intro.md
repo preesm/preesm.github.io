@@ -88,21 +88,21 @@ The Introduction project contains folders with the name "Algo" for the algorithm
 
 The tested algorithm is a dummy graph called "TestCom".
 
-![](/assets/tutos/intro/editeur_testcom_pisdf.png)
+[![](/assets/tutos/intro/editeur_testcom_pisdf.png)](/assets/tutos/intro/editeur_testcom_pisdf.png)
 
 "size" is a parameter influencing the productions and consumption rates of tokens on the data FIFO queues.
 
 A workflow is an executable graph that applies transformations to models. The workflow file available in Tutorial Introduction calls simulation and code generation for a dummy application running on 2 cores communicating via shared memory. To run the workflow, follow these steps:
 
 1.  In the Project explorer of Preesm, right-click on the Codegen.workflow file in the "Workflows" directory
-2.  Click "Preesm > Preesm Workflow"
+2.  Click "Preesm > Run Workflow"
 3.  Choose the TestComPC.scenario file in the "Scenarios" directory
 4.  A Gantt chart is displayed and you can find the code that has been generated in "/Code/generated".
 5.  The code can be compiled and run using MS Visual Studio, Codeblocks, GCC, Eclipse CDT... from "/Code". Scripts are included for generating gnu Makefile, MS Visual Studio 2013 project or Codeblocks project.
 
 The execution Gantt chart on two cores looks as the following figure.
 
-![](/assets/tutos/intro/editeur_gantt_pisdf.png)
+[![](/assets/tutos/intro/editeur_gantt_pisdf.png)](/assets/tutos/intro/editeur_gantt_pisdf.png)
 
 The obtained code simply displays OK if the data was correctly transmitted between data generators and data getters. You can look at the code in "/Code/generated" to understand its shape.
 

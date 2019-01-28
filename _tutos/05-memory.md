@@ -29,20 +29,20 @@ In addition to the default requirements (see [Requirements for Running Tutorial 
 
 ## Memory Footprint Reduction
 
-The memory allocation technique used in Preesm is based on a Memory Exclusion Graph (MEG). A MEG is a graph whose vertices model the memory objects that must be allocated in memory in order to run the generated code.  In the current version of Preesm, each of these memory objects corresponds either to an edge of the Directed Acyclic Graph (DAG) ("/Algo/generated/DAG/dag.graphml") or to a buffer corresponding to "delays" of the graph that store data between executions of a schedule (cf. [Software Pipelining tutorial](/tutos/softwarepipeline)). In the MEG, two memory objects are linked by an edge (called an exclusion) if they can not be allocated in overlapping memory spaces. More information on the MEG can be found in [\[1\]](#references).
+The memory allocation technique used in Preesm is based on a Memory Exclusion Graph (MEG). A MEG is a graph whose vertices model the memory objects that must be allocated in memory in order to run the generated code.  In the current version of Preesm, each of these memory objects corresponds either to an edge of the Directed Acyclic Graph (DAG) ("/Algo/generated/srdag/*.pi") or to a buffer corresponding to "delays" of the graph that store data between executions of a schedule (cf. [Software Pipelining tutorial](/tutos/softwarepipeline)). In the MEG, two memory objects are linked by an edge (called an exclusion) if they can not be allocated in overlapping memory spaces. More information on the MEG can be found in [\[1\]](#references).
 
 ### Basic Memory Allocation
 
 Each time a Preesm workflow is run on a scenario, it prints log information that can be consulted in the "Console" view. Hereafter is an excerpt of the log generated when running the "/Workflows/Codegen.workflow" on the "/Scenarios/4core.scenario": 
 ```
 13:37:00 Memory exclusion graph built with 21 vertices and density = 0.7523809523809524 
-13:37:00 BasicAllocator allocates 681472 mem. units in 0 ms.  
+13:37:00 BasicAllocator allocates 665.5 kBytes in 0 ms. 
 ```
 The three main informations contained in this excerpt are highlighted in blue.
 
 *   **21 vertices**: This number corresponds to the number of memory objects that must be allocated in order to run the application.
 *   **BasicAllocator**: Name of the memory allocator used in the workflow. We will see in the next section how to select a more efficient allocator.
-*   **681472 mem units**: Number of memory units (bytes in this case) allocated in shared memory for the application. In the current version of Preesm, only shared memory allocation is possible.
+*   **665.5 kBytes**: Number of bytes allocated in shared memory for the application. In the current version of Preesm, only shared memory allocation is possible.
 
 The Basic allocation algorithm used in the Sobel project is a naive allocation algorithm that allocates each memory object in a dedicated memory space. The amount of memory allocated by this allocator is thus equal to the sum of the sizes of all allocated memory objects. The Basic allocation algorithm clearly is a suboptimal allocation algorithm as it does not reuse memory space to store several memory objects.
 
@@ -66,7 +66,11 @@ Follow the following steps to change the allocation algorithm used in the workfl
 | Shuffle | Memory objects are allocated in a random order. Using the "Nb of Shuffling Tested" property, it is possible to test several random orders and only keep the best memory allocation.|
 | Scheduling | Memory objects are allocated in scheduling order of their "birth". The "birth" of a memory object is the instant when its memory would be allocated by a dynamic allocator. This option can be used to mimic the behavior of a dynamic allocator. (Only available for memory exclusion graphs updated with scheduling information). |
 
-When using the "FirstFit" algorithm with the "LargestFirst" order, we get a memory allocation of 379 456 bytes, i.e. 44% less memory than the Basic allocator.
+When using the "FirstFit" algorithm with the "LargestFirst" order, we get a memory allocation of 370.5625 kBytes, i.e. 44% less memory than the Basic allocator.
+
+```
+13:37:00 FirstFitAllocator(LARGEST_FIRST) allocates 370.5625 kBytes in 1 ms.
+```
 
 ### Allocator performance evaluation
 
@@ -89,7 +93,7 @@ To evaluate the quality of a memory allocation, a task can be added to the workf
 
 As a result of the workflow execution, the following line should appear in the "Console": 
 ```
-12:00:00 Bound_Max = 681472 Bound_Min = 264704
+13:37:00 Bound_Max = 681472 Bound_Min = 264704
 ```
 
 As expected, the value of the upper bound for the Sobel application is 681 472 bytes. The value of the lower bound is 264 704 bytes. This lower bound can be reached only by using a FirstFit or a BestFit allocator fed in "Shuffle" order (with a large number of shuffling).
@@ -122,7 +126,7 @@ As a result of the workflow execution, the following lines should appear in the 
 
 The first line gives the density of the MEG before being updated. The density of the MEG is the ratio of number of edges (or exclusions) present in the MEG to the maximum possible number of edges in the graph. The second line gives the density of the MEG after it was updated with scheduling information. The last line gives the number of exclusions that were removed by the "MemEx Updater" task. As we can see, the number of exclusions of the graph is decreased by the updating process.
 
-In the Sobel application, using the "FirstFit" allocator in "LargestFirst" order after a MEG update results in the allocation of  325 952 bytes, or 14% less memory than before the update. Although it is not the case with the Sobel example, a MEG with a lower edge density often leads to a smaller lower bound, which, in turn, leads to more efficient memory allocations. On average, the amount of allocated memory is decreased by 32% when the MEG is updated with scheduling information [\[2\]](#references).
+In the Sobel application, using the "FirstFit" allocator in "LargestFirst" order after a MEG update results in the allocation of 318.3125 kBytes, or 14% less memory than before the update. Although it is not the case with the Sobel example, a MEG with a lower edge density often leads to a smaller lower bound, which, in turn, leads to more efficient memory allocations. On average, the amount of allocated memory is decreased by 32% when the MEG is updated with scheduling information [\[2\]](#references).
 
 ### Performance Impact
 
