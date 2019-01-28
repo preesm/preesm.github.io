@@ -247,7 +247,7 @@ To create a new multicore achitecture model similar to the one in the figure, fo
 3.  Copy/Paste the "Core0" processing element 3 times. Name the new cores "Core1" to "Core3".
 4.  Using the "undirectedDataLink" from the Palette, add connections between the "shared\_mem" and the 3 new cores. Name all ports "shared\_mem".
 
-You can use these steps to add any number of processing elements to your architecture to best reflect the number of core of your CPU. Note that a thread will be generated for each core of the architecture model where some actors are mapped.
+You can use these steps to add any number of processing elements to your architecture to best reflect the number of core of your CPU. Note that one thread will be generated per core of the architecture model where some actors are mapped.
 
 ### Generation of a multicore schedule
 
@@ -258,6 +258,7 @@ Before generating a multicore schedule, you need to create a new scenario that w
 3.  In the "Overview" tab, set the "Architecture file path" to "/Archi/4CoreX86.slam".
 4.  Save the scenario, close it and reopen it to take the new architecture into account in the editor.
 5.  In the "Constraints" tab, allow the execution of all actors on all cores of the architecture. We advise you to allow the execution of the display actor only on Core0 as this makes the closure of the display window stop the whole program execution.
+    * Note: on MacOSX, the display and read actors have to be forced onto the main core due to SDF2 limitations;
 6.  In the "Simulation" tab, allow the execution of the broadcast/implode/explode actors on all cores.
 7.  Save the updated scenario.
 
@@ -271,7 +272,7 @@ When running the program, an fps counter is displayed (in the console and in the
 
 In order to have realistic timings in the Gantt chart, actor timings should be entered in the scenario. Actor timings must be measured by execution profiling.
 
-The final project resulting from all the modifications presented in this tutorial is available [here](/assets/tutos/parasobel/tutorial1_result.zip). (Note that the external libraries, the YUV sequence and the generated C code are not included).
+The final project resulting from all the modifications presented in this tutorial is available [here](/assets/tutos/parasobel/tutorial1_result.zip). (Note that the external libraries, the YUV sequence, the font and the generated C code are not included).
 
 You can continue the tutorials by trying [Tutorial 3: Code Generation for Multicore DSP](/tutos/mpsoccodegen).
 
