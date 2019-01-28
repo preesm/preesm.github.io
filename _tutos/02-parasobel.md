@@ -222,11 +222,11 @@ Before executing the workflow, you must:
 
 ### Exposed parallelism
 
-After executing the workflow on the mono-core scenario, open the graph generated in "/Algo/generated/singlerate/top_display.graphml". This graph results from the transformation of the input SDF graph into an equivalent single-rate graph where each edge has equal production and consumption rates. As expected, this graph reveals 8 duplicates of the Sobel actor, each responsible for the processing of one of the slices.
+After executing the workflow on the mono-core scenario, locate the graph generated in "/Algo/generated/srdag/top_display.pi" and generate its diagram (right click / Preesm / Generate .diagram). This graph results from the transformation of the input PiSDF graph into an equivalent Single-Rate Directed Acyclic Graph (SRDAG) where each edge has equal production and consumption rates. As expected, this graph reveals 8 duplicates of the Sobel actor, each responsible for the processing of one of the slices.
 
-![](/assets/tutos/parasobel/parallelsobelsrsdf.png)
+[![](/assets/tutos/parasobel/top_sobel.png)](/assets/tutos/parasobel/top_sobel.png)
 
-Before proceeding to the next step, we strongly advise you to compile and run the application on 1 core. Even though a monocore execution will not benefit from the exposed parallelism, this step is often necessary to ensure the correct functionnal behavior of the application. Indeed, once parallelized on multiple threads/core, the debugging task often become more complex and tiresome.
+Before proceeding to the next step, we strongly advise you to compile and run the application on 1 core. Even though a monocore execution will not benefit from the exposed parallelism, this step is often necessary to ensure the correct functionnal behavior of the application. Indeed, once parallelized on multiple threads/cores, the debugging task often becomes more complex and tiresome.
 
 To compile the application, simply follow the steps presented [above](/tutos/parasobel/#run-the-generated-c-project).
 
