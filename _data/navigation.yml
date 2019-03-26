@@ -65,8 +65,8 @@ docs_nav:
     children:
       - title: "Git Tips and Tricks"
         url: /docs/gittips/
-      - title: "Build from Graphiti or DFTools Sources"
-        url: /docs/buildfromgraphiti-dftools/
+      - title: "Build from Graphiti Sources"
+        url: /docs/buildfromgraphiti/
       - title: "CCS Setup"
         url: /docs/ccssetup/
 

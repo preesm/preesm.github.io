@@ -6,7 +6,7 @@ toc: true
 
 Prerequisite: [Install and Configure git](/docs/gitsetup)
 
-Note: if you need to work with Graphiti source code, please read [these instructions](/docs/buildfromgraphiti-dftools/) first.
+Note: if you need to work with Graphiti source code, please read [these instructions](/docs/buildfromgraphiti/) first.
 
 ###### Tutorial created the 04.24.2012 by [M. Pelcat](mailto:mpelcat@insa-rennes.fr)  
 Updated the 21.11.2018 by [A. Morvan](mailto:antoine.morvan@insa-rennes.fr)

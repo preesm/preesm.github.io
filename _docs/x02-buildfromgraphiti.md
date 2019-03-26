@@ -1,6 +1,6 @@
 ---
-title: "Build from Graphiti or DFTools Sources"
-permalink: /docs/buildfromgraphiti-dftools/
+title: "Build from Graphiti Sources"
+permalink: /docs/buildfromgraphiti/
 toc: true
 ---
 
