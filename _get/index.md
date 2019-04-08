@@ -23,9 +23,9 @@ Update site is another name for P2 repository. Update sites usually hold OSGi bu
 
 To install Preesm using the update-site:
 
-1. Add the update site; Refer to [Eclipse documentation to add a new update site](http://help.eclipse.org/photon/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Ftasks%2Ftasks-127.htm);
+1. Add the update site; Refer to [Eclipse documentation to add a new update site](http://help.eclipse.org/2019-03/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Ftasks%2Ftasks-127.htm);
   Use the Preesm Update site URL (see below);
-2. Refer to [Eclipse documentation to install new software](http://help.eclipse.org/photon/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Ftasks%2Ftasks-124.htm);
+2. Refer to [Eclipse documentation to install new software](http://help.eclipse.org/2019-03/index.jsp?topic=%2Forg.eclipse.platform.doc.user%2Ftasks%2Ftasks-124.htm);
   Select the **Preesm** feature;
 
 #### URLs
