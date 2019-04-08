@@ -11,4 +11,5 @@ group :jekyll_plugins do
   gem "jemoji"
   gem "jekyll-algolia"
   gem "jekyll-twitter-plugin"
+  gem "jekyll-graphviz"
 end
