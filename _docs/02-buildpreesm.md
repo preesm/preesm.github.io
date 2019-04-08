@@ -120,7 +120,7 @@ Preesm team repositories set the notification policies to the Travis default : [
 
 ## Troubleshooting
 
-*   **I updated the source code and many errors appeared. Why ?**
+*   **Many errors show up in source code. Why ?**
     *   **(1)** The usual reason is that upstream API changed. Try "Help / Chek for updates". It may be required to [clean the Eclipse cache](https://stackoverflow.com/questions/9250041/how-to-clear-cache-of-eclipse-indigo) after such update.
     *   **(2)** Another reason would be the Maven configuration files that are not up to date. To update them, select all the Preesm related projects in the workspace, and press Alt+F5 then press OK.
     *   **(3)** Also, the build state of the Eclipse workspace can be corrupted after an update. To fix that, restart Eclipse then clean and rebuild your workspace.
