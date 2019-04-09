@@ -7,9 +7,6 @@ toc: true
 _Last update : 2019.09.04; for version 3.6.0_
 
 
-
-
-
 ## Memory Optimization
 
 ### Memory Allocation
@@ -21,7 +18,7 @@ _Last update : 2019.09.04; for version 3.6.0_
   * **MemEx**:MemoryExclusionGraph : _Input Memory Exclusion Graph_
 
 #### Outputs
-  * **MEGs**:Map : _??????????? karol ?_
+  * **MEGs**:Map : _Map associating, for each memory element in the architecture, according to the chosen _Distribution_ parameter value, a Memory Exclusion Graph annotated with allocation information (i.e. buffer addresses, etc.)._
 
 #### Description
 Workflow task responsible for allocating the memory objects of the given MEG.
@@ -83,9 +80,6 @@ Number of random order tested when using the Shuffle value for the Best/First Fi
 | --- | --- |
 | _$$n\in \mathbb{N}^*$$_ | Number of random order. |
 
-##### Merge broadcasts
-(Deprecated) Merge memory objects corresponding to outputs of Broadcast actors. This feature was replaced by the more generic Memory Scripts.
-
 #### Documented Errors
 
 | Message | Explanation |
@@ -95,7 +89,67 @@ Number of random order tested when using the Shuffle value for the Best/First Fi
 
 #### See Also
 
-  * Memory Allocation Algorithms : K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
-  * Distributed Memory Allocation : Karol Desnos, Maxime Pelcat, Jean-François Nezan, and Slaheddine Aridhi. Distributed memory allocation technique for synchronous dataflow graphs. In Signal Processing System (SiPS), Workshop on, pages 1–6. IEEE, 2016.
-  * Broadcast Merging : K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Memory analysis and optimized allocation of dataflow applications on shared-memory MPSoCs. Journal of Signal Processing Systems, Springer, 2014.
+  * **Memory Allocation Algorithms**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
+  * **Distributed Memory Allocation**: Karol Desnos, Maxime Pelcat, Jean-François Nezan, and Slaheddine Aridhi. Distributed memory allocation technique for synchronous dataflow graphs. In Signal Processing System (SiPS), Workshop on, pages 1–6. IEEE, 2016.
+  * **Broadcast Merging**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Memory analysis and optimized allocation of dataflow applications on shared-memory MPSoCs. Journal of Signal Processing Systems, Springer, 2014.
+
+## Graph Transformation
+
+### Static PiMM to IBSDF
+
+  * **Identifier**: `org.ietr.preesm.experiment.pimm2sdf.StaticPiMM2SDFTask`
+  * **Short description**: Transforms a static PiSDF Graph into an equivalent IBSDF graph.
+
+#### Inputs
+  * **PiMM**:PiGraph
+  * **scenario**:PreesmScenario
+
+#### Outputs
+  * **SDF**:SDFGraph
+
+#### Description
+**Deprecated**
+
+In Preesm, since version 2.0.0, the Parameterized and Interfaced SDF (PiSDF) model of computa tion is used as the frontend model in the graphical editor of dataflow graphs. This model makes it possible to design dynamically reconfigurable dataflow graphs where the value of parameters, and production/consumption rates depending on them, might change during the execution of the application. In former versions, the Interface Based SDF (IBSDF) model of computation was used as the front end model for application design. Contrary to the PiSDF, the IBSDF is a static model of computation where production and consumption rates of actors is fixed at compile-time.
+
+The purpose of this workflow task is to transform a static PiSDF graph into an equivalent IBSDF graph. A static PiSDF graph is a PiSDF graph where dynamic reconfiguration features of the PiSDF model of computation are not used.
+
+#### Parameters
+None.
+
+#### See Also
+
+  * **IBSDF**: J. Piat, S.S. Bhattacharyya, and M. Raulet. Interface-based hierarchy for synchronous data-flow graphs. In SiPS Proceedings, 2009.
+  * **PiSDF**: K. Desnos, M. Pelcat, J.-F. Nezan, S.S. Bhattacharyya, and S. Aridhi. PiMM: Parameterized and interfaced dataflow meta-model for MPSoCs runtime reconfiguration. In Embedded Computer Systems: Architectures, Modeling, and Simulation (SAMOS XIII), 2013 International Conference on, pages 41–48. IEEE, 2013.
+
+
+### Hierarchy Flattening
+
+  * **Identifier**: `org.ietr.preesm.plugin.transforms.flathierarchy`
+  * **Short description**: Transforms a hierarchical IBSDF graph into an equivalent SDF graph.
+
+#### Inputs
+  * **SDF**:SDFGraph
+
+#### Outputs
+  * **SDF**:SDFGraph
+
+#### Description
+**Deprecated**
+
+The purpose of this workflow task is to flatten several levels of the hierarchy of an IBSDF graph and produce an equivalent SDF graph. A hierarchical IBSDF graph is a graph where the internal behavior of some actors is described using another IBSDF subgraph instead of a C header file. When applying this transformation, hierarchical IBSDF actors of the first n levels of hierarchy are replaced with the actors of the IBSDF subgraph with which these hierarchical actors are associated.
+
+#### Parameters
+None.
+
+#### Documented Errors
+
+| Message | Explanation |
+| --- | --- |
+| **Inconsistent Hierarchy, graph can’t be flattened** | Flattening of the IBSDF graph was aborted because one of the graph composing the application, at the top level or deeper in the hierarchy, was not consistent. |
+
+#### See Also
+
+  * **IBSDF**: J. Piat, S.S. Bhattacharyya, and M. Raulet. Interface-based hierarchy for synchronous data-flow graphs. In SiPS Proceedings, 2009.
+  * **Graph consistency**: E.A. Lee and D.G. Messerschmitt. Synchronous data flow. Proceedings of the IEEE, 75(9):1235 – 1245, sept. 1987.
 
