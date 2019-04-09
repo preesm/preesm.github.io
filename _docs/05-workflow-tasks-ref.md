@@ -4,9 +4,11 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-Workflow tasks reference is provided as [PDF file](/assets/docs/05-workflowtasksref/workflow_tasks.pdf).
+_Last update : 2019.09.04; for version 3.6.0_
 
-**Note: following is a sandbox for testing out github compatibility**
+
+
+
 
 ## Memory Optimization
 
