@@ -4,6 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
+
 ## Memory Optimization
 
 ### Memory Allocation
@@ -319,22 +320,14 @@ Path of the directory within which the exported *.graphml file will be created. 
 
 | Value | Effect |
 | --- | --- |
-| _path/in/proj_ | Path within the Preesm project containing the workflow where the ”SDF Exporter” task is instantiated. Even if the workflow of a Preesm project A is executed with a scenario from a different project B, the __*.graphml__ file will be generated within the specified directory of project A.
-
-Exported SDF graphs will be named automatically, usually using the same name as the original SDF graph processed by the workflow. If a graph with this name already exists in the given path, it will be overwritten.
-
-Example: **Algo/generated/singlerate** |
-| _path/in/proj/name.graphml_ | Path within the Preesm project containing the workflow where the ”SDF Exporter” task is instantiated. Even if the workflow of a Preesm project A is executed with a scenario from a different project B, the __*.graphml__ file will be generated within the specified directory of project A.
-
-Exported SDF graph will be named using the string with the graphml extension at the end of the given path. If a graph with this name already exists in the given path, it will be overwritten.
-
-Example: **Algo/generated/singlerate/myexport.graphml** |
+| _path/in/proj_ | Path within the Preesm project containing the workflow where the ”SDF Exporter” task is instantiated. Even if the workflow of a Preesm project A is executed with a scenario from a different project B, the __*.graphml__ file will be generated within the specified directory of project A. Exported SDF graphs will be named automatically, usually using the same name as the original SDF graph processed by the workflow. If a graph with this name already exists in the given path, it will be overwritten. Example: **Algo/generated/singlerate** |
+| _path/in/proj/name.graphml_ | Path within the Preesm project containing the workflow where the ”SDF Exporter” task is instantiated. Even if the workflow of a Preesm project A is executed with a scenario from a different project B, the __*.graphml__ file will be generated within the specified directory of project A. Exported SDF graph will be named using the string with the graphml extension at the end of the given path. If a graph with this name already exists in the given path, it will be overwritten. Example: **Algo/generated/singlerate/myexport.graphml** |
 
 #### Documented Errors
 
 | Message | Explanation |
 | --- | --- |
-| **Path <given path> is not a valid path for export. <reason>** | The value set for parameter path is not a valid path in the project. |
+| **Path \<given path\> is not a valid path for export. \<reason\>** | The value set for parameter path is not a valid path in the project. |
 
 
 ### SDF Exporter - _Deprecated_
@@ -413,6 +406,800 @@ Example: **Code/generated/sdf3/myexport.xml** |
 
   * **[1]**: S. Stuijk, M. Geilen, and T. Basten. Sdf3: Sdf for free. In Sixth International Conference on Application of Concurrency to System Design (ACSD’06), pages 276–278, June 2006.
 
+## Schedulers
+
+### External Scheduling from DAG - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.external`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.ExternalMappingFromDAG`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **DAG** (of _MapperDAG_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### SCHEDULE_FILE
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _/schedule.json_ | default value |
+
+
+### External Scheduling from PiSDF
+
+  * **Identifier**: `pisdf-mapper.external`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.ExternalMappingFromPiMM`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### SCHEDULE_FILE
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _/schedule.json_ | default value |
+
+
+### Simple Scheduling from DAG - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.simple`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.MainCoreMappingFromDAG`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **DAG** (of _MapperDAG_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
+### List Scheduling from DAG - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.listschedulingfromdag`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.ListSchedulingMappingFromDAG`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **DAG** (of _MapperDAG_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+
+### PFast Scheduling from SDF - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.pfast`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.PFASTMapping`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### displaySolutions
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### fastTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+##### fastLocalSearchTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _10_ | Undocumented |
+
+##### nodesMin
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _5_ | Undocumented |
+
+##### procNumber
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _1_ | Undocumented |
+
+##### fastNumber
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+
+### Fast Scheduling from DAG - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.fastdag`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.FASTMappingFromDAG`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **DAG** (of _MapperDAG_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### displaySolutions
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### fastTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+##### fastLocalSearchTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _10_ | Undocumented |
+
+
+### List Scheduling from SDF - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.fast`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.FASTMapping`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### displaySolutions
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### fastTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+##### fastLocalSearchTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _10_ | Undocumented |
+
+
+### Fast Scheduling from PiSDF
+
+  * **Identifier**: `pisdf-mapper.fast`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.FASTMappingFromPiMM`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### displaySolutions
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### fastTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+##### fastLocalSearchTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _10_ | Undocumented |
+
+
+### PFast Scheduling from DAG - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.pfastdag`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.PFASTMappingFromDAG`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **DAG** (of _MapperDAG_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### displaySolutions
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### fastTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+##### fastLocalSearchTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _10_ | Undocumented |
+
+##### nodesMin
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _5_ | Undocumented |
+
+##### procNumber
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _1_ | Undocumented |
+
+##### fastNumber
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+
+### List Scheduling from PiSDF
+
+  * **Identifier**: `pisdf-mapper.list`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.ListSchedulingMappingFromPiMM`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+
+### PFast Scheduling from PiSDF
+
+  * **Identifier**: `pisdf-mapper.pfast`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.PFASTMappingFromPiMM`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### displaySolutions
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### fastTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+##### fastLocalSearchTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _10_ | Undocumented |
+
+##### nodesMin
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _5_ | Undocumented |
+
+##### procNumber
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _1_ | Undocumented |
+
+##### fastNumber
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+
+### Simple Scheduling from PiSDF
+
+  * **Identifier**: `pisdf-mapper.simple`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.MainCoreMappingFromPiMM`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
+### List Scheduling from SDF - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.listscheduling`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.ListSchedulingMapping`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
 ## Analysis
 
 ### Gantt Display
@@ -471,6 +1258,91 @@ Path of the exported *.pgantt file. If the specified directory does not exist, i
   * **[1]**: https://github.com/preesm/gantt-display
 
 ## Code Generation
+
+### Spider Codegen
+
+  * **Identifier**: `org.ietr.preesm.pimm.algorithm.spider.codegen.SpiderCodegenTask`
+  * **Implementing Class**: `org.preesm.codegen.xtend.spider.SpiderCodegenTask`
+  * **Short description**: Generate Spider code for dynamic PiSDF.
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **scenario** (of _PreesmScenario_)
+  * **architecture** (of _Design_)
+
+#### Outputs
+None.
+
+#### Description
+Generate Spider code for dynamic PiSDF.
+
+#### Parameters
+
+##### scheduler
+Runtime scheduler to use.
+
+| Value | Effect |
+| --- | --- |
+| _list_on_the_go_ | Undocumented |
+| _round_robin_ | Undocumented |
+| _round_robin_scattered_ | Undocumented |
+| _list_ | (Default) |
+
+##### memory-alloc
+Runtime memory allocation to use.
+
+| Value | Effect |
+| --- | --- |
+| _special-actors_ | Undocumented |
+| _dummy_ | (Default) |
+
+##### shared-memory-size
+Size of the shared memory allocated by Spider.
+
+| Value | Effect |
+| --- | --- |
+| _$$n$$_ | $$n > 0$$ bytes. (Default = 67108864) |
+
+##### papify
+Wether to use Papify.
+
+| Value | Effect |
+| --- | --- |
+| _true / false_ |  |
+
+##### verbose
+Wether to log.
+
+| Value | Effect |
+| --- | --- |
+| _true / false_ |  |
+
+##### trace
+Wether to trace what is happening at runtime.
+
+| Value | Effect |
+| --- | --- |
+| _true / false_ |  |
+
+##### stack-type
+Type of stack to use
+
+| Value | Effect |
+| --- | --- |
+| _static_ | Use static stack |
+| _dynamic_ | Use dynamic stack |
+
+##### graph-optims
+Wether to optimize the graph at runtime or not
+
+| Value | Effect |
+| --- | --- |
+| _true / false_ |  |
+
+#### See Also
+
+  * **Spider**: Heulot, Julien; Pelcat, Maxime; Desnos, Karol; Nezan, Jean-François; Aridhi, Slaheddine (2014) “SPIDER: A Synchronous Parameterized and Interfaced Dataflow-Based RTOS for Multicore DSPs”. EDERC 2014, Milan, Italy.
+
 
 ### Code Generation
 
@@ -636,4 +1508,393 @@ None.
 #### See Also
 
   * **Implementation details**: Sudeep Kanur, Johan Lilius, and Johan Ersfolk. Detecting data-parallel synchronous dataflow graphs. Technical Report 1184, 2017.
+
+## Other
+
+### Implementation Exporter
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.exporter.ImplExportTransform`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.exporter.ImplExportTransform`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+
+#### Outputs
+  * **xml** (of _String_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| __ | Undocumented |
+
+
+### SDF4J Exporter - _Deprecated_
+
+  * **Identifier**: `sdf4j-export`
+  * **Implementing Class**: `org.preesm.algorithm.io.xml.SDF4JGMLExporter`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| __ | Undocumented |
+
+
+### Papify Engine
+
+  * **Identifier**: `org.ietr.preesm.codegen.xtend.task.CodegenPapifyEngineTask`
+  * **Implementing Class**: `org.preesm.codegen.xtend.task.CodegenPapifyEngineTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **scenario** (of _PreesmScenario_)
+  * **DAG** (of _DirectedAcyclicGraph_)
+
+#### Outputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
+### PiSDF Single-Rate Transformation
+
+  * **Identifier**: `pisdf-srdag`
+  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFToSingleRateTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiSDF** (of _PiGraph_)
+
+#### Outputs
+  * **PiSDF** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### Consistency_Method
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LCM_ |  |
+| _Topology_ |  |
+
+
+### PiSDF Flattener
+
+  * **Identifier**: `org.ietr.preesm.pimm.algorithm.pimm2flat.StaticPiMM2FlatPiMMTask`
+  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFFlattenerTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiSDF** (of _PiGraph_)
+
+#### Outputs
+  * **PiSDF** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### Perform optimizations
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _true / false_ |  |
+
+
+### Random SDF Generator - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.algorithm.randomsdf.RandomSDF`
+  * **Implementing Class**: `org.preesm.algorithm.randomsdf.RandomSDF`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+  * **architecture** (of _Design_)
+
+#### Outputs
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### nbVertex
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _10_ | Undocumented |
+
+##### minInDegree
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _1_ | Undocumented |
+
+##### maxInDegree
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _5_ | Undocumented |
+
+##### minOutDegree
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _1_ | Undocumented |
+
+##### maxOutDegree
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _5_ | Undocumented |
+
+##### minRate
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _1_ | Undocumented |
+
+##### maxRate
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _4_ | Undocumented |
+
+##### minTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+##### maxTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _1000_ | Undocumented |
+
+##### rateMultiplier
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _1000_ | Undocumented |
+
+
+### Throughput Evaluation
+
+  * **Identifier**: `org.ietr.preesm.throughput.ThroughputPlugin`
+  * **Implementing Class**: `org.preesm.algorithm.throughput.ThroughputEvaluationTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **throughput** (of _Double_)
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### method
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _SR_ | Schedule-Replace technique |
+| _ESR_ | Evaluate-Schedule-Replace method |
+| _HPeriodic_ | Hierarchical Periodic Schedule method |
+| _Classical_ | Based on Flattening the hierarchy |
+
+
+### PiSDF Checker
+
+  * **Identifier**: `pisdf-checker`
+  * **Implementing Class**: `org.preesm.model.pisdf.check.PiMMAlgorithmCheckerTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiSDF** (of _PiGraph_)
+
+#### Outputs
+  * **PiSDF** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
+### Activity Exporter of Tokens and Quanta
+
+  * **Identifier**: `org.ietr.preesm.algorithm.moa.activity.ActivityExporter`
+  * **Implementing Class**: `org.preesm.algorithm.moa.activity.ActivityExporter`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **ABC** (of _LatencyAbc_)
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _stats/mat/activity_ | Undocumented |
+
+##### human_readable
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Yes_ | Undocumented |
+
+
+### PiSDF BRV Exporter
+
+  * **Identifier**: `pisdf-brv-export`
+  * **Implementing Class**: `org.preesm.model.pisdf.brv.BRVExporter`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiSDF** (of _PiGraph_)
+
+#### Outputs
+  * **PiSDF** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _/stats/xml/_ | default value |
+
+
+### PiSDF Exporter
+
+  * **Identifier**: `pisdf-export`
+  * **Implementing Class**: `org.preesm.model.pisdf.serialize.PiSDFExporterTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiSDF** (of _PiGraph_)
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _/Algo/generated/pisdf/_ | default path |
+
+
+### Hierarchical Scheduler - _Deprecated_
+
+  * **Identifier**: `hsceduler`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.algo.HScheduleTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+None.
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
+### Slam Flattener
+
+  * **Identifier**: `org.ietr.preesm.archi.slam.flattening`
+  * **Implementing Class**: `org.preesm.model.slam.utils.SlamHierarchyFlattening`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **architecture** (of _Design_)
+
+#### Outputs
+  * **architecture** (of _Design_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### depth
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _n > 0_ | default = 1 |
 
