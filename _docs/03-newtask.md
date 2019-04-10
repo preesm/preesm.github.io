@@ -58,6 +58,13 @@ To complete the plugin configuration, repeat steps 3 to 5 and add the following 
 *   org.eclipse.core.runtime
 *   org.preesm.algorithm
 
+Finally, the plugin must register as a preesm plugin:
+
+1.  Open “plugin.xml” and go to the "Extension" tab;
+2.  Click on "Add...", then filter with "preesm" and select "org.preesm.commons.plugin";
+    ![](/assets/docs/03-newtask-assets/plugin-registration.png)
+3.  Click on Finish then save with CTRL+S;
+
 ### Creation of a new workflow task
 
 The next step consists of creating the class that will implement the behavior of the workflow task:
