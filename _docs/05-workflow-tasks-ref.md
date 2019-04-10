@@ -4,7 +4,6 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-
 ## Memory Optimization
 
 ### Memory Allocation
@@ -1511,6 +1510,45 @@ None.
 
 ## Other
 
+### Activity Exporter of Custom Quanta
+
+  * **Identifier**: `org.ietr.preesm.algorithm.moa.activity.CustomQuantaExporter`
+  * **Implementing Class**: `org.preesm.algorithm.moa.activity.CustomQuantaExporter`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **ABC** (of _LatencyAbc_)
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### xls_file
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _stats/mat/custom_quanta_in/quanta_in_$SCENARIO$.xls_ |  |
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _stats/mat/activity_ |  |
+
+##### human_readable
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Yes_ |  |
+
+
 ### Implementation Exporter
 
   * **Identifier**: `org.ietr.preesm.plugin.mapper.exporter.ImplExportTransform`
@@ -1534,6 +1572,27 @@ Undocumented
 | Value | Effect |
 | --- | --- |
 | __ | Undocumented |
+
+
+### Single rate SDF to DAG Transformation
+
+  * **Identifier**: `org.ietr.preesm.mapper.SDF2DAGTransformation`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.graphtransfo.SDF2DAGTransformation`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+  * **architecture** (of _Design_)
+
+#### Outputs
+  * **DAG** (of _MapperDAG_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
 
 
 ### SDF4J Exporter - _Deprecated_
@@ -1561,6 +1620,38 @@ Undocumented
 | __ | Undocumented |
 
 
+### Activity Exporter of Tokens and Quanta for a single ABC
+
+  * **Identifier**: `org.ietr.preesm.algorithm.moa.activity.MonoActivityExporter`
+  * **Implementing Class**: `org.preesm.algorithm.moa.activity.MonoActivityExporter`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **ABC** (of _LatencyAbc_)
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _stats/mat/activity_ |  |
+
+##### human_readable
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Yes_ |  |
+
+
 ### Papify Engine
 
   * **Identifier**: `org.ietr.preesm.codegen.xtend.task.CodegenPapifyEngineTask`
@@ -1579,6 +1670,33 @@ Undocumented
 
 #### Parameters
 None.
+
+
+### SDF3 Importer
+
+  * **Identifier**: `org.ietr.preesm.algorithm.importSdf3Xml.Sdf3Importer`
+  * **Implementing Class**: `org.preesm.algorithm.io.sdf3.Sdf3Importer`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _./Code/SDF3/graph.xml_ |  |
 
 
 ### PiSDF Single-Rate Transformation
@@ -1605,6 +1723,79 @@ Undocumented
 | --- | --- |
 | _LCM_ |  |
 | _Topology_ |  |
+
+
+### SDF2HSDF
+
+  * **Identifier**: `org.ietr.preesm.plugin.transforms.sdf2hsdf`
+  * **Implementing Class**: `org.preesm.algorithm.transforms.HSDFTransformation`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+
+#### Outputs
+  * **SDF** (of _SDFGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### ExplodeImplodeSuppr
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ |  |
+
+
+### Periods Prescheduling Checker
+
+  * **Identifier**: `org.ietr.preesm.pimm.algorithm.checker.periods.PeriodsPreschedulingChecker`
+  * **Implementing Class**: `org.preesm.algorithm.pisdf.checker.PeriodsPreschedulingChecker`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **scenario** (of _PreesmScenario_)
+  * **architecture** (of _Design_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### Selection rate (%)
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ |  |
+
+
+### Clustering
+
+  * **Identifier**: `org.ietr.preesm.Clustering`
+  * **Implementing Class**: `org.preesm.algorithm.clustering.Clustering`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+  * **architecture** (of _Design_)
+
+#### Outputs
+  * **SDF** (of _SDFGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
 
 
 ### PiSDF Flattener
@@ -1723,6 +1914,25 @@ Undocumented
 | _1000_ | Undocumented |
 
 
+### GetPiMM
+
+  * **Identifier**: `org.ietr.preesm.mapper.getpimm`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.GetPiMMFromDAGTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **DAG** (of _MapperDAG_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
 ### Throughput Evaluation
 
   * **Identifier**: `org.ietr.preesm.throughput.ThroughputPlugin`
@@ -1752,6 +1962,43 @@ Undocumented
 | _ESR_ | Evaluate-Schedule-Replace method |
 | _HPeriodic_ | Hierarchical Periodic Schedule method |
 | _Classical_ | Based on Flattening the hierarchy |
+
+
+### Latency Evaluation
+
+  * **Identifier**: `org.ietr.preesm.latency.LatencyEvaluationPlugin`
+  * **Implementing Class**: `org.preesm.algorithm.latency.LatencyEvaluationTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+  * **latency** (of _Double_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### multicore
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ |  |
+
+##### method
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _FAST_ | (default) Hierarchical method |
+| _FLAT_LP_ | Based on Flattening the hierarchy |
+| _FLAT_SE_ | Based on Flattening the hierarchy |
 
 
 ### PiSDF Checker
@@ -1830,6 +2077,57 @@ Undocumented
 | _/stats/xml/_ | default value |
 
 
+### Algorithm Iterator
+
+  * **Identifier**: `org.ietr.preesm.algorithm.transforms.IterateAlgorithm`
+  * **Implementing Class**: `org.preesm.algorithm.transforms.IterateAlgorithm`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+
+#### Outputs
+  * **SDF** (of _SDFGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### nbIt
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _1_ |  |
+
+##### setStates
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _true_ |  |
+
+
+### Hierarchical Scheduler - _Deprecated_
+
+  * **Identifier**: `hsceduler`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.algo.HScheduleTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+None.
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
 ### PiSDF Exporter
 
   * **Identifier**: `pisdf-export`
@@ -1855,23 +2153,39 @@ Undocumented
 | _/Algo/generated/pisdf/_ | default path |
 
 
-### Hierarchical Scheduler - _Deprecated_
+### Memory Exclusion Graph Mapper
 
-  * **Identifier**: `hsceduler`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.algo.HScheduleTask`
+  * **Identifier**: `org.ietr.preesm.memory.distributed.MapperTask`
+  * **Implementing Class**: `org.preesm.algorithm.memory.distributed.MapperTask`
   * **Short description**: Undocumented
 
 #### Inputs
-None.
+  * **MemEx** (of _MemoryExclusionGraph_)
 
 #### Outputs
-None.
+  * **MemExes** (of _Map_)
 
 #### Description
 Undocumented
 
 #### Parameters
-None.
+
+##### Verbose
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _? C {True, False}_ |  |
+
+##### Distribution
+Specify which memory architecture should be used to allocate the memory.
+
+| Value | Effect |
+| --- | --- |
+| _SharedOnly_ | (Default) All memory objects are allocated in a single memory bank accessible to all PE. |
+| _DistributedOnly_ | Each PE is associated to a private memory bank that no other PE can access. (Currently not supported by code generation.) |
+| _Mixed_ | Both private memory banks and a shared memory can be used for allocating memory. |
+| _MixedMerged_ | Same as mixed, but the memory allocation algorithm favors buffer merging over memory distribution. |
 
 
 ### Slam Flattener
