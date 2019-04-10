@@ -28,11 +28,16 @@ PREESM supports and has been used to generate code for:
 
 Instructions for installing Preesm can be found in the [documentation](/docs/). Preesm consists in Eclipse plug-ins. If you are already familiar with Eclipse update sites, the different ways for getting Preesm are detailed in the [Getting Preesm](/get/) part.
 
-## Contact
+## Contact & Follow
 
 For general information, do not hesitate to contact as at [contact@preesm.insa-rennes.fr](mailto:contact@preesm.insa-rennes.fr)
 
 For technical issues, please contact us via [GitHub Issues](https://github.com/preesm/preesm/issues) tracker.
+
+You can follow us by:
+*  Registering the feed URL [https://preesm.github.io/](https://preesm.github.io/)
+*  Starring or Watching the GitHub project : [https://github.com/preesm/preesm](https://github.com/preesm/preesm)
+*  Following us on Twitter: [https://twitter.com/PreesmProject](https://twitter.com/PreesmProject)
 
 ## Partners
 
