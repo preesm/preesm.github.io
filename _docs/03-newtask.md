@@ -9,7 +9,7 @@ Before proceeding you need to do: [Building Preesm](/docs/buildpreesm) and [Tuto
 Note that the two Eclipse installation asked for these two tutorials are different, you should use in the following the Preesm developer installation from [Building Preesm](/docs/buildpreesm).
 
 ###### Tutorial created the 12.10.2012 by [K. Desnos](mailto:kdesnos@insa-rennes.fr)
-Updated 21.11.2018 by [A. Morvan](mailto:anmorvan@insa-rennes.fr)
+Updated 10.04.2019 by [A. Morvan](mailto:anmorvan@insa-rennes.fr)
 
 ## What is a Workflow Task?
 
@@ -97,7 +97,51 @@ The **execute(...)** method is called when the workflow task is executed. Its in
 
 The code of the execute method for our example is [available here](/assets/docs/03-newtask-assets/ExampleTask.java).
 
-### Registration of the new workflow task
+### Annotating the New Workflow Task
+
+Before being executed, the new workflow task must first be registered. To do that:
+
+1.  Open the new Java class
+2.  Go to the top of the class and add the following annotation
+
+```java
+@PreesmTask(
+	id = "my.unique.workflow.task.identifier",
+	name = "Example Task",
+	inputs = {@Port(name = "PiMM", type = PiGraph.class)},
+	outputs = {@Port(name = "PiMM", type = PiGraph.class)}
+)
+public class ExampleTask extends AbstractTaskImplementation {
+```
+
+Mandatory fields of the annotation are `id`, `name`, `inputs` and `outputs`. Other fields are used for documentation only.
+
+More details about the PreesmTask annotation can be found in the [source code](https://github.com/preesm/preesm/blob/master/plugins/org.preesm.commons/src/org/preesm/commons/doc/annotations/PreesmTask.java).
+
+### Test of the new workflow task
+
+1.  Launch Preesm as explained in the [Building Preesm](/docs/buildpreesm#execution-of-preesm) tutorial.
+2.  Open a workflow (for example, the one given in [introductory tutorial](/tutos/intro/)).
+3.  In the workflow, create a new Task using the "Palette" on the right of the workflow editor.
+4.  Give a name to your task.
+5.  Select the newly added task and edit its "Basic" properties in the bottom of the window.
+6.  Set the "plugin identifier" property with the id used to register the workflow.tasks extension.
+![](/assets/docs/03-newtask-assets/screenshot_task_5.png)
+7.  Save and go to the "Task Variables" properties of the workflow task. The "factor" parameter should appear. (If not, go back to the Preesm project, clean, rebuild and launch).
+8.  Set the value of the "factor" parameter.
+9.  Connect the task in the workflow. For example, insert it between the "scenario" and the "PiMM2SrDAG" tasks. To add a new connection, select "Data transfers" in the editor Palette and successively click on the source and target of the connection. Make sure to give the proper names to input and outputs.
+![](/assets/docs/03-newtask-assets/screenshot_task_6.png)
+10.  Save the workflow and execute it as explained in [introductory tutorial](/tutos/intro/). The logger should display the lines in the early stages:
+![](/assets/docs/03-newtask-assets/screenshot_task_7.png)
+
+You can now do a few tests with the new workflow task. For example, try changing the factor parameter into a negative number or a string of characters. You can also put breakpoints in the code of the task to follow its execution step-by-step.
+
+The complete plugin project built along this tutorial is [available here](/assets/docs/03-newtask-assets/org.preesm.example.zip).
+
+
+### Registration of the New Workflow Task - The Old Way (now deprecated)
+
+**Note: since Preesm 3.6.0, this method does not work. See new method above**
 
 Before being executed, the new workflow task must first be registered as an extension of org.preesm.workflow.tasks. To do that:
 
@@ -125,23 +169,3 @@ Finally, the package containing the workflow task must be exported by the plugin
 2.  In the "Exported Packages" section, click on "Add..."
 3.  Select the package containing the task class and click "OK"
 4.  Save the MANIFEST.MF. The new Workflow task is now ready to be used.
-
-### Test of the new workflow task
-
-1.  Launch Preesm as explained in the [Building Preesm](/docs/buildpreesm#execution-of-preesm) tutorial.
-2.  Open a workflow (for example, the one given in [introductory tutorial](/tutos/intro/)).
-3.  In the workflow, create a new Task using the "Palette" on the right of the workflow editor.
-4.  Give a name to your task.
-5.  Select the newly added task and edit its "Basic" properties in the bottom of the window.
-6.  Set the "plugin identifier" property with the id used to register the workflow.tasks extension.
-![](/assets/docs/03-newtask-assets/screenshot_task_5.png)
-7.  Save and go to the "Task Variables" properties of the workflow task. The "factor" parameter should appear. (If not, go back to the Preesm project, clean, rebuild and launch).
-8.  Set the value of the "factor" parameter.
-9.  Connect the task in the workflow. For example, insert it between the "scenario" and the "PiMM2SrDAG" tasks. To add a new connection, select "Data transfers" in the editor Palette and successively click on the source and target of the connection. Make sure to give the proper names to input and outputs.
-![](/assets/docs/03-newtask-assets/screenshot_task_6.png)
-10.  Save the workflow and execute it as explained in [introductory tutorial](/tutos/intro/). The logger should display the lines in the early stages:
-![](/assets/docs/03-newtask-assets/screenshot_task_7.png)
-
-You can now do a few tests with the new workflow task. For example, try changing the factor parameter into a negative number or a string of characters. You can also put breakpoints in the code of the task to follow its execution step-by-step.
-
-The complete plugin project built along this tutorial is [available here](/assets/docs/03-newtask-assets/org.preesm.example.zip).
