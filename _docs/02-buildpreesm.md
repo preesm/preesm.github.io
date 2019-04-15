@@ -99,6 +99,28 @@ In the Java or 'Plug-in Development' perspective, right-click on the 'org.ietr.p
 
 ![](/assets/docs/02-buildingpreesm/debug_ui.png)
 
+## Building the Eclipse Product
+
+This section describes how to build the Eclipse Product, i.e. the Preesm distribution as Zip archive.
+
+### From Eclipse
+
+The product can be built from Eclipse. It requires [extra steps for multi-platform builds](https://wiki.eclipse.org/A_Brief_Overview_of_Building_at_Eclipse#Multi-platform_builds).
+1.  In the Eclipse workspace, locate the **org.preesm.product** project, and open the **.product** file within;
+![](/assets/docs/02-buildingpreesm/product-file.png)
+2.  From the product editor, in the **Overview** tab, the **Exporting** section has a **Eclipse Product export wizard**;
+[![](/assets/docs/02-buildingpreesm/product-overview.png)](/assets/docs/02-buildingpreesm/product-overview.png)
+3.  The wizard has proper default values, except for the target folder. Input any folder with write permission and click on finish;
+[![](/assets/docs/02-buildingpreesm/product-export.png)](/assets/docs/02-buildingpreesm/product-export.png)
+4.  The progress information is visible in the bottom right of the Eclipse window. Clicking on the right most button in the state bar will open a more detailed progress view;
+[![](/assets/docs/02-buildingpreesm/product-progress.png)](/assets/docs/02-buildingpreesm/product-progress.png)
+5.  When the export wizard is done, the product is runnable directly from the target folder.
+
+
+### Using Maven
+
+If you have maven installed on your computer, run `mvn clean package` from the root of the git repository. When the build process has terminated successfully, the resulting products and archives will be located under **releng/org.preesm.product/target/products/**.
+
 ## Coding Policies
 
 The Preesm code base respects some coding policy. If you intend to develop within Preesm, we strongly advise you to follow these policy to prevent the continuous integration server to reject your contributions. These policies are simple :
