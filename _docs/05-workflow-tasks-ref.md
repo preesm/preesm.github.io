@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2019.04.10; for Preesm version 3.6.0_
+_This page has been generated. Last update : 2019.04.15; for Preesm version 3.6.1_
 
 This page references the available workflow tasks.
 
@@ -46,43 +46,6 @@ Path of the directory within which the exported *.graphml file will be created. 
 | **Path \<given path\> is not a valid path for export. \<reason\>** | The value set for parameter path is not a valid path in the project. |
 
 
-### SDF3 Exporter - _Deprecated_
-
-  * **Identifier**: `org.ietr.preesm.algorithm.exportSdf3Xml.Sdf3Exporter`
-  * **Implementing Class**: `org.preesm.algorithm.io.sdf3.Sdf3ExporterTask`
-  * **Short description**: Export a *.xml file conforming the SDF For Free (SDF3) format.
-
-#### Inputs
-  * **SDF** (of _SDFGraph_)
-  * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-None.
-
-#### Description
-This task generates SDF3 code modeling the given SDF graph. SDF modeling in SDF3 follow the specification introduced by Stuijk et al. in [1].
-
-Known Limitations: Here is a list of known limitations of the SDF3 importation process: Only SDF graphs can be imported, Actors of the SDF cannot be implemented on more than one processor type, Timings cannot depend on parameters since SDF3 does not support parameterized SDF.
-
-#### Parameters
-
-##### path
-Path of the exported *.xml file. If the specified directory does not exist, it will not be created.
-
-| Value | Effect |
-| --- | --- |
-| _path/in/proj/name.xml_ | Path within the Preesm project containing the workflow where the ”SDF3 Exporter” task is instantiated.
-
-Exported SDF graph will be named using the string with the xml extension at the end of the given path. If a graph with this name already exists in the given path, it will be overwritten.
-
-Example: **Code/generated/sdf3/myexport.xml** |
-
-#### See Also
-
-  * **[1]**: S. Stuijk, M. Geilen, and T. Basten. Sdf3: Sdf for free. In Sixth International Conference on Application of Concurrency to System Design (ACSD’06), pages 276–278, June 2006.
-
-
 ### SDF Exporter - _Deprecated_
 
   * **Identifier**: `org.ietr.preesm.plugin.exportXml.sdf4jgml`
@@ -122,38 +85,44 @@ Example: **Algo/generated/singlerate/myexport.graphml** |
 | --- | --- |
 | **Path <given path> is not a valid path for export. <reason>** | The value set for parameter path is not a valid path in the project. |
 
-## Memory Optimization
 
-### MEG Builder
+### SDF3 Exporter - _Deprecated_
 
-  * **Identifier**: `org.ietr.preesm.memory.exclusiongraph.MemoryExclusionGraphBuilder`
-  * **Implementing Class**: `org.preesm.algorithm.memory.exclusiongraph.MemoryExclusionGraphBuilder`
-  * **Short description**: Builds the Memory Exclusion Graph (MEG) modeling the memory allocation constraints.
+  * **Identifier**: `org.ietr.preesm.algorithm.exportSdf3Xml.Sdf3Exporter`
+  * **Implementing Class**: `org.preesm.algorithm.io.sdf3.Sdf3ExporterTask`
+  * **Short description**: Export a *.xml file conforming the SDF For Free (SDF3) format.
 
 #### Inputs
-  * **DAG** (of _DirectedAcyclicGraph_)
+  * **SDF** (of _SDFGraph_)
+  * **architecture** (of _Design_)
   * **scenario** (of _PreesmScenario_)
 
 #### Outputs
-  * **MemEx** (of _MemoryExclusionGraph_)
+None.
 
 #### Description
-The memory allocation technique used in Preesm is based on a Memory Exclusion Graph (MEG). A MEG is a graph whose vertices model the memory objects that must be allocated in memory in order to run the generated code. In the current version of Preesm, each of these memory objects corresponds either to an edge of the Directed Acyclic Graph (DAG) or to a buffer corresponding to ”delays” of the graph that store data between executions of a schedule. In the MEG, two memory objects are linked by an edge (called an exclusion) if they can not be allocated in overlapping memory spaces.
+This task generates SDF3 code modeling the given SDF graph. SDF modeling in SDF3 follow the specification introduced by Stuijk et al. in [1].
+
+Known Limitations: Here is a list of known limitations of the SDF3 importation process: Only SDF graphs can be imported, Actors of the SDF cannot be implemented on more than one processor type, Timings cannot depend on parameters since SDF3 does not support parameterized SDF.
 
 #### Parameters
 
-##### Verbose
-How verbose will this task be during its execution. In verbose mode, the task will log the start and completion time of the build, as well as characteristics (number of memory objects, density of exclusions) of the produced MEG.
+##### path
+Path of the exported *.xml file. If the specified directory does not exist, it will not be created.
 
 | Value | Effect |
 | --- | --- |
-| _false_ | (Default) The task will not log information. |
-| _true_ | The task will log build and MEG information. |
+| _path/in/proj/name.xml_ | Path within the Preesm project containing the workflow where the ”SDF3 Exporter” task is instantiated.
+
+Exported SDF graph will be named using the string with the xml extension at the end of the given path. If a graph with this name already exists in the given path, it will be overwritten.
+
+Example: **Code/generated/sdf3/myexport.xml** |
 
 #### See Also
 
-  * **MEG**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Memory bounds for the distributed execution of a hierarchical synchronous data-flow graph. In Embedded Computer Systems: Architectures, Modeling, and Simulation (SAMOS XII), 2012 International Conference on, 2012.
+  * **[1]**: S. Stuijk, M. Geilen, and T. Basten. Sdf3: Sdf for free. In Sixth International Conference on Application of Concurrency to System Design (ACSD’06), pages 276–278, June 2006.
 
+## Memory Optimization
 
 ### Memory Scripts
 
@@ -211,6 +180,50 @@ Verbosity of the workflow task.
 #### See Also
 
   * **Buffer merging**: Karol Desnos, Maxime Pelcat, Jean-François Nezan, and Slaheddine Aridhi. On memory reuse between inputs and outputs of dataflow actors. ACM Transactions on Embedded Computing Systems, 15(30):25, January 2016.
+
+
+### Memory Bounds Estimator
+
+  * **Identifier**: `org.ietr.preesm.memory.bounds.MemoryBoundsEstimator`
+  * **Implementing Class**: `org.preesm.algorithm.memory.bounds.MemoryBoundsEstimator`
+  * **Short description**: Compute bounds of the amount of memory needed to allocate the MEG
+
+#### Inputs
+  * **MemEx** (of _MemoryExclusionGraph_)
+
+#### Outputs
+  * **MemEx** (of _MemoryExclusionGraph_)
+  * **BoundMin** (of _Long_)
+  * **BoundMax** (of _Long_)
+
+#### Description
+The analysis technique presented in [1] can be used in Preesm to derive bounds for the amount of memory that can be allocated for an application. The upper bound corresponds to the worst memory allocation possible for an application. The lower bound is a theoretical value that limits the minimum amount of memory that can be allocated. By definition, the lower bound is not always reachable, which means that it might be impossible to find an allocation with this optimal amount of memory. The minimum bound is found by solving the Maximum Weight Clique problem on the MEG. This task provides a convenient way to evaluate the quality of a memory allocation.
+
+#### Parameters
+
+##### Verbose
+How verbose will this task be during its execution. In verbose mode, the task will log the name of the used solver, the start and completion time of the bound estimation algorithm. Computed bounds are always logged, even if the verbose parameter is set to false.
+
+| Value | Effect |
+| --- | --- |
+| _false_ | (Default) The task will not log information. |
+| _true_ | The task will log build and MEG information. |
+
+##### Solver
+Specify which algorithm is used to compute the lower bound.
+
+| Value | Effect |
+| --- | --- |
+| _Heuristic_ | (Default) Heuristic algorithm described in [1] is used. This technique find an approximate solution. |
+| _Ostergard_ | Östergård’s algorithm [2] is used. This technique finds an optimal solution, but has a potentially exponential complexity. |
+| _Yamaguchi_ | Yamaguchi et al.’s algorithm [3] is used. This technique finds an optimal solution, but has a potentially exponential complexity. |
+
+#### See Also
+
+  * **[1]**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Memory bounds for the distributed execution of a hierarchical synchronous data-flow graph. In Embedded Computer Systems: Architectures, Modeling, and Simulation (SAMOS XII), 2012 International Conference on, 2012.
+  * **[2]**: Patric R. J. Östergård. A new algorithm for the maximum-weight clique problem. Nordic J. of Computing, 8(4):424–436, December 2001.
+  * **[3]**: K. Yamaguchi and S. Masuda. A new exact algorithm for the maximum weight clique problem. In 23rd International Conference on Circuit/Systems, Computers and Communications (ITC-CSCC’08), 2008.
+  * **Memory Bounds**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
 
 
 ### Serial Memory Bounds
@@ -284,50 +297,6 @@ How verbose will this task be during its execution. In verbose mode, the task wi
 #### See Also
 
   * **MEG update**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
-
-
-### Memory Bounds Estimator
-
-  * **Identifier**: `org.ietr.preesm.memory.bounds.MemoryBoundsEstimator`
-  * **Implementing Class**: `org.preesm.algorithm.memory.bounds.MemoryBoundsEstimator`
-  * **Short description**: Compute bounds of the amount of memory needed to allocate the MEG
-
-#### Inputs
-  * **MemEx** (of _MemoryExclusionGraph_)
-
-#### Outputs
-  * **MemEx** (of _MemoryExclusionGraph_)
-  * **BoundMin** (of _Long_)
-  * **BoundMax** (of _Long_)
-
-#### Description
-The analysis technique presented in [1] can be used in Preesm to derive bounds for the amount of memory that can be allocated for an application. The upper bound corresponds to the worst memory allocation possible for an application. The lower bound is a theoretical value that limits the minimum amount of memory that can be allocated. By definition, the lower bound is not always reachable, which means that it might be impossible to find an allocation with this optimal amount of memory. The minimum bound is found by solving the Maximum Weight Clique problem on the MEG. This task provides a convenient way to evaluate the quality of a memory allocation.
-
-#### Parameters
-
-##### Verbose
-How verbose will this task be during its execution. In verbose mode, the task will log the name of the used solver, the start and completion time of the bound estimation algorithm. Computed bounds are always logged, even if the verbose parameter is set to false.
-
-| Value | Effect |
-| --- | --- |
-| _false_ | (Default) The task will not log information. |
-| _true_ | The task will log build and MEG information. |
-
-##### Solver
-Specify which algorithm is used to compute the lower bound.
-
-| Value | Effect |
-| --- | --- |
-| _Heuristic_ | (Default) Heuristic algorithm described in [1] is used. This technique find an approximate solution. |
-| _Ostergard_ | Östergård’s algorithm [2] is used. This technique finds an optimal solution, but has a potentially exponential complexity. |
-| _Yamaguchi_ | Yamaguchi et al.’s algorithm [3] is used. This technique finds an optimal solution, but has a potentially exponential complexity. |
-
-#### See Also
-
-  * **[1]**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Memory bounds for the distributed execution of a hierarchical synchronous data-flow graph. In Embedded Computer Systems: Architectures, Modeling, and Simulation (SAMOS XII), 2012 International Conference on, 2012.
-  * **[2]**: Patric R. J. Östergård. A new algorithm for the maximum-weight clique problem. Nordic J. of Computing, 8(4):424–436, December 2001.
-  * **[3]**: K. Yamaguchi and S. Masuda. A new exact algorithm for the maximum weight clique problem. In 23rd International Conference on Circuit/Systems, Computers and Communications (ITC-CSCC’08), 2008.
-  * **Memory Bounds**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
 
 
 ### Memory Allocation
@@ -415,7 +384,64 @@ Number of random order tested when using the Shuffle value for the Best/First Fi
   * **Distributed Memory Allocation**: Karol Desnos, Maxime Pelcat, Jean-François Nezan, and Slaheddine Aridhi. Distributed memory allocation technique for synchronous dataflow graphs. In Signal Processing System (SiPS), Workshop on, pages 1–6. IEEE, 2016.
   * **Broadcast Merging**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Memory analysis and optimized allocation of dataflow applications on shared-memory MPSoCs. Journal of Signal Processing Systems, Springer, 2014.
 
+
+### MEG Builder
+
+  * **Identifier**: `org.ietr.preesm.memory.exclusiongraph.MemoryExclusionGraphBuilder`
+  * **Implementing Class**: `org.preesm.algorithm.memory.exclusiongraph.MemoryExclusionGraphBuilder`
+  * **Short description**: Builds the Memory Exclusion Graph (MEG) modeling the memory allocation constraints.
+
+#### Inputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **MemEx** (of _MemoryExclusionGraph_)
+
+#### Description
+The memory allocation technique used in Preesm is based on a Memory Exclusion Graph (MEG). A MEG is a graph whose vertices model the memory objects that must be allocated in memory in order to run the generated code. In the current version of Preesm, each of these memory objects corresponds either to an edge of the Directed Acyclic Graph (DAG) or to a buffer corresponding to ”delays” of the graph that store data between executions of a schedule. In the MEG, two memory objects are linked by an edge (called an exclusion) if they can not be allocated in overlapping memory spaces.
+
+#### Parameters
+
+##### Verbose
+How verbose will this task be during its execution. In verbose mode, the task will log the start and completion time of the build, as well as characteristics (number of memory objects, density of exclusions) of the produced MEG.
+
+| Value | Effect |
+| --- | --- |
+| _false_ | (Default) The task will not log information. |
+| _true_ | The task will log build and MEG information. |
+
+#### See Also
+
+  * **MEG**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Memory bounds for the distributed execution of a hierarchical synchronous data-flow graph. In Embedded Computer Systems: Architectures, Modeling, and Simulation (SAMOS XII), 2012 International Conference on, 2012.
+
 ## Analysis
+
+### Gantt Display
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.plot`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.ui.stats.StatEditorTransform`
+  * **Short description**: Displays the result of a mapping/scheduling algorithm as a Gantt diagram.
+
+#### Inputs
+  * **ABC** (of _LatencyAbc_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+None.
+
+#### Description
+This task generates SDF3 code modeling the given SDF graph. SDF modeling in SDF3 follow the specification introduced by Stuijk et al. in [1].
+
+Known Limitations: Here is a list of known limitations of the SDF3 importation process: Only SDF graphs can be imported, Actors of the SDF cannot be implemented on more than one processor type, Timings cannot depend on parameters since SDF3 does not support parameterized SDF.
+
+#### Parameters
+None.
+
+#### See Also
+
+  * **Speedup assessment chart**: Maxime Pelcat. Prototypage Rapide et Génération de Code pour DSP Multi-Coeurs Appliqués à la Couche Physique des Stations de Base 3GPP LTE. PhD thesis, INSA de Rennes, 2010.
+
 
 ### Gantt Exporter
 
@@ -446,70 +472,16 @@ Path of the exported *.pgantt file. If the specified directory does not exist, i
 
   * **[1]**: https://github.com/preesm/gantt-display
 
-
-### Gantt Display
-
-  * **Identifier**: `org.ietr.preesm.plugin.mapper.plot`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.ui.stats.StatEditorTransform`
-  * **Short description**: Displays the result of a mapping/scheduling algorithm as a Gantt diagram.
-
-#### Inputs
-  * **ABC** (of _LatencyAbc_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-None.
-
-#### Description
-This task generates SDF3 code modeling the given SDF graph. SDF modeling in SDF3 follow the specification introduced by Stuijk et al. in [1].
-
-Known Limitations: Here is a list of known limitations of the SDF3 importation process: Only SDF graphs can be imported, Actors of the SDF cannot be implemented on more than one processor type, Timings cannot depend on parameters since SDF3 does not support parameterized SDF.
-
-#### Parameters
-None.
-
-#### See Also
-
-  * **Speedup assessment chart**: Maxime Pelcat. Prototypage Rapide et Génération de Code pour DSP Multi-Coeurs Appliqués à la Couche Physique des Stations de Base 3GPP LTE. PhD thesis, INSA de Rennes, 2010.
-
 ## Schedulers
 
-### External Scheduling from DAG - _Deprecated_
+### PFast Scheduling from DAG - _Deprecated_
 
-  * **Identifier**: `org.ietr.preesm.plugin.mapper.external`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.ExternalMappingFromDAG`
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.pfastdag`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.PFASTMappingFromDAG`
   * **Short description**: Undocumented
 
 #### Inputs
   * **DAG** (of _DirectedAcyclicGraph_)
-  * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-  * **ABC** (of _LatencyAbc_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### SCHEDULE_FILE
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _/schedule.json_ | default value |
-
-
-### List Scheduling from SDF - _Deprecated_
-
-  * **Identifier**: `org.ietr.preesm.plugin.mapper.fast`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.FASTMapping`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **SDF** (of _SDFGraph_)
   * **architecture** (of _Design_)
   * **scenario** (of _PreesmScenario_)
 
@@ -578,15 +550,36 @@ Undocumented
 | --- | --- |
 | _10_ | Undocumented |
 
+##### nodesMin
+Undocumented
 
-### Simple Scheduling from PiSDF
+| Value | Effect |
+| --- | --- |
+| _5_ | Undocumented |
 
-  * **Identifier**: `pisdf-mapper.simple`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.MainCoreMappingFromPiMM`
+##### procNumber
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _1_ | Undocumented |
+
+##### fastNumber
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+
+### Simple Scheduling from DAG - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.simple`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.MainCoreMappingFromDAG`
   * **Short description**: Undocumented
 
 #### Inputs
-  * **PiMM** (of _PiGraph_)
+  * **DAG** (of _DirectedAcyclicGraph_)
   * **architecture** (of _Design_)
   * **scenario** (of _PreesmScenario_)
 
@@ -599,244 +592,6 @@ Undocumented
 
 #### Parameters
 None.
-
-
-### Fast Scheduling from PiSDF
-
-  * **Identifier**: `pisdf-mapper.fast`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.FASTMappingFromPiMM`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-  * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-  * **ABC** (of _LatencyAbc_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### edgeSchedType
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _Simple_ | Undocumented |
-
-##### simulatorType
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _LooselyTimed_ | Undocumented |
-
-##### Check
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _True_ | Undocumented |
-
-##### Optimize synchronization
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _False_ | Undocumented |
-
-##### balanceLoads
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _false_ | Undocumented |
-
-##### displaySolutions
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _false_ | Undocumented |
-
-##### fastTime
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _100_ | Undocumented |
-
-##### fastLocalSearchTime
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _10_ | Undocumented |
-
-
-### Fast Scheduling from DAG - _Deprecated_
-
-  * **Identifier**: `org.ietr.preesm.plugin.mapper.fastdag`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.FASTMappingFromDAG`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-  * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-  * **ABC** (of _LatencyAbc_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### edgeSchedType
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _Simple_ | Undocumented |
-
-##### simulatorType
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _LooselyTimed_ | Undocumented |
-
-##### Check
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _True_ | Undocumented |
-
-##### Optimize synchronization
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _False_ | Undocumented |
-
-##### balanceLoads
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _false_ | Undocumented |
-
-##### displaySolutions
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _false_ | Undocumented |
-
-##### fastTime
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _100_ | Undocumented |
-
-##### fastLocalSearchTime
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _10_ | Undocumented |
-
-
-### List Scheduling from SDF - _Deprecated_
-
-  * **Identifier**: `org.ietr.preesm.plugin.mapper.listscheduling`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.ListSchedulingMapping`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **SDF** (of _SDFGraph_)
-  * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-  * **ABC** (of _LatencyAbc_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### edgeSchedType
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _Simple_ | Undocumented |
-
-##### simulatorType
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _LooselyTimed_ | Undocumented |
-
-##### Check
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _True_ | Undocumented |
-
-##### Optimize synchronization
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _False_ | Undocumented |
-
-##### balanceLoads
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _false_ | Undocumented |
-
-
-### External Scheduling from PiSDF
-
-  * **Identifier**: `pisdf-mapper.external`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.ExternalMappingFromPiMM`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-  * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-  * **ABC** (of _LatencyAbc_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### SCHEDULE_FILE
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _/schedule.json_ | default value |
 
 
 ### PFast Scheduling from PiSDF
@@ -993,36 +748,14 @@ Undocumented
 | _false_ | Undocumented |
 
 
-### Simple Scheduling from DAG - _Deprecated_
+### Fast Scheduling from DAG - _Deprecated_
 
-  * **Identifier**: `org.ietr.preesm.plugin.mapper.simple`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.MainCoreMappingFromDAG`
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.fastdag`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.FASTMappingFromDAG`
   * **Short description**: Undocumented
 
 #### Inputs
   * **DAG** (of _DirectedAcyclicGraph_)
-  * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-  * **ABC** (of _LatencyAbc_)
-
-#### Description
-Undocumented
-
-#### Parameters
-None.
-
-
-### PFast Scheduling from SDF - _Deprecated_
-
-  * **Identifier**: `org.ietr.preesm.plugin.mapper.pfast`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.PFASTMapping`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **SDF** (of _SDFGraph_)
   * **architecture** (of _Design_)
   * **scenario** (of _PreesmScenario_)
 
@@ -1091,36 +824,15 @@ Undocumented
 | --- | --- |
 | _10_ | Undocumented |
 
-##### nodesMin
-Undocumented
 
-| Value | Effect |
-| --- | --- |
-| _5_ | Undocumented |
+### PFast Scheduling from SDF - _Deprecated_
 
-##### procNumber
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _1_ | Undocumented |
-
-##### fastNumber
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _100_ | Undocumented |
-
-
-### PFast Scheduling from DAG - _Deprecated_
-
-  * **Identifier**: `org.ietr.preesm.plugin.mapper.pfastdag`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.PFASTMappingFromDAG`
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.pfast`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.PFASTMapping`
   * **Short description**: Undocumented
 
 #### Inputs
-  * **DAG** (of _DirectedAcyclicGraph_)
+  * **SDF** (of _SDFGraph_)
   * **architecture** (of _Design_)
   * **scenario** (of _PreesmScenario_)
 
@@ -1266,6 +978,294 @@ Undocumented
 | --- | --- |
 | _false_ | Undocumented |
 
+
+### List Scheduling from SDF - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.fast`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.FASTMapping`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### displaySolutions
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### fastTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+##### fastLocalSearchTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _10_ | Undocumented |
+
+
+### List Scheduling from SDF - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.listscheduling`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.ListSchedulingMapping`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+
+### External Scheduling from DAG - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.external`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.ExternalMappingFromDAG`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### SCHEDULE_FILE
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _/schedule.json_ | default value |
+
+
+### External Scheduling from PiSDF
+
+  * **Identifier**: `pisdf-mapper.external`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.ExternalMappingFromPiMM`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### SCHEDULE_FILE
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _/schedule.json_ | default value |
+
+
+### Simple Scheduling from PiSDF
+
+  * **Identifier**: `pisdf-mapper.simple`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.MainCoreMappingFromPiMM`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
+### Fast Scheduling from PiSDF
+
+  * **Identifier**: `pisdf-mapper.fast`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.FASTMappingFromPiMM`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+  * **ABC** (of _LatencyAbc_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### edgeSchedType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Simple_ | Undocumented |
+
+##### simulatorType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LooselyTimed_ | Undocumented |
+
+##### Check
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Undocumented |
+
+##### Optimize synchronization
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
+##### balanceLoads
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### displaySolutions
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _false_ | Undocumented |
+
+##### fastTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ | Undocumented |
+
+##### fastLocalSearchTime
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _10_ | Undocumented |
+
 ## Code Generation
 
 ### Code Generation
@@ -1384,33 +1384,6 @@ Wether to optimize the graph at runtime or not
 
 ## Graph Transformation
 
-### Static PiMM to IBSDF - _Deprecated_
-
-  * **Identifier**: `org.ietr.preesm.experiment.pimm2sdf.StaticPiMM2SDFTask`
-  * **Implementing Class**: `org.preesm.algorithm.pisdf.pimm2sdf.StaticPiMM2SDFTask`
-  * **Short description**: Transforms a static PiSDF Graph into an equivalent IBSDF graph.
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-  * **SDF** (of _SDFGraph_)
-
-#### Description
-In Preesm, since version 2.0.0, the Parameterized and Interfaced SDF (PiSDF) model of computa tion is used as the frontend model in the graphical editor of dataflow graphs. This model makes it possible to design dynamically reconfigurable dataflow graphs where the value of parameters, and production/consumption rates depending on them, might change during the execution of the application. In former versions, the Interface Based SDF (IBSDF) model of computation was used as the front end model for application design. Contrary to the PiSDF, the IBSDF is a static model of computation where production and consumption rates of actors is fixed at compile-time.
-
-The purpose of this workflow task is to transform a static PiSDF graph into an equivalent IBSDF graph. A static PiSDF graph is a PiSDF graph where dynamic reconfiguration features of the PiSDF model of computation are not used.
-
-#### Parameters
-None.
-
-#### See Also
-
-  * **IBSDF**: J. Piat, S.S. Bhattacharyya, and M. Raulet. Interface-based hierarchy for synchronous data-flow graphs. In SiPS Proceedings, 2009.
-  * **PiSDF**: K. Desnos, M. Pelcat, J.-F. Nezan, S.S. Bhattacharyya, and S. Aridhi. PiMM: Parameterized and interfaced dataflow meta-model for MPSoCs runtime reconfiguration. In Embedded Computer Systems: Architectures, Modeling, and Simulation (SAMOS XIII), 2013 International Conference on, pages 41–48. IEEE, 2013.
-
-
 ### Hierarchy Flattening - _Deprecated_
 
   * **Identifier**: `org.ietr.preesm.plugin.transforms.flathierarchy`
@@ -1521,221 +1494,39 @@ This parameter makes it possible to remove most of the explode and implode actor
   * **Special actors**: Karol Desnos, Maxime Pelcat, Jean-François Nezan, and Slaheddine Aridhi. On memory reuse between inputs and outputs of dataflow actors. ACM Transactions on Embedded Computing Systems, 15(30):25, January 2016.
   * **Graph consistency**: E.A. Lee and D.G. Messerschmitt. Synchronous data flow. Proceedings of the IEEE, 75(9):1235 – 1245, sept. 1987.
 
+
+### Static PiMM to IBSDF - _Deprecated_
+
+  * **Identifier**: `org.ietr.preesm.experiment.pimm2sdf.StaticPiMM2SDFTask`
+  * **Implementing Class**: `org.preesm.algorithm.pisdf.pimm2sdf.StaticPiMM2SDFTask`
+  * **Short description**: Transforms a static PiSDF Graph into an equivalent IBSDF graph.
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **SDF** (of _SDFGraph_)
+
+#### Description
+In Preesm, since version 2.0.0, the Parameterized and Interfaced SDF (PiSDF) model of computa tion is used as the frontend model in the graphical editor of dataflow graphs. This model makes it possible to design dynamically reconfigurable dataflow graphs where the value of parameters, and production/consumption rates depending on them, might change during the execution of the application. In former versions, the Interface Based SDF (IBSDF) model of computation was used as the front end model for application design. Contrary to the PiSDF, the IBSDF is a static model of computation where production and consumption rates of actors is fixed at compile-time.
+
+The purpose of this workflow task is to transform a static PiSDF graph into an equivalent IBSDF graph. A static PiSDF graph is a PiSDF graph where dynamic reconfiguration features of the PiSDF model of computation are not used.
+
+#### Parameters
+None.
+
+#### See Also
+
+  * **IBSDF**: J. Piat, S.S. Bhattacharyya, and M. Raulet. Interface-based hierarchy for synchronous data-flow graphs. In SiPS Proceedings, 2009.
+  * **PiSDF**: K. Desnos, M. Pelcat, J.-F. Nezan, S.S. Bhattacharyya, and S. Aridhi. PiMM: Parameterized and interfaced dataflow meta-model for MPSoCs runtime reconfiguration. In Embedded Computer Systems: Architectures, Modeling, and Simulation (SAMOS XIII), 2013 International Conference on, pages 41–48. IEEE, 2013.
+
 ## Other
 
-### Papify Engine
+### Clustering
 
-  * **Identifier**: `org.ietr.preesm.codegen.xtend.task.CodegenPapifyEngineTask`
-  * **Implementing Class**: `org.preesm.codegen.xtend.task.CodegenPapifyEngineTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **scenario** (of _PreesmScenario_)
-  * **DAG** (of _DirectedAcyclicGraph_)
-
-#### Outputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-
-#### Description
-Undocumented
-
-#### Parameters
-None.
-
-
-### PiSDF Flattener
-
-  * **Identifier**: `org.ietr.preesm.pimm.algorithm.pimm2flat.StaticPiMM2FlatPiMMTask`
-  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFFlattenerTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-
-#### Outputs
-  * **PiMM** (of _PiGraph_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### Perform optimizations
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _true / false_ |  |
-
-
-### Throughput Evaluation
-
-  * **Identifier**: `org.ietr.preesm.throughput.ThroughputPlugin`
-  * **Implementing Class**: `org.preesm.algorithm.throughput.ThroughputEvaluationTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-  * **throughput** (of _Double_)
-  * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### method
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _SR_ | Schedule-Replace technique |
-| _ESR_ | Evaluate-Schedule-Replace method |
-| _HPeriodic_ | Hierarchical Periodic Schedule method |
-| _Classical_ | Based on Flattening the hierarchy |
-
-
-### PiSDF BRV Exporter
-
-  * **Identifier**: `pisdf-brv-export`
-  * **Implementing Class**: `org.preesm.model.pisdf.brv.BRVExporter`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-
-#### Outputs
-  * **PiMM** (of _PiGraph_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### path
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _/stats/xml/_ | default value |
-
-
-### SDF3 Importer
-
-  * **Identifier**: `org.ietr.preesm.algorithm.importSdf3Xml.Sdf3Importer`
-  * **Implementing Class**: `org.preesm.algorithm.io.sdf3.Sdf3Importer`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-  * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### path
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _./Code/SDF3/graph.xml_ |  |
-
-
-### SDF2HSDF
-
-  * **Identifier**: `org.ietr.preesm.plugin.transforms.sdf2hsdf`
-  * **Implementing Class**: `org.preesm.algorithm.transforms.HSDFTransformation`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **SDF** (of _SDFGraph_)
-
-#### Outputs
-  * **SDF** (of _SDFGraph_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### ExplodeImplodeSuppr
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _false_ |  |
-
-
-### PiSDF Checker
-
-  * **Identifier**: `pisdf-checker`
-  * **Implementing Class**: `org.preesm.model.pisdf.check.PiMMAlgorithmCheckerTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-
-#### Outputs
-  * **PiMM** (of _PiGraph_)
-
-#### Description
-Undocumented
-
-#### Parameters
-None.
-
-
-### Latency Evaluation
-
-  * **Identifier**: `org.ietr.preesm.latency.LatencyEvaluationPlugin`
-  * **Implementing Class**: `org.preesm.algorithm.latency.LatencyEvaluationTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Outputs
-  * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
-  * **latency** (of _Double_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### multicore
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _true/false_ |  |
-
-##### method
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _FAST_ | (default) Hierarchical method |
-| _FLAT_LP_ | Based on Flattening the hierarchy |
-| _FLAT_SE_ | Based on Flattening the hierarchy |
-
-
-### Single rate SDF to DAG Transformation
-
-  * **Identifier**: `org.ietr.preesm.mapper.SDF2DAGTransformation`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.graphtransfo.SDF2DAGTransformation`
+  * **Identifier**: `org.ietr.preesm.Clustering`
+  * **Implementing Class**: `org.preesm.algorithm.clustering.Clustering`
   * **Short description**: Undocumented
 
 #### Inputs
@@ -1744,7 +1535,7 @@ Undocumented
   * **architecture** (of _Design_)
 
 #### Outputs
-  * **DAG** (of _DirectedAcyclicGraph_)
+  * **SDF** (of _SDFGraph_)
 
 #### Description
 Undocumented
@@ -1776,32 +1567,6 @@ Undocumented
 | Value | Effect |
 | --- | --- |
 | _n > 0_ | default = 1 |
-
-
-### PiSDF Single-Rate Transformation
-
-  * **Identifier**: `pisdf-srdag`
-  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFToSingleRateTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-
-#### Outputs
-  * **PiMM** (of _PiGraph_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### Consistency_Method
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _LCM_ |  |
-| _Topology_ |  |
 
 
 ### Activity Exporter of Tokens and Quanta
@@ -1836,79 +1601,10 @@ Undocumented
 | _Yes_ | Undocumented |
 
 
-### Implementation Exporter
+### Single rate SDF to DAG Transformation
 
-  * **Identifier**: `org.ietr.preesm.plugin.mapper.exporter.ImplExportTransform`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.exporter.ImplExportTransform`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-
-#### Outputs
-  * **xml** (of _String_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### path
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| __ | Undocumented |
-
-
-### PiSDF Exporter
-
-  * **Identifier**: `pisdf-export`
-  * **Implementing Class**: `org.preesm.model.pisdf.serialize.PiSDFExporterTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-
-#### Outputs
-None.
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### path
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _/Algo/generated/pisdf/_ | default path |
-
-
-### GetPiMM
-
-  * **Identifier**: `org.ietr.preesm.mapper.getpimm`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.GetPiMMFromDAGTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-
-#### Outputs
-  * **PiMM** (of _PiGraph_)
-
-#### Description
-Undocumented
-
-#### Parameters
-None.
-
-
-### Clustering
-
-  * **Identifier**: `org.ietr.preesm.Clustering`
-  * **Implementing Class**: `org.preesm.algorithm.clustering.Clustering`
+  * **Identifier**: `org.ietr.preesm.mapper.SDF2DAGTransformation`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.graphtransfo.SDF2DAGTransformation`
   * **Short description**: Undocumented
 
 #### Inputs
@@ -1917,7 +1613,7 @@ None.
   * **architecture** (of _Design_)
 
 #### Outputs
-  * **SDF** (of _SDFGraph_)
+  * **DAG** (of _DirectedAcyclicGraph_)
 
 #### Description
 Undocumented
@@ -1965,14 +1661,14 @@ Undocumented
 | _Yes_ |  |
 
 
-### Activity Exporter of Tokens and Quanta for a single ABC
+### SDF4J Exporter - _Deprecated_
 
-  * **Identifier**: `org.ietr.preesm.algorithm.moa.activity.MonoActivityExporter`
-  * **Implementing Class**: `org.preesm.algorithm.moa.activity.MonoActivityExporter`
+  * **Identifier**: `sdf4j-export`
+  * **Implementing Class**: `org.preesm.algorithm.io.xml.SDF4JGMLExporter`
   * **Short description**: Undocumented
 
 #### Inputs
-  * **ABC** (of _LatencyAbc_)
+  * **SDF** (of _SDFGraph_)
 
 #### Outputs
 None.
@@ -1987,41 +1683,199 @@ Undocumented
 
 | Value | Effect |
 | --- | --- |
-| _stats/mat/activity_ |  |
+| __ | Undocumented |
 
-##### human_readable
+
+### Implementation Exporter
+
+  * **Identifier**: `org.ietr.preesm.plugin.mapper.exporter.ImplExportTransform`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.exporter.ImplExportTransform`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+
+#### Outputs
+  * **xml** (of _String_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
 Undocumented
 
 | Value | Effect |
 | --- | --- |
-| _Yes_ |  |
+| __ | Undocumented |
 
 
-### scenario
+### Papify Engine
 
-  * **Identifier**: `org.ietr.preesm.scenario.task`
-  * **Implementing Class**: `org.preesm.model.scenario.workflow.AlgorithmAndArchitectureScenarioNode`
+  * **Identifier**: `org.ietr.preesm.codegen.xtend.task.CodegenPapifyEngineTask`
+  * **Implementing Class**: `org.preesm.codegen.xtend.task.CodegenPapifyEngineTask`
   * **Short description**: Undocumented
 
 #### Inputs
-None.
+  * **scenario** (of _PreesmScenario_)
+  * **DAG** (of _DirectedAcyclicGraph_)
 
 #### Outputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
+### Latency Evaluation
+
+  * **Identifier**: `org.ietr.preesm.latency.LatencyEvaluationPlugin`
+  * **Implementing Class**: `org.preesm.algorithm.latency.LatencyEvaluationTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
   * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+  * **latency** (of _Double_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### multicore
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ |  |
+
+##### method
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _FAST_ | (default) Hierarchical method |
+| _FLAT_LP_ | Based on Flattening the hierarchy |
+| _FLAT_SE_ | Based on Flattening the hierarchy |
+
+
+### SDF3 Importer
+
+  * **Identifier**: `org.ietr.preesm.algorithm.importSdf3Xml.Sdf3Importer`
+  * **Implementing Class**: `org.preesm.algorithm.io.sdf3.Sdf3Importer`
+  * **Short description**: Undocumented
+
+#### Inputs
   * **architecture** (of _Design_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Outputs
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _./Code/SDF3/graph.xml_ |  |
+
+
+### PiSDF Flattener
+
+  * **Identifier**: `org.ietr.preesm.pimm.algorithm.pimm2flat.StaticPiMM2FlatPiMMTask`
+  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFFlattenerTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+
+#### Outputs
   * **PiMM** (of _PiGraph_)
 
 #### Description
 Undocumented
 
 #### Parameters
-None.
+
+##### Perform optimizations
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _true / false_ |  |
 
 
-### Algorithm Iterator
+### PiSDF BRV Exporter
 
-  * **Identifier**: `org.ietr.preesm.algorithm.transforms.IterateAlgorithm`
-  * **Implementing Class**: `org.preesm.algorithm.transforms.IterateAlgorithm`
+  * **Identifier**: `pisdf-brv-export`
+  * **Implementing Class**: `org.preesm.model.pisdf.brv.BRVExporter`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _/stats/xml/_ | default value |
+
+
+### Periods Prescheduling Checker
+
+  * **Identifier**: `org.ietr.preesm.pimm.algorithm.checker.periods.PeriodsPreschedulingChecker`
+  * **Implementing Class**: `org.preesm.algorithm.pisdf.checker.PeriodsPreschedulingChecker`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **scenario** (of _PreesmScenario_)
+  * **architecture** (of _Design_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### Selection rate (%)
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _100_ |  |
+
+
+### SDF2HSDF
+
+  * **Identifier**: `org.ietr.preesm.plugin.transforms.sdf2hsdf`
+  * **Implementing Class**: `org.preesm.algorithm.transforms.HSDFTransformation`
   * **Short description**: Undocumented
 
 #### Inputs
@@ -2035,38 +1889,12 @@ Undocumented
 
 #### Parameters
 
-##### nbIt
+##### ExplodeImplodeSuppr
 Undocumented
 
 | Value | Effect |
 | --- | --- |
-| _1_ |  |
-
-##### setStates
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _true_ |  |
-
-
-### Hierarchical Scheduler - _Deprecated_
-
-  * **Identifier**: `hsceduler`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.algo.HScheduleTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-None.
-
-#### Outputs
-None.
-
-#### Description
-Undocumented
-
-#### Parameters
-None.
+| _false_ |  |
 
 
 ### Memory Exclusion Graph Mapper
@@ -2102,31 +1930,6 @@ Specify which memory architecture should be used to allocate the memory.
 | _DistributedOnly_ | Each PE is associated to a private memory bank that no other PE can access. (Currently not supported by code generation.) |
 | _Mixed_ | Both private memory banks and a shared memory can be used for allocating memory. |
 | _MixedMerged_ | Same as mixed, but the memory allocation algorithm favors buffer merging over memory distribution. |
-
-
-### SDF4J Exporter - _Deprecated_
-
-  * **Identifier**: `sdf4j-export`
-  * **Implementing Class**: `org.preesm.algorithm.io.xml.SDF4JGMLExporter`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **SDF** (of _SDFGraph_)
-
-#### Outputs
-None.
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### path
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| __ | Undocumented |
 
 
 ### Random SDF Generator - _Deprecated_
@@ -2220,16 +2023,140 @@ Undocumented
 | _1000_ | Undocumented |
 
 
-### Periods Prescheduling Checker
+### PiSDF Checker
 
-  * **Identifier**: `org.ietr.preesm.pimm.algorithm.checker.periods.PeriodsPreschedulingChecker`
-  * **Implementing Class**: `org.preesm.algorithm.pisdf.checker.PeriodsPreschedulingChecker`
+  * **Identifier**: `pisdf-checker`
+  * **Implementing Class**: `org.preesm.model.pisdf.check.PiMMAlgorithmCheckerTask`
   * **Short description**: Undocumented
 
 #### Inputs
   * **PiMM** (of _PiGraph_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
+### GetPiMM
+
+  * **Identifier**: `org.ietr.preesm.mapper.getpimm`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.GetPiMMFromDAGTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
+### Activity Exporter of Tokens and Quanta for a single ABC
+
+  * **Identifier**: `org.ietr.preesm.algorithm.moa.activity.MonoActivityExporter`
+  * **Implementing Class**: `org.preesm.algorithm.moa.activity.MonoActivityExporter`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **ABC** (of _LatencyAbc_)
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _stats/mat/activity_ |  |
+
+##### human_readable
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Yes_ |  |
+
+
+### Throughput Evaluation
+
+  * **Identifier**: `org.ietr.preesm.throughput.ThroughputPlugin`
+  * **Implementing Class**: `org.preesm.algorithm.throughput.ThroughputEvaluationTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
   * **scenario** (of _PreesmScenario_)
-  * **architecture** (of _Design_)
+
+#### Outputs
+  * **throughput** (of _Double_)
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _PreesmScenario_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### method
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _SR_ | Schedule-Replace technique |
+| _ESR_ | Evaluate-Schedule-Replace method |
+| _HPeriodic_ | Hierarchical Periodic Schedule method |
+| _Classical_ | Based on Flattening the hierarchy |
+
+
+### PiSDF Exporter
+
+  * **Identifier**: `pisdf-export`
+  * **Implementing Class**: `org.preesm.model.pisdf.serialize.PiSDFExporterTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _/Algo/generated/pisdf/_ | default path |
+
+
+### PiSDF Single-Rate Transformation
+
+  * **Identifier**: `pisdf-srdag`
+  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFToSingleRateTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
 
 #### Outputs
   * **PiMM** (of _PiGraph_)
@@ -2239,10 +2166,83 @@ Undocumented
 
 #### Parameters
 
-##### Selection rate (%)
+##### Consistency_Method
 Undocumented
 
 | Value | Effect |
 | --- | --- |
-| _100_ |  |
+| _LCM_ |  |
+| _Topology_ |  |
+
+
+### Algorithm Iterator
+
+  * **Identifier**: `org.ietr.preesm.algorithm.transforms.IterateAlgorithm`
+  * **Implementing Class**: `org.preesm.algorithm.transforms.IterateAlgorithm`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+
+#### Outputs
+  * **SDF** (of _SDFGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### nbIt
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _1_ |  |
+
+##### setStates
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _true_ |  |
+
+
+### Hierarchical Scheduler - _Deprecated_
+
+  * **Identifier**: `hsceduler`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.algo.HScheduleTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+None.
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
+
+### scenario
+
+  * **Identifier**: `org.ietr.preesm.scenario.task`
+  * **Implementing Class**: `org.preesm.model.scenario.workflow.AlgorithmAndArchitectureScenarioNode`
+  * **Short description**: Undocumented
+
+#### Inputs
+None.
+
+#### Outputs
+  * **scenario** (of _PreesmScenario_)
+  * **architecture** (of _Design_)
+  * **PiMM** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
 
