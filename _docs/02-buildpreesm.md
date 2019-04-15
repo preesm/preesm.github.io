@@ -21,7 +21,7 @@ Updated the 21.11.2018 by [A. Morvan](mailto:antoine.morvan@insa-rennes.fr)
 
 ## Eclipse installation
 
-### Install Java
+### Install Java  
 
 Preesm requires the Eclipse environment, which runs on the Java platform. If you do not have Java yet, you will need to install it, either in your package manager, or on this website: [http://www.java.com](http://www.java.com). Please install Java 8 Java Runtime Environment (JRE) or Java Development Kit (JDK). **Under Windows, you may need to uninstall Java 6 or 7.**
 
@@ -85,7 +85,10 @@ The PREESM plugins are plain Maven projects. In order to import them in Eclipse,
 *   The project import wizard should automatically find all the projects;
     *   Note : releng/* projects are for Release Engineering, and can be omitted.:
         ![](/assets/docs/02-buildingpreesm/unselect-releng.png)
-*   Click on finish.
+*   Click on finish. The import of Preesm projects will start automatically. The progress is visible in the bottom right of the Eclipse window:
+[![](/assets/docs/02-buildingpreesm/import-progress1.png)](/assets/docs/02-buildingpreesm/import-progress1.png)
+*   **Note: this step can take few minutes as the Maven local repository has to be initialized and filled with project dependencies.** More details about the progress can be observed by click on the right most button of the state bar:
+[![](/assets/docs/02-buildingpreesm/import-progress2.png)](/assets/docs/02-buildingpreesm/import-progress2.png)
 
 ## Compilation of Preesm
 
