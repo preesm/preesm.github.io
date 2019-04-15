@@ -4,7 +4,9 @@ permalink: /docs/buildpreesm/
 toc: true
 ---
 
-Prerequisite: [Install and Configure git](/docs/gitsetup)
+Prerequisite: 
+*  [Install and Configure git](/docs/gitsetup)
+*  Building Preesm requires an active Internet connexion, used to fetch Maven and/or Eclipse dependencies. This Internet connexion is not required for running Preesm once built.
 
 Note: if you need to work with Graphiti source code, please read [these instructions](/docs/buildfromgraphiti/) first.
 
@@ -110,7 +112,7 @@ The product can be built from Eclipse. It requires [extra steps for multi-platfo
 ![](/assets/docs/02-buildingpreesm/product-file.png)
 2.  From the product editor, in the **Overview** tab, the **Exporting** section has a **Eclipse Product export wizard**;
 [![](/assets/docs/02-buildingpreesm/product-overview.png)](/assets/docs/02-buildingpreesm/product-overview.png)
-3.  The wizard has proper default values, except for the target folder. Input any folder with write permission and click on finish;
+3.  The wizard has proper default values, except for the target folder. Input any folder with write permission and click on finish. Alternatively, select a target archive file to automatically build a Zipped product;
 [![](/assets/docs/02-buildingpreesm/product-export.png)](/assets/docs/02-buildingpreesm/product-export.png)
 4.  The progress information is visible in the bottom right of the Eclipse window. Clicking on the right most button in the state bar will open a more detailed progress view;
 [![](/assets/docs/02-buildingpreesm/product-progress.png)](/assets/docs/02-buildingpreesm/product-progress.png)
