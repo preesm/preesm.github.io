@@ -90,6 +90,8 @@ The PREESM plugins are plain Maven projects. In order to import them in Eclipse,
 *   **Note: this step can take few minutes as the Maven local repository has to be initialized and filled with project dependencies.** More details about the progress can be observed by click on the right most button of the state bar:
 [![](/assets/docs/02-buildingpreesm/import-progress2.png)](/assets/docs/02-buildingpreesm/import-progress2.png)
 
+If the import step is interrupted, this might corrupt the local Maven repository. See [issue #129](https://github.com/preesm/preesm/issues/129) for more details and fix procedure.
+
 ## Compilation of Preesm
 
 **Change perspective**  
