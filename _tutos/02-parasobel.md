@@ -257,8 +257,8 @@ Before generating a multicore schedule, you need to create a new scenario that w
 2.  Double-click on the new "4core.scenario" to open it with the Scenario Editor.
 3.  In the "Overview" tab, set the "Architecture file path" to "/Archi/4CoreX86.slam".
 4.  Save the scenario, close it and reopen it to take the new architecture into account in the editor.
-5.  In the "Constraints" tab, allow the execution of all actors on all cores of the architecture. We advise you to allow the execution of the display actor only on Core0 as this makes the closure of the display window stop the whole program execution.
-    * Note: on MacOSX, the display and read actors have to be forced onto the main core due to SDF2 limitations;
+5.  In the "Constraints" tab, allow the execution of all actors on all cores of the architecture (except read and display actors)
+    * **Note: SDL2 is [NOT thread safe](https://wiki.libsdl.org/FAQDevelopment#Can_I_call_SDL_video_functions_from_multiple_threads.3F). Make sure all read/display operations of your Preesm applications are always mapped on the same Core.**
 6.  In the "Simulation" tab, allow the execution of the broadcast/implode/explode actors on all cores.
 7.  Save the updated scenario.
 

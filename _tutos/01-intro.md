@@ -61,6 +61,8 @@ Use the [pthread-2.10.0](/assets/downloads/pthread-2.10.0.zip) version.
 
 ### SDL2 and SDL2_ttf
 
+**Note: SDL2 is [NOT thread safe](https://wiki.libsdl.org/FAQDevelopment#Can_I_call_SDL_video_functions_from_multiple_threads.3F). Make sure all read/display operations of your Preesm applications are always mapped on the same Core.**
+
 From SDL about page :
 
   _Simple DirectMedia Layer is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D._
