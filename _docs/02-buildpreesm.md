@@ -6,7 +6,7 @@ toc: true
 
 Prerequisite: 
 *  [Install and Configure git](/docs/gitsetup)
-*  Building Preesm requires an active Internet connexion, used to fetch Maven and/or Eclipse dependencies. This Internet connexion is not required for running Preesm once built.
+*  Building Preesm requires an active Internet connection, used to fetch Maven and/or Eclipse dependencies. This Internet connection is not required for running Preesm once built.
 
 Note: if you need to work with Graphiti source code, please read [these instructions](/docs/buildfromgraphiti/) first.
 
@@ -15,7 +15,7 @@ Updated the 21.11.2018 by [A. Morvan](mailto:antoine.morvan@insa-rennes.fr)
 
 ## Disclaimers
 
-1.  When building PREESM, you have to **run a second Eclipse Application** (the guest) within the Eclipse where the source code is improted (the host). This is explained below in  the "Execution of Preesm" section;
+1.  When building PREESM, you have to **run a second Eclipse Application** (the guest) within the Eclipse where the source code is imported (the host). This is explained below in  the "Execution of Preesm" section;
 2.  When using unreleased source code (that is any other commit different from the last tag), there could be some **inconsistencies** between released zip files used in tutorials and the tool;
 
 
@@ -54,8 +54,8 @@ In Eclipse:
 
 1.  Go to "Help > Install New Software...";
 2.  In "work with:", add a new location named "Preesm" with location "http://preesm.insa-rennes.fr/repo/"
-3.  Select the "Developper Resources > **PREESM  Developper Requirements (Meta Feature)**"
-    (this Eclipse feature contains all requirements for developping Preesm):
+3.  Select the "Developer Resources > **PREESM Developer Requirements (Meta Feature)**"
+    (this Eclipse feature contains all requirements for developing Preesm):
     ![](/assets/docs/02-buildingpreesm/dev_feature.png)
 4.  Click Next twice, agree on the terms of the license, and click on Finish to install the features. This step will take a few minutes.
 5.  During the installation process, a security warning for unsigned content will appear. Click on OK to continue the installation.
@@ -75,15 +75,15 @@ Clone the [Preesm](https://github.com/preesm/preesm) repository (git clone \<url
 Connect your local repository obtained through git clone to your Eclipse workspace
 
 *   Window > Perspective > Open Perspective > Other ... then select Git
-*   Add an existing local repository to this view (GIT button with a green plus symbol), then browes to the local repositories
+*   Add an existing local repository to this view (GIT button with a green plus symbol), then browse to the local repositories
 *   Check the box and click on finish.
 
 The PREESM plugins are plain Maven projects. In order to import them in Eclipse, we rely on the M2Eclipse project (automatically installed with the dev feature). This allow to centralize all the configuration in the POM files. The .project, .classpath and .settings/* files are automatically generated (see [maintainer doc](https://github.com/preesm/preesm/blob/develop/releng/README.md)).
 
-*   In the Java perspetive, click on File > Import... then Maven > Existing Maven Projects;
+*   In the Java perspective, click on File > Import... then Maven > Existing Maven Projects;
 *   In the next window, browse to the git repository location (the Preesm root folder);
 *   The project import wizard should automatically find all the projects;
-    *   Note : releng/* projects are for Release Engineering, and can be omitted.:
+    *   Note: releng/* projects are for Release Engineering, and can be omitted.:
         ![](/assets/docs/02-buildingpreesm/unselect-releng.png)
 *   Click on finish. The import of Preesm projects will start automatically. The progress is visible in the bottom right of the Eclipse window:
 [![](/assets/docs/02-buildingpreesm/import-progress1.png)](/assets/docs/02-buildingpreesm/import-progress1.png)
@@ -108,16 +108,16 @@ In the Java or 'Plug-in Development' perspective, right-click on the 'org.ietr.p
 
 ## Building the Eclipse Product
 
-This section describe how to build and export the Eclipse Product of PREESM, i.e the standalone executable of PREESM (as folder structure or Zip archive).
+This section describes how to build and export the Eclipse Product of PREESM, i.e. the standalone executable of PREESM (as folder structure or Zip archive).
 
 ### From Eclipse
 
 The product can be built from Eclipse. It requires [extra steps for multi-platform builds](https://wiki.eclipse.org/A_Brief_Overview_of_Building_at_Eclipse#Multi-platform_builds).
 1.  In the Eclipse workspace, locate the **org.preesm.product** project, and open the **.product** file within;
 ![](/assets/docs/02-buildingpreesm/product-file.png)
-2.  From the product editor, in the **Overview** tab, the **Exporting** section has a **Eclipse Product export wizard**;
+2.  From the product editor, in the **Overview** tab, the **Exporting** section has an **Eclipse Product export wizard**;
 [![](/assets/docs/02-buildingpreesm/product-overview.png)](/assets/docs/02-buildingpreesm/product-overview.png)
-3.  The wizard has proper default values, except for the target folder. In the Destination section, chose any folder with write permission and click on finish. Alternatively, select a target archive file to automatically build a Zipped product;
+3.  The wizard has proper default values, except for the target folder. In the Destination section, choose any folder with write permission and click on finish. Alternatively, select a target archive file to automatically build a Zipped product;
 [![](/assets/docs/02-buildingpreesm/product-export.png)](/assets/docs/02-buildingpreesm/product-export.png)
 4.  The progress information is visible in the bottom right of the Eclipse window. Clicking on the right most button in the state bar will open a more detailed progress view;
 [![](/assets/docs/02-buildingpreesm/product-progress.png)](/assets/docs/02-buildingpreesm/product-progress.png)
@@ -131,7 +131,7 @@ If you have maven installed on your computer, run `mvn clean package` from the r
 
 Automatic testing is key to prevent regression. Preesm tests are run automatically at every push on the [Travis CI platform](https://travis-ci.org/preesm/preesm/branches). To run the tests, Travis simply calls the Maven goals **clean verify**. That triggers the full build and test of all Preesm plugins (see below for details).
 
-Builds can fail for many reason, as compilation error, broken coding policies, or test failures. Compilation errors and broken coding policies should be enforced by the Eclipse IDE. Tests however have to be triggered manually on your workstation. Indeed, having the Travis CI build fail on the tests means that one or several functionalities have been broken.
+Builds can fail for many reasons, as compilation error, broken coding policies, or test failures. Compilation errors and broken coding policies should be enforced by the Eclipse IDE. Tests however have to be triggered manually on your workstation. Indeed, having the Travis CI build fail on the tests means that one or several functionalities have been broken.
 
 The tests are split in several test plug-ins:
 *  **org.preesm.tests.algorithm**: unit testing of algorithms and codegen;
@@ -235,7 +235,7 @@ This has to be done on all plug-ins, except for the RCPTT test plug-in, where "R
 
 [![](/assets/docs/02-buildingpreesm/tests-eclipseresults.png)](/assets/docs/02-buildingpreesm/tests-eclipseresults.png)
 
-This view will only tell which Preesm Workflow successfully terminated or not. To inspect the actual cause of the failure, the log has to be inspected. Test failures can be re-run indenpendently in order to check the log more accurately (otherwise the log can be several thousands of lines). This is done by scrolling in the Console log. Among all the outputs, the workflow logs always start with **Starting workflow execution**:
+This view will only tell which Preesm Workflow successfully terminated or not. To inspect the actual cause of the failure, the log has to be inspected. Test failures can be re-run independently in order to check the log more accurately (otherwise the log can be several thousands of lines). This is done by scrolling in the Console log. Among all the outputs, the workflow logs always start with **Starting workflow execution**:
 ```
 [...]
 13:21:03 NOTICE: Starting workflow execution: /org.ietr.preesm.stereo/Workflows/CodegenMemoryScriptsMixedMerged.workflow.
@@ -256,23 +256,23 @@ This log shows that the Code Generation task threw an exception while attempting
 
 #### RCPTT Tests from Eclipse
 
-**Note: at the time of writting, RCPTT tests are disabled because of an incompatibility with latest Eclipse (see [https://github.com/xored/rcptt/issues/16](https://github.com/xored/rcptt/issues/16)).**
+**Note: at the time of writing, RCPTT tests are disabled because of an incompatibility with latest Eclipse (see [https://github.com/xored/rcptt/issues/16](https://github.com/xored/rcptt/issues/16)).**
 
 This procedure is specific to running tests from Eclipse. Maven uses the product built during the full process to run the tests.
 
 1.  Export the product using [procedure described above](#from-eclipse);
 2.  Select plugin "org.preesm.tests.ui.rcptt", right click on it then "Run As / Test Cases" 
-3.  The following window ask to chose an Application Under Test (AUT). Add a new one with the product exproted from step 1; **this step fails because of bug**
+3.  The following window ask to choose an Application Under Test (AUT). Add a new one with the product exported from step 1; **this step fails because of bug**
 4.  **TODO**
 
 ## Coding Policies
 
-The Preesm code base respects some coding policy. If you intend to develop within Preesm, we strongly advise you to follow these policy to prevent the continuous integration server to reject your contributions. These policies are simple :
+The Preesm code base respects some coding policy. If you intend to develop within Preesm, we strongly advise you to follow these policies to prevent the continuous integration server to reject your contributions. These policies are simple:
 
 1.  Follow the [checkstyle](http://checkstyle.sourceforge.net/) format provided in the [coding policy project](https://github.com/preesm/preesm-maven/blob/master/preesm-coding-policy/checkstyle/VAADER_checkstyle.xml);
 2.  Make sure all the tests run without failure (run 'mvn clean verify' in the root folder of the git repository.
 
-To help enforcing the checkstyle format, the "on-the-fly" checkstyle analyser using the Eclipse plug-in (automatically installed with the meta feature and configured through M2Eclipse connectors) will provide feedback and the Eclipse cleanup formatter will enforce most of the rules (triggered on save action).
+To help enforcing the checkstyle format, the "on-the-fly" checkstyle analyzer using the Eclipse plug-in (automatically installed with the meta feature and configured through M2Eclipse connectors) will provide feedback and the Eclipse cleanup formatter will enforce most of the rules (triggered on save action).
 
 ### Build Status Notifications
 
@@ -286,14 +286,14 @@ Preesm team repositories set the notification policies to the Travis default : [
 
 ## Troubleshooting
 
-*   **Many errors show up in source code. Why ?**
-    *   **(1)** The usual reason is that upstream API changed. Try "Help / Chek for updates". It may be required to [clean the Eclipse cache](https://stackoverflow.com/questions/9250041/how-to-clear-cache-of-eclipse-indigo) after such update.
+*   **Many errors show up in source code. Why?**
+    *   **(1)** The usual reason is that upstream API changed. Try "Help / Check for updates". It may be required to [clean the Eclipse cache](https://stackoverflow.com/questions/9250041/how-to-clear-cache-of-eclipse-indigo) after such update.
     *   **(2)** Another reason would be the Maven configuration files that are not up to date. To update them, select all the Preesm related projects in the workspace, and press Alt+F5 then press OK.
     *   **(3)** Also, the build state of the Eclipse workspace can be corrupted after an update. To fix that, restart Eclipse then clean and rebuild your workspace.
-    *   **(4)** Finaly, some updates can remove or introduce new Preesm plug-ins that you would have to add in your workspace. The safest way is to (1) remove the plugins from the workspace (select all then delete, without removing from file system); (2) clean the git repository (```git clean -xdf```); (3) then reimport the plugins (File / Import ... > Maven / Existing Maven Projects > select the root folder of the git repository. Eclipse will automatically detect plugins). If the procedures did not solve the errors, please contact us.
+    *   **(4)** Finally, some updates can remove or introduce new Preesm plug-ins that you would have to add in your workspace. The safest way is to (1) remove the plugins from the workspace (select all then delete, without removing from file system); (2) clean the git repository (```git clean -xdf```); (3) then reimport the plugins (File / Import ... > Maven / Existing Maven Projects > select the root folder of the git repository. Eclipse will automatically detect plugins). If the procedures did not solve the errors, please contact us.
 *   **Check for Updates is failing:** We moved the update site because of instability of the previous server. If you still have the old URL, you may have the following error: ```HTTP Server 'Service Unavailable': [...] error response code 503.``` It is best to use the new update site:
     *   Go to Window > Preferences then Install/Update > Available Software Sites;
     *   Look for the PREESM site and Edit its URL;
-    *   Paste the new URL : [http://preesm.insa-rennes.fr/repo/complete/](http://preesm.insa-rennes.fr/repo/complete/);
+    *   Paste the new URL: [http://preesm.insa-rennes.fr/repo/complete/](http://preesm.insa-rennes.fr/repo/complete/);
     *   Click on Apply and Close then try to check for updates again. If this does not solve the issue, please contact us.
 *   **Missing artifact com.sun:tools:jar:1.8.0 is missing:** This happens because Eclipse is running using a JRE instead of a JDK. Some Eclipse plugins needs Java packages that are not bundled with the JRE, but only with the JDK. If you installed the JDK, note that by default the JDK distribution for Windows also installs a JRE. Also, the installer adds a section in the PATH variable, that points to ```C:\ProgramData\Oracle\Java\javapath```, which is an alias to the JRE binaries. Please refer to [this page](https://douglascayers.com/2015/05/30/how-to-set-custom-java-path-after-installing-jdk-8/) for fixing the issue. Basically, it tells to prepend the PATH variable with the path to the JDK, while not removing the ```...\javapath``` section.
