@@ -65,5 +65,8 @@ As a contributor of the PREESM and/or Graphiti projects, we ask you to follow th
 
 *   Clone the needed repositories on develop branch (`git clone <url> -b develop`, see also [Building Preesm](/docs/buildpreesm))
 *   Start your own development branch(es) dedicated to the new features you want to add/the bug you want to fix (`git checkout -b <new-branch-name>`)
-*   Frequently check for latest version of the code (`git fetch --all`) in order to stay up to date with the remote repositories and rebase your branch on latest develop from remote repoistory (`git rebase origin/develop`). Note that if the rebase create a divergence, you will have to force push (`git push -f`)
+*   Frequently check for latest version of the code. From your branch with all changes committed: 
+  *  Sync remote repository: `git fetch --all`
+  *  Rebase your branch on latest develop from remote repoistory: `git rebase origin/develop`
+  *  Force push if there is a divergence: `git push -f`
 *   When finished, after rebasing it on latest develop (see step above), create a pull request for one of the admins to merge it.
