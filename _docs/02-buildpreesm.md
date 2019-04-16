@@ -235,7 +235,7 @@ This has to be done on all plug-ins, except for the RCPTT test plug-in, where "R
 
 [![](/assets/docs/02-buildingpreesm/tests-eclipseresults.png)](/assets/docs/02-buildingpreesm/tests-eclipseresults.png)
 
-Failures can be re-run indenpendently in order to check the log more accurately. This is done by scrolling in the Console log. Among all the outputs, the workflow logs always start with **Starting workflow execution**:
+This view will only tell which Preesm Workflow successfully terminated or not. To inspect the actual cause of the failure, the log has to be inspected. Test failures can be re-run indenpendently in order to check the log more accurately (otherwise the log can be several thousands of lines). This is done by scrolling in the Console log. Among all the outputs, the workflow logs always start with **Starting workflow execution**:
 ```
 [...]
 13:21:03 NOTICE: Starting workflow execution: /org.ietr.preesm.stereo/Workflows/CodegenMemoryScriptsMixedMerged.workflow.
