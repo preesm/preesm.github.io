@@ -41,6 +41,7 @@ On Ubuntu 16.04
 sudo apt-get install cmake cmake-curses-gui
 ```
 
+
 For other distributions, see appropriate documentation. Package names should be very similar.
 
 #### Windows / MacOSX
@@ -73,6 +74,12 @@ On Ubuntu 16.04
 
 ```bash
 sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev
+```
+
+On CentOS 7.6
+
+```bash
+sudo yum install SDL2-devel SDL2_ttf-devel.x86_64
 ```
 
 For other distributions, see appropriate documentation. Package names should be very similar.
