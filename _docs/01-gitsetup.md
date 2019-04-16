@@ -67,7 +67,7 @@ As a contributor of the PREESM and/or Graphiti projects, we ask you to follow th
 *   Switch to the develop branches (git checkout develop)
 *   Start your own development branch(es) dedicated to the new features you want to add/the bug you want to fix (git checkout -b \<new-branch-name\>)
 *   Frequently check for latest version of the code in order to stay up to date with the remote repositories (git fetch)
-*   When finished, after rebasing it on latest develop (see [below](/docs/gitsetup/#clean-mergerebase-of-your-branches-into-develop)), create a pull request for one of the admins to merge it:
+*   When finished, after rebasing it on latest develop (see script below)), create a pull request for one of the admins to merge it.
 
 ```bash
 ##
