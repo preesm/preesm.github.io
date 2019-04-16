@@ -63,27 +63,7 @@ Each of our repositories get two main branches (which are permanent):
 
 As a contributor of the PREESM and/or Graphiti projects, we ask you to follow the following wokflow when developing:
 
-*   Clone the needed repositories (git clone \<url\>, see also [Building Preesm](/docs/buildpreesm))
-*   Switch to the develop branches (git checkout develop)
-*   Start your own development branch(es) dedicated to the new features you want to add/the bug you want to fix (git checkout -b \<new-branch-name\>)
-*   Frequently check for latest version of the code in order to stay up to date with the remote repositories (git fetch)
-*   When finished, after rebasing it on latest develop (see script below)), create a pull request for one of the admins to merge it.
-
-```bash
-##
-## 1. sync develop with remote repository
-##
-
-git checkout develop
-git pull #there should be no conflict since you should not commit on develop
-
-##
-## 2. rebase new branch on develop
-## note:  conflicts might occur during this step
-##  -> use 'git mergetool' and 'git rebase --continue'
-##
-
-git checkout <new-branch-name>
-git rebase develop
-git push -f
-```
+*   Clone the needed repositories on develop branch (`git clone <url> -b develop`, see also [Building Preesm](/docs/buildpreesm))
+*   Start your own development branch(es) dedicated to the new features you want to add/the bug you want to fix (`git checkout -b <new-branch-name>`)
+*   Frequently check for latest version of the code (`git fetch --all`) in order to stay up to date with the remote repositories and rebase your branch on latest develop from remote repoistory (`git rebase origin/develop`). Note that if the rebase create a divergence, you will have to force push (`git push -f`)
+*   When finished, after rebasing it on latest develop (see step above), create a pull request for one of the admins to merge it.
