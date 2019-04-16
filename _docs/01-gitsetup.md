@@ -4,22 +4,21 @@ permalink: /docs/gitsetup/
 toc: true
 ---
 
-git is the Decentralized Version Control System (DVCS) used by the Preesm development team to version the PREESM, DFTools and Graphiti sources. In order to get the sources of these projects and to contribute to them, you will need to install git and to create a Github account.
+git is the Decentralized Version Control System (DVCS) used by the Preesm development team to version the PREESM and Graphiti sources. In order to get the sources of these projects and to contribute to them, you will need to install git and to create a Github account.
 
 ## Learning git
 
-If you're not familiar with git and plan to contribute to PREESM, DFTools or Graphiti projects, you should first learn a little bit about git.
+If you're not familiar with git and plan to contribute to PREESM or Graphiti projects, you should first learn a little bit about git.
 
 The [git book](http://git-scm.com/book/) is available in several languages and will present almost everything you need to know about git (you should at least read Chapters 2 and 3).
 
-The --help option after the different git commands will also help you to understand their goals and the way to use it.
+The `--help` option after the different git commands will also help you to understand their goals and the way to use it.
 
 You can also find a few git tips & tricks more specific to PREESM development on [this page](/docs/gittips).
 
 Finally, the Internet is full of resources about git (see for example StackOverflow questions related to git: [https://stackoverflow.com/questions/tagged/git](https://stackoverflow.com/questions/tagged/git)).
 
 ## Install git & git-gui
-
 
 ### Windows
 
@@ -45,30 +44,30 @@ git uses your email address to identify your commits, as well as a user name (ba
 
 ## Create a github account
 
-PREESM, DFTools and Graphiti sources are hosted on [Github](https://github.com) repositories.
+PREESM and Graphiti sources are hosted on [Github](https://github.com) repositories.
 
-In order to contribute to PREESM, DFTools or Graphiti (_i.e._, push to the corresponding Github repository), you will thus need to get a Github account and to be acknowledged as a contributor of the concerned project.  
+In order to contribute to PREESM or Graphiti (_i.e._, push to the corresponding Github repository), you will thus need to get a Github account and to be acknowledged as a contributor of the concerned project.  
   
-To do so, first create a Github account and make sure the email address your registered in your git configuration is one of the registered email addresses of your Github account (Github > Account settings > Emails). You can then contact one of the administrators of the projects ([Clément Guy](mailto:clement.guy@insa-rennes.fr), [Maxime Pelcat](mailto:mpelcat@insa-rennes.fr) or [Jean-François Nezan](mailto:jnezan@insa-rennes.fr)) to become a collaborator of the Preesm development team.
+To do so, first create a Github account and make sure the email address your registered in your git configuration (see above) is one of the registered email addresses of your Github account (Github > Account settings > Emails).
 
-You can also add one or more SSH key to your Github account (Github > Account settings > SSH Keys), which make it easier when working with Github repositories (Github won't ask you your login and password each time you want to pull or push).
+You can also add one or more SSH keys to your Github account (Github > Account settings > SSH Keys), which make it easier when working with Github repositories (Github won't ask you your login and password each time you want to pull or push).
 
-_Note: You can also get the code and propose contributions without being part of the teams of contributors through the Fork & Pull request process ([learn more about the Fork & Pull model](https://help.github.com/articles/using-pull-requests))._
+You can get the code and propose contributions without being part of the teams of contributors through the Fork & Pull request process ([learn more about the Fork & Pull model](https://help.github.com/articles/using-pull-requests)).
 
-## Development workflow for PREESM, DFTools and Graphiti
+## Development workflow for PREESM and Graphiti
 
 Each of our repositories get two main branches (which are permanent):
 
-*   The **master** branches are dedicated to contain the clean and stable code and are modified only by releases of new versions of our softwares ; you should **NOT** commit or push to the master branch of a repository and you should **NOT** merge into a master branch without the agreement of one of its administrators.
-*   The **develop** branches are the integration branches where new features are merged and tested ; they contain the latest version of the code.
+*   The **master** branches are dedicated to contain the clean and stable code and are modified only by releases of new versions of our softwares ; you should **NOT** commit or push to the master branch of a repository and you should **NOT** merge into a master branch. Push to masters are blocked for all except members of preesm/admins.
+*   The **develop** branches are the integration branches where new features are merged and tested ; they contain the latest version of the code. Push to masters are blocked for all except members of preesm/admins.
 
-As a contributor of the PREESM, DFTools and/or Graphiti projects, we ask you to follow the following wokflow when developing:
+As a contributor of the PREESM and/or Graphiti projects, we ask you to follow the following wokflow when developing:
 
 *   Clone the needed repositories (git clone \<url\>, see also [Building Preesm](/docs/buildpreesm))
 *   Switch to the develop branches (git checkout develop)
 *   Start your own development branch(es) dedicated to the new features you want to add/the bug you want to fix (git checkout -b \<new-branch-name\>)
 *   Frequently check for latest version of the code in order to stay up to date with the remote repositories (git fetch)
-*   When finished, merge your branch into your up to date local develop branch, after rebasing it (see [below](/docs/gitsetup/#clean-mergerebase-of-your-branches-into-develop)):
+*   When finished, after rebasing it on latest develop (see [below](/docs/gitsetup/#clean-mergerebase-of-your-branches-into-develop)), create a pull request for one of the admins to merge it:
 
 ```bash
 ##
@@ -80,24 +79,11 @@ git pull #there should be no conflict since you should not commit on develop
 
 ##
 ## 2. rebase new branch on develop
-## note: the conflicts will occur during this step
+## note:  conflicts might occur during this step
 ##  -> use 'git mergetool' and 'git rebase --continue'
 ##
 
 git checkout <new-branch-name>
 git rebase develop
-
-##
-## 3. merge the rebased branch
-##
-
-git checkout develop
-git merge --no-ff <new-branch-name>
-git push
+git push -f
 ```
-
-### Clean merge/rebase of your branches into develop
-
-Depending what is the branch you want to merge into develop, it is prefered to use rebase before merging and to use ```git merge --no-ff```. See the following articles: 
-*  [git merge vs rebase whats the diff?](https://hackernoon.com/git-merge-vs-rebase-whats-the-diff-76413c117333)
-*  [getting solid at git rebase vs. merge](https://medium.com/@porteneuve/getting-solid-at-git-rebase-vs-merge-4fa1a48c53aa)
