@@ -258,12 +258,39 @@ This log shows that the Code Generation task threw an exception while attempting
 
 **Note: at the time of writing, RCPTT tests are disabled because of an incompatibility with latest Eclipse (see [https://github.com/xored/rcptt/issues/16](https://github.com/xored/rcptt/issues/16)).**
 
-This procedure is specific to running tests from Eclipse. Maven uses the product built during the full process to run the tests.
+This procedure is specific to running [RCPTT](https://www.eclipse.org/rcptt/) tests from Eclipse. Maven uses the product built during the full process to run the tests and run them during the build process.
 
 1.  Export the product using [procedure described above](#from-eclipse);
 2.  Select plugin "org.preesm.tests.ui.rcptt", right click on it then "Run As / Test Cases" 
 3.  The following window ask to choose an Application Under Test (AUT). Add a new one with the product exported from step 1; **this step fails because of bug**
 4.  **TODO**
+
+### Adding New Tests
+
+#### Adding Unit Tests
+
+*  Add test in proper plugin:
+  *  org.preesm.tests.algorithm
+  *  org.preesm.tests.framework
+  *  org.preesm.tests.model
+  *  org.preesm.tests.ui
+*  Create unit test as for any other Java project. Make sure the class name ends with **Test**.
+
+#### Adding Integration Tests
+
+Tests within the plugin **org.preesm.tests.integration**.
+
+*  Add project with workflow/scenario/slam/pisdf to test; check project name
+*  Tests are run with **org.ietr.preesm.test.it.api.WorkflowRunner**
+*  Prefer [Parametrized Tests](https://github.com/junit-team/junit4/wiki/parameterized-tests) when running several 
+
+#### Adding UI Tests
+
+UI Tests are run using [RCPTT](https://www.eclipse.org/rcptt/).
+
+**Note: at the time of writing, RCPTT tests are disabled because of an incompatibility with latest Eclipse (see [https://github.com/xored/rcptt/issues/16](https://github.com/xored/rcptt/issues/16)).**
+
+**TODO**
 
 ## Coding Policies
 
