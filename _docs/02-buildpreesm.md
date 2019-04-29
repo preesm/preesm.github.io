@@ -270,7 +270,12 @@ This procedure is specific to running [RCPTT](https://www.eclipse.org/rcptt/) te
 
 Preesm relies on [**JUnit 4**](https://junit.org/junit4/) for its tests. We strongly recommend the developers to read about unit testing with JUnit before implementing tests in Preesm. The following tutorial is especially relevant: [https://www.vogella.com/tutorials/JUnit/article.html](https://www.vogella.com/tutorials/JUnit/article.html).
 
-When adding a new task in Preesm, the good practice is to add unit tests for the different parts of the algorithm in the **org.preesm.tests.algorithm**, possibly tests in the **org.preesm.tests.model** if the model was updated, and some full examples with actual working Workflow, Scenario, etc. in the **org.preesm.tests.integration** plugin. If the contribution impacts the UI, then adding RCPTT tests is advised.
+When adding a new task in Preesm, the good practice is to add unit tests for the different parts of the algorithm in the **org.preesm.tests.algorithm**, possibly tests in the **org.preesm.tests.model** if the model was updated, and some full examples with actual working Workflow, Scenario, etc. in the **org.preesm.tests.integration** plugin. More about unit vs integration test can be found online:
+*  https://www.guru99.com/unit-test-vs-integration-test.html
+*  https://dzone.com/articles/unit-testing-vs-integration-testing-whats-the-diff
+*  https://stackoverflow.com/questions/5357601/whats-the-difference-between-unit-tests-and-integration-tests
+
+If the contribution impacts the UI, then adding RCPTT tests is advised. 
 
 **Note**: When testing code that works with files, please (1) make sure the path is not user dependent, and (2) make sure the test pass when run from a bundle and not from Eclipse. Indeed, the resources of a test plug-ins are accessed differently depending of how the test is run. See [this issue](https://stackoverflow.com/questions/5756218/) for instance. The integration tests use a similar approach to run the workflows.
 
