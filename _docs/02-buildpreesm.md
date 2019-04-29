@@ -134,11 +134,12 @@ Automatic testing is key to prevent regression. Preesm tests are run automatical
 Builds can fail for many reasons, as compilation error, broken coding policies, or test failures. Compilation errors and broken coding policies should be enforced by the Eclipse IDE. Tests however have to be triggered manually on your workstation. Indeed, having the Travis CI build fail on the tests means that one or several functionalities have been broken.
 
 The tests are split in several test plug-ins:
-*  **org.preesm.tests.algorithm**: unit testing of algorithms and codegen;
-*  **org.preesm.tests.framework**: unit testing for commons and workflow;
+* Unit Tests:
+  *  **org.preesm.tests.framework**: unit testing for commons and workflow;
+  *  **org.preesm.tests.model**: unit testing of PiSDF, SLAM and Scenario models;
+  *  **org.preesm.tests.algorithm**: unit testing of algorithms and codegen;
+  *  **org.preesm.tests.ui**: unit testing for UI (workflow, PiSDF, Slam, Scenario);
 *  **org.preesm.tests.integration**: integration test running workflows on Preesm projects;
-*  **org.preesm.tests.model**: unit testing of PiSDF, SLAM and Scenario models;
-*  **org.preesm.tests.ui**: unit testing for UI (workflow, PiSDF, Slam, Scenario);
 *  **org.preesm.tests.ui.rcptt**: integration tests for UI using [RCPTT](https://www.eclipse.org/rcptt/), actually reproducing user behavior.
 
 
@@ -267,14 +268,19 @@ This procedure is specific to running [RCPTT](https://www.eclipse.org/rcptt/) te
 
 ### Adding New Tests
 
+Preesm relies on [**JUnit 4**](https://junit.org/junit4/) for its tests. We strongly recommend the developers to read about unit testing with JUnit before implementing tests in Preesm. The following tutorial is especially relevant: [https://www.vogella.com/tutorials/JUnit/article.html](https://www.vogella.com/tutorials/JUnit/article.html).
+
+When adding a new task in Preesm, the good practice is to add unit tests for the different parts of the algorithm in the **org.preesm.tests.algorithm**, possibly tests in the **org.preesm.tests.model** if the model was updated, and some full examples with actual working Workflow, Scenario, etc. in the **org.preesm.tests.integration** plugin. If the contribution impacts the UI, then adding RCPTT tests is advised.
+
+**Note**: When testing code that works with files, please (1) make sure the path is not user dependent, and (2) make sure the test pass when run from a bundle and not from Eclipse. Indeed, the resources of a test plug-ins are accessed differently depending of how the test is run. See [this issue](https://stackoverflow.com/questions/5756218/) for instance. The integration tests use a similar approach to run the workflows.
+
 #### Adding Unit Tests
 
-*  Add test in proper plugin:
-  *  org.preesm.tests.algorithm
-  *  org.preesm.tests.framework
-  *  org.preesm.tests.model
-  *  org.preesm.tests.ui
-*  Create unit test as for any other Java project. Make sure the class name ends with **Test**.
+1.  Create a new class in one of the test plug-ins (see how test plug-ins are decomposed in the [introduction of this section](#non-regression-tests));
+  *  Make sure the class name starts or ends with **Test**. This is to make sure the tests will be run by the Maven plug-in, as the pattern to locate tests is `**/Test*.java **/*Test.java **/*TestCase.java` (see [this doc](https://www.eclipse.org/tycho/sitedocs/tycho-surefire/tycho-surefire-plugin/test-mojo.html#includes)).
+2.  In this new class, add methods with the `@Test` annotation as any JUnit test and implement it. If the test plug-in misses dependencies, add them in the manifest as 'Required Plug-ins';
+3.  When the test is ready, [run it from Eclipse](#run-tests-from-eclipse) to make sure it is working properly.
+4.  Finally add it to git and commit it as any other file.
 
 #### Adding Integration Tests
 
@@ -284,7 +290,7 @@ Tests within the plugin **org.preesm.tests.integration**.
 *  Tests are run with **org.ietr.preesm.test.it.api.WorkflowRunner**
 *  Prefer [Parametrized Tests](https://github.com/junit-team/junit4/wiki/parameterized-tests) when running several 
 
-#### Adding UI Tests
+#### Adding UI Tests with RCPTT
 
 UI Tests are run using [RCPTT](https://www.eclipse.org/rcptt/).
 
