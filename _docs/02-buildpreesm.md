@@ -276,6 +276,8 @@ When adding a new task in Preesm, the good practice is to add unit tests for the
 
 #### Adding Unit Tests
 
+Unit tests are meant to test small parts (usually one method per test) of the application.
+
 1.  Create a new class in one of the test plug-ins (see how test plug-ins are decomposed in the [introduction of this section](#non-regression-tests));
   *  Make sure the class name starts or ends with **Test**. This is to make sure the tests will be run by the Maven plug-in, as the pattern to locate tests is `**/Test*.java **/*Test.java **/*TestCase.java` (see [this doc](https://www.eclipse.org/tycho/sitedocs/tycho-surefire/tycho-surefire-plugin/test-mojo.html#includes)).
 2.  In this new class, add methods with the `@Test` annotation as any JUnit test and implement it. If the test plug-in misses dependencies, add them in the manifest as 'Required Plug-ins';
@@ -284,11 +286,16 @@ When adding a new task in Preesm, the good practice is to add unit tests for the
 
 #### Adding Integration Tests
 
-Tests within the plugin **org.preesm.tests.integration**.
+Preesm integration tests check the termination status of workflows. The mini-framework takes as input a Preesm project, a workflow and a scenario, then returns a boolean telling of the workflow terminated successfully without errors. No test is done on the result of the execution of the workflow. [JUnit parameterized tests](https://github.com/junit-team/junit4/wiki/Parameterized-tests) helps running tests in bulk.
 
-*  Add project with workflow/scenario/slam/pisdf to test; check project name
-*  Tests are run with **org.ietr.preesm.test.it.api.WorkflowRunner**
-*  Prefer [Parametrized Tests](https://github.com/junit-team/junit4/wiki/parameterized-tests) when running several 
+1.  [Run the version of Preesm from your workspace](#execution-of-preesm);
+2.  In Preesm, create a new Preesm project with a name that represents what you are testing. Make sure the name does not conflict with projects already present in the **resources** folder of the **org.preesm.tests.integration**;
+3.  In this new project, add whatever is required to run the workflow(s) with the task you want to test. If your task does not require an application or an architecture, feel free to skip them. Since the generated code will not be executed, providing the source code for the actors can also be skipped.
+4.  Make sure the workflow(s) terminates properly, then copy the project:
+[![](/assets/docs/02-buildingpreesm/tests-add-copyproject.png)](/assets/docs/02-buildingpreesm/tests-add-copyproject.png)
+5.  Paste the project in the **resources** folder of the **org.preesm.tests.integration** plug-in.
+6.  Add a Unit test in **org.preesm.tests.integration** that calls `WorkflowRunner.runWorkFlow` with proper project name, workflow and scenario, and use `Assert.assertTrue` on the result (or false of you want to make sure the workflow fails). Check other existing tests, for instance `TutorialsTest`, to get an idea of how to write bulk tests.
+
 
 #### Adding UI Tests with RCPTT
 
