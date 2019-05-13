@@ -257,14 +257,17 @@ This log shows that the Code Generation task threw an exception while attempting
 
 #### RCPTT Tests from Eclipse
 
-**Note: at the time of writing, RCPTT tests are disabled because of an incompatibility with latest Eclipse (see [https://github.com/xored/rcptt/issues/16](https://github.com/xored/rcptt/issues/16)).**
-
-This procedure is specific to running [RCPTT](https://www.eclipse.org/rcptt/) tests from Eclipse. Maven uses the product built during the full process to run the tests and run them during the build process.
+This procedure is specific to running [RCPTT](https://www.eclipse.org/rcptt/) tests from Eclipse. Maven uses the product built during the full process to run the tests and run them during the build process. We strongly advise the developers to have a look at the [RCPTT user guide](https://www.eclipse.org/rcptt/documentation/userguide/getstarted/) before going further.
 
 1.  Export the product using [procedure described above](#from-eclipse);
 2.  Select plugin "org.preesm.tests.ui.rcptt", right click on it then "Run As / Test Cases" 
-3.  The following window ask to choose an Application Under Test (AUT). Add a new one with the product exported from step 1; **this step fails because of bug**
-4.  **TODO**
+3.  The following window ask to choose an Application Under Test (AUT). Add a new one with the product exported from step 1:
+[![](/assets/docs/02-buildingpreesm/tests-rcptt-newaut.png)](/assets/docs/02-buildingpreesm/tests-rcptt-newaut.png)
+4.  Before selecting OK in the AUT selection window, make sure you will not need your machine for few minutes. Indeed, automated UI tests will run graphically and require the mouse / keyboard to be unused.
+[![](/assets/docs/02-buildingpreesm/tests-rcptt-AUTselect.png)](/assets/docs/02-buildingpreesm/tests-rcptt-AUTselect.png)
+5.  The tests will run in a new instance of Eclipse, that is the "Application Unter Test" exported in step 1. The status of the test execution is displayed in a new view:
+[![](/assets/docs/02-buildingpreesm/tests-rcptt-status.png)](/assets/docs/02-buildingpreesm/tests-rcptt-status.png)
+6.  At the end of the execution, errors can be analyzed if present. The AUT does not close by itself, and can be closed manually, or kept open for further testing (see [Adding UI Tests with RCPTT](#adding-ui-tests-with-rcptt)).
 
 ### Adding New Tests
 
@@ -306,9 +309,9 @@ Preesm integration tests check the termination status of workflows. The mini-fra
 
 UI Tests are run using [RCPTT](https://www.eclipse.org/rcptt/).
 
-**Note: at the time of writing, RCPTT tests are disabled because of an incompatibility with latest Eclipse (see [https://github.com/xored/rcptt/issues/16](https://github.com/xored/rcptt/issues/16)).**
+We refer the developers to the [RCPTT user guide](https://www.eclipse.org/rcptt/documentation/userguide/getstarted/) for adding RCPTT tests.
 
-**TODO**
+The only specific directive is to insert new tests (and their verifications and contexts) in a proper, consistent folder hierarchy.
 
 ## Coding Policies
 
