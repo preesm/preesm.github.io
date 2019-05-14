@@ -60,7 +60,7 @@ Following the [Development workflow for PREESM and Graphiti](/docs/devdoc/#devel
 # position HEAD on branch with new features
 git checkout newFeatureBranch
 # make sure remote develop branch is sync
-git fetch --all
+git fetch --all -p
 
 # rebase HEAD (new feature branch) on remote develop
 git rebase origin/develop
@@ -111,7 +111,7 @@ A naive approach of the full rebase would be similar to the following sequence:
 
 ```shell
 git checkout newFeatureBranch
-git fetch --all
+git fetch --all -p
 
 git rebase origin/develop
 REBASE_CODE=$?
