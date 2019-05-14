@@ -14,13 +14,11 @@ toc: true
 
 ## Developer Documentation
 
-### [Install and Configure git](/docs/gitsetup/)
+### [Install git](/docs/gitsetup/)
 
 The following topics are covered in this tutorial:
 
 *   Installation and configuration of the git Decentralized Version Control System
-*   Creation and configuration of a Github account
-*   Development workflow for PREESM, DFTools and Graphiti
 
 ### [Building Preesm](/docs/buildpreesm/)
 
