@@ -65,13 +65,10 @@ target_link_libraries(sobel ${SDL2_LIBRARY} ${SDL2TTF_LIBRARY} ${CMAKE_THREAD_LI
 ```
 
 - (7) In case it is not present, add this line at the end of the CMakeLists.txt ```set(CMAKE_C_FLAGS "-std=gnu99")```
-- (8) Finally, in order to find Papify library in compilation time, add these lines in the /include/preesm.h file
+- (8) Finally, in order to actually enable Papify monitoring, add this line in the /include/preesm.h file. Pleasem note that if it is not done, the application will run normally without any monitoring
 
 ```c
 #define _PREESM_MONITOR_INIT
-#ifdef _PREESM_MONITOR_INIT
-#include "eventLib.h"
-#endif
 ```
 
 ## Generate the platform supported PAPI events
