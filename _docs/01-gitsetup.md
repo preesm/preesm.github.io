@@ -58,8 +58,8 @@ You can get the code and propose contributions without being part of the teams o
 
 Each of our repositories get two main branches (which are permanent):
 
-*   The **master** branches are dedicated to contain the clean and stable code and are modified only by releases of new versions of our softwares ; you should **NOT** commit or push to the master branch of a repository and you should **NOT** merge into a master branch. Push to masters are blocked for all except members of preesm/admins.
-*   The **develop** branches are the integration branches where new features are merged and tested ; they contain the latest version of the code. Push to masters are blocked for all except members of preesm/admins.
+*   The **master** branches are dedicated to contain the clean and stable code and are modified only by releases of new versions of our softwares ; you should **NOT** commit or push to the master branch of a repository and you should **NOT** merge into a master branch. Push to master are blocked for all except members of preesm/admins.
+*   The **develop** branches are the integration branches where new features are merged and tested ; they contain the latest version of the code. Push to develop are blocked for all except members of preesm/admins.
 
 As a contributor of the PREESM and/or Graphiti projects, we ask you to follow the following wokflow when developing:
 
