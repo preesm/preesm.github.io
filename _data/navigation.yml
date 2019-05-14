@@ -51,17 +51,29 @@ docs_nav:
   - title: Documentation
     url: /docs/
     children:
-      - title: "Install and Configure git"
+      - title: Install Preesm
+        url: /get/
+      - title: Tutorials
+        url: /tutos/
+      - title: "Release Notes (on GitHub)"
+        url: https://github.com/preesm/preesm/blob/master/release_notes.md
+      - title: "Workflow Tasks Reference"
+        url: /docs/workflowtasksref/
+  - title: Contributing
+    url: /docs/#developer-documentation
+    children:
+      - title: "Install git"
         url: /docs/gitsetup/
       - title: "Building Preesm"
         url: /docs/buildpreesm/
-      - title: "New Workflow Task"
-        url: /docs/newtask/
       - title: "Building Spider - [BETA]"
         url: /docs/buildspider/
-      - title: "Workflow Tasks Reference"
-        url: /docs/workflowtasksref/
+      - title: "New Workflow Task"
+        url: /docs/newtask/
+      - title: "Developer Documentation"
+        url: /docs/devdoc/
   - title: Extras
+    url: /docs/#extras
     children:
       - title: "Git Tips and Tricks"
         url: /docs/gittips/

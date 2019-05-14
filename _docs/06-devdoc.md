@@ -1,131 +1,60 @@
 ---
-title: "Building Preesm"
-permalink: /docs/buildpreesm/
+title: "Developer Documentation"
+permalink: /docs/devdoc/
 toc: true
 ---
 
-Prerequisite: 
-*  [Install and Configure git](/docs/gitsetup)
-*  Building Preesm requires an active Internet connection, used to fetch Maven and/or Eclipse dependencies. This Internet connection is not required for running Preesm once built.
+## git
 
-Note: if you need to work with Graphiti source code, please read [these instructions](/docs/buildfromgraphiti/) first.
+### Configure git
 
-###### Tutorial created the 04.24.2012 by [M. Pelcat](mailto:mpelcat@insa-rennes.fr)  
-Updated the 21.11.2018 by [A. Morvan](mailto:antoine.morvan@insa-rennes.fr)
+git uses your email address to identify your commits, as well as a user name (basically your full name) to make it easier to trace commits. In order to set the email address and user name git will use in your commits, you need to launch the following commandlines, where <name> is the name you want git to use to identify your commits and <mail> the email address you want git to attach to your commits.
 
-## Disclaimers
+*   git config --global user.name <name>
+*   git config --global user.email <mail>
 
-1.  When building PREESM, you have to **run a second Eclipse Application** (the guest) within the Eclipse where the source code is imported (the host). This is explained below in  the "Execution of Preesm" section;
-2.  When using unreleased source code (that is any other commit different from the last tag), there could be some **inconsistencies** between released zip files used in tutorials and the tool;
+### Create a github account
+
+PREESM and Graphiti sources are hosted on [Github](https://github.com) repositories.
+
+In order to contribute to PREESM or Graphiti (_i.e._, push to the corresponding Github repository), you will thus need to get a Github account and to be acknowledged as a contributor of the concerned project.  
+  
+To do so, first create a Github account and make sure the email address your registered in your git configuration (see above) is one of the registered email addresses of your Github account (Github > Account settings > Emails).
+
+You can also add one or more SSH keys to your Github account (Github > Account settings > SSH Keys), which make it easier when working with Github repositories (Github won't ask you your login and password each time you want to pull or push).
+
+You can get the code and propose contributions without being part of the teams of contributors through the Fork & Pull request process ([learn more about the Fork & Pull model](https://help.github.com/articles/using-pull-requests)).
+
+### Development workflow for PREESM and Graphiti
+
+Each of our repositories get two main branches (which are permanent):
+
+*   The **master** branches are dedicated to contain the clean and stable code and are modified only by releases of new versions of our softwares ; you should **NOT** commit or push to the master branch of a repository and you should **NOT** merge into a master branch. Push to master are blocked for all except members of preesm/admins.
+*   The **develop** branches are the integration branches where new features are merged and tested ; they contain the latest version of the code. Push to develop are blocked for all except members of preesm/admins.
+
+As a contributor of the PREESM and/or Graphiti projects, we ask you to follow the following wokflow when developing:
+
+*   Clone the needed repositories on develop branch (`git clone <url> -b develop`, see also [Building Preesm](/docs/buildpreesm))
+*   Start your own development branch(es) dedicated to the new features you want to add/the bug you want to fix (`git checkout -b <new-branch-name>`)
+*   Frequently check for latest version of the code. From your branch with all changes committed: 
+    *   Sync remote repository: `git fetch --all`
+    *   Rebase your branch on latest develop from remote repoistory: `git rebase origin/develop`
+    *   Force push if there is a divergence: `git push -f`
+*   When finished, after rebasing it on latest develop (see step above), create a pull request for one of the admins to merge it.
+
+If you encounter conflicts during the process and do not know how to manage the situation, have a look at our doc on [solving git conflicts](/docs/gittips/#solving-git-conflicts).
+
+## Build Status Notifications
+
+To receive the build status notifications, you have to sign in on travis-ci.org with your github account and make sure your local git config mail address matches one of the github verified mail address:
+
+1.  Check your local git config mail address, and change it to a valid one if it is not already the case: ```git config --global --edit```
+2.  Sign in on GitHub, got to Settings / Emails, and check that the mail address is present. If not, add it to the list and make sure that it is verified before going further.
+3.  Got to [https://travis-ci.org/](https://travis-ci.org/) and Sign In with your GitHub account. This will allow Travis-CI to read the permissions on the repositories to make sure you have push access and also check that your mail address is verified.
+
+Preesm team repositories set the notification policies to the Travis default : [https://docs.travis-ci.com/user/notifications/](https://docs.travis-ci.com/user/notifications/)
 
 
-## Eclipse installation
-
-### Install Java  
-
-Preesm requires the Eclipse environment, which runs on the Java platform. If you do not have Java yet, you will need to install it, either in your package manager, or on this website: [http://www.java.com](http://www.java.com). Please install Java 8 Java Runtime Environment (JRE) or Java Development Kit (JDK). **Under Windows, you may need to uninstall Java 6 or 7.**
-
-### Eclipse
-
-Eclipse is an extensible platform programmed in Java that allows developers to write their own IDE (Integrated Development Environment).
-
-You can download Eclipse here: [https://www.eclipse.org/downloads/packages/](https://www.eclipse.org/downloads/packages/). Please download the **"Eclipse IDE for Java Developers"** package to develop in Preesm. Install or extract Eclipse in a folder where you have write access.
-
-Run Eclipse, you need to choose a workspace, i.e. a directory where the metadata of and/or your projects will be stored.
-
-### Ensure use of Java 8 or higher in Eclipse
-
-In Eclipse, go to: Window > Preference > Java > Compiler and choose Compiler compliance level=1.8. You may check the linked JRE in Window > Preference > Java > Installed JREs.
-
-Under Windows and Linux, you can check that Java version 1.8 is installed by typing "java -version" in a command terminal. 
-
-Under Linux, ensure Java 8 is the default version. In the eclipse.ini file, you can set:  
--Dosgi.requiredJavaVersion=1.8
-
-Under Linux command line, you can set java 1.8 as default with following commands (example with 64-bit openjdk):  
-```bash
-sudo update-java-alternatives -l  
-sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
-```
-
-### Install Development Requirements
-
-In Eclipse:
-
-1.  Go to "Help > Install New Software...";
-2.  In "work with:", add a new location named "Preesm" with location "http://preesm.insa-rennes.fr/repo/"
-3.  Select the "Developer Resources > **PREESM Developer Requirements (Meta Feature)**"
-    (this Eclipse feature contains all requirements for developing Preesm):
-    ![](/assets/docs/02-buildingpreesm/dev_feature.png)
-4.  Click Next twice, agree on the terms of the license, and click on Finish to install the features. This step will take a few minutes.
-5.  During the installation process, a security warning for unsigned content will appear. Click on OK to continue the installation.
-6.  Restart eclipse to complete the installation.
-
-## Import Preesm projects
-
-You need to get the code from the git repository and import the projects into Eclipse. Our git repository is hosted by [Github](https://github.com/) (see the [Preesm team page on Github](https://github.com/preesm/)).
-
-Clone the [Preesm](https://github.com/preesm/preesm) repository (git clone \<url\>, in the folder where you want to place your local repository):
-
-*   [https://github.com/preesm/preesm.git](https://github.com/preesm/preesm.git) (https)
-*   or ```git@github.com:preesm/preesm.git``` (SSH)
-
-**Switch to the develop** branch (git checkout develop) to get the latest developer version of our source.
-
-Connect your local repository obtained through git clone to your Eclipse workspace
-
-*   Window > Perspective > Open Perspective > Other ... then select Git
-*   Add an existing local repository to this view (GIT button with a green plus symbol), then browse to the local repositories
-*   Check the box and click on finish.
-
-The PREESM plugins are plain Maven projects. In order to import them in Eclipse, we rely on the M2Eclipse project (automatically installed with the dev feature). This allow to centralize all the configuration in the POM files. The .project, .classpath and .settings/* files are automatically generated (see [maintainer doc](https://github.com/preesm/preesm/blob/develop/releng/README.md)).
-
-*   In the Java perspective, click on File > Import... then Maven > Existing Maven Projects;
-*   In the next window, browse to the git repository location (the Preesm root folder);
-*   The project import wizard should automatically find all the projects;
-    *   Note: releng/* projects are for Release Engineering, and can be omitted.:
-        ![](/assets/docs/02-buildingpreesm/unselect-releng.png)
-*   Click on finish. The import of Preesm projects will start automatically. The progress is visible in the bottom right of the Eclipse window:
-[![](/assets/docs/02-buildingpreesm/import-progress1.png)](/assets/docs/02-buildingpreesm/import-progress1.png)
-*   **Note: this step can take few minutes as the Maven local repository has to be initialized and filled with project dependencies.** More details about the progress can be observed by click on the right most button of the state bar:
-[![](/assets/docs/02-buildingpreesm/import-progress2.png)](/assets/docs/02-buildingpreesm/import-progress2.png)
-
-If the import step is interrupted, this might corrupt the local Maven repository. See [issue #129](https://github.com/preesm/preesm/issues/129) for more details and fix procedure.
-
-## Compilation of Preesm
-
-**Change perspective**  
-For a better user experience in eclipse, we strongly advice that you use the "Plug-In Development" perspective of eclipse. To use this perspective, select "Plug-In Development" in Windows > Open Perspective > Others...
-
-**Compilation**  
-If there still are errors after applying the previous operations, try again to clean, refresh and build the projects.
-
-## Execution of Preesm
-
-In the Java or 'Plug-in Development' perspective, right-click on the 'org.ietr.preesm.ui' plug-in, the click on Debug As > Eclipse Application. A new Eclipse session is launched that behaves like the one obtained by Preesm users from the update site. The difference is that you can debug and modify code in the first Eclipse and test at the same time in the second Eclipse. You can see the tutorials to learn how to use the second Eclipse, import Preesm projects and test.
-
-![](/assets/docs/02-buildingpreesm/debug_ui.png)
-
-## Building the Eclipse Product
-
-This section describes how to build and export the Eclipse Product of PREESM, i.e. the standalone executable of PREESM (as folder structure or Zip archive).
-
-### From Eclipse
-
-The product can be built from Eclipse. It requires [extra steps for multi-platform builds](https://wiki.eclipse.org/A_Brief_Overview_of_Building_at_Eclipse#Multi-platform_builds).
-1.  In the Eclipse workspace, locate the **org.preesm.product** project, and open the **.product** file within;
-![](/assets/docs/02-buildingpreesm/product-file.png)
-2.  From the product editor, in the **Overview** tab, the **Exporting** section has an **Eclipse Product export wizard**;
-[![](/assets/docs/02-buildingpreesm/product-overview.png)](/assets/docs/02-buildingpreesm/product-overview.png)
-3.  The wizard has proper default values, except for the target folder. In the Destination section, choose any folder with write permission and click on finish. Alternatively, select a target archive file to automatically build a Zipped product;
-[![](/assets/docs/02-buildingpreesm/product-export.png)](/assets/docs/02-buildingpreesm/product-export.png)
-4.  The progress information is visible in the bottom right of the Eclipse window. Clicking on the right most button in the state bar will open a more detailed progress view;
-[![](/assets/docs/02-buildingpreesm/product-progress.png)](/assets/docs/02-buildingpreesm/product-progress.png)
-5.  When the export wizard is done, the product is runnable directly from the target folder. It can also be used with [Preesm CLI](https://github.com/preesm/preesm-cli) or for RCPTT tests (see [RCPTT Tests from Eclipse](#rcptt-tests-from-eclipse))
-
-### Using Maven
-
-If you have maven installed on your computer, run `mvn clean package` from the root of the git repository. When the build process has terminated successfully, the resulting products and archives will be located under **releng/org.preesm.product/target/products/**.
 
 ## Non-Regression Tests
 
@@ -230,11 +159,11 @@ In order to fix the code, we strongly advise to run the tests from Eclipse once 
 
 Using Eclipse, tests are run plug-in wise only. That means you have to manually trigger the tests for all the test plug-ins independently. This is done by right clicking on a test project and then on "Run As / JUnit Plug-in Test":
 
-[![](/assets/docs/02-buildingpreesm/tests-runas.png)](/assets/docs/02-buildingpreesm/tests-runas.png)
+[![](/assets/docs/06-devdoc/tests-runas.png)](/assets/docs/06-devdoc/tests-runas.png)
 
 This has to be done on all plug-ins, except for the RCPTT test plug-in, where "Run As / Test Cases" (see below). Once execution of all tests terminates, a new view displays all test results:
 
-[![](/assets/docs/02-buildingpreesm/tests-eclipseresults.png)](/assets/docs/02-buildingpreesm/tests-eclipseresults.png)
+[![](/assets/docs/06-devdoc/tests-eclipseresults.png)](/assets/docs/06-devdoc/tests-eclipseresults.png)
 
 This view will only tell which Preesm Workflow successfully terminated or not. To inspect the actual cause of the failure, the log has to be inspected. Test failures can be re-run independently in order to check the log more accurately (otherwise the log can be several thousands of lines). This is done by scrolling in the Console log. Among all the outputs, the workflow logs always start with **Starting workflow execution**:
 ```
@@ -259,14 +188,14 @@ This log shows that the Code Generation task threw an exception while attempting
 
 This procedure is specific to running [RCPTT](https://www.eclipse.org/rcptt/) tests from Eclipse. Maven uses the product built during the full process to run the tests and run them during the build process. We strongly advise the developers to have a look at the [RCPTT user guide](https://www.eclipse.org/rcptt/documentation/userguide/getstarted/) before going further.
 
-1.  Export the product using [procedure described above](#from-eclipse);
+1.  Export the product using [procedure described here](/docs/buildpreesm/#from-eclipse);
 2.  Select plugin "org.preesm.tests.ui.rcptt", right click on it then "Run As / Test Cases" 
 3.  The following window ask to choose an Application Under Test (AUT). Add a new one with the product exported from step 1:
-[![](/assets/docs/02-buildingpreesm/tests-rcptt-newaut.png)](/assets/docs/02-buildingpreesm/tests-rcptt-newaut.png)
+[![](/assets/docs/06-devdoc/tests-rcptt-newaut.png)](/assets/docs/06-devdoc/tests-rcptt-newaut.png)
 4.  Before selecting OK in the AUT selection window, make sure you will not need your machine for few minutes. Indeed, automated UI tests will run graphically and require the mouse / keyboard to be unused.
-[![](/assets/docs/02-buildingpreesm/tests-rcptt-AUTselect.png)](/assets/docs/02-buildingpreesm/tests-rcptt-AUTselect.png)
+[![](/assets/docs/06-devdoc/tests-rcptt-AUTselect.png)](/assets/docs/06-devdoc/tests-rcptt-AUTselect.png)
 5.  The tests will run in a new instance of Eclipse, that is the "Application Unter Test" exported in step 1. The status of the test execution is displayed in a new view:
-[![](/assets/docs/02-buildingpreesm/tests-rcptt-status.png)](/assets/docs/02-buildingpreesm/tests-rcptt-status.png)
+[![](/assets/docs/06-devdoc/tests-rcptt-status.png)](/assets/docs/06-devdoc/tests-rcptt-status.png)
 6.  At the end of the execution, errors can be analyzed if present. The AUT does not close by itself, and can be closed manually, or kept open for further testing (see [Adding UI Tests with RCPTT](#adding-ui-tests-with-rcptt)).
 
 ### Adding New Tests
@@ -296,11 +225,11 @@ Unit tests are meant to test small parts (usually one method per test) of the ap
 
 Preesm integration tests check the termination status of workflows. The mini-framework takes as input a Preesm project, a workflow and a scenario, then returns a boolean telling of the workflow terminated successfully without errors. No test is done on the result of the execution of the workflow. [JUnit parameterized tests](https://github.com/junit-team/junit4/wiki/Parameterized-tests) helps running tests in bulk.
 
-1.  [Run the version of Preesm from your workspace](#execution-of-preesm);
+1.  [Run the version of Preesm from your workspace](/docs/buildpreesm#execution-of-preesm);
 2.  In Preesm, create a new Preesm project with a name that represents what you are testing. Make sure the name does not conflict with projects already present in the **resources** folder of the **org.preesm.tests.integration**;
 3.  In this new project, add whatever is required to run the workflow(s) with the task you want to test. If your task does not require an application or an architecture, feel free to skip them. Since the generated code will not be executed, providing the source code for the actors can also be skipped.
 4.  Make sure the workflow(s) terminates properly, then copy the project:
-[![](/assets/docs/02-buildingpreesm/tests-add-copyproject.png)](/assets/docs/02-buildingpreesm/tests-add-copyproject.png)
+[![](/assets/docs/06-devdoc/tests-add-copyproject.png)](/assets/docs/06-devdoc/tests-add-copyproject.png)
 5.  Paste the project in the **resources** folder of the **org.preesm.tests.integration** plug-in.
 6.  Add a Unit test in the Eclipse plugin **org.preesm.tests.integration** that calls `WorkflowRunner.runWorkFlow` with proper project name, workflow and scenario, and use `Assert.assertTrue` on the result (or false of you want to make sure the workflow fails). Check other existing tests, for instance `TutorialsTest`, to get an idea of how to write bulk tests.
 
@@ -311,7 +240,7 @@ UI Tests are run using [RCPTT](https://www.eclipse.org/rcptt/).
 
 We refer the developers to the [RCPTT user guide](https://www.eclipse.org/rcptt/documentation/userguide/getstarted/) for adding RCPTT tests.
 
-The only specific directive is to insert new tests (and their verifications and contexts) in a proper, consistent folder hierarchy.
+The only specific directive is to insert new tests (and their verifications and contexts) in a proper, consistent folder hierarchy of the plugin **org.preesm.tests.ui.rcptt**.
 
 ## Coding Policies
 
@@ -321,27 +250,3 @@ The Preesm code base respects some coding policy. If you intend to develop withi
 2.  Make sure all the tests run without failure (run 'mvn clean verify' in the root folder of the git repository.
 
 To help enforcing the checkstyle format, the "on-the-fly" checkstyle analyzer using the Eclipse plug-in (automatically installed with the meta feature and configured through M2Eclipse connectors) will provide feedback and the Eclipse cleanup formatter will enforce most of the rules (triggered on save action).
-
-### Build Status Notifications
-
-To receive the build status notifications, you have to sign in on travis-ci.org with your github account and make sure your local git config mail address matches one of the github verified mail address:
-
-1.  Check your local git config mail address, and change it to a valid one if it is not already the case: ```git config --global --edit```
-2.  Sign in on GitHub, got to Settings / Emails, and check that the mail address is present. If not, add it to the list and make sure that it is verified before going further.
-3.  Got to [https://travis-ci.org/](https://travis-ci.org/) and Sign In with your GitHub account. This will allow Travis-CI to read the permissions on the repositories to make sure you have push access and also check that your mail address is verified.
-
-Preesm team repositories set the notification policies to the Travis default : [https://docs.travis-ci.com/user/notifications/](https://docs.travis-ci.com/user/notifications/)
-
-## Troubleshooting
-
-*   **Many errors show up in source code. Why?**
-    *   **(1)** The usual reason is that upstream API changed. Try "Help / Check for updates". It may be required to [clean the Eclipse cache](https://stackoverflow.com/questions/9250041/how-to-clear-cache-of-eclipse-indigo) after such update.
-    *   **(2)** Another reason would be the Maven configuration files that are not up to date. To update them, select all the Preesm related projects in the workspace, and press Alt+F5 then press OK.
-    *   **(3)** Also, the build state of the Eclipse workspace can be corrupted after an update. To fix that, restart Eclipse then clean and rebuild your workspace.
-    *   **(4)** Finally, some updates can remove or introduce new Preesm plug-ins that you would have to add in your workspace. The safest way is to (1) remove the plugins from the workspace (select all then delete, without removing from file system); (2) clean the git repository (```git clean -xdf```); (3) then reimport the plugins (File / Import ... > Maven / Existing Maven Projects > select the root folder of the git repository. Eclipse will automatically detect plugins). If the procedures did not solve the errors, please contact us.
-*   **Check for Updates is failing:** We moved the update site because of instability of the previous server. If you still have the old URL, you may have the following error: ```HTTP Server 'Service Unavailable': [...] error response code 503.``` It is best to use the new update site:
-    *   Go to Window > Preferences then Install/Update > Available Software Sites;
-    *   Look for the PREESM site and Edit its URL;
-    *   Paste the new URL: [http://preesm.insa-rennes.fr/repo/complete/](http://preesm.insa-rennes.fr/repo/complete/);
-    *   Click on Apply and Close then try to check for updates again. If this does not solve the issue, please contact us.
-*   **Missing artifact com.sun:tools:jar:1.8.0 is missing:** This happens because Eclipse is running using a JRE instead of a JDK. Some Eclipse plugins needs Java packages that are not bundled with the JRE, but only with the JDK. If you installed the JDK, note that by default the JDK distribution for Windows also installs a JRE. Also, the installer adds a section in the PATH variable, that points to ```C:\ProgramData\Oracle\Java\javapath```, which is an alias to the JRE binaries. Please refer to [this page](https://douglascayers.com/2015/05/30/how-to-set-custom-java-path-after-installing-jdk-8/) for fixing the issue. Basically, it tells to prepend the PATH variable with the path to the JDK, while not removing the ```...\javapath``` section.

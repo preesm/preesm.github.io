@@ -51,3 +51,86 @@ Then, you can work on your local repository in order to get back a correct state
 7.  push to the distant repository
 
 Finally, update the issue on the [Github tracker](https://github.com/preesm/preesm/issues) to announce the problem have been corrected.
+
+## Solving git Conflicts
+
+Following the [Development workflow for PREESM and Graphiti](/docs/devdoc/#development-workflow-for-preesm-and-graphiti), the developer might encounter conflicts when rebasing before a pull request. The sequence of command would look like the following:
+
+```shell
+# position HEAD on branch with new features
+git checkout newFeatureBranch
+# make sure remote develop branch is sync
+git fetch --all
+
+# rebase HEAD (new feature branch) on remote develop
+git rebase origin/develop
+
+### Here a conflits can occur
+### and solving them needs to be done
+
+# when conflicts are solved, force push the branch 
+# for later merge by admins
+git push -f
+```
+
+There are 3 ways of handling a conflict, as described [here](https://help.github.com/en/articles/resolving-merge-conflicts-after-a-git-rebase):
+
+*  `git rebase --abort` : simply cancels everything and revert back to before the first rebase command;
+*  `git rebase --skip` : skip the commit causing the conflict. This might implies more conflicts when applying later patches but is usefull in some cases (see below);
+*  Manually resolve the conflicts, [using git commands](https://help.github.com/en/articles/resolving-a-merge-conflict-using-the-command-line) or assisted by a [merge tool](https://gist.github.com/karenyyng/f19ff75c60f18b4b8149/e6ae1d38fb83e05c4378d8e19b014fd8975abb39).
+
+The preferred way is to resolve the conflict with a merge tool. Indeed such tools are designed for that specific purpose, and automate most of the git operations. On top of that, some of the tools (such as [kdiff3](https://github.com/KDE/kdiff3)) can automatically merge parts of the conflict, and ask the user to manually merge only the one it could not handle.
+
+### Setting Up a Merge Tool
+
+To get the list of merge tools installed on the machine, simply run
+
+```shell
+git mergetool --tool-help
+```
+
+Most of linux distribution have kdiff3, diffuse, meld, vimdiff, etc. available in their package repositories. To set the default merge tool, the git config command can be used:
+
+```shell
+git config --global merge.tool <mergetool>
+# skip prompt before merging files
+git config --global mergetool.prompt false
+```
+
+### Using a Merge Tool
+
+When a conflict is encountered, the `git rebase` command will stop and display which files caused the conflict. Running `git mergetool` will automatically run the merge tool on the files causing the conflict.
+
+We refer the developers to the documentation of their merge tool of choice.
+
+### Continuing after Merging
+
+Once all conflicts have been solved, the command `git rebase --continue` will resume the procecure, untill the next conflict or all commits have been applied.
+
+A naive approach of the full rebase would be similar to the following sequence:
+
+```shell
+git checkout newFeatureBranch
+git fetch --all
+
+git rebase origin/develop
+REBASE_CODE=$?
+
+while [ $REBASE_CODE != 0 ]; do
+  git mergetool
+  git rebase --continue
+  REBASE_CODE=$?
+done
+
+git push -f
+```
+
+### Why `git rebase --skip` ?
+
+A situation where two divergent branches actually apply the same evolution in the code but with textual differences, although rare, is not uncommon. For instance, using a different name for the same new variable. This would not impact the code behavior, but lead to a conflict.
+
+In such a situation, one (or more) commit on each branch would add at the same location a different sequence of characters, for which only one needs to be selected. At this point, one of the two commit can be discarded. The `git rebase --skip` command will discard the "useless" commit from the LOCAL branch.
+
+More about this:
+*  [https://mindriot101.github.io/blog/2014/08/27/git-rebase-skip-is-fine/](https://mindriot101.github.io/blog/2014/08/27/git-rebase-skip-is-fine/)
+*  [https://stackoverflow.com/questions/9539067/what-exactly-does-git-rebase-skip-do](https://stackoverflow.com/questions/9539067/what-exactly-does-git-rebase-skip-do)
