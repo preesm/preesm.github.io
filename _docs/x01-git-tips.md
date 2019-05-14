@@ -105,11 +105,13 @@ We refer the developers to the documentation of their merge tool of choice.
 
 ### Continuing after Merging
 
-Once all conflicts have been solved, the command `git rebase --continue` will resume the procecure, untill the next conflict or all commits have been applied.
+Once all conflicts have been solved, the command `git rebase --continue` will resume the procedure, untill the next conflict or all commits have been applied.
 
-A naive approach of the full rebase would be similar to the following sequence:
+A naive approach of the full rebase would be similar to the following bash sequence:
 
-```shell
+```bash
+#!/bin/bash
+
 git checkout newFeatureBranch
 git fetch --all -p
 
