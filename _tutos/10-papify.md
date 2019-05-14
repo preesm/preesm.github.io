@@ -9,7 +9,7 @@ toc: true
 Tutorial prerequisites:
 *   This tutorial has been developed and tested for Ubuntu distributions
 
-###### Last update the 10.24.2018 -  Tutorial created the 06.20.2018 by [D. Madroñal](mailto:daniel.madronal@upm.es)
+###### Last update the 05.14.2018 -  Tutorial created the 06.20.2018 by [D. Madroñal](mailto:daniel.madronal@upm.es)
 
 ## Project setup
 
