@@ -302,7 +302,7 @@ Preesm integration tests check the termination status of workflows. The mini-fra
 4.  Make sure the workflow(s) terminates properly, then copy the project:
 [![](/assets/docs/02-buildingpreesm/tests-add-copyproject.png)](/assets/docs/02-buildingpreesm/tests-add-copyproject.png)
 5.  Paste the project in the **resources** folder of the **org.preesm.tests.integration** plug-in.
-6.  Add a Unit test in **org.preesm.tests.integration** that calls `WorkflowRunner.runWorkFlow` with proper project name, workflow and scenario, and use `Assert.assertTrue` on the result (or false of you want to make sure the workflow fails). Check other existing tests, for instance `TutorialsTest`, to get an idea of how to write bulk tests.
+6.  Add a Unit test in the Eclipse plugin **org.preesm.tests.integration** that calls `WorkflowRunner.runWorkFlow` with proper project name, workflow and scenario, and use `Assert.assertTrue` on the result (or false of you want to make sure the workflow fails). Check other existing tests, for instance `TutorialsTest`, to get an idea of how to write bulk tests.
 
 
 #### Adding UI Tests with RCPTT
