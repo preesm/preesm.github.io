@@ -2,7 +2,6 @@
 main:
   - title: "Home"
     url: /
-    image: /assets/img/Logo_preesm.png
   - title: "About"
     url: /about/
   - title: "Documentation"
