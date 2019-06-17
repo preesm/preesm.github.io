@@ -133,7 +133,7 @@ If you have maven installed on your computer, run `mvn clean package -DskipTests
 
 *   **Many errors show up in source code. Why?**
     *   **(1)** The usual reason is that upstream API changed. Try "Help / Check for updates". It may be required to [clean the Eclipse cache](https://stackoverflow.com/questions/9250041/how-to-clear-cache-of-eclipse-indigo) after such update.
-    *   **(2)** Another reason would be the Maven configuration files that are not up to date. To update them, select all the Preesm related projects in the workspace, and press Alt+F5 then press OK.
+    *   **(2)** Another reason would be the Maven configuration files that are not up to date. To update them, select all the Preesm related projects in the workspace, and press Alt+F5 then press OK. If the keyboard shortcut is overriden by your desktop GUI (i.e. using Ubuntu Unity), this command can be accessed via: (1) select all the Preesm related projects; (2) right click on the selected projects, then click on "Maven > Update Project..."; (3) click on OK in the new window.
     *   **(3)** Also, the build state of the Eclipse workspace can be corrupted after an update. To fix that, restart Eclipse then clean and rebuild your workspace.
     *   **(4)** Finally, some updates can remove or introduce new Preesm plug-ins that you would have to add in your workspace. The safest way is to (1) remove the plugins from the workspace (select all then delete, without removing from file system); (2) clean the git repository (```git clean -xdf```); (3) then reimport the plugins (File / Import ... > Maven / Existing Maven Projects > select the root folder of the git repository. Eclipse will automatically detect plugins). If the procedures did not solve the errors, please contact us.
 *   **Check for Updates is failing:** We moved the update site because of instability of the previous server. If you still have the old URL, you may have the following error: ```HTTP Server 'Service Unavailable': [...] error response code 503.``` It is best to use the new update site:
@@ -142,3 +142,10 @@ If you have maven installed on your computer, run `mvn clean package -DskipTests
     *   Paste the new URL: [http://preesm.insa-rennes.fr/repo/complete/](http://preesm.insa-rennes.fr/repo/complete/);
     *   Click on Apply and Close then try to check for updates again. If this does not solve the issue, please contact us.
 *   **Missing artifact com.sun:tools:jar:1.8.0 is missing:** This happens because Eclipse is running using a JRE instead of a JDK. Some Eclipse plugins needs Java packages that are not bundled with the JRE, but only with the JDK. If you installed the JDK, note that by default the JDK distribution for Windows also installs a JRE. Also, the installer adds a section in the PATH variable, that points to ```C:\ProgramData\Oracle\Java\javapath```, which is an alias to the JRE binaries. Please refer to [this page](https://douglascayers.com/2015/05/30/how-to-set-custom-java-path-after-installing-jdk-8/) for fixing the issue. Basically, it tells to prepend the PATH variable with the path to the JDK, while not removing the ```...\javapath``` section.
+
+## Known Issues
+
+*   **I followed all steps but there are compilation errors**: The Eclipse PDE framework has a know issue when resolving project dependencies. See [this issue](https://github.com/preesm/preesm/issues/116) for a workaround.
+*   **Building with Maven 3.6.1 fails**: Maven version 3.6.1 breaks P2 repository dependency resolution, as stated [in this Eclipse issue](https://bugs.eclipse.org/bugs/show_bug.cgi?id=545872). The workaround consists in downgrading to 3.6.0 or waiting for fix in future releases.
+
+
