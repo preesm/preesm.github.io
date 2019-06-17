@@ -5,10 +5,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.preesm.commons.doc.annotations.Port;
+import org.preesm.commons.doc.annotations.PreesmTask;
 import org.preesm.commons.exceptions.PreesmException;
+import org.preesm.commons.exceptions.PreesmRuntimeException;
 import org.preesm.commons.logger.PreesmLogger;
-import org.preesm.commons.math.ExpressionEvaluationException;
 import org.preesm.model.pisdf.DataInputPort;
 import org.preesm.model.pisdf.DataOutputPort;
 import org.preesm.model.pisdf.Expression;
@@ -20,6 +23,12 @@ import org.preesm.workflow.implement.AbstractTaskImplementation;
 /**
  * Example task. Multiplies the rates of all ports by a factor given as task parameter. Use a default factor of 1.
  */
+@PreesmTask(
+	id = "my.unique.workflow.task.identifier",
+	name = "Example Task",
+	inputs = {@Port(name = "PiMM", type = PiGraph.class)},
+	outputs = {@Port(name = "PiMM", type = PiGraph.class)}
+)
 public class ExampleTask extends AbstractTaskImplementation {
 
   @Override
@@ -38,7 +47,7 @@ public class ExampleTask extends AbstractTaskImplementation {
       factor = (paramString != null) ? Long.decode(paramString) : 1;
     } catch (final NumberFormatException e) {
       final String message = "Factor parameter '" + paramString + "' of task '" + nodeName + "' is not an integer.";
-      throw new PreesmException(message);
+      throw new PreesmRuntimeException(message);
     }
 
     // Check if the factor is greater than 0
@@ -66,8 +75,8 @@ public class ExampleTask extends AbstractTaskImplementation {
       try {
         prod = sourceRateExpr.evaluate();
         cons = targetRateExpr.evaluate();
-      } catch (final ExpressionEvaluationException e) {
-        throw new PreesmException("Could not evaluate rates. Make sure your input algorithm is static.");
+      } catch (final PreesmException e) {
+        throw new PreesmRuntimeException("Could not evaluate rates. Make sure your input algorithm is static.");
       }
 
       targetPort.setExpression(prod * factor);

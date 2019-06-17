@@ -123,7 +123,7 @@ public class ExampleTask extends AbstractTaskImplementation {
 
 Mandatory fields of the annotation are `id`, `name`, `inputs` and `outputs`. Other fields are used for documentation only.
 
-More details about the PreesmTask annotation can be found in the [source code](https://github.com/preesm/preesm/blob/master/plugins/org.preesm.commons/src/org/preesm/commons/doc/annotations/PreesmTask.java).
+More details about the PreesmTask annotation can be found in the [source code](https://github.com/preesm/preesm/blob/master/plugins/org.preesm.commons/src/org/preesm/commons/doc/annotations/PreesmTask.java). The full Java class is [available here](/assets/docs/05-newtask/ExampleTask.java).
 
 ### Test of the new workflow task
 
