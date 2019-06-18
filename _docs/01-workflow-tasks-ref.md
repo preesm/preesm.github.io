@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2019.05.22; for Preesm version 3.8.1_
+_This page has been generated. Last update : 2019.06.18; for Preesm version 3.9.0_
 
 This page references the available workflow tasks.
 
@@ -58,7 +58,7 @@ None.
 
 #### Inputs
   * **PiMM** (of _PiGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **SDF** (of _SDFGraph_)
@@ -85,7 +85,7 @@ None.
 
 #### Inputs
   * **PiMM** (of _PiGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
   * **architecture** (of _Design_)
 
 #### Outputs
@@ -162,7 +162,7 @@ None.
 #### Inputs
   * **SDF** (of _SDFGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
 None.
@@ -272,7 +272,7 @@ Path of the directory within which the exported *.graphml file will be created. 
 #### Inputs
   * **DAG** (of _DirectedAcyclicGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -300,7 +300,7 @@ Undocumented
 #### Inputs
   * **PiMM** (of _PiGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -328,7 +328,7 @@ Undocumented
 #### Inputs
   * **SDF** (of _SDFGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -405,7 +405,7 @@ Undocumented
 #### Inputs
   * **DAG** (of _DirectedAcyclicGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -482,7 +482,7 @@ Undocumented
 #### Inputs
   * **PiMM** (of _PiGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -559,7 +559,7 @@ Undocumented
 #### Inputs
   * **SDF** (of _SDFGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -615,7 +615,7 @@ Undocumented
 #### Inputs
   * **DAG** (of _DirectedAcyclicGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -671,7 +671,7 @@ Undocumented
 #### Inputs
   * **PiMM** (of _PiGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -727,7 +727,7 @@ Undocumented
 #### Inputs
   * **DAG** (of _DirectedAcyclicGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -749,7 +749,7 @@ None.
 #### Inputs
   * **PiMM** (of _PiGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -771,7 +771,7 @@ None.
 #### Inputs
   * **SDF** (of _SDFGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -869,7 +869,7 @@ Undocumented
 #### Inputs
   * **DAG** (of _DirectedAcyclicGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -967,7 +967,7 @@ Undocumented
 #### Inputs
   * **PiMM** (of _PiGraph_)
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **DAG** (of _DirectedAcyclicGraph_)
@@ -1065,7 +1065,7 @@ Undocumented
 
 #### Inputs
   * **ABC** (of _LatencyAbc_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
 None.
@@ -1095,7 +1095,7 @@ Path of the exported *.pgantt file. If the specified directory does not exist, i
 
 #### Inputs
   * **ABC** (of _LatencyAbc_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
 None.
@@ -1325,7 +1325,7 @@ How verbose will this task be during its execution. In verbose mode, the task wi
 
 #### Inputs
   * **DAG** (of _DirectedAcyclicGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **MemEx** (of _MemoryExclusionGraph_)
@@ -1357,7 +1357,7 @@ How verbose will this task be during its execution. In verbose mode, the task wi
 #### Inputs
   * **DAG** (of _DirectedAcyclicGraph_)
   * **MemEx** (of _MemoryExclusionGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **MemEx** (of _MemoryExclusionGraph_)
@@ -1415,7 +1415,7 @@ Verbosity of the workflow task.
 
 #### Inputs
   * **PiMM** (of _PiGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
   * **architecture** (of _Design_)
 
 #### Outputs
@@ -1501,7 +1501,7 @@ Wether to optimize the graph at runtime or not
 #### Inputs
   * **MEGs** (of _Map_)
   * **DAG** (of _DirectedAcyclicGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
   * **architecture** (of _Design_)
 
 #### Outputs
@@ -1537,7 +1537,7 @@ Specify which printer should be used to generate code. Printers are defined in P
 
 #### Inputs
   * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
   * **architecture** (of _Design_)
 
 #### Outputs
@@ -1558,11 +1558,11 @@ None.
 
 #### Inputs
   * **architecture** (of _Design_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Description
 Undocumented
@@ -1610,11 +1610,11 @@ Undocumented
 
 #### Inputs
   * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
   * **latency** (of _Double_)
 
 #### Description
@@ -1710,7 +1710,7 @@ Undocumented
 
 #### Inputs
   * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
   * **architecture** (of _Design_)
 
 #### Outputs
@@ -1869,7 +1869,7 @@ Undocumented
 
 #### Inputs
   * **PiMM** (of _PiGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
   * **architecture** (of _Design_)
 
 #### Outputs
@@ -1888,97 +1888,6 @@ Undocumented
 | _100_ |  |
 
 
-### Random SDF Generator - _Deprecated_
-
-  * **Identifier**: `org.ietr.preesm.algorithm.randomsdf.RandomSDF`
-  * **Implementing Class**: `org.preesm.algorithm.randomsdf.RandomSDF`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
-  * **architecture** (of _Design_)
-
-#### Outputs
-  * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### nbVertex
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _10_ | Undocumented |
-
-##### minInDegree
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _1_ | Undocumented |
-
-##### maxInDegree
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _5_ | Undocumented |
-
-##### minOutDegree
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _1_ | Undocumented |
-
-##### maxOutDegree
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _5_ | Undocumented |
-
-##### minRate
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _1_ | Undocumented |
-
-##### maxRate
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _4_ | Undocumented |
-
-##### minTime
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _100_ | Undocumented |
-
-##### maxTime
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _1000_ | Undocumented |
-
-##### rateMultiplier
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _1000_ | Undocumented |
-
-
 ### Throughput Evaluation
 
   * **Identifier**: `org.ietr.preesm.throughput.ThroughputPlugin`
@@ -1987,12 +1896,12 @@ Undocumented
 
 #### Inputs
   * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Outputs
   * **throughput** (of _Double_)
   * **SDF** (of _SDFGraph_)
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
 
 #### Description
 Undocumented
@@ -2074,7 +1983,7 @@ Undocumented
   * **Short description**: Generate the required instrumentation code for the application based on the PAPIFY tab information.
 
 #### Inputs
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
   * **DAG** (of _DirectedAcyclicGraph_)
 
 #### Outputs
@@ -2221,7 +2130,7 @@ Undocumented
 None.
 
 #### Outputs
-  * **scenario** (of _PreesmScenario_)
+  * **scenario** (of _Scenario_)
   * **architecture** (of _Design_)
   * **PiMM** (of _PiGraph_)
 
