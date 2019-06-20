@@ -88,7 +88,7 @@ This will generate an xml file with the available PAPI components and events of 
 3.  To import the monitoring data, in the PAPIFY file path section, click on the browse button and select the PAPI\_info.xml file previously generated
 4.  After that, in the PAPIFY PE configuration, select the PAPI component for the x86 type of PE: perf_event for the CPU
 5.  Finally, in the PAPIFY actor configuration, select the PAPI events:
-    - Read\_YUV: Timing (for monitoring execution time)
+    - Split: Timing (for monitoring execution time)
     - Sobel: PAPI\_L1\_DCM and PAPI\_L1_ICM (data and instruction misses from the Level 1 Cache memory)
     - Read\_YUV: Timing, PAPI\_L1\_DCM and PAPI\_L1\_ICM
     - display and Merge --> No selection (no monitoring)
@@ -100,16 +100,9 @@ The resulting scenario tab be the equivalent to the one displayed on the followi
 ## Configure the workflow of the project
 
 1.  In the Workflows folder copy the one called Codegen.workflow and create a new one called CodegenPapify.workflow
-2.  Create a new Task and call it Papify Engine Task
-3.  Select the new task and go to the property tab. After that, write "org.ietr.preesm.codegen.xtend.task.CodegenPapifyEngineTask" as the plugin identifierTask
-4.  Delete the arrow connecting Scheduling task DAG output and Code Generation DAG input
-5.  Create a new data transfer connecting the scenario task scenario output and a new input of the Papify Engine task and call both scenario
-6.  Create a new data transfer connecting the Scheduling task DAG output and a new input of the Papify Engine task and call both DAG
-7.  Create a new data transfer connecting the Papify Engine Task DAG output and a new input of the Code Generation task and call both DAG
-
-As a result, the workflow should look like the one displayed in the following image.
-
-![](/assets/tutos/papify/codegenpapifyworkflowtask.png)
+2.  Select the 'Code Generation' Task
+3.	Select the properties tab
+4.	In the 'Papify' option of the Task Variables, write 'true'
 
 ## Generate and run the application
 
