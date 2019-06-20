@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2019.06.18; for Preesm version 3.9.0_
+_This page has been generated. Last update : 2019.06.20; for Preesm version 3.10.0_
 
 This page references the available workflow tasks.
 
@@ -1527,6 +1527,13 @@ Specify which printer should be used to generate code. Printers are defined in P
 | _InstrumentedC_ | Print C code instrumented with profiling code, and shared-memory based communications. Currently compatible with x86, c6678 architectures.. |
 | _XML_ | Print XML code with all informations used by other printers to print code. Compatible with x86, c6678. |
 
+##### Papify
+Enable the PAPI-based code instrumentation provided by PAPIFY
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ | Print C code instrumented with PAPIFY function calls based on the user-defined configuration of PAPIFY tab in the scenario. Currently compatibe with x86 and MPPA-256 |
+
 ## Other
 
 ### Clustering
@@ -1976,11 +1983,13 @@ Undocumented
 | _true_ |  |
 
 
-### Papify Engine
+### Papify Engine - _Deprecated_
 
   * **Identifier**: `org.ietr.preesm.codegen.xtend.task.CodegenPapifyEngineTask`
   * **Implementing Class**: `org.preesm.codegen.xtend.task.CodegenPapifyEngineTask`
-  * **Short description**: Generate the required instrumentation code for the application based on the PAPIFY tab information.
+  * **Short description**: Deprecated - does nothing (as of v3.9.1). See parameter 'Papify' in CodegenTask'.
+
+Old doc: Generate the required instrumentation code for the application based on the PAPIFY tab information.
 
 #### Inputs
   * **scenario** (of _Scenario_)
@@ -1990,7 +1999,9 @@ Undocumented
   * **DAG** (of _DirectedAcyclicGraph_)
 
 #### Description
-This workflow task is responsible for generating the instrumentation of the code for the application based on the PAPIFY tab information.
+Deprecated - does nothing (as of v3.9.1). See parameter 'Papify' in CodegenTask'.
+
+Old doc: This workflow task is responsible for generating the instrumentation of the code for the application based on the PAPIFY tab information.
 
 The generated code makes use of 1 macro that enables/disables the monitoring in the **preesm.h** user header file:
 *  **_PREESM_PAPIFY_MONITOR** : if defined, the code monitoring will take place;
