@@ -36,7 +36,7 @@ The project modifications needed to generate code for the ARM core on ZedBoard f
 ### Definition of the Target Architecture
 
 In the "Package Explorer" of Preesm, open the /Archi/ directory and create a copy of the "4CoreX86.slam" architecture named "2CoreARM.slam". Follow the instructions in the tutorial Parallelize an Application on a Multicore CPU to add two new cores in the just created SLAM and delete the other four cores already present.
-For each of the 2 cores, open the "Properties" view and change the value of the "definition" attribute from "x86" to "arm". The "definition" attribute of the cores of the architecture is used during the workflow execution to generate adequate code for the specified targets. The S-LAM should appear as follow:
+For each of the 2 cores, open the "Properties" view and change the value of the "definition" attribute from "x86" to "arm" and check the hardware ID is properly set. The "definition" attribute of the cores of the architecture is used during the workflow execution to generate adequate code for the specified targets. The S-LAM should appear as follow:
 
 ![](/assets/tutos/sdsoccodegen/initial_slam.png)
 
