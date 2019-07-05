@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2019.06.20; for Preesm version 3.10.0_
+_This page has been generated. Last update : 2019.07.05; for Preesm version 3.11.0_
 
 This page references the available workflow tasks.
 
@@ -152,43 +152,6 @@ None.
   * **Graph consistency**: E.A. Lee and D.G. Messerschmitt. Synchronous data flow. Proceedings of the IEEE, 75(9):1235 – 1245, sept. 1987.
 
 ## Graph Exporters
-
-### SDF3 Exporter - _Deprecated_
-
-  * **Identifier**: `org.ietr.preesm.algorithm.exportSdf3Xml.Sdf3Exporter`
-  * **Implementing Class**: `org.preesm.algorithm.io.sdf3.Sdf3ExporterTask`
-  * **Short description**: Export a *.xml file conforming the SDF For Free (SDF3) format.
-
-#### Inputs
-  * **SDF** (of _SDFGraph_)
-  * **architecture** (of _Design_)
-  * **scenario** (of _Scenario_)
-
-#### Outputs
-None.
-
-#### Description
-This task generates SDF3 code modeling the given SDF graph. SDF modeling in SDF3 follow the specification introduced by Stuijk et al. in [1].
-
-Known Limitations: Here is a list of known limitations of the SDF3 importation process: Only SDF graphs can be imported, Actors of the SDF cannot be implemented on more than one processor type, Timings cannot depend on parameters since SDF3 does not support parameterized SDF.
-
-#### Parameters
-
-##### path
-Path of the exported *.xml file. If the specified directory does not exist, it will not be created.
-
-| Value | Effect |
-| --- | --- |
-| _path/in/proj/name.xml_ | Path within the Preesm project containing the workflow where the ”SDF3 Exporter” task is instantiated.
-
-Exported SDF graph will be named using the string with the xml extension at the end of the given path. If a graph with this name already exists in the given path, it will be overwritten.
-
-Example: **Code/generated/sdf3/myexport.xml** |
-
-#### See Also
-
-  * **[1]**: S. Stuijk, M. Geilen, and T. Basten. Sdf3: Sdf for free. In Sixth International Conference on Application of Concurrency to System Design (ACSD’06), pages 276–278, June 2006.
-
 
 ### SDF Exporter - _Deprecated_
 
@@ -1055,6 +1018,34 @@ Undocumented
 | --- | --- |
 | _100_ | Undocumented |
 
+
+### Simple Scheduling
+
+  * **Identifier**: `pisdf-scheduler.simple`
+  * **Implementing Class**: `org.preesm.algorithm.scheduler.PreesmScheduleTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _Scenario_)
+
+#### Outputs
+  * **Schedule** (of _Schedule_)
+  * **Mapping** (of _Mapping_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### todo
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _todo_ | Undocumented |
+
 ## Analysis
 
 ### Gantt Exporter
@@ -1513,6 +1504,7 @@ This workflow task is responsible for generating code for the application deploy
 The generated code makes use of 2 macros that can be overridden in the **preesm.h** user header file:
 *  **PREESM_VERBOSE** : if defined, the code will print extra info about actor firing;
 *  **PREESM_LOOP_SIZE** : when set to an integer value $$n > 0$$, the application will terminate after $$n$$ executions of the graph.
+*  **PREESM_NO_AFFINITY** : if defined, the part of the code that sets the affinity to specific cores will be skipped;
 
 When the loop size macro is omitted, the execution can be stopped by setting the global variable **preesmStopThreads** to 1. This variable is defined in the **main.c** generated file, and should be accessed using extern keyword.
 
@@ -1555,33 +1547,6 @@ Workflow task responsible for clustering hierarchical actors.
 
 #### Parameters
 None.
-
-
-### SDF3 Importer
-
-  * **Identifier**: `org.ietr.preesm.algorithm.importSdf3Xml.Sdf3Importer`
-  * **Implementing Class**: `org.preesm.algorithm.io.sdf3.Sdf3Importer`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **architecture** (of _Design_)
-  * **scenario** (of _Scenario_)
-
-#### Outputs
-  * **SDF** (of _SDFGraph_)
-  * **scenario** (of _Scenario_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### path
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _./Code/SDF3/graph.xml_ |  |
 
 
 ### SDF4J Exporter - _Deprecated_
