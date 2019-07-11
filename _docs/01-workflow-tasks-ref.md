@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2019.07.05; for Preesm version 3.11.0_
+_This page has been generated. Last update : 2019.07.11; for Preesm version 3.12.0_
 
 This page references the available workflow tasks.
 
@@ -2043,6 +2043,13 @@ Undocumented
 | Value | Effect |
 | --- | --- |
 | _/Algo/generated/pisdf/_ | default path |
+
+##### hierarchical
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ | Export the whole hierarchy (default: true). When set to true, will export all the hierarchy in the folder given by 'path', replacing refinement paths. Note: exporting hierarchical graph with this option set to false can cause the  the consistency check fail if the children graphs do not exist. |
 
 
 ### PiSDF Flattener
