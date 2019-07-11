@@ -52,6 +52,47 @@ Then, you can work on your local repository in order to get back a correct state
 
 Finally, update the issue on the [Github tracker](https://github.com/preesm/preesm/issues) to announce the problem have been corrected.
 
+## Pull a Rebased Branch
+
+If someone else is working on your branch **A**, he/she might rebase the remote reference of **A** on a more recent version of **develop**. In this situation, if you try to use  `git pull` to update your local reference of **A**, this will lead to errors since the local and remote references have *diverged*.
+
+The proper approach to deal with such situation is to use `git pull --rebase`. This will rebase your local reference of **A** on the remote one that is being pulled. The changes done locally since the last pull will be rebased on the changes pushed remotely, and conflicts may occurs, as in a usual rebase. This command can be decomposed in several steps, as follows:
+
+```sh
+# assuming HEAD is on local reference of A
+
+## Step 1 - fetch updates
+
+# fetch updates
+git fetch --all -p
+# create a copy of local reference
+git branch A_local
+# stash changes
+git stash -u
+# forces A to the state of the remote reference
+git reset --hard origin/A
+
+## Step 2 - rebase and apply local changes
+
+# get back on the local reference of A before the fetch/reset
+git checkout A_local
+# rebase (conflicts can occur)
+git rebase A
+# restore (conflicts can occur)
+git stash pop
+
+## Step 3 - update A
+
+# position HEAD on A
+git checkout A 
+# merge the rebased changes in A. No conflicts to expect here 
+# since they should have been handled during rebase.
+git merge --ff A_local
+# remove local copy
+git branch -D A_local
+```
+
+
 ## Solving git Conflicts
 
 Following the [Development workflow for PREESM and Graphiti](/docs/devdoc/#development-workflow-for-preesm-and-graphiti), the developer might encounter conflicts when rebasing before a pull request. The sequence of command would look like the following:
