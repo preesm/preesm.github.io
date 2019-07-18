@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2019.07.11; for Preesm version 3.12.0_
+_This page has been generated. Last update : 2019.07.18; for Preesm version 3.13.0_
 
 This page references the available workflow tasks.
 
@@ -594,7 +594,7 @@ Undocumented
 
 | Value | Effect |
 | --- | --- |
-| _Simple_ | Undocumented |
+| _Simple / Switcher_ | Undocumented |
 
 ##### simulatorType
 Undocumented
