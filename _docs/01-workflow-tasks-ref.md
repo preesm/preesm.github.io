@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2019.07.25; for Preesm version 3.14.0_
+_This page has been generated. Last update : 2019.07.25; for Preesm version 3.14.1_
 
 This page references the available workflow tasks.
 
@@ -1022,7 +1022,7 @@ Undocumented
 ### Simple Scheduling
 
   * **Identifier**: `pisdf-scheduler.simple`
-  * **Implementing Class**: `org.preesm.algorithm.scheduler.PreesmScheduleTask`
+  * **Implementing Class**: `org.preesm.algorithm.schedule.PreesmScheduleTask`
   * **Short description**: Undocumented
 
 #### Inputs
