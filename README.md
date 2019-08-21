@@ -52,6 +52,8 @@ The file name is also used as a meta data for ordering:
 
 To edit existing content, either clone the repository, do the changes, then push; or edit directly via the GitHub interface (note that rendering differs between GitHub and GitHub-Pages).
 
+Note that the file **/_docs/01-workflow-tasks-ref.md** is automaticaly generated and published during the release of Preesm.
+
 ### New Post in Home
 
 Posts in the Home page are automatically read from files in [`./_posts`](_posts/). The file name of the post needs to start with the date (YYYY-MM-DD) followed by a unique identifier. 2 posts with different dates but same identifier will mess up the Next / Previous links. Title will be read from the meta data.
