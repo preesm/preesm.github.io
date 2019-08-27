@@ -51,7 +51,7 @@ The workflow execution generates intermediary dataflow graphs that can be found 
 
 ### Run the generated C Project
 
-Before compilation, in ```/Code/include/yuvRead.h```, make sure that the PATH to the YUV file is correct (the YUV file that you downloaded).
+Before compilation, in ```/Code/include/yuvRead.h```, make sure that the PATH to the YUV file is correct (the YUV file that you downloaded). Make the same verification in ```/Code/include/yuvDisplay.h``` for the macro PATH_TTF.
 
 To compile and run the generated C code, simply use the CMake project of the ```/Code/``` directory. We strongly advise you to generate the IDE projects and binaries in the ```/Code/bin``` directory so as not to mix the source code with OS/IDE specific files.  In the ```/Code/``` directory, batch scripts (\*.bat and \*.sh) are available to automatically create the appropriate folder and launch the CMake project generation for Windows users of code::blocks (CMakeCodeblock.bat) and Visual Studio 2013 (CMakeVS2013.bat) as well as for Linux GCC users (CMakeGCC.sh).
 
