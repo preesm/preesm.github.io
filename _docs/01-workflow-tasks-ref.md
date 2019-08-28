@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2019.07.25; for Preesm version 3.14.1_
+_This page has been generated. Last update : ; for Preesm version _
 
 This page references the available workflow tasks.
 
@@ -1018,34 +1018,6 @@ Undocumented
 | --- | --- |
 | _100_ | Undocumented |
 
-
-### Simple Scheduling
-
-  * **Identifier**: `pisdf-scheduler.simple`
-  * **Implementing Class**: `org.preesm.algorithm.schedule.PreesmScheduleTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-  * **architecture** (of _Design_)
-  * **scenario** (of _Scenario_)
-
-#### Outputs
-  * **Schedule** (of _Schedule_)
-  * **Mapping** (of _Mapping_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### todo
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _todo_ | Undocumented |
-
 ## Analysis
 
 ### Gantt Exporter
@@ -1396,6 +1368,30 @@ Verbosity of the workflow task.
 
   * **Buffer merging**: Karol Desnos, Maxime Pelcat, Jean-François Nezan, and Slaheddine Aridhi. On memory reuse between inputs and outputs of dataflow actors. ACM Transactions on Embedded Computing Systems, 15(30):25, January 2016.
 
+## Synhtesis
+
+### Simple Synhtesis
+
+  * **Identifier**: `pisdf-synthesis.simple`
+  * **Implementing Class**: `org.preesm.algorithm.synthesis.PreesmSynthesisTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _Scenario_)
+
+#### Outputs
+  * **Schedule** (of _Schedule_)
+  * **Mapping** (of _Mapping_)
+  * **Allocation** (of _Allocation_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
 ## Code Generation
 
 ### Spider Codegen
@@ -1443,11 +1439,14 @@ Size of the shared memory allocated by Spider.
 | _$$n$$_ | $$n > 0$$ bytes. (Default = 67108864) |
 
 ##### papify
-Wether to use Papify.
+Use of PAPIFY. Select type of feedback given too
 
 | Value | Effect |
 | --- | --- |
-| _true / false_ |  |
+| _off_ | PAPIFY is off |
+| _dump_ | PAPIFY is on. Print csv files |
+| _feedback_ | PAPIFY is on. Give feedback to the GRT |
+| _both_ | PAPIFY is on. Print csv files and give feedback to the GRT |
 
 ##### verbose
 Wether to log.
@@ -1526,12 +1525,89 @@ Enable the PAPI-based code instrumentation provided by PAPIFY
 | --- | --- |
 | _true/false_ | Print C code instrumented with PAPIFY function calls based on the user-defined configuration of PAPIFY tab in the scenario. Currently compatibe with x86 and MPPA-256 |
 
+## Code Generation 2
+
+### Code Generation 2
+
+  * **Identifier**: `codegen2`
+  * **Implementing Class**: `org.preesm.codegen.xtend.task.CodegenTask2`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **scenario** (of _Scenario_)
+  * **architecture** (of _Design_)
+  * **Schedule** (of _Schedule_)
+  * **Mapping** (of _Mapping_)
+  * **Allocation** (of _Allocation_)
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### Printer
+Specify which printer should be used to generate code. Printers are defined in Preesm source code using an extension mechanism that make it possible to define a single printer name for several targeted architecture. Hence, depending on the type of PEs declared in the architecture model, Preesm will automatically select the associated printer class, if it exists.
+
+| Value | Effect |
+| --- | --- |
+| _C_ | Print C code and shared-memory based communications. Currently compatible with x86, c6678, and arm architectures. |
+| _InstrumentedC_ | Print C code instrumented with profiling code, and shared-memory based communications. Currently compatible with x86, c6678 architectures.. |
+| _XML_ | Print XML code with all informations used by other printers to print code. Compatible with x86, c6678. |
+
+##### Papify
+Enable the PAPI-based code instrumentation provided by PAPIFY
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ | Print C code instrumented with PAPIFY function calls based on the user-defined configuration of PAPIFY tab in the scenario. Currently compatibe with x86 and MPPA-256 |
+
 ## Other
 
 ### Clustering
 
-  * **Identifier**: `org.ietr.preesm.Clustering`
+  * **Identifier**: `org.ietr.preesm.pisdfclustering`
   * **Implementing Class**: `org.preesm.algorithm.clustering.Clustering`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **scenario** (of _Scenario_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+  * **schedules** (of _Map_)
+
+#### Description
+Workflow task responsible for clustering hierarchical actors.
+
+#### Parameters
+
+##### Algorithm
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _APGAN_ |  |
+| _Dummy_ |  |
+| _Random_ |  |
+| _Parallel_ |  |
+
+##### Seed
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _$$n\in \mathbb{N}^*$$_ | Seed for random generator |
+
+
+### Clustering
+
+  * **Identifier**: `org.ietr.preesm.Clustering`
+  * **Implementing Class**: `org.preesm.algorithm.clustering.OldClustering`
   * **Short description**: Undocumented
 
 #### Inputs
@@ -2074,7 +2150,7 @@ Undocumented
 
 | Value | Effect |
 | --- | --- |
-| _true / false_ |  |
+| _true / false_ | If true, tries to remove redundant special actors and self loops on delays. |
 
 
 ### PiSDF Single-Rate Transformation
@@ -2101,6 +2177,25 @@ Undocumented
 | --- | --- |
 | _LCM_ |  |
 | _Topology_ |  |
+
+
+### PiSDF Transform Perfect Fit Delay To End Init
+
+  * **Identifier**: `org.ietr.preesm.pisdf.transformperfectfitdelay`
+  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFTransformPerfectFitDelayToEndInitTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
 
 
 ### scenario
