@@ -33,6 +33,10 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 
 ### Journal Articles
 
+#### 2019
+
+*   Suriano, Leonardo, Florian Arrestier, Alfonso Rodríguez, Julien Heulot, Karol Desnos, Maxime Pelcat, and Eduardo de la Torre. "[DAMHSE: Programming Heterogeneous MPSoCs with Hardware Acceleration using Dataflow-Based Design Space Exploration and Automated Rapid Prototyping.](https://www.sciencedirect.com/science/article/pii/S0141933118303107)" Microprocessors and Microsystems (2019): 102882.
+
 #### 2017
 
 *   Ammar, Manel; Baklouti, Mouna; Pelcat, Maxime; Desnos, Karol; Abid, Mohamed (2017) "Comparing Three Clustering-based Scheduling Methods for Energy-Aware Rapid Design of MP2SoCs". Journal of Signal Processing Systems (JSPS), Springer.
