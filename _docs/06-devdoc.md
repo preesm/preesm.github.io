@@ -74,6 +74,8 @@ The tests are split in several test plug-ins:
 
 ### Run Tests with Maven
 
+**Note: when using Maven, make sure your Eclipse either uses a different copy of the code or it is shutdown. Indeed the automatic builds of Eclipse can corrupt Maven build.**
+
 Running the tests from Maven is done by calling `mvn clean verify` from the root of the git repository. Because the RCPTT tests actually run a graphical Eclipse, it is advised to run the tests within a virtual framebuffer, such as [Xvfb](https://www.x.org/releases/X11R7.7/doc/man/man1/Xvfb.1.xhtml). Running the following command from the root of the git repository will automatically instantiate an Xvfb and set the DISPLAY variable accordingly before running the tests:
 ```
 ./releng/build_and_test.sh --fast
