@@ -127,6 +127,8 @@ The product can be built from Eclipse. It requires [extra steps for multi-platfo
 
 ### Using Maven
 
+**Note: when using Maven, make sure your Eclipse either uses a different copy of the code or it is shutdown. Indeed the automatic builds of Eclipse can corrupt Maven build.**
+
 If you have maven installed on your computer, run `mvn clean package -DskipTests` from the root of the git repository. When the build process has terminated successfully, the resulting products and archives will be located under **releng/org.preesm.product/target/products/**.
 
 ## Troubleshooting
