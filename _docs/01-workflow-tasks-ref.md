@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : ; for Preesm version _
+_This page has been generated. Last update : 2019.09.06; for Preesm version 3.16.0_
 
 This page references the available workflow tasks.
 
@@ -151,6 +151,76 @@ None.
   * **IBSDF**: J. Piat, S.S. Bhattacharyya, and M. Raulet. Interface-based hierarchy for synchronous data-flow graphs. In SiPS Proceedings, 2009.
   * **Graph consistency**: E.A. Lee and D.G. Messerschmitt. Synchronous data flow. Proceedings of the IEEE, 75(9):1235 – 1245, sept. 1987.
 
+
+### PiSDF Flattener
+
+  * **Identifier**: `org.ietr.preesm.pimm.algorithm.pimm2flat.StaticPiMM2FlatPiMMTask`
+  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFFlattenerTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### Perform optimizations
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _true / false_ | If true, tries to remove redundant special actors and self loops on delays. |
+
+
+### PiSDF Single-Rate Transformation
+
+  * **Identifier**: `pisdf-srdag`
+  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFToSingleRateTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### Consistency_Method
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _LCM_ |  |
+| _Topology_ |  |
+
+
+### PiSDF Transform Perfect Fit Delay To End Init
+
+  * **Identifier**: `org.ietr.preesm.pisdf.transformperfectfitdelay`
+  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFTransformPerfectFitDelayToEndInitTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+
+#### Description
+Undocumented
+
+#### Parameters
+None.
+
 ## Graph Exporters
 
 ### SDF Exporter - _Deprecated_
@@ -223,6 +293,38 @@ Path of the directory within which the exported *.graphml file will be created. 
 | Message | Explanation |
 | --- | --- |
 | **Path \<given path\> is not a valid path for export. \<reason\>** | The value set for parameter path is not a valid path in the project. |
+
+
+### PiSDF Exporter
+
+  * **Identifier**: `pisdf-export`
+  * **Implementing Class**: `org.preesm.model.pisdf.serialize.PiSDFExporterTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _/Algo/generated/pisdf/_ | default path |
+
+##### hierarchical
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ | Export the whole hierarchy (default: true). When set to true, will export all the hierarchy in the folder given by 'path', replacing refinement paths. Note: exporting hierarchical graph with this option set to false can cause the  the consistency check fail if the children graphs do not exist. |
 
 ## Schedulers
 
@@ -617,6 +719,13 @@ Undocumented
 | --- | --- |
 | _False_ | Undocumented |
 
+##### EnergyAwareness
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _False_ | Undocumented |
+
 ##### balanceLoads
 Undocumented
 
@@ -679,6 +788,31 @@ Undocumented
 | Value | Effect |
 | --- | --- |
 | _false_ | Undocumented |
+
+##### EnergyAwareness
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _True_ | Turns on energy aware mapping/scheduling |
+
+##### EnergyAwarenessFirstConfig
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _First_ | Takes as starting point the first valid combination of PEs |
+| _Middle_ | Takes as starting point half of the available PEs |
+| _Max_ | Takes as starting point all the available PEs |
+| _Random_ | Takes as starting point a random number of PEs |
+
+##### EnergyAwarenessSearchType
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _Thorough_ | Analyzes PE combinations one by one until the performance objective is reached |
+| _Halves_ | Divides in halves the remaining available PEs and goes up/down depending if the FPS reached are below/above the objective |
 
 
 ### Simple Scheduling from DAG - _Deprecated_
@@ -1448,15 +1582,22 @@ Use of PAPIFY. Select type of feedback given too
 | _feedback_ | PAPIFY is on. Give feedback to the GRT |
 | _both_ | PAPIFY is on. Print csv files and give feedback to the GRT |
 
+##### apollo
+Whether to use Apollo.
+
+| Value | Effect |
+| --- | --- |
+| _true / false_ |  |
+
 ##### verbose
-Wether to log.
+Whether to log.
 
 | Value | Effect |
 | --- | --- |
 | _true / false_ |  |
 
 ##### trace
-Wether to trace what is happening at runtime.
+Whether to trace what is happening at runtime.
 
 | Value | Effect |
 | --- | --- |
@@ -1471,7 +1612,7 @@ Type of stack to use
 | _dynamic_ | Use dynamic stack |
 
 ##### graph-optims
-Wether to optimize the graph at runtime or not
+Whether to optimize the graph at runtime or not
 
 | Value | Effect |
 | --- | --- |
@@ -1493,6 +1634,58 @@ Wether to optimize the graph at runtime or not
   * **DAG** (of _DirectedAcyclicGraph_)
   * **scenario** (of _Scenario_)
   * **architecture** (of _Design_)
+
+#### Outputs
+None.
+
+#### Description
+This workflow task is responsible for generating code for the application deployment resulting from the workflow execution.
+
+The generated code makes use of 2 macros that can be overridden in the **preesm.h** user header file:
+*  **PREESM_VERBOSE** : if defined, the code will print extra info about actor firing;
+*  **PREESM_LOOP_SIZE** : when set to an integer value $$n > 0$$, the application will terminate after $$n$$ executions of the graph.
+*  **PREESM_NO_AFFINITY** : if defined, the part of the code that sets the affinity to specific cores will be skipped;
+
+When the loop size macro is omitted, the execution can be stopped by setting the global variable **preesmStopThreads** to 1. This variable is defined in the **main.c** generated file, and should be accessed using extern keyword.
+
+#### Parameters
+
+##### Printer
+Specify which printer should be used to generate code. Printers are defined in Preesm source code using an extension mechanism that make it possible to define a single printer name for several targeted architecture. Hence, depending on the type of PEs declared in the architecture model, Preesm will automatically select the associated printer class, if it exists.
+
+| Value | Effect |
+| --- | --- |
+| _C_ | Print C code and shared-memory based communications. Currently compatible with x86, c6678, and arm architectures. |
+| _InstrumentedC_ | Print C code instrumented with profiling code, and shared-memory based communications. Currently compatible with x86, c6678 architectures.. |
+| _XML_ | Print XML code with all informations used by other printers to print code. Compatible with x86, c6678. |
+
+##### Papify
+Enable the PAPI-based code instrumentation provided by PAPIFY
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ | Print C code instrumented with PAPIFY function calls based on the user-defined configuration of PAPIFY tab in the scenario. Currently compatibe with x86 and MPPA-256 |
+
+##### Apollo
+Enable the use of Apollo for intra-actor optimization
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ | Print C code with Apollo function calls. Currently compatibe with x86 |
+
+
+### Code Generation with cluster
+
+  * **Identifier**: `org.ietr.preesm.codegen.xtend.task.CodegenClusterTask`
+  * **Implementing Class**: `org.preesm.codegen.xtend.task.CodegenWithClusterTask`
+  * **Short description**: Generate code for the application deployment resulting from the workflow execution.
+
+#### Inputs
+  * **MEGs** (of _Map_)
+  * **DAG** (of _DirectedAcyclicGraph_)
+  * **scenario** (of _Scenario_)
+  * **architecture** (of _Design_)
+  * **schedules** (of _Map_)
 
 #### Outputs
 None.
@@ -2081,108 +2274,6 @@ Undocumented
 
   * **Identifier**: `pisdf-checker`
   * **Implementing Class**: `org.preesm.model.pisdf.check.PiMMAlgorithmCheckerTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-
-#### Outputs
-  * **PiMM** (of _PiGraph_)
-
-#### Description
-Undocumented
-
-#### Parameters
-None.
-
-
-### PiSDF Exporter
-
-  * **Identifier**: `pisdf-export`
-  * **Implementing Class**: `org.preesm.model.pisdf.serialize.PiSDFExporterTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-
-#### Outputs
-None.
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### path
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _/Algo/generated/pisdf/_ | default path |
-
-##### hierarchical
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _true/false_ | Export the whole hierarchy (default: true). When set to true, will export all the hierarchy in the folder given by 'path', replacing refinement paths. Note: exporting hierarchical graph with this option set to false can cause the  the consistency check fail if the children graphs do not exist. |
-
-
-### PiSDF Flattener
-
-  * **Identifier**: `org.ietr.preesm.pimm.algorithm.pimm2flat.StaticPiMM2FlatPiMMTask`
-  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFFlattenerTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-
-#### Outputs
-  * **PiMM** (of _PiGraph_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### Perform optimizations
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _true / false_ | If true, tries to remove redundant special actors and self loops on delays. |
-
-
-### PiSDF Single-Rate Transformation
-
-  * **Identifier**: `pisdf-srdag`
-  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFToSingleRateTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_)
-
-#### Outputs
-  * **PiMM** (of _PiGraph_)
-
-#### Description
-Undocumented
-
-#### Parameters
-
-##### Consistency_Method
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _LCM_ |  |
-| _Topology_ |  |
-
-
-### PiSDF Transform Perfect Fit Delay To End Init
-
-  * **Identifier**: `org.ietr.preesm.pisdf.transformperfectfitdelay`
-  * **Implementing Class**: `org.preesm.model.pisdf.statictools.PiSDFTransformPerfectFitDelayToEndInitTask`
   * **Short description**: Undocumented
 
 #### Inputs
