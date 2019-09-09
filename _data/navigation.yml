@@ -45,6 +45,8 @@ tutos_nav:
         url: /tutos/sdsoc/
       - title: "12 - Throughput Evaluation for Hierarchical Graphs"
         url: /tutos/throughputeval/
+      - title: "13 - APOLLO"
+        url: /tutos/apollo/
 
 docs_nav:
   - title: Documentation
