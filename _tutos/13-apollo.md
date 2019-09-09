@@ -28,34 +28,23 @@ To be able to apply these optimizations, first APOLLO must be installed.
 2.  Select the latest branch: ```git checkout apolloPreesm```
 3.  Create a new directory for building APOLLO: ```mkdir build```
 4.  Read and install all the required dependencies detailed in INSTALL:
-
-```cmake
-	======================================================================
-	                             REQUIREMENTS
-	======================================================================
-
-	Before installing,  please make sure  that you have  already installed
-	the following packages:
-
-	  * autoconf
-	  * bison
-	  * build-essential
-	  * cmake
-	  * flex
-	  * git
-	  * libboost-dev
-	  * libboost-system-dev
-	  * libgmp-dev
-	  * liblapack-dev
-	  * libtool
-	  * ninja-build
-	  * texi2html
-	  * texinfo
-```
-6. Run: ```cmake .. -DAPOLLO_BUILD_JOBS=4``` (number of available cores)
-7. Run: ```sudo make install -j4```
+  * autoconf
+  * bison
+  * build-essential
+  * cmake
+  * flex
+  * git
+  * libboost-dev
+  * libboost-system-dev
+  * libgmp-dev
+  * liblapack-dev
+  * libtool
+  * ninja-build
+  * texi2html
+  * texinfo
+6. Run: ```cmake .. -DAPOLLO_BUILD_JOBS=4``` (replace 4 with number of available cores)
+7. Run: ```sudo make install -j4``` (replace 4 with number of available cores)
 **Note:** APOLLO installation can take up to 2 hours, so setting APOLLO_BUILD_JOBS to more than 1 is recommended.
-
 8. Run: ```sudo cp ../apollo/runtime/include/apolloAPI.h /usr/local/include```
 
 ## How to use APOLLO with a Preesm application
@@ -69,9 +58,10 @@ As stated before, APOLLO is a compiler, so it has to be used to compile the appl
 ```cmake
 set(USEAPOLLO 1)
 ```
-If set, this variable enables APOLLO compilation. Consequently, if you do not wish to use APOLLO, you should either comment that line or set it to 0.
+If set to 1, this variable enables APOLLO compilation. Consequently, if you do not wish to use APOLLO, you should either comment that line or set it to 0.
 
 2.  Just after the creation of the project, add the following lines:
+
 ```cmake
 project(Main)
 
@@ -104,7 +94,7 @@ endif()
 
 The resulting workflow tab should be similar to the one displayed on the following image:
 
-![](/assets/tutos/apollo/codegenFlag.png)
+[![](/assets/tutos/apollo/codegenFlag.png)](/assets/tutos/apollo/codegenFlag.png)
 
 ### Add APOLLO pragma
 
