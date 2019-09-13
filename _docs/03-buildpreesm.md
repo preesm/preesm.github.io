@@ -148,6 +148,6 @@ If you have maven installed on your computer, run `mvn clean package -DskipTests
 ## Known Issues
 
 *   **I followed all steps but there are compilation errors**: The Eclipse PDE framework has a know issue when resolving project dependencies. See [this issue](https://github.com/preesm/preesm/issues/116) for a workaround.
-*   **Building with Maven 3.6.1 fails**: Maven version 3.6.1 breaks P2 repository dependency resolution, as stated [in this Eclipse issue](https://bugs.eclipse.org/bugs/show_bug.cgi?id=545872). The workaround consists in downgrading to 3.6.0 or waiting for fix in future releases.
+*   **Building with Maven 3.6.1 fails**: Maven version 3.6.1 breaks P2 repository dependency resolution. See See [this issue](https://github.com/preesm/preesm/issues/235) for a workaround.
 
 
