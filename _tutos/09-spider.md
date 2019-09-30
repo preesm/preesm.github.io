@@ -124,7 +124,7 @@ We now need to tell Preesm to use the Spider codegen instead of the C code gener
     *   plugin identifier : "org.ietr.preesm.scenario.task"
 3.  Add a "Task" bloc with:
     *   id : "Spider Codegen"
-    *   plugin identifier : "org.ietr.Preesm.pimm.algorithm.spider.codegen.SpiderCodegenTask"
+    *   plugin identifier : "org.ietr.preesm.pimm.algorithm.spider.codegen.SpiderCodegenTask"
 4.  Link them with three "Data transfer" connections:
     *   "scenario"
     *   "architecture"
