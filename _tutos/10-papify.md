@@ -9,7 +9,7 @@ toc: true
 Tutorial prerequisites:
 *   This tutorial has been developed and tested for Ubuntu distributions
 
-###### Last update the 05.14.2018 -  Tutorial created the 06.20.2018 by [D. Madroñal](mailto:daniel.madronal@upm.es)
+###### Last update the 10.01.2019 -  Tutorial created the 06.20.2018 by [D. Madroñal](mailto:daniel.madronal@upm.es)
 
 ## Project setup
 
@@ -45,7 +45,7 @@ To include Papify in the project, there are two options. The first one is the st
 - (2) Download Papify from the repository:
   - (a) Clone using ssh from [git@gitlab.citsem.upm.es:papify/papify.git](git@gitlab.citsem.upm.es:papify/papify.git)
   - or (b) Clone using http from [https://gitlab.citsem.upm.es/papify/papify.git](https://gitlab.citsem.upm.es/papify/papify.git)
-  - or (b) Download it from [https://gitlab.citsem.upm.es/papify/papify/repository/master/archive.zip](https://gitlab.citsem.upm.es/papify/papify/repository/master/archive.zip)
+  - or (c) Download it from [https://gitlab.citsem.upm.es/papify/papify/repository/master/archive.zip](https://gitlab.citsem.upm.es/papify/papify/repository/master/archive.zip)
 - (3) Copy "eventLib/src/eventLib.c" to "org.ietr.preesm.sobel/Code/src/" directory
 - (4) Copy "eventLib/include/eventLib.h" to "org.ietr.preesm.sobel/Code/include/" directory
 - (5) Open "CMakeLists.txt" and insert the following lines after the pthread section 
@@ -154,5 +154,8 @@ done
 	- In this situation, it is highly likely your computer has a high level of paranoid (see [this link](https://linuxsecurity.expert/kb/sysctl/kernel_perf_event_paranoid/) for more information) regarding the access to performance monitoring. To solve this issue and reduce the paranoia level, as mentioned [here](https://superuser.com/questions/980632/run-perf-without-root-rights), the user should execute:
 	- (1) To use during this system boot: ```sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'```
 	- (2) To make the change persist across reboots: ```sudo sh -c 'echo kernel.perf_event_paranoid=1 > /etc/sysctl.d/local.conf'```
+- **Issue 2**: *eventLib not working after PREESM update*
+  - Check if there is a new version of the library in Papify repository
+  - If so, please, update eventLib in src and include folders
 
 
