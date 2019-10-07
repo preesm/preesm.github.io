@@ -162,7 +162,7 @@ As a result of the workflow execution, the following lines should appear in the 
 16:06:04 Updating memory exclusion graph.
 ```
 
-As you will notice, although a unique memory script was assigned in the dataflow graph, 3 memory scripts were executed during the workflow execution. Indeed, the explode and implode actors added during the single-rate transformation are automatically associated to memory scripts. Similarly, the Broadcast and Roundbuffer actors added during the hierarchy flattening of an IBSDF graph are automatically associated to memory scripts. The code of these memory scripts can be downloaded [\[here\]](https://github.com/preesm/preesm/tree/master/plugins/org.ietr.preesm.memory/scripts).
+As you will notice, although a unique memory script was assigned in the dataflow graph, 3 memory scripts were executed during the workflow execution. Indeed, the explode and implode actors added during the single-rate transformation are automatically associated to memory scripts. Similarly, the Broadcast and Roundbuffer actors added during the hierarchy flattening of an IBSDF graph are automatically associated to memory scripts. The code of these memory scripts can be downloaded [\[here\]](https://github.com/preesm/preesm/tree/develop/plugins/org.preesm.algorithm/resources/scripts).
 
 Open the log generated in "/Code/generated/log_memoryScripts.txt". For a better readability, we strongly advise you to open this log with a Markdown viewer such as [\[this one\]](http://dillinger.io/). The first four lines of this log summarize the result produced by the "Script" workflow task.
 
