@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2019.09.09; for Preesm version 3.17.0_
+_This page has been generated. Last update : 2019.10.09; for Preesm version 3.18.0_
 
 This page references the available workflow tasks.
 
@@ -328,7 +328,7 @@ Undocumented
 
 ## Schedulers
 
-### External Scheduling from DAG - _Deprecated_
+### External Scheduling from DAG
 
   * **Identifier**: `org.ietr.preesm.plugin.mapper.external`
   * **Implementing Class**: `org.preesm.algorithm.mapper.ExternalMappingFromDAG`
@@ -344,7 +344,7 @@ Undocumented
   * **ABC** (of _LatencyAbc_)
 
 #### Description
-Undocumented
+This class imports schedule expressed in dedicated json format. It is experimental and limited to flat PiMM and a few architectures (regular x86 and Odroid). See package org.preesm.algorithm.mapper.schedule for the json format.
 
 #### Parameters
 
@@ -1297,10 +1297,41 @@ Number of random order tested when using the Shuffle value for the Best/First Fi
   * **Broadcast Merging**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Memory analysis and optimized allocation of dataflow applications on shared-memory MPSoCs. Journal of Signal Processing Systems, Springer, 2014.
 
 
+### MEG Updater
+
+  * **Identifier**: `org.ietr.preesm.memory.exclusiongraph.MemExUpdater`
+  * **Implementing Class**: `org.preesm.algorithm.memory.allocation.tasks.MemExUpdater`
+  * **Short description**: Relax memory allocation constraints of the MEG using scheduling information.
+
+#### Inputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+  * **MemEx** (of _MemoryExclusionGraph_)
+
+#### Outputs
+  * **MemEx** (of _MemoryExclusionGraph_)
+
+#### Description
+The MEG used in Preesm can be updated with scheduling information to remove exclusions between memory objects and make better allocations possible.
+
+#### Parameters
+
+##### Verbose
+How verbose will this task be during its execution. In verbose mode, the task will log the start and completion time of the update, as well as characteristics (number of memory objects, density of exclusions) of the MEGs both before and after the update.
+
+| Value | Effect |
+| --- | --- |
+| _false_ | (Default) The task will not log information. |
+| _true_ | The task will log build and MEG information. |
+
+#### See Also
+
+  * **MEG update**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
+
+
 ### Memory Bounds Estimator
 
   * **Identifier**: `org.ietr.preesm.memory.bounds.MemoryBoundsEstimator`
-  * **Implementing Class**: `org.preesm.algorithm.memory.bounds.MemoryBoundsEstimator`
+  * **Implementing Class**: `org.preesm.algorithm.memory.allocation.tasks.MemoryBoundsEstimator`
   * **Short description**: Compute bounds of the amount of memory needed to allocate the MEG
 
 #### Inputs
@@ -1341,83 +1372,10 @@ Specify which algorithm is used to compute the lower bound.
   * **Memory Bounds**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
 
 
-### Serial Memory Bounds
-
-  * **Identifier**: `org.ietr.preesm.memory.bounds.SerialMemoryBoundsEstimator`
-  * **Implementing Class**: `org.preesm.algorithm.memory.bounds.SerialMemoryBoundsEstimator`
-  * **Short description**: Compute bounds of the amount of memory needed to allocate the MEGs.
-
-#### Inputs
-  * **MEGs** (of _Map_)
-
-#### Outputs
-None.
-
-#### Description
-This task computes the memory bounds (see Memory Bound Estimator Task) for several MEGs, like the one produced by the Memory Allocation task.
-
-#### Parameters
-
-##### Verbose
-How verbose will this task be during its execution. In verbose mode, the task will log the name of the used solver, the start and completion time of the bound estimation algorithm. Computed bounds are always logged, even if the verbose parameter is set to false.
-
-| Value | Effect |
-| --- | --- |
-| _false_ | (Default) The task will not log information. |
-| _true_ | The task will log build and MEG information. |
-
-##### Solver
-Specify which algorithm is used to compute the lower bound.
-
-| Value | Effect |
-| --- | --- |
-| _Heuristic_ | (Default) Heuristic algorithm described in [1] is used. This technique find an approximate solution. |
-| _Ostergard_ | Östergård’s algorithm [2] is used. This technique finds an optimal solution, but has a potentially exponential complexity. |
-| _Yamaguchi_ | Yamaguchi et al.’s algorithm [3] is used. This technique finds an optimal solution, but has a potentially exponential complexity. |
-
-#### See Also
-
-  * **[1]**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Memory bounds for the distributed execution of a hierarchical synchronous data-flow graph. In Embedded Computer Systems: Architectures, Modeling, and Simulation (SAMOS XII), 2012 International Conference on, 2012.
-  * **[2]**: Patric R. J. Östergård. A new algorithm for the maximum-weight clique problem. Nordic J. of Computing, 8(4):424–436, December 2001.
-  * **[3]**: K. Yamaguchi and S. Masuda. A new exact algorithm for the maximum weight clique problem. In 23rd International Conference on Circuit/Systems, Computers and Communications (ITC-CSCC’08), 2008.
-  * **Memory Bounds**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
-
-
-### MEG Updater
-
-  * **Identifier**: `org.ietr.preesm.memory.exclusiongraph.MemExUpdater`
-  * **Implementing Class**: `org.preesm.algorithm.memory.exclusiongraph.MemExUpdater`
-  * **Short description**: Relax memory allocation constraints of the MEG using scheduling information.
-
-#### Inputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-  * **MemEx** (of _MemoryExclusionGraph_)
-
-#### Outputs
-  * **MemEx** (of _MemoryExclusionGraph_)
-
-#### Description
-The MEG used in Preesm can be updated with scheduling information to remove exclusions between memory objects and make better allocations possible.
-
-#### Parameters
-
-##### Verbose
-How verbose will this task be during its execution. In verbose mode, the task will log the start and completion time of the update, as well as characteristics (number of memory objects, density of exclusions) of the MEGs both before and after the update.
-
-| Value | Effect |
-| --- | --- |
-| _false_ | (Default) The task will not log information. |
-| _true_ | The task will log build and MEG information. |
-
-#### See Also
-
-  * **MEG update**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
-
-
 ### MEG Builder
 
   * **Identifier**: `org.ietr.preesm.memory.exclusiongraph.MemoryExclusionGraphBuilder`
-  * **Implementing Class**: `org.preesm.algorithm.memory.exclusiongraph.MemoryExclusionGraphBuilder`
+  * **Implementing Class**: `org.preesm.algorithm.memory.allocation.tasks.MemoryExclusionGraphBuilder`
   * **Short description**: Builds the Memory Exclusion Graph (MEG) modeling the memory allocation constraints.
 
 #### Inputs
@@ -1448,7 +1406,7 @@ How verbose will this task be during its execution. In verbose mode, the task wi
 ### Memory Scripts
 
   * **Identifier**: `org.ietr.preesm.memory.script.MemoryScriptTask`
-  * **Implementing Class**: `org.preesm.algorithm.memory.script.MemoryScriptTask`
+  * **Implementing Class**: `org.preesm.algorithm.memory.allocation.tasks.MemoryScriptTask`
   * **Short description**: Executes the memory scripts associated to actors and merge buffers.
 
 #### Inputs
@@ -1501,6 +1459,48 @@ Verbosity of the workflow task.
 #### See Also
 
   * **Buffer merging**: Karol Desnos, Maxime Pelcat, Jean-François Nezan, and Slaheddine Aridhi. On memory reuse between inputs and outputs of dataflow actors. ACM Transactions on Embedded Computing Systems, 15(30):25, January 2016.
+
+
+### Serial Memory Bounds
+
+  * **Identifier**: `org.ietr.preesm.memory.bounds.SerialMemoryBoundsEstimator`
+  * **Implementing Class**: `org.preesm.algorithm.memory.allocation.tasks.SerialMemoryBoundsEstimator`
+  * **Short description**: Compute bounds of the amount of memory needed to allocate the MEGs.
+
+#### Inputs
+  * **MEGs** (of _Map_)
+
+#### Outputs
+None.
+
+#### Description
+This task computes the memory bounds (see Memory Bound Estimator Task) for several MEGs, like the one produced by the Memory Allocation task.
+
+#### Parameters
+
+##### Verbose
+How verbose will this task be during its execution. In verbose mode, the task will log the name of the used solver, the start and completion time of the bound estimation algorithm. Computed bounds are always logged, even if the verbose parameter is set to false.
+
+| Value | Effect |
+| --- | --- |
+| _false_ | (Default) The task will not log information. |
+| _true_ | The task will log build and MEG information. |
+
+##### Solver
+Specify which algorithm is used to compute the lower bound.
+
+| Value | Effect |
+| --- | --- |
+| _Heuristic_ | (Default) Heuristic algorithm described in [1] is used. This technique find an approximate solution. |
+| _Ostergard_ | Östergård’s algorithm [2] is used. This technique finds an optimal solution, but has a potentially exponential complexity. |
+| _Yamaguchi_ | Yamaguchi et al.’s algorithm [3] is used. This technique finds an optimal solution, but has a potentially exponential complexity. |
+
+#### See Also
+
+  * **[1]**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Memory bounds for the distributed execution of a hierarchical synchronous data-flow graph. In Embedded Computer Systems: Architectures, Modeling, and Simulation (SAMOS XII), 2012 International Conference on, 2012.
+  * **[2]**: Patric R. J. Östergård. A new algorithm for the maximum-weight clique problem. Nordic J. of Computing, 8(4):424–436, December 2001.
+  * **[3]**: K. Yamaguchi and S. Masuda. A new exact algorithm for the maximum weight clique problem. In 23rd International Conference on Circuit/Systems, Computers and Communications (ITC-CSCC’08), 2008.
+  * **Memory Bounds**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
 
 ## Synhtesis
 
@@ -1617,6 +1617,13 @@ Whether to optimize the graph at runtime or not
 | Value | Effect |
 | --- | --- |
 | _true / false_ |  |
+
+##### energy-awareness
+Whether to activate or not energy-aware mapping/scheduling.
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ | Enable/disable energy-aware mapping/scheduling |
 
 #### See Also
 
@@ -1967,7 +1974,7 @@ None.
 ### Memory Exclusion Graph Mapper
 
   * **Identifier**: `org.ietr.preesm.memory.distributed.MapperTask`
-  * **Implementing Class**: `org.preesm.algorithm.memory.distributed.MapperTask`
+  * **Implementing Class**: `org.preesm.algorithm.memory.allocation.tasks.MapperTask`
   * **Short description**: Undocumented
 
 #### Inputs
@@ -2173,16 +2180,10 @@ Undocumented
   * **SDF** (of _SDFGraph_)
 
 #### Description
-Undocumented
+transform a SDF graph into a HSDF graph, that is into a single rate graph
 
 #### Parameters
-
-##### ExplodeImplodeSuppr
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _false_ |  |
+None.
 
 
 ### Algorithm Iterator
