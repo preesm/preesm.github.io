@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2019.10.09; for Preesm version 3.18.0_
+_This page has been generated. Last update : ; for Preesm version _
 
 This page references the available workflow tasks.
 
@@ -1767,7 +1767,7 @@ Enable the PAPI-based code instrumentation provided by PAPIFY
 
 ## Other
 
-### Clustering
+### PiSDF Clustering
 
   * **Identifier**: `org.ietr.preesm.pisdfclustering`
   * **Implementing Class**: `org.preesm.algorithm.clustering.Clustering`
@@ -1782,26 +1782,34 @@ Enable the PAPI-based code instrumentation provided by PAPIFY
   * **schedules** (of _Map_)
 
 #### Description
-Workflow task responsible for clustering hierarchical actors.
+Workflow task responsible for clustering actors by following a specified algorithm.
 
 #### Parameters
 
 ##### Algorithm
-Undocumented
+Specify which clustering algorithm to use. A clustering algorithm will decide which actors to clusterize in order to get a specific configuration (in terms of memory space and parallelism).
 
 | Value | Effect |
 | --- | --- |
-| _APGAN_ |  |
-| _Dummy_ |  |
-| _Random_ |  |
-| _Parallel_ |  |
+| _APGAN_ | Acyclic Pairwise Grouping of Adjacent Nodes, an algorithm use to minimize memory space needed to implement the resulting cluster. It stops when no more actors can be clustered. |
+| _Dummy_ | Choose, without intelligence, the actors to be clustered. It stops when no more actors can be clustered. |
+| _Random_ | Choose randomly the actors to be clustered. It used the parameter "Seed". It stops when no more actors can be clustered. |
+| _Parallel_ | (Not stable) Identify branches in input graph. It stops when no more actors can be clustered. |
 
 ##### Seed
-Undocumented
+Specify the seed that will feed the random number generator for the random clustering algortihm
 
 | Value | Effect |
 | --- | --- |
-| _$$n\in \mathbb{N}^*$$_ | Seed for random generator |
+| _$$n\in \mathbb{N}^*$$_ | Seed for Random algorithm |
+
+##### Optimization criteria
+Specify the criteria to optimize. If memory is choosen, some parallelizable actors will be sequentialized to minimize memory space. On the other hand, if performance is choosen, the algorithm will exploit every parallelism possibility.
+
+| Value | Effect |
+| --- | --- |
+| _Memory_ | Minimize memory space of resulting clusters |
+| _Performance_ | Maximize performance of resulting clusters |
 
 
 ### Clustering
