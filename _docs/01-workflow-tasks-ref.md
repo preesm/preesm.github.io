@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : ; for Preesm version _
+_This page has been generated. Last update : 21/10/2019; for Preesm version 3.18.1_
 
 This page references the available workflow tasks.
 
