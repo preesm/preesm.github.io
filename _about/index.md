@@ -30,7 +30,7 @@ Instructions for installing Preesm can be found in the [documentation](/docs/). 
 
 ## Contact & Follow
 
-For general information, do not hesitate to contact as at [contact@preesm.org](mailto:contact@preesm.org)
+For general information, do not hesitate to contact us at [contact@preesm.org](mailto:contact@preesm.org)
 
 For technical issues, please contact us via [GitHub Issues](https://github.com/preesm/preesm/issues) tracker.
 
