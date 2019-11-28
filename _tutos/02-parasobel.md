@@ -244,8 +244,9 @@ To create a new multicore achitecture model similar to the one in the figure, fo
 
 1.  In the "Package Explorer", create a copy of "/Archi/1CoreX86.slam" and name it "4CoreX86.slam"
 2.  Double-click on the new "4CoreX86.slam" to open it with the S-LAM Editor.
-3.  Copy/Paste the "Core0" processing element 3 times. Name the new cores "Core1" to "Core3" and set their hardware ID accordingly.
-4.  Using the "undirectedDataLink" from the Palette, add connections between the "shared\_mem" and the 3 new cores. Name all ports "shared\_mem".
+3.  Copy/Paste the "Core0" processing element 3 times. Name the new cores "Core1" to "Core3". 
+4.  For each new processing element, in the "Basic" tab of the "Properties" pannel, and set the hardware ID accordingly to the number of the Core, from 1 to 3.
+5.  Using the "undirectedDataLink" from the Palette, add connections between the "shared\_mem" and the 3 new cores. Name all ports "shared\_mem".
 
 You can use these steps to add any number of processing elements to your architecture to best reflect the number of core of your CPU. Note that one thread will be generated per core of the architecture model where some actors are mapped.
 
