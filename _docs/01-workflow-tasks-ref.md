@@ -4,11 +4,11 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 21/10/2019; for Preesm version 3.18.1_
+_This page has been generated. Last update : 2019.11.28; for Preesm version 3.18.2_
 
 This page references the available workflow tasks.
 
-
+-e 
 
 
 
@@ -1198,9 +1198,7 @@ Path of the exported *.pgantt file. If the specified directory does not exist, i
 None.
 
 #### Description
-This task generates SDF3 code modeling the given SDF graph. SDF modeling in SDF3 follow the specification introduced by Stuijk et al. in [1].
-
-Known Limitations: Here is a list of known limitations of the SDF3 importation process: Only SDF graphs can be imported, Actors of the SDF cannot be implemented on more than one processor type, Timings cannot depend on parameters since SDF3 does not support parameterized SDF.
+Displays the result of a mapping/scheduling algorithm as a Gantt diagram.
 
 #### Parameters
 None.
@@ -1211,10 +1209,41 @@ None.
 
 ## Memory Optimization
 
+### MEG Updater
+
+  * **Identifier**: `org.ietr.preesm.memory.exclusiongraph.MemExUpdater`
+  * **Implementing Class**: `org.preesm.algorithm.memory.allocation.tasks.MemExUpdater`
+  * **Short description**: Relax memory allocation constraints of the MEG using scheduling information.
+
+#### Inputs
+  * **DAG** (of _DirectedAcyclicGraph_)
+  * **MemEx** (of _MemoryExclusionGraph_)
+
+#### Outputs
+  * **MemEx** (of _MemoryExclusionGraph_)
+
+#### Description
+The MEG used in Preesm can be updated with scheduling information to remove exclusions between memory objects and make better allocations possible.
+
+#### Parameters
+
+##### Verbose
+How verbose will this task be during its execution. In verbose mode, the task will log the start and completion time of the update, as well as characteristics (number of memory objects, density of exclusions) of the MEGs both before and after the update.
+
+| Value | Effect |
+| --- | --- |
+| _false_ | (Default) The task will not log information. |
+| _true_ | The task will log build and MEG information. |
+
+#### See Also
+
+  * **MEG update**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
+
+
 ### Memory Allocation
 
   * **Identifier**: `org.ietr.preesm.memory.allocation.MemoryAllocatorTask`
-  * **Implementing Class**: `org.preesm.algorithm.memory.allocation.MemoryAllocatorTask`
+  * **Implementing Class**: `org.preesm.algorithm.memory.allocation.tasks.MemoryAllocatorTask`
   * **Short description**: Perform the memory allocation for the given MEG.
 
 #### Inputs
@@ -1295,37 +1324,6 @@ Number of random order tested when using the Shuffle value for the Best/First Fi
   * **Memory Allocation Algorithms**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
   * **Distributed Memory Allocation**: Karol Desnos, Maxime Pelcat, Jean-François Nezan, and Slaheddine Aridhi. Distributed memory allocation technique for synchronous dataflow graphs. In Signal Processing System (SiPS), Workshop on, pages 1–6. IEEE, 2016.
   * **Broadcast Merging**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Memory analysis and optimized allocation of dataflow applications on shared-memory MPSoCs. Journal of Signal Processing Systems, Springer, 2014.
-
-
-### MEG Updater
-
-  * **Identifier**: `org.ietr.preesm.memory.exclusiongraph.MemExUpdater`
-  * **Implementing Class**: `org.preesm.algorithm.memory.allocation.tasks.MemExUpdater`
-  * **Short description**: Relax memory allocation constraints of the MEG using scheduling information.
-
-#### Inputs
-  * **DAG** (of _DirectedAcyclicGraph_)
-  * **MemEx** (of _MemoryExclusionGraph_)
-
-#### Outputs
-  * **MemEx** (of _MemoryExclusionGraph_)
-
-#### Description
-The MEG used in Preesm can be updated with scheduling information to remove exclusions between memory objects and make better allocations possible.
-
-#### Parameters
-
-##### Verbose
-How verbose will this task be during its execution. In verbose mode, the task will log the start and completion time of the update, as well as characteristics (number of memory objects, density of exclusions) of the MEGs both before and after the update.
-
-| Value | Effect |
-| --- | --- |
-| _false_ | (Default) The task will not log information. |
-| _true_ | The task will log build and MEG information. |
-
-#### See Also
-
-  * **MEG update**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
 
 
 ### Memory Bounds Estimator
@@ -2121,7 +2119,7 @@ Undocumented
 
   * **Identifier**: `org.ietr.preesm.pimm.algorithm.checker.periods.PeriodsPreschedulingChecker`
   * **Implementing Class**: `org.preesm.algorithm.pisdf.checker.PeriodsPreschedulingChecker`
-  * **Short description**: Undocumented
+  * **Short description**: Check necessary condition to schedule graphs with periods (at top level or in actors).
 
 #### Inputs
   * **PiMM** (of _PiGraph_)
@@ -2132,7 +2130,7 @@ Undocumented
   * **PiMM** (of _PiGraph_)
 
 #### Description
-Undocumented
+Check necessary condition to schedule graphs with periods (at top level or in actors). Works only on flat graphs.
 
 #### Parameters
 
@@ -2141,7 +2139,7 @@ Undocumented
 
 | Value | Effect |
 | --- | --- |
-| _100_ |  |
+| _100_ | Periodic actors to consider. |
 
 
 ### Throughput Evaluation
