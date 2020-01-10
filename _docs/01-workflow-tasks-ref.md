@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2019.11.28; for Preesm version 3.18.2_
+_This page has been generated. Last update : 2020.01.10; for Preesm version 3.19.0_
 
 This page references the available workflow tasks.
 
@@ -293,6 +293,31 @@ Path of the directory within which the exported *.graphml file will be created. 
 | Message | Explanation |
 | --- | --- |
 | **Path \<given path\> is not a valid path for export. \<reason\>** | The value set for parameter path is not a valid path in the project. |
+
+
+### Parameters exporter
+
+  * **Identifier**: `pisdf-export.parameters`
+  * **Implementing Class**: `org.preesm.model.pisdf.serialize.ParametersExporterTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+
+#### Outputs
+None.
+
+#### Description
+Export parameters of the graph as C header with define. Exports only static parameters. Name of file is: <graphName>_preesm_params.h
+
+#### Parameters
+
+##### path
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _/Code_ | default path, relative to the project |
 
 
 ### PiSDF Exporter
@@ -1152,9 +1177,9 @@ Undocumented
 | --- | --- |
 | _100_ | Undocumented |
 
-## Analysis
+## Gantt exporters
 
-### Gantt Exporter
+### ABC Gantt exporter
 
   * **Identifier**: `org.ietr.preesm.stats.exporter.StatsExporterTask`
   * **Implementing Class**: `org.preesm.algorithm.mapper.stats.exporter.StatsExporterTask`
@@ -1177,17 +1202,17 @@ Path of the exported *.pgantt file. If the specified directory does not exist, i
 
 | Value | Effect |
 | --- | --- |
-| _/path/in/proj_ | Path within the Preesm project containing the workflow where the ”Gantt Exporter” task is instantiated. Exported Gantt will be named as follows: **/path/in/proj/<scenario name> stats.pgantt**. If a graph with this name already exists in the given path, it will be overwritten. |
+| _/stats/xml/_ | Path within the Preesm project containing the workflow where the ”Gantt Exporter” task is instantiated. Exported Gantt will be named as follows: **/path/in/proj/<scenario name> stats.pgantt**. If a graph with this name already exists in the given path, it will be overwritten. |
 
 #### See Also
 
   * **[1]**: https://github.com/preesm/gantt-display
 
 
-### Gantt Display
+### ABC Gantt displayer
 
   * **Identifier**: `org.ietr.preesm.plugin.mapper.plot`
-  * **Implementing Class**: `org.preesm.algorithm.mapper.ui.stats.StatEditorTransform`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.ui.stats.StatEditorAbcTask`
   * **Short description**: Displays the result of a mapping/scheduling algorithm as a Gantt diagram.
 
 #### Inputs
@@ -1206,6 +1231,43 @@ None.
 #### See Also
 
   * **Speedup assessment chart**: Maxime Pelcat. Prototypage Rapide et Génération de Code pour DSP Multi-Coeurs Appliqués à la Couche Physique des Stations de Base 3GPP LTE. PhD thesis, INSA de Rennes, 2010.
+
+
+### Synthesis Gantt displayer and exporter
+
+  * **Identifier**: `gantt-output`
+  * **Implementing Class**: `org.preesm.algorithm.mapper.ui.stats.StatsEditorSynthesisTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **scenario** (of _Scenario_)
+  * **architecture** (of _Design_)
+  * **Schedule** (of _Schedule_)
+  * **Mapping** (of _Mapping_)
+  * **Allocation** (of _Allocation_)
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### display
+Specify if statistics, including Gantt diagram, must be displayed or not.
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ | Undocumented |
+
+##### file path
+Folder to store Gantt diagram as xml file. Path is relative to the project, put "/" if at root, may be empty.
+
+| Value | Effect |
+| --- | --- |
+| _/path/to_ | Undocumented |
 
 ## Memory Optimization
 
@@ -1500,7 +1562,7 @@ Specify which algorithm is used to compute the lower bound.
   * **[3]**: K. Yamaguchi and S. Masuda. A new exact algorithm for the maximum weight clique problem. In 23rd International Conference on Circuit/Systems, Computers and Communications (ITC-CSCC’08), 2008.
   * **Memory Bounds**: K. Desnos, M. Pelcat, J.-F. Nezan, and S. Aridhi. Pre-and post-scheduling memory allocation strategies on MPSoCs. In Electronic System Level Synthesis Conference (ESLsyn), 2013.
 
-## Synhtesis
+## Synthesis
 
 ### Simple Synhtesis
 
@@ -1522,7 +1584,24 @@ Specify which algorithm is used to compute the lower bound.
 Undocumented
 
 #### Parameters
-None.
+
+##### scheduler
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _simple_ | Undocumented |
+| _legacy_ | Undocumented |
+| _periodic_ | Undocumented |
+| _choco_ | Undocumented |
+
+##### allocation
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _simple_ | Undocumented |
+| _legacy_ | Undocumented |
 
 ## Code Generation
 
@@ -2140,6 +2219,34 @@ Undocumented
 | Value | Effect |
 | --- | --- |
 | _100_ | Periodic actors to consider. |
+
+
+### Periodic scheduling (without output)
+
+  * **Identifier**: `pisdf-synthesis.void-periodic-schedule`
+  * **Implementing Class**: `org.preesm.algorithm.synthesis.schedule.VoidPeriodicScheduleTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_)
+  * **architecture** (of _Design_)
+  * **scenario** (of _Scenario_)
+
+#### Outputs
+None.
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### solver
+Undocumented
+
+| Value | Effect |
+| --- | --- |
+| _list_ | Undocumented |
+| _choco_ | Undocumented |
 
 
 ### Throughput Evaluation
