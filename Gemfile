@@ -12,4 +12,5 @@ group :jekyll_plugins do
   gem "jekyll-algolia"
   gem "jekyll-twitter-plugin"
   gem "jekyll-graphviz"
+  gem 'faraday', '0.17.3'
 end
