@@ -79,8 +79,8 @@ public class ExampleTask extends AbstractTaskImplementation {
         throw new PreesmRuntimeException("Could not evaluate rates. Make sure your input algorithm is static.");
       }
 
-      targetPort.setExpression(prod * factor);
-      sourcePort.setExpression(cons * factor);
+			sourcePort.setExpression(prod * factor);
+			targetPort.setExpression(cons * factor);
       // Set with the new values
     }
 
