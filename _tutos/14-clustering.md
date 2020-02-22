@@ -25,5 +25,6 @@ In addition to the default requirements (see [Requirements for Running Tutorial 
 
 ## Clustering
 
- The complexity of mapping/scheduling is a NP-complete problem, meaning that the time required to map/schedule an input graph is exponential to its number of actor firings. A technique can be used to reduce the mapping/scheduling time: this technique is based on graph clustering. The disadvantage of clustering is the loss of parallelism information. The clustering technique used in PREESM is able to keep data parallelism within a cluster by using OpenMP on top of for-loops. In this tutorial, you will learn how to set up a workflow that features clustering technique and apply it to the Sobel project from previous tutorials.
- ##
+Mapping/scheduling an Synchronous Dataflow Graph (SDFG) is a NP-complete problem, meaning that the time required to map/schedule an input graph is exponential to its number of actor firings. A technique can be used to reduce the mapping/scheduling time: this technique is based on graph clustering. The disadvantage of clustering is the loss of parallelism information. The clustering technique used in PREESM is able to keep data parallelism within a cluster by using OpenMP on top of for-loops. In this tutorial, you will learn how to set up a workflow that features clustering technique and apply it to the Sobel project from previous tutorials.
+
+ ## Workflow modification
