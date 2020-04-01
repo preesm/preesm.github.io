@@ -56,6 +56,10 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 
 ### Conference and Workshop papers
 
+#### 2020 
+
+* Suriano, Leonardo, David Lima, and Eduardo de la Torre. ["Accelerating a Classic 3D Video Game on Heterogeneous Reconfigurable MPSoCs."](https://link.springer.com/chapter/10.1007/978-3-030-44534-8_11) International Symposium on Applied Reconfigurable Computing. Springer, Cham, 2020. Open-Source Files and Instructions can be found [here](https://github.com/leos313/DOOM_FPGA).
+
 #### 2018
 
 *   Miomandre, Hugo; Hascoët, Julien; Desnos, Karol; Martin, Kevin; Dinechin, Benoît Dupont De; Nezan, Jean-François (2018). _"[Embedded Runtime for Reconfigurable Dataflow Graphs on Manycore Architectures](https://hal.inria.fr/hal-01704702)"_. PARMA-DITAM.
