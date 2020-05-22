@@ -50,23 +50,16 @@ We are going to cover three different usage:
 
 This section introduces the basic clustering workflow for both hierarchical scheduling and mapping. The workflow shown in the figure below has four components:
 1. *Cluster Partitioner*:
-
   The Cluster Partitioner clusters automatically groups of actors in the input PiSDF graph.
 2. *Cluster Scheduler*:
-
   The Cluster Scheduler computes the schedule for each cluster founded by the cluster partitioner or specified by hand by the user.
   The resulting schedule is modeled with a Cluster Schedule (CS), an intermediate representation that describes the internal schedule of a dataflow cluster while keeping parallelism information.
   If the targeted architecture is represented with its cluster hierarchy but has only one compute cluster, for example a basic shared-memory x86 processor, the Cluster Scheduler can be configured to cluster the whole input graph so that all actor firings are contained in a dataflow cluster.
-
 3. *Mapping and scheduling*:
-
   It is the legacy mapping and scheduling workflow of PREESM.
   It chooses on which compute cluster to execute actor firings at coarse-grained level.
-
 4. *Code Generator*:
-
   The Code Generator generates code from both DAG and CSs. Since CSs contain parallelism information such as data parallelism, OpenMP pragmas are printed on top of for-loops.
-
 [![](/assets/tutos/clustering/workflow.png)](/assets/tutos/clustering/workflow.png)
 
 ### Setting-up the clustering workflow
