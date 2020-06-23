@@ -121,12 +121,12 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 
 #### 2017
 
-*   Antoine Morvan, Karol Desnos: [PREESM Tutorial](http://preesm.insa-rennes.fr/website/data/uploads/presentations/20170929-PREESM_Tutorial_CPSSchool_Alghero.pdf). CPS School 2017, Alghero, Italy.
+*   Antoine Morvan, Karol Desnos: [PREESM Tutorial](/assets/publis/20170929-PREESM_Tutorial_CPSSchool_Alghero.pdf). CPS School 2017, Alghero, Italy.
 
 #### 2014
 
-*   Maxime Pelcat, PREESM: [A Dataflow-Based Rapid Prototyping Framework for Simplifying Multicore DSP Programming](http://preesm.insa-rennes.fr/website/data/uploads/presentations/EDERC2014_PREESM_Presentation.pdf). EDERC 2014, Milan, Italy.
-*   Maxime Pelcat, Karol Desnos and Clément Guy, [PREESM Tutorial: Dataflow Programming of Multicore DSPs](http://preesm.insa-rennes.fr/website/data/uploads/presentations/EDERC2014_PREESM_Tutorial.pdf). EDERC 2014, Milan, Italy. **\[Best Demonstration Award\]**
+*   Maxime Pelcat, PREESM: [A Dataflow-Based Rapid Prototyping Framework for Simplifying Multicore DSP Programming](/assets/publis/EDERC2014_PREESM_Presentation.pdf). EDERC 2014, Milan, Italy.
+*   Maxime Pelcat, Karol Desnos and Clément Guy, [PREESM Tutorial: Dataflow Programming of Multicore DSPs](/assets/publis/EDERC2014_PREESM_Tutorial.pdf). EDERC 2014, Milan, Italy. **\[Best Demonstration Award\]**
 
 ### PhD Thesis Using Preesm
 
@@ -155,4 +155,4 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 
 #### 2014
 
-*   Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-François; Aridhi, Slaheddine (2014)  ["](http://preesm.insa-rennes.fr/website/data/uploads/technical_reports/Technical_Report_PREESM_2014-05TR01.pdf)[Dataflow-Based Rapid Prototyping for Multicore DSP Systems](http://preesm.insa-rennes.fr/website/data/uploads/technical_reports/Technical_Report_PREESM_2014-05TR01.pdf)["](http://preesm.insa-rennes.fr/website/data/uploads/technical_reports/Technical_Report_PREESM_2014-05TR01.pdf), Technical Report PREESM/2014-05TR01.
+*   Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-François; Aridhi, Slaheddine (2014)  ["](/assets/publis/Technical_Report_PREESM_2014-05TR01.pdf)[Dataflow-Based Rapid Prototyping for Multicore DSP Systems](/assets/publis/Technical_Report_PREESM_2014-05TR01.pdf)["](/assets/publis/Technical_Report_PREESM_2014-05TR01.pdf), Technical Report PREESM/2014-05TR01.
