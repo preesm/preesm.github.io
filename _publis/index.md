@@ -33,6 +33,10 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 
 ### Journal Articles
 
+#### 2020
+
+* Suriano, Leonardo, Andrés Otero, Alfonso Rodríguez, Manuel Sánchez-Renedo, and Eduardo de la Torre. ["Exploiting Multi-Level Parallelism for Run-Time Adaptive Inverse Kinematics on Heterogeneous MPSoCs."](https://ieeexplore.ieee.org/document/9126798) IEEE Access (2020).
+
 #### 2019
 
 *   Suriano, Leonardo, Florian Arrestier, Alfonso Rodríguez, Julien Heulot, Karol Desnos, Maxime Pelcat, and Eduardo de la Torre. "[DAMHSE: Programming Heterogeneous MPSoCs with Hardware Acceleration using Dataflow-Based Design Space Exploration and Automated Rapid Prototyping.](https://www.sciencedirect.com/science/article/pii/S0141933118303107)" Microprocessors and Microsystems (2019): 102882.
