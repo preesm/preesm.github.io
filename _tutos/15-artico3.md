@@ -34,6 +34,8 @@ The application selected for this tutorial is a Matrix Multiplication. A tutoria
 Following the tutorial's instruction, PREESM will automatically generate a set of threads (one per CPU) and a further thread that will be in charge of handling the communication with the HW accelerator. Specifically, it will *delegate* the computation to a specific slot into the FPGA, making use of the ARTICo³ runtime.
 The following Figure shows the idea graphically:
 
+![](https://github.com/preesm/preesm.github.io/blob/master/assets/tutos/artico3/delegate_thread.png)
+
 
 ## Download HW source file
 
