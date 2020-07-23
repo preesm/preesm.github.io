@@ -29,13 +29,26 @@ By describing the architecture (i.e., the set of CPUs and the set of accelerator
 
 The application selected for this tutorial is a Matrix Multiplication. A tutorial for the HW accelerators' synthesis is available [here](https://des-cei.github.io/tools/artico3/tutorials/matmul). However, few modifications were necessary to allow a further parameter-input. The code is also provided within the instruction of this tutorial.
 
+## Download HW source file
+
+The hardware accelerator was created using High-Level Synthesis (HLS).  The source file can be download from their repository:
+
+```
+git clone https://github.com/leos313/flexible_GSZIE_matmul
+
+```
+
+Although the bitstreams are already provided (this way, it will be easier to complete the tutorial in a few minutes), the repo contains all the files you need to re-run the synthesis from scratch. Specifically, you can find the HLS source code and an application to test the bitstream just created.
+
+The step to follow are described in detail within the ARTICo³ website already provided.
+
 ## Initial project setup
 
 ### 1 Clone the ARTICo3 repository
 
  1. clone the ARTICo³ repository and switch to the branch `a9c93c1`
  
- ```
+ ``` 
 $ git clone https://github.com/des-cei/artico3
 $ cd artico3/
 $ git checkout a9c93c1
