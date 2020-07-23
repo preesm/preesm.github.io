@@ -47,7 +47,9 @@ tutos_nav:
         url: /tutos/throughputeval/
       - title: "13 - APOLLO"
         url: /tutos/apollo/
-
+      - title: "14 - HW/SW Code Generation for MPSoCs"
+        url: /tutos/artico3/
+        
 docs_nav:
   - title: Documentation
     url: /docs/
