@@ -4,7 +4,7 @@ permalink: /docs/workflowtasksref/
 toc: true
 ---
 
-_This page has been generated. Last update : 2020.05.27; for Preesm version 3.20.0_
+_This page has been generated. Last update : 2020.10.01; for Preesm version 3.21.0_
 
 This page references the available workflow tasks.
 
@@ -1182,7 +1182,7 @@ Undocumented
 
   * **Identifier**: `pisdf-mapper.periodic.DAG`
   * **Implementing Class**: `org.preesm.algorithm.mapper.PeriodicMappingFromPiMMTask`
-  * **Short description**: Undocumented
+  * **Short description**: Schedule and maps actors according to their periods.
 
 #### Inputs
   * **PiMM** (of _PiGraph_)
@@ -1194,7 +1194,7 @@ Undocumented
   * **ABC** (of _LatencyAbc_)
 
 #### Description
-Undocumented
+Schedule and map actors according to their periods thanks to a list scheduler. Only works for homogeneous architectures, does not take into account communication times. Works also if there are no periods in the graph. Result is exported in the same format as pisdf-mapper.list standard scheduler.
 
 #### Parameters
 None.
@@ -1590,7 +1590,7 @@ Specify which algorithm is used to compute the lower bound.
 
   * **Identifier**: `pisdf-synthesis.simple`
   * **Implementing Class**: `org.preesm.algorithm.synthesis.PreesmSynthesisTask`
-  * **Short description**: Undocumented
+  * **Short description**: Schedule and map actors, and allocate their memory.
 
 #### Inputs
   * **PiMM** (of _PiGraph_)
@@ -1603,22 +1603,22 @@ Specify which algorithm is used to compute the lower bound.
   * **Allocation** (of _Allocation_)
 
 #### Description
-Undocumented
+Schedule and map actors and their communications, and allocate the buffer memory.Multiple available schedulers. Output is working only for the new code generation workflow tasks codegen2.
 
 #### Parameters
 
 ##### scheduler
-Undocumented
+Scheduler used to schedule and map the tasks.
 
 | Value | Effect |
 | --- | --- |
-| _simple_ | Undocumented |
-| _legacy_ | Undocumented |
-| _periodic_ | Undocumented |
-| _choco_ | Undocumented |
+| _simple_ | Naive greedy list scheduler. |
+| _legacy_ | See workflow task pisdf-mapper.list. |
+| _periodic_ | List scheduler (without communication times) respecting actor or graph periods, if any. |
+| _choco_ | Optimal scheduler (without communication times) respecting actor or graph periods, if any. |
 
 ##### allocation
-Undocumented
+Allocate the memory for buffers.
 
 | Value | Effect |
 | --- | --- |
@@ -2318,44 +2318,51 @@ Undocumented
   * **PiMM** (of _PiGraph_)
 
 #### Description
-Set the malleable parameters default value according to the best schedule found. Different strategies are possible (exhaustive search or heuristics, available if values are only of type Long).
+Set the malleable parameters default value in the scenario according to the best schedule found.Works only on homogeneous architectures. Different strategies are possible, exhaustive search or heuristics.
 
 #### Parameters
 
-##### Number heuristic
-Undocumented
+##### 1. Comparisons
+Order of comparisons of the metrics (T for throughput or P for power or E for energy or L for latency or M for makespan, separated by >). Latency is indexed from 1 to the maximum number of pipeline stages allowed.
 
 | Value | Effect |
 | --- | --- |
-| _false_ | Enables to use a DSE heuristic when all malleable parameter expressions are integer numbers. |
+| _T>P>L_ | Metrics are compare from left to right. |
 
-##### Comparisons
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _T>E>L_ | Order of comparisons (T for throughput or E for energy or L for latency separated by >). |
-
-##### Threshold 1
-Undocumented
+##### 2. Thresholds
+Objectives of the metrics. Threshold if it is any integer higher than 0, minimize it otherwise.
 
 | Value | Effect |
 | --- | --- |
-| _0_ | Taken into account if it is any integer higher than 0. |
+| _0>0>0_ | In the same order as the metrics. |
 
-##### Threshold 2
-Undocumented
-
-| Value | Effect |
-| --- | --- |
-| _0_ | Taken into account if it is any integer higher than 0. |
-
-##### Threshold 3
-Undocumented
+##### 3. Params objectives
+Tells to minimize (-) or maximize (+) a parameter (after main objectives). May be empty.
 
 | Value | Effect |
 | --- | --- |
-| _0_ | Taken into account if it is any integer higher than 0. |
+| _>_ | Syntax: >+parentGraphName/parameterName>-... |
+
+##### 4. Number heuristic
+Use a DSE heuristic on all malleable parameter expressions which are integer numbers. Only a subset of their expressions are explored.
+
+| Value | Effect |
+| --- | --- |
+| _false_ | False disables the heuristic. |
+
+##### 5. Retry with delays
+Use a DSE heuristic to try to add delays if it improves the throughput. See workflow task pisdf-delays.setter. Number of pipelines is inferred automatically.
+
+| Value | Effect |
+| --- | --- |
+| _false_ | False disables the heuristic. |
+
+##### 6. Log path
+Export all explored points with associated metrics in a csv file.
+
+| Value | Effect |
+| --- | --- |
+| _/Code/generated/_ | Path relative to the project root. |
 
 
 ### Automatic Placement of Delays
@@ -2373,44 +2380,44 @@ Undocumented
   * **PiMM** (of _PiGraph_)
 
 #### Description
-Puts delays in a flat PiMM, in order to speed up the execution. The heuristic will perform a search of all simple cycles, so the task may take time to run.
+Puts delays in a flat PiMM, in order to speed up the execution. Works only on homogeneous architectures. The heuristic will perform a search of all simple cycles, so the task may take a long time to run if many cycles are present.
 
 #### Parameters
 
 ##### Selection cuts
-Undocumented
+Number of graph cuts to consider, higher or equal to the maximum number of cuts.
 
 | Value | Effect |
 | --- | --- |
-| _4_ | Number of graph cuts to consider. |
+| _4_ | Split the graph in zones of equivalent work load. |
 
 ##### Maximum cuts
-Undocumented
+Maximum number of graph cuts induced by the added delays. Each graph cut adds one pipeline stage. If delays are already present, the values are summed.
 
 | Value | Effect |
 | --- | --- |
-| _1_ | Maximum number of graph cuts induced by the added delays. |
+| _1_ |  |
 
 ##### Test best choco ?
-Undocumented
+Computes all topological graph cuts with a CP solver. All topological cuts are evaluated with a list scheduler to select the best.
 
 | Value | Effect |
 | --- | --- |
-| _false_ | Whether or not the cuts should be selected among the best Choco solutions (disable the heuristic). |
+| _false_ | False disables this comparison. |
 
 ##### Test scheduling ?
-Undocumented
+Whether or not a schedule must be generated at the end.
 
 | Value | Effect |
 | --- | --- |
-| _false_ | Whether or not a scheduling is attempted at the end. |
+| _false_ | False disables this feature. |
 
 ##### Fill cycles ?
-Undocumented
+Whether or not the cycles must be broken with extra delays.
 
 | Value | Effect |
 | --- | --- |
-| _false_ | Whether or not the task must also break the cycles with delays. |
+| _false_ | False disables this feature. |
 
 
 ### Periods Prescheduling Checker
@@ -2433,18 +2440,18 @@ Check necessary condition to schedule graphs with periods (at top level or in ac
 #### Parameters
 
 ##### Selection rate (%)
-Undocumented
+Percentage of periodic actors to consider.
 
 | Value | Effect |
 | --- | --- |
-| _100_ | Periodic actors to consider. |
+| _100_ | All periodic actors are checked. |
 
 
 ### Periodic scheduling (without output)
 
   * **Identifier**: `pisdf-synthesis.void-periodic-schedule`
   * **Implementing Class**: `org.preesm.algorithm.synthesis.schedule.VoidPeriodicScheduleTask`
-  * **Short description**: Undocumented
+  * **Short description**: Schedule and maps actors according to their periods.
 
 #### Inputs
   * **PiMM** (of _PiGraph_)
@@ -2455,17 +2462,17 @@ Undocumented
 None.
 
 #### Description
-Undocumented
+Schedule and map actors according to their periods thanks to a list scheduler. Only works for homogeneous architectures, does not take into account communication times. Works also if there are no periods in the graph.
 
 #### Parameters
 
 ##### solver
-Undocumented
+Algorithm used to schedule and map.
 
 | Value | Effect |
 | --- | --- |
-| _list_ | Undocumented |
-| _choco_ | Undocumented |
+| _list_ | List scheduler. |
+| _choco_ | Optimal CP scheduler. |
 
 
 ### Throughput Evaluation
