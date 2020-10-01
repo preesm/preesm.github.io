@@ -279,7 +279,7 @@ You can continue the tutorials by trying [Tutorial 3: Code Generation for Multic
 
 ## Appendix: Change the input resolution
 
-This section details the changes needed in order to run the Sobel application with YUV sequences of different resolution and length (such as the ones available [\[here\]](http://videocoders.com/yuv.html)).
+This section details the changes needed in order to run the Sobel application with YUV sequences of different resolution and length (such as the ones available [\[here\]](http://vip.cs.nctu.edu.tw/resource_seq.html)).
 
 1.  In the application graph editor.
 2.  Set the new values of width and height, and check that nbSlice is a multiple of height.
