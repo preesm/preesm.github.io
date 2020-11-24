@@ -104,7 +104,7 @@ Add a new Sobel actor to the application graph. To do so:
 5.  Click on "Fifo" in the palette and click successively on the "y" ports of the "Read_YUV" and on the "Sobel" actor.
 6.  Name "input" the "Sobel" input port for the new fifo.
 7.  Repeat the last 2 steps to add another fifo between an "output" port of the "Sobel" actor and the "y" port of the display actor.
-8.  Set the type of the newly created fifos to "uchar" (right click on the fifo > Set the Data type).
+8.  Set the type of the newly created fifos to "uchar" (in the properties of the fifo, below the graph editor).
 9.  Click on "Dependency" in the palette and click successively on the "width" parameter and the "Sobel" actor, name "width" the new configuration input port.
 10.  Add another dependency between the "height" parameter and the "Sobel" actor.
 11.  Locate the "Properties" view of Preesm. (If the view is not visible, press F3 or go into "Menu bar > Window > Show View > Other..." and select "General > Properties").
