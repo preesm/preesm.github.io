@@ -111,11 +111,11 @@ Add a new Sobel actor to the application graph. To do so:
 12.  In the graph editor, select the fifo between actors "Read_YUV" and "Sobel".
 13.  In the "Properties" view, set the expressions associated to the source and target ports to: "height*width".
 14.  Repeat the last two steps for the fifo between actors "Sobel" and "display".
-15.  Drag-and-drop the "sobel.h" file from the "Package Explorer" on the "Sobel" actor in the graph.
+15.  Drag-and-drop the "sobel.h" file from the "Project Explorer" on the "Sobel" actor in the graph.
 16.  In the dialog, choose a prototype for the loop function (the function called at each execution of the sobel actor), select the only one proposed (named sobel).
 17.  When asked to select an init function, click "Cancel". (this function is optional and in the case of the sobel actor, unnecessary).
 18.  Save the diagram.
-19.  Open the "/Scenarios/1core.scenario" by double-clicking on it in the "Package Explorer".
+19.  Open the "/Scenarios/1core.scenario" by double-clicking on it in the "Project Explorer".
 20.  In the "Constraints" tab, select the "Core0" operator and tick the "Sobel" box to allow the Sobel actor to execute on this core.
 21.  Save the scenario.
 22.  Execute the workflow. (Don't forget to check the Console for errors and warnings.)
@@ -242,7 +242,7 @@ In order to exploit the parallelism of the application, a new multicore architec
 
 To create a new multicore achitecture model similar to the one in the figure, follow the following steps:
 
-1.  In the "Package Explorer", create a copy of "/Archi/1CoreX86.slam" and name it "4CoreX86.slam"
+1.  In the "Project Explorer", create a copy of "/Archi/1CoreX86.slam" and name it "4CoreX86.slam"
 2.  Double-click on the new "4CoreX86.slam" to open it with the S-LAM Editor.
 3.  Copy/Paste the "Core0" processing element 3 times. Name the new cores "Core1" to "Core3". 
 4.  For each new processing element, in the "Basic" tab of the "Properties" pannel, and set the hardware ID accordingly to the number of the Core, from 1 to 3.
@@ -254,7 +254,7 @@ You can use these steps to add any number of processing elements to your archite
 
 Before generating a multicore schedule, you need to create a new scenario that will associate the Sobel algorithm with the new 4Core architecture. To do so:
 
-1.  In the "Package Explorer", create a copy of "/Scenarios/1core.scenario" and name it "4core.scenario".
+1.  In the "Project Explorer", create a copy of "/Scenarios/1core.scenario" and name it "4core.scenario".
 2.  Double-click on the new "4core.scenario" to open it with the Scenario Editor.
 3.  In the "Overview" tab, set the "Architecture file path" to "/Archi/4CoreX86.slam".
 4.  Save the scenario, close it and reopen it to take the new architecture into account in the editor.
