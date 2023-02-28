@@ -23,8 +23,8 @@ Updated the 27.02.2023 by [H. Miomandre](mailto:hugo.miomandre@insa-rennes.fr)
 
 ### Install Java  
 
-Preesm requires the Eclipse environment, which runs on the Java platform. If you do not have Java yet, the Eclipse IDE will provide it. Otherwise, make sure the to have the version 17 or 18 of Java*.
-*Java 19+ can be used to run and develop in Preesm, but cannot be used to run Maven commands for unit tests and product generation.
+Preesm requires the Eclipse environment, which runs on the Java platform. If you do not have Java yet, the Eclipse IDE will provide it. Otherwise, make sure the to have the version 17 Java*.
+*Java 18 and 19 can be used to run and develop in Preesm, but may not be usable to run Maven commands for unit tests and product generation.
 
 ### Eclipse
 
@@ -39,9 +39,9 @@ Run Eclipse, you need to choose a workspace, i.e. a directory where the metadata
 In Eclipse:
 
 1.  Go to "Help > Install New Software...";
-2.  In "Work with:", choose the first Eclipse address: ```2022-12 - https://download.eclipse.org/releases/2022-12/``` (at the time of writing).
-3.  Look for Modeling > **EMF - Eclipse Modeling Framework Xcore SDK** (search for "xcore") and Testing > **RCPTT IDE** (search for "rcptt").  
-Accept the terms of the license agreement when asked.  
+2.  In "Work with:", choose the first Eclipse address: ```2022-12 - https://download.eclipse.org/releases/2022-12/``` from the drop-down menu (at the time of writing).
+3.  Look for Modeling > **EMF - Eclipse Modeling Framework Xcore SDK** (search for "xcore") and Testing > **RCPTT IDE** (search for "rcptt").
+Click Next, accept the terms of the license agreement when asked.
 No need to restart Eclispe when prompted.
 4.  Go to "Help > Eclipse Marketplace...";
 5.  From the marketplace, install **Eclipse Xtend** (search for "xtend") and **Eclipse Xtext** (search for "xtext").
@@ -67,6 +67,7 @@ Add the Preesm sources into Eclipse:
     * ```preesm```
     * ```preesm/plugins```
     * Everything in ```preesm/releng``` but ```preesm/releng/org.preesm.target-platform``` and ```preesm/releng/org.preesm.product```
+    * ```preesm/tests```
     * Everything in ```preesm/tests/org.preesm.integration.tests```
         * Only the main ```preesm/tests/org.preesm.integration.tests``` is kept.
     * **There should 24 projects selected.**
@@ -74,7 +75,9 @@ Add the Preesm sources into Eclipse:
 
 ## Compilation of Preesm
 
-Eclipse should start the compilation right-away while the dependancies of Preesm as not yet been imported, resulting in compilation errors. While Preesm is being compiled, open ```org.preesm.target-platform/org.preesm.target-platform.target``` and click on **Set as Active Target Platform** to instruct Eclipse to fetch the dependencies required by Preesm.
+Close "Welcome" tab.
+
+Eclipse should start the compilation right-away while the dependancies of Preesm as not yet been imported, resulting in compilation errors. While Preesm is being compiled, open ```org.preesm.target-platform/org.preesm.target-platform.target``` and click on **Set as Active Target Platform** in the top right corner to instruct Eclipse to fetch the dependencies required by Preesm.
 
 ## Execution of Preesm
 
@@ -88,7 +91,7 @@ This section describes how to build and export the Eclipse Product of PREESM, i.
 
 **Note: Make sure your Eclipse either uses a different copy of the code or it is shutdown. Indeed the automatic builds of Eclipse can corrupt Maven build.**
 
-After installing Maven, run `mvn clean package -DskipTests` from the root of the git repository. When the build process has terminated successfully, the resulting products and archives will be located under **releng/org.preesm.product/target/products/**.
+After installing Maven, run `mvn clean package -DskipTests` from the root of the git repository. When the build process has terminated successfully, the resulting products and archives will be located under ```releng/org.preesm.product/target/products/```.
 
 ## Troubleshooting
 
@@ -96,6 +99,7 @@ After installing Maven, run `mvn clean package -DskipTests` from the root of the
     *   **(1)** The build state of the Eclipse workspace can be corrupted after an update. To fix that, restart Eclipse then clean and rebuild your workspace.
     *   **(2)** Try reloading the target platform in ```org.preesm.target-platform/org.preesm.target-platform.target``` by clicking on **Relaod Target Platform**.
 *   **Missing artifact com.sun:tools:jar:1.8.0 is missing:** This happens because Eclipse is running using a JRE instead of a JDK. Some Eclipse plugins needs Java packages that are not bundled with the JRE, but only with the JDK. If you installed the JDK, note that by default the JDK distribution for Windows also installs a JRE. Also, the installer adds a section in the PATH variable, that points to ```C:\ProgramData\Oracle\Java\javapath```, which is an alias to the JRE binaries. Please refer to [this page](https://douglascayers.com/2015/05/30/how-to-set-custom-java-path-after-installing-jdk-8/) for fixing the issue. Basically, it tells to prepend the PATH variable with the path to the JDK, while not removing the ```...\javapath``` section.
+*   **The Preesm runtime throws a popup error message on every interaction:** Ensure that the version 17 of Java is used if you happen to have multiple installe at the same time.
 
 ## Known Issues
 
