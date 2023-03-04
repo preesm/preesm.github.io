@@ -58,9 +58,9 @@ Preesm team repositories set the notification policies to the Travis default : [
 
 ## Non-Regression Tests
 
-Automatic testing is key to prevent regression. Preesm tests are run automatically at every push on the [Travis CI platform](https://travis-ci.org/preesm/preesm/branches). To run the tests, Travis simply calls the Maven goals **clean verify**. That triggers the full build and test of all Preesm plugins (see below for details).
+Automatic testing is key to prevent regression. Preesm tests are run automatically at every push Github Actions. To run the tests, Actions simply calls the script ```releng/build_and_test.sh```. It fully builds and test of all Preesm plugins (see below for details).
 
-Builds can fail for many reasons, as compilation error, broken coding policies, or test failures. Compilation errors and broken coding policies should be enforced by the Eclipse IDE. Tests however have to be triggered manually on your workstation. Indeed, having the Travis CI build fail on the tests means that one or several functionalities have been broken.
+Builds can fail for many reasons, as compilation error, broken coding policies, or test failures. Compilation errors and broken coding policies should be enforced by the Eclipse IDE. Tests however have to be triggered manually on your workstation. Indeed, having the Github Actions build fail on the tests means that one or several functionalities have been broken.
 
 The tests are split in several test plug-ins:
 * Unit Tests:
@@ -113,7 +113,8 @@ During the execution of the tests, if some failure occurs, the output will look 
 [INFO] PREESM :: Releng :: Product ........................ SKIPPED
 [INFO] PREESM :: Releng :: Update Site .................... SKIPPED
 ```
-Such output is generated after every Travis build (i.e. [this log](https://api.travis-ci.org/v3/job/518319450/log.txt) for a successful build), in the last lines of the log. 
+Such output is generated for every Github Actions [workflow](https://github.com/preesm/preesm/actions).
+
 
 From this summary, it is straightforward to locate which plug-in caused the failure. More details can be found when scrolling up the log, for instance:
 ```
@@ -191,7 +192,7 @@ This log shows that the Code Generation task threw an exception while attempting
 This procedure is specific to running [RCPTT](https://www.eclipse.org/rcptt/) tests from Eclipse. Maven uses the product built during the full process to run the tests and run them during the build process. We strongly advise the developers to have a look at the [RCPTT user guide](https://www.eclipse.org/rcptt/documentation/userguide/getstarted/) before going further.
 
 1.  Export the product using [procedure described here](/docs/buildpreesm/#from-eclipse);
-2.  Select plugin "org.preesm.tests.ui.rcptt", right click on it then "Run As / Test Cases" 
+2.  Select plugin "org.preesm.ui.rcptt.tests", right click on it then "Run As / Test Cases"
 3.  The following window ask to choose an Application Under Test (AUT). Add a new one with the product exported from step 1:
 [![](/assets/docs/06-devdoc/tests-rcptt-newaut.png)](/assets/docs/06-devdoc/tests-rcptt-newaut.png)
 4.  Before selecting OK in the AUT selection window, make sure you will not need your machine for few minutes. Indeed, automated UI tests will run graphically and require the mouse / keyboard to be unused.
@@ -204,7 +205,7 @@ This procedure is specific to running [RCPTT](https://www.eclipse.org/rcptt/) te
 
 Preesm relies on [**JUnit 4**](https://junit.org/junit4/) for its tests. We strongly recommend the developers to read about unit testing with JUnit before implementing tests in Preesm. The following tutorial is especially relevant: [https://www.vogella.com/tutorials/JUnit/article.html](https://www.vogella.com/tutorials/JUnit/article.html).
 
-When adding a new task in Preesm, the good practice is to add unit tests for the different parts of the algorithm in the **org.preesm.tests.algorithm**, possibly tests in the **org.preesm.tests.model** if the model was updated, and some full examples with actual working Workflow, Scenario, etc. in the **org.preesm.tests.integration** plugin. More about unit vs integration test can be found online:
+When adding a new task in Preesm, the good practice is to add unit tests for the different parts of the algorithm in the **org.preesm.algorithm.tests**, possibly tests in the **org.preesm.model.tests** if the model was updated, and some full examples with actual working Workflow, Scenario, etc. in the **org.preesm.integration.tests** plugin. More about unit vs integration test can be found online:
 *  [https://www.guru99.com/unit-test-vs-integration-test.html](https://www.guru99.com/unit-test-vs-integration-test.html)
 *  [https://dzone.com/articles/unit-testing-vs-integration-testing-whats-the-diff](https://dzone.com/articles/unit-testing-vs-integration-testing-whats-the-diff)
 *  [https://stackoverflow.com/questions/5357601/whats-the-difference-between-unit-tests-and-integration-tests](https://stackoverflow.com/questions/5357601/whats-the-difference-between-unit-tests-and-integration-tests)
@@ -218,7 +219,7 @@ If the contribution impacts the UI, then adding RCPTT tests is advised.
 Unit tests are meant to test small parts (usually one method per test) of the application.
 
 1.  Create a new class in one of the test plug-ins (see how test plug-ins are decomposed in the [introduction of this section](#non-regression-tests));
-  *  Make sure the class name starts or ends with **Test**. This is to make sure the tests will be run by the Maven plug-in, as the pattern to locate tests is `**/Test*.java **/*Test.java **/*TestCase.java` (see [this doc](https://www.eclipse.org/tycho/sitedocs/tycho-surefire/tycho-surefire-plugin/test-mojo.html#includes)).
+  *  Make sure the class name ends with **Test**. This is to make sure the tests will be run by the Maven plug-in, as the pattern to locate tests is `**/*Test.java **/*TestCase.java` (see [this doc](https://www.eclipse.org/tycho/sitedocs/tycho-surefire/tycho-surefire-plugin/test-mojo.html#includes)).
 2.  In this new class, add methods with the `@Test` annotation as any JUnit test and implement it. If the test plug-in misses dependencies, add them in the manifest as 'Required Plug-ins';
 3.  When the test is ready, [run it from Eclipse](#run-tests-from-eclipse) to make sure it is working properly.
 4.  Finally add it to git and commit it as any other file.
@@ -228,12 +229,12 @@ Unit tests are meant to test small parts (usually one method per test) of the ap
 Preesm integration tests check the termination status of workflows. The mini-framework takes as input a Preesm project, a workflow and a scenario, then returns a boolean telling of the workflow terminated successfully without errors. No test is done on the result of the execution of the workflow. [JUnit parameterized tests](https://github.com/junit-team/junit4/wiki/Parameterized-tests) helps running tests in bulk.
 
 1.  [Run the version of Preesm from your workspace](/docs/buildpreesm#execution-of-preesm);
-2.  In Preesm, create a new Preesm project with a name that represents what you are testing. Make sure the name does not conflict with projects already present in the **resources** folder of the **org.preesm.tests.integration**;
+2.  In Preesm, create a new Preesm project with a name that represents what you are testing. Make sure the name does not conflict with projects already present in the **resources** folder of the **org.preesm.integration.tests**;
 3.  In this new project, add whatever is required to run the workflow(s) with the task you want to test. If your task does not require an application or an architecture, feel free to skip them. Since the generated code will not be executed, providing the source code for the actors can also be skipped.
 4.  Make sure the workflow(s) terminates properly, then copy the project:
 [![](/assets/docs/06-devdoc/tests-add-copyproject.png)](/assets/docs/06-devdoc/tests-add-copyproject.png)
-5.  Paste the project in the **resources** folder of the **org.preesm.tests.integration** plug-in.
-6.  Add a Unit test in the Eclipse plugin **org.preesm.tests.integration** that calls `WorkflowRunner.runWorkFlow` with proper project name, workflow and scenario, and use `Assert.assertTrue` on the result (or false of you want to make sure the workflow fails). Check other existing tests, for instance `TutorialsTest`, to get an idea of how to write bulk tests.
+5.  Paste the project in the **resources** folder of the **org.preesm.integration.tests** plug-in.
+6.  Add a Unit test in the Eclipse plugin **org.preesm.integration.tests** that calls `WorkflowRunner.runWorkFlow` with proper project name, workflow and scenario, and use `Assert.assertTrue` on the result (or false of you want to make sure the workflow fails). Check other existing tests, for instance `TutorialsTest`, to get an idea of how to write bulk tests.
 
 
 #### Adding UI Tests with RCPTT
@@ -242,13 +243,13 @@ UI Tests are run using [RCPTT](https://www.eclipse.org/rcptt/).
 
 We refer the developers to the [RCPTT user guide](https://www.eclipse.org/rcptt/documentation/userguide/getstarted/) for adding RCPTT tests.
 
-The only specific directive is to insert new tests (and their verifications and contexts) in a proper, consistent folder hierarchy of the plugin **org.preesm.tests.ui.rcptt**.
+The only specific directive is to insert new tests (and their verifications and contexts) in a proper, consistent folder hierarchy of the plugin **org.preesm.ui.rcptt.tests**.
 
 ## Coding Policies
 
 The Preesm code base respects some coding policy. If you intend to develop within Preesm, we strongly advise you to follow these policies to prevent the continuous integration server to reject your contributions. These policies are simple:
 
 1.  Follow the [checkstyle](http://checkstyle.sourceforge.net/) format provided in the [coding policy project](https://github.com/preesm/preesm-maven/blob/master/preesm-coding-policy/checkstyle/VAADER_checkstyle.xml);
-2.  Make sure all the tests run without failure (run 'mvn clean verify' in the root folder of the git repository.
+2.  Make sure all the tests run without failure (run 'mvn clean verify' in the root folder of the git repository).
 
 To help enforcing the checkstyle format, the "on-the-fly" checkstyle analyzer using the Eclipse plug-in (automatically installed with the meta feature and configured through M2Eclipse connectors) will provide feedback and the Eclipse cleanup formatter will enforce most of the rules (triggered on save action).

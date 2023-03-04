@@ -63,14 +63,32 @@ Add the Preesm sources into Eclipse:
 1.  Go to "File > Open Projects from File System..."
 2.  In "Import source:" provide the path to the cloned git repository.
 3.  Ensure the option "Search for nested projects" is checked.
-4.  Select everything apart from:
-    * ```preesm```
-    * ```preesm/plugins```
-    * Everything in ```preesm/releng``` but ```preesm/releng/org.preesm.target-platform``` and ```preesm/releng/org.preesm.product```
-    * ```preesm/tests```
-    * Everything in ```preesm/tests/org.preesm.integration.tests```
-        * Only the main ```preesm/tests/org.preesm.integration.tests``` is kept.
-    * **There should 24 projects selected.**
+4.  Select the following projects:
+    * ```fi.abo.preesm.dataparallel```
+    * ```fi.abo.preesm.dataparallel.test```
+    * ```org.preesm.algorithm```
+    * ```org.preesm.algorithm.tests```
+    * ```org.preesm.cli```
+    * ```org.preesm.codegen```
+    * ```org.preesm.codegen.xtend```
+    * ```org.preesm.commons```
+    * ```org.preesm.framework.tests```
+    * ```org.preesm.integration.tests```
+    * ```org.preesm.model.pisdf```
+    * ```org.preesm.model.scenario```
+    * ```org.preesm.model.slam```
+    * ```org.preesm.model.tests```
+    * ```org.preesm.product```
+    * ```org.preesm.target-platform```
+    * ```org.preesm.ui```
+    * ```org.preesm.ui.pisdf```
+    * ```org.preesm.ui.rcptt.tests```
+    * ```org.preesm.ui.scenario```
+    * ```org.preesm.ui.sdf```
+    * ```org.preesm.ui.slam```
+    * ```org.preesm.ui.tests```
+    * ```org.preesm.workflow```
+* **There should 24 projects selected.**
 5.  Click on **Finish**.
 
 ## Compilation of Preesm
@@ -97,7 +115,7 @@ After installing Maven, run `mvn clean package -DskipTests` from the root of the
 
 *   **I followed all steps but there are compilation errors**
     *   **(1)** The build state of the Eclipse workspace can be corrupted after an update. To fix that, restart Eclipse then clean and rebuild your workspace.
-    *   **(2)** Try reloading the target platform in ```org.preesm.target-platform/org.preesm.target-platform.target``` by clicking on **Relaod Target Platform**.
+    *   **(2)** Try reloading the target platform in ```org.preesm.target-platform/org.preesm.target-platform.target``` by clicking on **Reload Target Platform**.
 *   **Missing artifact com.sun:tools:jar:1.8.0 is missing:** This happens because Eclipse is running using a JRE instead of a JDK. Some Eclipse plugins needs Java packages that are not bundled with the JRE, but only with the JDK. If you installed the JDK, note that by default the JDK distribution for Windows also installs a JRE. Also, the installer adds a section in the PATH variable, that points to ```C:\ProgramData\Oracle\Java\javapath```, which is an alias to the JRE binaries. Please refer to [this page](https://douglascayers.com/2015/05/30/how-to-set-custom-java-path-after-installing-jdk-8/) for fixing the issue. Basically, it tells to prepend the PATH variable with the path to the JDK, while not removing the ```...\javapath``` section.
 *   **The Preesm runtime throws a popup error message on every interaction:** Ensure that the version 17 of Java is used if you happen to have multiple installe at the same time.
 
