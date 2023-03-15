@@ -44,7 +44,7 @@ In Eclipse:
 Click Next, accept the terms of the license agreement when asked.
 No need to restart Eclispe when prompted.
 4.  Go to "Help > Eclipse Marketplace...";
-5.  From the marketplace, install **Eclipse Xtend** (search for "xtend") and **Eclipse Xtext** (search for "xtext").
+5.  From the marketplace, install **Eclipse Xtend** (search for "xtend"), **Eclipse Xtext** (search for "xtext"), **Checkstyle Plug-in**, and the **SonarLint** Eclispe plug-in.
 6.  Restart Eclipse to complete the installation.
 
 ## Import Preesm projects
