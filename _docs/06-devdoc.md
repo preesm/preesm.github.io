@@ -46,14 +46,10 @@ If you encounter conflicts during the process and do not know how to manage the 
 
 ## Build Status Notifications
 
-To receive the build status notifications, you have to sign in on travis-ci.org with your github account and make sure your local git config mail address matches one of the github verified mail address:
+Build status notifications are directly handled by Github with the email address used by your Github account, make sure your local git config mail address matches one of the github verified mail address:
 
 1.  Check your local git config mail address, and change it to a valid one if it is not already the case: ```git config --global --edit```
 2.  Sign in on GitHub, got to Settings / Emails, and check that the mail address is present. If not, add it to the list and make sure that it is verified before going further.
-3.  Got to [https://travis-ci.org/](https://travis-ci.org/) and Sign In with your GitHub account. This will allow Travis-CI to read the permissions on the repositories to make sure you have push access and also check that your mail address is verified.
-
-Preesm team repositories set the notification policies to the Travis default : [https://docs.travis-ci.com/user/notifications/](https://docs.travis-ci.com/user/notifications/)
-
 
 
 ## Non-Regression Tests
@@ -80,7 +76,7 @@ Running the tests from Maven is done by calling `mvn clean verify` from the root
 ```
 ./releng/build_and_test.sh --fast
 ```
-This is the command that is run on Travis CI.
+This is the command that is run on Github Actions.
 
 During the execution of the tests, if some failure occurs, the output will look like the following:
 ```
