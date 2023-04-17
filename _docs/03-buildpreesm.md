@@ -65,29 +65,29 @@ Add the Preesm sources into Eclipse:
 3.  Ensure the option "Search for nested projects" is checked.
 4.  Select the following projects:
     * ```fi.abo.preesm.dataparallel```
-    * ```fi.abo.preesm.dataparallel.test```
     * ```org.preesm.algorithm```
-    * ```org.preesm.algorithm.tests```
     * ```org.preesm.cli```
     * ```org.preesm.codegen```
     * ```org.preesm.codegen.xtend```
     * ```org.preesm.commons```
-    * ```org.preesm.framework.tests```
-    * ```org.preesm.integration.tests```
     * ```org.preesm.model.pisdf```
     * ```org.preesm.model.scenario```
     * ```org.preesm.model.slam```
-    * ```org.preesm.model.tests```
-    * ```org.preesm.product```
-    * ```org.preesm.target-platform```
     * ```org.preesm.ui```
     * ```org.preesm.ui.pisdf```
-    * ```org.preesm.ui.rcptt.tests```
     * ```org.preesm.ui.scenario```
     * ```org.preesm.ui.sdf```
     * ```org.preesm.ui.slam```
-    * ```org.preesm.ui.tests```
     * ```org.preesm.workflow```
+    * ```org.preesm.product```
+    * ```org.preesm.target-platform```
+    * ```fi.abo.preesm.dataparallel.test```
+    * ```org.preesm.algorithm.tests```
+    * ```org.preesm.framework.tests```
+    * ```org.preesm.integration.tests```
+    * ```org.preesm.model.tests```
+    * ```org.preesm.ui.rcptt.tests```
+    * ```org.preesm.ui.tests```
 * **There should 24 projects selected.**
 5.  Click on **Finish**.
 
