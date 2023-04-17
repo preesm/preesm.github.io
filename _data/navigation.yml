@@ -49,6 +49,8 @@ tutos_nav:
         url: /tutos/apollo/
       - title: "14 - HW/SW Code Generation for MPSoCs"
         url: /tutos/artico3/
+      - title: "15 - Dataflow Code Generation for HLS"
+        url: /tutos/dfhls/
         
 docs_nav:
   - title: Documentation
