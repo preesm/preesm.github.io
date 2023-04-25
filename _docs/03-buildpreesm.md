@@ -95,7 +95,9 @@ Add the Preesm sources into Eclipse:
 
 Close "Welcome" tab.
 
-Eclipse should start the compilation right-away while the dependencies of Preesm as not yet been imported, resulting in compilation errors. While Preesm is being compiled, **open the file** ```org.preesm.target-platform/org.preesm.target-platform.target``` and click on the button **Set as Active Target Platform** in the top right corner of the opening window to instruct Eclipse to fetch the dependencies required by Preesm. **Click just once and have a coffee, even if nothing seems to happen, installation is processed**.
+Eclipse should start the compilation right-away while the dependencies of Preesm as not yet been imported, resulting in compilation errors. While Preesm is being compiled, **open the file** ```org.preesm.target-platform/org.preesm.target-platform.target``` and click on the button **Set as Active Target Platform** in the top right corner of the opening window to instruct Eclipse to fetch the dependencies required by Preesm. **Click just once and have a coffee, even if nothing seems to happen, compilation is processed**.
+
+If compilation errors remain, please check your Java version (see above).
 
 ## Execution of Preesm
 
