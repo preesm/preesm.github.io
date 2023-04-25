@@ -109,9 +109,13 @@ Right-click on the 'org.preesm.ui' plug-in, the click on Debug As > Eclipse Appl
 
 This section describes how to build and export the Eclipse Product of PREESM, i.e. the standalone executable of PREESM (as folder structure or Zip archive).
 
+This procedure is tested with Maven 3.8.8. Maven is launched as `mvn'.
+
 **Note: Make sure your Eclipse either uses a different copy of the code or it is shutdown. Indeed the automatic builds of Eclipse can corrupt Maven build.**
 
-After installing Maven, run `mvn clean package -DskipTests` from the root of the git repository. When the build process has terminated successfully, the resulting products and archives will be located under ```releng/org.preesm.product/target/products/```.
+After installing Maven, run `mvn clean package -DskipTests` from the root of the git repository. Maven compiles Preesm sources and builds the Preesm product.
+
+When the build process has terminated successfully, the resulting products and archives will be located under ```releng/org.preesm.product/target/products/```.
 
 ## Troubleshooting
 
