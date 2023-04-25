@@ -88,14 +88,14 @@ Add the Preesm sources into Eclipse:
     * ```org.preesm.model.tests```
     * ```org.preesm.ui.rcptt.tests```
     * ```org.preesm.ui.tests```
-* **There should 24 projects selected.**
+* **There should be 24 selected projects.**
 5.  Click on **Finish**.
 
 ## Compilation of Preesm
 
 Close "Welcome" tab.
 
-Eclipse should start the compilation right-away while the dependancies of Preesm as not yet been imported, resulting in compilation errors. While Preesm is being compiled, open ```org.preesm.target-platform/org.preesm.target-platform.target``` and click on **Set as Active Target Platform** in the top right corner to instruct Eclipse to fetch the dependencies required by Preesm.
+Eclipse should start the compilation right-away while the dependencies of Preesm as not yet been imported, resulting in compilation errors. While Preesm is being compiled, **open the file** ```org.preesm.target-platform/org.preesm.target-platform.target``` and click on the button **Set as Active Target Platform** in the top right corner of the opening window to instruct Eclipse to fetch the dependencies required by Preesm. **Click just once and have a coffee, even if nothing seems to happen, installation is processed**.
 
 ## Execution of Preesm
 
