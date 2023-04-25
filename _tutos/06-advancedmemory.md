@@ -45,9 +45,10 @@ To create a new memory script and associate it to the Split actor, follow these 
 2.  Right-click on the new "Scripts" directory, and select "New->File".
 3.  Name the new file "split.bsh"
 4.  Double-click on "/Algo/top_display.diagram" to open the graph editor.
-5.  In the graph editor, select the "Split" actor .
-6.  Click on the Edit button of the "Memory script" property and select the file you just created.
-7.  Save "top_display.diagram".
+5.  Select the "Split" actor in the editor.
+6.  In the Properties view, click the "Edit" button in the "Memory script" section.
+7.  In the wizard, select the "split.bsh" file and click OK.
+8.  Save "top_display.diagram".
 
 ### Scripting Syntax
 
@@ -107,13 +108,6 @@ for(int i=0; i<nbSlice ;i++){
                       sliceSize);
 }
 ```
-
-To associate this script with the Split actor, follow these steps:
-
-1.  Open the graph editor by double-clicking on "Algo/top_display.diagram".
-2.  Select the "Split" actor in the editor.
-3.  In the Properties view, click the "Edit" button in the "Memory script" section.
-4.  In the wizard, select the "split.bsh" file and click OK.
 
 When executed, this code creates a match for each output slice produced by the Split actor. The following figure illustrates the matches created by this script for parameters height=9, width=8, and nbSlice=3.
 
