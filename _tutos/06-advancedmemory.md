@@ -64,7 +64,7 @@ In Preesm, the memory script associated to an actor of the application graph is 
 | **\<parameter_name\>** | Integer | Integer value associated to the parameter for this instance of the actor. |
 | **parameters** | List\<Integer\> | List of all integer values associated to the parameters of the actor. |
 
-The _Buffer_ class is used in memory scripts to represents the bytes associated to the input and output ports of the actor. The following methods of can be used in memory scripts to access the attributes of a buffer:
+The _Buffer_ class is used in memory scripts to represents the bytes associated to the input and output ports of the actor. The following methods can be used in memory scripts to access the attributes of a buffer:
 
 *   **String getName()**: returns the name of the port, without the 'i_' or 'o_' prefix of the symbol.
 *   **int getNbTokens()**: returns the production or consumption rate of the associated port.
