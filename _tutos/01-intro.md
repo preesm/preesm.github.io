@@ -41,12 +41,17 @@ On Ubuntu 16.04
 sudo apt-get install cmake cmake-curses-gui
 ```
 
-
 For other distributions, see appropriate documentation. Package names should be very similar.
 
-#### Windows / MacOSX
+#### Windows
 
 Use installer from [CMake Download Page](https://cmake.org/download/).
+
+#### Mac OS
+
+```bash
+brew install cmake
+```
 
 ### PThread
 
@@ -73,7 +78,7 @@ From SDL about page :
 On Ubuntu 16.04
 
 ```bash
-sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev
+sudo apt install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev
 ```
 
 On CentOS 7.6
@@ -84,12 +89,17 @@ sudo yum install SDL2-devel SDL2_ttf-devel.x86_64
 
 For other distributions, see appropriate documentation. Package names should be very similar.
 
-#### Windows / MacOSX
+#### Windows
 
 Download the SDL2 development library (v. 2.0+) from [libsdl.org](https://www.libsdl.org/download-2.0.php). **Do take the "Development library"** and not the runtime library.
 
 Similarly, download the SDL2_ttf development library corresponding to your IDE from [SDL2_TTF Download Webpage](https://www.libsdl.org/projects/SDL_ttf/).
-   
+
+#### Mac OS
+
+```bash
+brew install sdl2 sdl2_ttf sdl2_image
+```
 
 ## Understand the Inputs and Run the Workflow
 
