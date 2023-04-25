@@ -29,8 +29,8 @@ Download & launch the installer: [http://msysgit.github.com/](http://msysgit.git
 ### Ubuntu
 
 ```bash
-apt-get install git  
-apt-get install git-gui
+apt install git  
+apt install git-gui
 ```
 
 ### Mac
