@@ -136,7 +136,7 @@ A new workflow task must be added to the workflow in order to execute the memory
 4.  Select the new task in the editor and open the "Properties" view.
 5.  In the "Basic" Tab, set the "plugin identifier" property to "org.ietr.preesm.memory.script.MemoryScriptTask".
 6.  Save the workflow before opening the "Task Variables" tab of the "Properties" of the new task.
-7.  Set the "Check" property to "Thorough". When learning how to write new memory scripts, the "Thorough" error checking will generate error messages with a detailed description of the source of the error. Once you feel more comfortable with memory scripts, you can set this property to "Fast". In he "Fast" mode, all errors are still detected, but the generated error messages are less informative. Finally, this property can be set to "None" once all memory scripts have been validated in order to speed-up the workflow execution.
+7.  Set the "Check" property to "Thorough". When learning how to write new memory scripts, the "Thorough" error checking will generate error messages with a detailed description of the source of the error. Once you feel more comfortable with memory scripts, you can set this property to "Fast". In the "Fast" mode, all errors are still detected, but the generated error messages are less informative. Finally, this property can be set to "None" once all memory scripts have been validated in order to speed-up the workflow execution.
 8.  Set the "Data alignment" property to "None". The data alignment property should always have the same value as the one set in the properties of the "Mem Alloc" task. (cf. [Cache Activation section of the Code Generation for Multicore DSP](/tutos/mpsoccodegen#generation-of-cache-coherent-code) tutorial).
 9.  Leave the "Log Path" value unchanged. The path given in this property is relative to the "Code generation directory" defined in the executed scenario. If this property is left empty, no log will be generated.
 10.  Set the "Verbose" property to "True".
@@ -216,7 +216,7 @@ The following steps explain how to assign the "read_only" annotation to the inpu
 6.  Save and close the graph.
 7.  Run the workflow on the 4core.scenario.
 
-Once the workflow completes its execution, open the log of the memory scripts. Now that the read_only annotation is associated to the input port of the Sobel actor, all matches created by the memory script were applied by the optimization process. As a result, only 2 buffer remain after the optimization process for a total of 209088 bytes.
+Once the workflow completes its execution, open the log of the memory scripts. Now that the read_only annotation is associated to the input port of the Sobel actor, all matches created by the memory script were applied by the optimization process. As a result, only 2 buffers remain after the optimization process for a total of 209088 bytes.
 
 The next section presents the positive impact of this memory optimization process on the performance of the application as well as code modifications to apply before compiling and running the generated code.
 
