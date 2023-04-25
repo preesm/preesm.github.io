@@ -16,7 +16,7 @@ Updated the 27.02.2023 by [H. Miomandre](mailto:hugo.miomandre@insa-rennes.fr)
 ## Disclaimers
 
 1.  When building PREESM, you have to **run a second Eclipse Application** (the guest) within the Eclipse where the source code is imported (the host). This is explained below in  the "[Execution of Preesm](#execution-of-preesm)" section;
-2.  When using unreleased source code (that is any other commit different from the last tag), there could be some **inconsistencies** between released zip files used in tutorials and the tool;
+2.  When using unreleased source code (that is any other commit different from the last tag), there could be some **inconsistencies** between released zip files (Preesm projects) used in tutorials and the Preesm tool itself;
 
 
 ## Eclipse installation
@@ -32,19 +32,19 @@ Eclipse is an extensible platform programmed in Java that allows developers to w
 
 You can download and run the Eclipse installer here: [https://www.eclipse.org/downloads/](https://www.eclipse.org/downloads/). During installation, please choose the **"Eclipse IDE for RCP and RAP Developers"** package to develop in Preesm. Install Eclipse in a folder where you have write access.
 
-Run Eclipse, you need to choose a workspace, i.e. a directory where the metadata of and/or your projects will be stored.
+Run Eclipse by clicking on the eclipse file, you need to choose a workspace, i.e. a directory where the metadata of and/or your projects will be stored.
 
 ### Install Development Requirements
 
 In Eclipse:
 
 1.  Go to "Help > Install New Software...";
-2.  In "Work with:", choose the first Eclipse address: ```2022-12 - https://download.eclipse.org/releases/2022-12/``` from the drop-down menu (at the time of writing).
+2.  In "Work with:", choose the first Eclipse address: ```2023-03 - https://download.eclipse.org/releases/2023-03/``` from the drop-down menu (at the time of writing).
 3.  Look for Modeling > **EMF - Eclipse Modeling Framework Xcore SDK** (search for "xcore") and Testing > **RCPTT IDE** (search for "rcptt").
-Click Next, accept the terms of the license agreement when asked.
+Click Next, accept the terms of the license agreement when asked. Wait for the end of installation.
 No need to restart Eclispe when prompted.
 4.  Go to "Help > Eclipse Marketplace...";
-5.  From the marketplace, install **Eclipse Xtend** (search for "xtend"), **Eclipse Xtext** (search for "xtext"), **Checkstyle Plug-in**, and the **SonarLint** Eclispe plug-in.
+5.  From the marketplace, install **Eclipse Xtend** (search for "xtend"), **Eclipse Xtext** (search for "xtext"), **Checkstyle Plug-in**, and the **SonarLint** Eclipse plug-in. You need to finish and reopen the marketplace for each solution.
 6.  Restart Eclipse to complete the installation.
 
 ## Import Preesm projects
