@@ -12,6 +12,7 @@ The following topics are covered in this tutorial:
 Prerequisite: 
 * [Preesm installation](/get/)
 * [Vitis HLS 2021.2](https://www.xilinx.com/products/design-tools/vitis/vitis-hls.html), required for timing estimation and hardware synthesis, tested on Ubuntu 20.04
+* Previous Preesm tutorials will help understanding the notions of workflow, scenario, etc.
 
 ###### Tutorial created the 17.04.2023 by [M. Dardaillon](mailto:mdardail@insa-rennes.fr)
 
@@ -20,19 +21,24 @@ Prerequisite:
 * Download the [Gaussian difference project on github](https://github.com/preesm/org.ietr.preesm.gaussian-difference).
 * Launch Preesm and open the project using "File > open Projects from File Systems...".
 * Select the project and import it.
+* To see the graph hereunder, generate the `gaussian_difference.diagram` file by right clicking the `gaussian_difference.pi` file and selecting `Preesm/generate .diagram file`; then double click the `gaussian_difference.diagram` file.
 
 [![](/assets/tutos/dfhls/gaussian_difference.png)](/assets/tutos/dfhls/gaussian_difference.png)
 
+Please note that contrary to the previous Preesm graph examples, this _top_ graph has input and output ports, as Preesm generates acceleration code to be fed data by an external process.
+
 ## Application development
 
-Preesm applications targeting FPGA are based on static dataflow, supports hierarchy, parameters specified at synthesis time and cycles using delays. The main difference compared to applications targeting CPU is the use of HLS oriented code inside actors to be synthesizable by Vitis HLS. Of special note is the use of `hls::stream<>` instead of pointers on all inputs and outputs of an actor. Streams `hls::stream<>` are implemented as fifos in Xilinx, and can be accessed with `read()` and `write()` methods. A simple example can be seen in the Difference actor, by double clicking on it to access its implementation.
+Preesm applications targeting FPGA are based on static dataflow, support hierarchy, parameters specified at synthesis time and cycles using delays. The main difference compared to applications targeting CPU is the use of HLS oriented C++ code inside actors to be synthesizable by Xilinx _Vitis HLS_. Of special note is the use of `hls::stream<>` instead of pointers on all inputs and outputs of an actor. Streams `hls::stream<>` are implemented as fifos in Xilinx, and can be accessed with `read()` and `write()` methods. A simple example can be seen in the Difference actor, by double clicking on it to access its implementation.
 
 Another important difference with CPU-based application is the two timings used to characterize an actor:
 
 - Execution Time: the number of cycles for an actor to execute completely, from reading its first input to writing its last output
 - Initiation Interval: the number of cycles for an actor to start a new execution, with the actor potentially still processing previous executions using an internal pipeline.
 
-Given the use of streams fifos reading/writing a single token per cycle, those timings need to be at least equal or superior to the maximum number of tokens on all inputs/outputs of the given actor. Those timings currently need to be manually extracted from Vitis HLS using a synthesis to be reported on the scenario.
+These timings are set in the scenario file.
+
+Given the use of streams fifos reading/writing a single token per cycle, those timings need to be at least equal or superior to the maximum number of tokens on all inputs/outputs of the given actor. Those timings currently need to be manually extracted from Vitis HLS using a synthesis to be reported on the scenario content.
 
 Timings can be observed for the Gaussian difference application in the included scenario in the Timings tab. The annotated timings are for a PYNQ Z2 target clocked at 100 MHz. The Difference actor is implemented at the pixel granularity and takes only 1 cycle to execute, while the GaussianBlur actors are implemented at the image level and take 390072 cycles to execute. The analysis methods for dataflow HLS are not sensitive to large repetition counts and benefit from finer granularity such as the Difference actor to reach more efficient implementation.
 
@@ -42,12 +48,12 @@ Application synthesis is performed in 2 steps, 1. by generating a C++ implementa
 
 ### HLS implementation generation
 
-From Preesm, the application can be synthesized using the `FPGAAnalysis.workflow`. The FPGA Analysis has 2 main parameters:
+From Preesm, the application can be synthesized using the `FPGAAnalysis.workflow`. The FPGA Analysis whorkflow task has 2 main parameters:
 
-- Fifo evaluator is based on ADFG analysis and determines automatically the required FIFO sizes to guarantee the absence of deadlock and reach maximal throughput. It can be set to `adfgFifoEvalExact` for the most precise analysis, or `adfgFifoEvalLinear` for an overestimation in case the ILP solver overflow on more complex graphs.
+- _Fifo evaluator_ is based on ADFG analysis and determines automatically the required FIFO sizes to guarantee the absence of deadlock and reach maximal throughput. It can be set to `adfgFifoEvalExact` for the most precise analysis, or `adfgFifoEvalLinear` for an overestimation in case the ILP solver overflows on more complex graphs.
 - Pack tokens is a technique to minimize BRAM usage by FIFOs by packing multiple tokens together in a single FIFO stored value, trading BRAM usage for a small increase in latency.
 
-Launch the synthesis by running the workflow on `gaussian_diffrence.scenario`. This should take a few seconds. During synthesis, each actor is implemented independently with no resource sharing between actors. They are connected using FIFOs as dimensioned by ADFG and displayed in the log with their sizes given in bits.
+Launch the synthesis by running the workflow on `gaussian_difference.scenario`. This should take a few seconds. During synthesis, each actor is implemented independently with no resource sharing between actors. They are connected using FIFOs as dimensioned by ADFG and displayed in the log with their sizes given in bits.
 
 ### Hardware synthesis for PYNQ
 
