@@ -60,12 +60,12 @@ Builds can fail for many reasons, as compilation error, broken coding policies, 
 
 The tests are split in several test plug-ins:
 * Unit Tests:
-  *  **org.preesm.tests.framework**: unit testing for commons and workflow;
-  *  **org.preesm.tests.model**: unit testing of PiSDF, SLAM and Scenario models;
-  *  **org.preesm.tests.algorithm**: unit testing of algorithms and codegen;
-  *  **org.preesm.tests.ui**: unit testing for UI (workflow, PiSDF, Slam, Scenario);
-*  **org.preesm.tests.integration**: integration test running workflows on Preesm projects;
-*  **org.preesm.tests.ui.rcptt**: integration tests for UI using [RCPTT](https://www.eclipse.org/rcptt/), actually reproducing user behavior.
+  *  **org.preesm.framework.tests**: unit testing for commons and workflow;
+  *  **org.preesm.model.tests**: unit testing of PiSDF, SLAM and Scenario models;
+  *  **org.preesm.algorithm.tests**: unit testing of algorithms and codegen;
+  *  **org.preesm.ui.tests**: unit testing for UI (workflow, PiSDF, Slam, Scenario);
+*  **org.preesm.integration.tests**: integration test running workflows on Preesm projects;
+*  **org.preesm.ui.rcptt**: integration tests for UI using [RCPTT](https://www.eclipse.org/rcptt/), actually reproducing user behavior.
 
 
 ### Run Tests with Maven
@@ -235,7 +235,7 @@ Preesm integration tests check the termination status of workflows. The mini-fra
 
 #### Adding UI Tests with RCPTT
 
-UI Tests are run using [RCPTT](https://www.eclipse.org/rcptt/).
+UI Tests are run using [RCPTT](https://www.eclipse.org/rcptt/download/).
 
 We refer the developers to the [RCPTT user guide](https://www.eclipse.org/rcptt/documentation/userguide/getstarted/) for adding RCPTT tests.
 
