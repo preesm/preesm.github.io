@@ -47,10 +47,14 @@ tutos_nav:
         url: /tutos/throughputeval/
       - title: "13 - APOLLO"
         url: /tutos/apollo/
-      - title: "14 - HW/SW Code Generation for MPSoCs"
+      - title: "14 - Clustering"
+        url: /tutos/clustering/
+      - title: "15 - HW/SW code generation for MPSoCs"
         url: /tutos/artico3/
-      - title: "15 - Dataflow Code Generation for HLS"
+      - title: "16 - Dataflow Code Generation for HLS"
         url: /tutos/dfhls/
+      - title: "17 - SimSDP: Multinode Design Space Exploration"
+        url: /tutos/simsdp/
         
 docs_nav:
   - title: Documentation
