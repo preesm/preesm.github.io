@@ -13,7 +13,7 @@ The following topics are covered in this tutorial:
 Prerequisite: 
 * [Tutorial Introduction](/tutos/intro)
 
-###### Last update the 09.21.2016 - Tutorial created the 07.31.2013 by [K. Desnos](mailto:kdesnos@insa-rennes.fr)
+###### Last update the 2023.11.08 - Tutorial created the 07.31.2013 by [K. Desnos](mailto:kdesnos@insa-rennes.fr)
 
 ## Initial project setup
 
@@ -31,7 +31,6 @@ The first task of this tutorial consists of retrieving and compiling a sample Pr
 In addition to the default requirements (see [Requirements for Running Tutorial Generated Code](/tutos/intro/#requirements-for-running-tutorial-generated-code)), download the following files:
 
 *   [Preesm Sobel Project](/assets/tutos/parasobel/org.ietr.preesm.sobel.zip) (28 KB)
-*   [YUV Sequence (7zip)](/assets/downloads/akiyo_cif.7z) (9 MB)
 *   [DejaVu TTF Font](/assets/downloads/DejaVuSans.ttf) (757KB)
 
 Uncompress the preesm project in a directory named "**org.ietr.preesm.sobel**".
@@ -51,7 +50,7 @@ The workflow execution generates intermediary dataflow graphs that can be found 
 
 ### Run the generated C Project
 
-Before compilation, in ```/Code/include/yuvRead.h```, make sure that the PATH to the YUV file is correct (the YUV file that you downloaded). Make the same verification in ```/Code/include/yuvDisplay.h``` for the macro PATH_TTF.
+Before compilation, in ```/Code/include/yuvRead.h```, make sure that the PATH to the YUV file is correct (the YUV file that should be in the dat folder). Make the same verification in ```/Code/include/yuvDisplay.h``` for the macro PATH_TTF.
 
 To compile and run the generated C code, simply use the CMake project of the ```/Code/``` directory. We strongly advise you to generate the IDE projects and binaries in the ```/Code/bin``` directory so as not to mix the source code with OS/IDE specific files.  In the ```/Code/``` directory, batch scripts (\*.bat and \*.sh) are available to automatically create the appropriate folder and launch the CMake project generation for Windows users of code::blocks (CMakeCodeblock.bat) and Visual Studio 2013 (CMakeVS2013.bat) as well as for Linux GCC users (CMakeGCC.sh).
 
