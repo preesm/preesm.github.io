@@ -31,6 +31,7 @@ The first task of this tutorial consists of retrieving and compiling a sample Pr
 In addition to the default requirements (see [Requirements for Running Tutorial Generated Code](/tutos/intro/#requirements-for-running-tutorial-generated-code)), download the following files:
 
 *   [Preesm Sobel Project](/assets/tutos/parasobel/org.ietr.preesm.sobel.zip) (28 KB)
+*   [ShakeNDry_1920x1080_120fps_420_8bit_YUV.zip](https://vaader-data.insa-rennes.fr/data/preesm/assets/ShakeNDry_1920x1080_120fps_420_8bit_YUV.zip) (564MB)
 *   [DejaVu TTF Font](/assets/downloads/DejaVuSans.ttf) (757KB)
 
 Uncompress the preesm project in a directory named "**org.ietr.preesm.sobel**".
