@@ -31,7 +31,7 @@ Preesm requires the Eclipse environment, which runs on the Java platform. If you
 
 Eclipse is an extensible platform programmed in Java that allows developers to write their own IDE (Integrated Development Environment).
 
-You can download and run the Eclipse installer here: [https://www.eclipse.org/downloads/](https://www.eclipse.org/downloads/). During installation, please choose the **"Eclipse IDE for RCP and RAP Developers"** package to develop in Preesm. Install Eclipse in a folder where you have write access.
+You can download and run the Eclipse installer here: [https://www.eclipse.org/downloads/packages/release/2023-06/r](https://www.eclipse.org/downloads/packages/release/2023-06/r). During installation, please choose the **"Eclipse IDE for RCP and RAP Developers"** package to develop in Preesm. Install Eclipse in a folder where you have write access.
 
 Run Eclipse by clicking on the eclipse file, you need to choose a workspace, i.e. a directory where the metadata of and/or your projects will be stored.
 
@@ -40,7 +40,7 @@ Run Eclipse by clicking on the eclipse file, you need to choose a workspace, i.e
 In Eclipse:
 
 1.  Go to "Help > Install New Software...";
-2.  In "Work with:", choose the first Eclipse address: `2023-03 - https://download.eclipse.org/releases/2023-03/` from the drop-down menu (at the time of writing).
+2.  In "Work with:", choose the first Eclipse address: `2023-06 - https://download.eclipse.org/releases/2023-06/` from the drop-down menu (at the time of writing).
 3.  Look for Modeling > **EMF - Eclipse Modeling Framework Xcore SDK** (search for "xcore") and Testing > **RCPTT IDE** (search for "rcptt").
 Click Next, accept the terms of the license agreement when asked. Wait for the end of installation.
 No need to restart Eclispe when prompted.
