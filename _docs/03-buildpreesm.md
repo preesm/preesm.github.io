@@ -31,7 +31,7 @@ Preesm requires the Eclipse environment, which runs on the Java platform. If you
 
 Eclipse is an extensible platform programmed in Java that allows developers to write their own IDE (Integrated Development Environment).
 
-You can download and run the Eclipse installer here: [https://www.eclipse.org/downloads/packages/release/2023-06/r](https://www.eclipse.org/downloads/packages/release/2023-06/r). During installation, please choose the **"Eclipse IDE for RCP and RAP Developers"** package to develop in Preesm. Install Eclipse in a folder where you have write access.
+You can download and run the Eclipse installer here: [https://www.eclipse.org/downloads/packages/release/2023-06/r/eclipse-ide-rcp-and-rap-developers](https://www.eclipse.org/downloads/packages/release/2023-06/r/eclipse-ide-rcp-and-rap-developers). During installation, please choose the **"Eclipse IDE for RCP and RAP Developers"** package to develop in Preesm. Install Eclipse in a folder where you have write access.
 
 Run Eclipse by clicking on the eclipse file, you need to choose a workspace, i.e. a directory where the metadata of and/or your projects will be stored.
 
