@@ -49,6 +49,56 @@ None.
 
   * **Implementation details**: Sudeep Kanur, Johan Lilius, and Johan Ersfolk. Detecting data-parallel synchronous dataflow graphs. Technical Report 1184, 2017.
 
+### SCAPE transformation
+
+  * **Identifier**: `scape.task.identifier`
+  * **Implementing Class**: `org.preesm.algorithm.clustering.scape.ClusteringScapeTask`
+  * **Short description**: This task cluster actors in order to match parallelism the target architecture.
+
+#### Inputs
+  * **scenario** (of _Scenario_)
+
+#### Outputs
+  * **PiMM** (of _PiGraph_)
+  * **scenario** (of _Scenario_)
+  * **cMem** (of _ClusterMemory_)
+
+#### Description
+SCAPE stand for Scaling up of Cluster of Actor on Processing Element. The task happen upstream the standard resource allocation process and aim to simplify the dataflow graph structure while preserving the parallelism that correspond the one of the target architecture. The process is based on agglomerative clustering method which revolves around identifying actors with comparable attributes and behaviors within a dataflow graph, ultimately grouping them to form subgraphs with shared features. Subsequently, a sub-code is generated for each subgraph, encapsulating the behavior of the grouped actors. This sub-code replaces the hierarchical actor, transforming it into a standard actor defined by the newly created code.
+
+#### Parameters
+##### Level number
+This parameter works with SCAPE mode 0 and 2. It corresponds to the hierarchical level on which particular clusters (URC, SRV, LOOP, SEQ) are identified. Higher levels are left as such. Lower levels are coarsely clustered.
+
+| Value | Effect |
+| --- | --- |
+| _Integer_ | Hierarchical level are coarsely clustered untill this hierarchical level value. |
+
+##### SCAPE mode
+The SCAPE method admit three method, each one is the extension of the former one.
+
+- The original SCAPE method only takes into account two patterns for clustering, which are Actor Unique RepetitionCount (URC) and Single Repetition Vector (SRV). This method is parameterised, meaning it accepts a number as a parameter that corresponds to the number of hierarchical levels to be coarsely clustered. The clustering occurs at this specified level, which implies that there can be as many clustering configurations as there are hierarchical levels in the input graph. The goal is two reduce the data parallelism to the target.
+- The first extension introduces two additional patterns to the original SCAPE method: LOOP for cycles and SEQ for sequential parts. This extended method retains its parameterised nature, with the aim of reducing data parallelism and enhancing pipeline parallelism to align with the intended target.
+- The second extension of the SCAPE method takes into account the hierarchical context when choosing the clustering approach. This allows for the adaptation of parallelism or the coarsening of identified hierarchical levels based on the context.
+
+| Value | Effect |
+| --- | --- |
+| _0_ | Reduce excessive data parallelism to match the parallelism of the target on the specified level. |
+| _1_ | Reduce excessive data parallelism and add parallelism to sequential part to match the parallelism of the target on the specified level. |
+| _2_ | Consider hierarchical context and reduce excessive data parallelism and add parallelism to sequential part to match the parallelism of the target on each admissible level. |
+
+##### Stack size
+This parameter defines the stack size, which is set to a default value of 1048576, equivalent to 1MB. The algorithm generates a C file for each cluster and allocates internal buffers statically using arrays. Once the stack size limit is reached, buffers are then allocated dynamically using malloc and freed using free.
+
+| Value | Effect |
+| --- | --- |
+| _Integer_ | Cluster-internal buffers are allocated statically up to this value, then dynamically.|
+
+#### See Also
+
+  * **SCAPE #0**: O. Renaud, D. Gageot, K. Desnos, J.-F. Nezan, SCAPE: HW-Aware Clustering of Dataflow Actors for Tunable Scheduling Complexity, IETR, 2023.
+  * **SCAPE #1**: O. Renaud, N. Haggui, K. Desnos, J.-F, Nezan. Automated Clustering and Pipelining of Dataflow Actors for Controlled Scheduling Complexity, IETR, 2023.
+  * **SCAPE #2**: O. Renaud, H. Miomandre, K. Desnos, J.-F. Nezan ,Automated Level-Based Clustering of Dataflow Actors for Controlled Scheduling Complexity, IETR, 202_.
 
 ### Static PiMM to IBSDF - _Deprecated_
 
@@ -64,7 +114,7 @@ None.
   * **SDF** (of _SDFGraph_)
 
 #### Description
-In Preesm, since version 2.0.0, the Parameterized and Interfaced SDF (PiSDF) model of computa tion is used as the frontend model in the graphical editor of dataflow graphs. This model makes it possible to design dynamically reconfigurable dataflow graphs where the value of parameters, and production/consumption rates depending on them, might change during the execution of the application. In former versions, the Interface Based SDF (IBSDF) model of computation was used as the front end model for application design. Contrary to the PiSDF, the IBSDF is a static model of computation where production and consumption rates of actors is fixed at compile-time.
+In Preesm, since version 2.0.0, the Parameterized and Interfaced SDF (PiSDF) model of computation is used as the frontend model in the graphical editor of dataflow graphs. This model makes it possible to design dynamically reconfigurable dataflow graphs where the value of parameters, and production/consumption rates depending on them, might change during the execution of the application. In former versions, the Interface Based SDF (IBSDF) model of computation was used as the front end model for application design. Contrary to the PiSDF, the IBSDF is a static model of computation where production and consumption rates of actors is fixed at compile-time.
 
 The purpose of this workflow task is to transform a static PiSDF graph into an equivalent IBSDF graph. A static PiSDF graph is a PiSDF graph where dynamic reconfiguration features of the PiSDF model of computation are not used.
 
@@ -93,7 +143,7 @@ None.
   * **PiMM** (of _PiGraph_)
 
 #### Description
-In Preesm, since version 2.0.0, the Parameterized and Interfaced SDF (PiSDF) model of computa tion is used as the frontend model in the graphical editor of dataflow graphs. This model makes it possible to design dynamically reconfigurable dataflow graphs where the value of parameters, and production/consumption rates depending on them, might change during the execution of the application. In former versions, the Interface Based SDF (IBSDF) model of computation was used as the front end model for application design. Contrary to the PiSDF, the IBSDF is a static model of computation where production and consumption rates of actors is fixed at compile-time.
+In Preesm, since version 2.0.0, the Parameterized and Interfaced SDF (PiSDF) model of computation is used as the frontend model in the graphical editor of dataflow graphs. This model makes it possible to design dynamically reconfigurable dataflow graphs where the value of parameters, and production/consumption rates depending on them, might change during the execution of the application. In former versions, the Interface Based SDF (IBSDF) model of computation was used as the front end model for application design. Contrary to the PiSDF, the IBSDF is a static model of computation where production and consumption rates of actors is fixed at compile-time.
 
 The purpose of this workflow task is to transform a static PiSDF graph into an equivalent IBSDF graph. A static PiSDF graph is a PiSDF graph where dynamic reconfiguration features of the PiSDF model of computation are not used.
 
