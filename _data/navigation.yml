@@ -55,7 +55,7 @@ tutos_nav:
         url: /tutos/dfhls/
       - title: "17 - SimSDP: Multinode Design Space Exploration"
         url: /tutos/simsdp/
-      - title: "18 - CPU-GPU Design Space Explorationn"
+      - title: "18 - CPU-GPU Design Space Exploration"
         url: /tutos/gpu/
         
 docs_nav:
