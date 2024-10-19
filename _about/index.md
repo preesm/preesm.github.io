@@ -88,6 +88,7 @@ Following is the list of contributors to this project:
 * Dylan Gageot
 * Ophélie Renaud
 * Ewen Michel
+* Naouel Haggui
 
 
 
