@@ -63,10 +63,21 @@ Below is a simplified dataflow representation:
 ## Project Setup
 - Download DiFX project from [Preesm-apps](#references)
 - Launch Preesm and open the project: Click on “File / Import …”, then “General / Existing Projects into Workspace” then locate and import the “org.ietr.preesm.difx” project
-- Generate your architecture: right click on your project “Preesm >generate custom CPU-GPU archi
-    -  select the number of CPU core e.g.: 2
-    -  select the number of GPU core e.g.: 1
+- Create an GPU-accelerated architecture. Based on a classic CPU architecture: "right click on architecture > generate a custom x86 architecture > select 1 core". Select the GPU vertice from the palette and drop it on your design. Select a parallelComNode and drop it to your design. Connect each element with undirectedDataLink. Take the figure below as an example.
+
+    [![](/assets/tutos/gpu/1core_1gpu.png)](/assets/tutos/gpu/1core_1gpu.png)
 - Custom you GPU node: select the node and ajust the parameter to fit your target.
+
+|Property|Value|Comment|
+|--|--|--|
+|dedicatedMemSpeed|20000|Speed of the dedicated memory (in MB/s), typically higher than unified memory.|
+|definition|defaultGPU||
+|hardwareId|1|Unique identifier for the GPU hardware.|
+|id|GPU|Identifier name for the GPU in the system configuration.|
+|memoryToUse|dedicated|Specify memory allocation type: "dedicated" for GPU-exclusive memory or "unified" for shared CPU-GPU memory.|
+|memSize|4000|Size of the GPU's memory (in MB), determining the amount of data it can handle.|
+unifiedMemSpeed|500|Speed of the unified memory (in MB/s), typically slower but shared between CPU and GPU.|
+
 - Generate your scenario: right click on your project “Preesm >generate all scenarios.
 - Custom the Codegen.workflow to generate the appropriated CPU-GPU code:
   - Open the Codegen.workflow
@@ -76,8 +87,8 @@ Below is a simplified dataflow representation:
   
   | Parameter | Value | Comment |
   | -------- | -------- | -------- |
-  | Level number     | 0     | Corresponds to the hierarchical level to coarsely cluster, works with SCAPE mode 0 and 1.     |
-    | SCAPE mode     | 0     | 0: match data parallelism to the target on specified level, 1: match data and pipeline parallelism to the target on specified level, 2: match data and pipeline parallelism to the target all admissible level.  |
+  | Level number     | 0     | Corresponds to the hierarchical level to coarsely cluster, works with all SCAPE mode 0, 1 and 2.     |
+    | SCAPE mode     | 0     | 0: match data parallelism to the target on specified level, 1: match data and pipeline parallelism to the target on specified level, 2: match data and pipeline parallelism to the target on all admissible level.  |
     | Stack size     | 1000000     | Cluster-internal buffers are allocated statically up to this value, then dynamically.  |
 
 (more detail, see [Workflow Tasks Reference ](/docs/workflowtasksref/#scape-transformation))
@@ -143,7 +154,9 @@ oarsub -q production -p abacus1 -I
 #copy the folder
 scp -r ~/path/Code orenaud@access.grid5000.fr:rennes
 ```
+
 A MakeFile is stored on the /Code folder 
+
 - correct the IPP path to your IPP path (download IPP on the machine)
 - Compile and run
 ```
@@ -151,12 +164,14 @@ cmake .
 make
 ./difx
 ```
+
 DiFX execution generates a file containing visibility information *vis.out*
 
 ### Display results
 You can visualize your data with the notebook available [here](https://colab.research.google.com/drive/1wEkoTKZVg0fBC_8KcRdCKvL0_GrnKbjb#scrollTo=JAQfFu9OwXy2).
 Import your vis.out file and run the code.
 [![](/assets/tutos/gpu/notebook.png)](/assets/tutos/gpu/notebook.png)
+
 > Display of the 4 average caracheristics by baselines (detailed in the notebook).
 
 <div style="background-color:#e6f7ff; padding:10px; border-radius: 5px;font-size: 12px">
@@ -165,7 +180,7 @@ Import your vis.out file and run the code.
 </div>
 
 ## References
-[[1] E. Michel, O. Renaud, A. Deller, K. Desnos, C. Phillips, J.-F. Nezan, Static Dataflow Synthesis for Heterogeneous CPU-GPU systems, IETR, , Swinburne, CSIRO, 202_](https://ahah). 
+[[1] E. Michel, O. Renaud, A. Deller, K. Desnos, C. Phillips, J.-F. Nezan, Automated Deployment of Radio Astronomy Pipeline on CPU-GPU Processing Systems: DiFX as a Case Study, IETR, Swinburne, CSIRO, 2024](https://hal.science/hal-04744986). 
 
 [[2] A.T. Deller, S.J. Tingay, M. Bailes, & C. West, DiFX: A software correlator for very long baseline interferometry using multi-processor computing environments, Swinburne, 2007](https://arxiv.org/abs/astro-ph/0702141).
 

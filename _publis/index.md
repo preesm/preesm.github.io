@@ -35,7 +35,7 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 
 #### 2024
 
-* Ophélie Renaud, Hugo Miomandre, Karol Desnos, and Jean-François Nezan, « ["Automated Level-Based Clustering of Dataflow Actors for Controlled Scheduling Complexity"](https://hal.science/hal-04629332) », Journal of Systems Architecture (JSA), 2024.
+* Ophélie Renaud, Hugo Miomandre, Karol Desnos, and Jean-François Nezan,  ["Automated Level-Based Clustering of Dataflow Actors for Controlled Scheduling Complexity"](https://hal.science/hal-04629332), Journal of Systems Architecture (JSA), 2024.
 
 #### 2020
 
@@ -66,7 +66,7 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 
 #### 2024
 
-* Ewen Michel, Ophélie Renaud, Karol Desnos, Adam Deller, Chris Phillips, and Jean-François Nezan, "Automated Deployment of Radio Astronomy Pipeline on CPU-GPU Processing Systems: DiFX as a Case Study",  Astronomical Data Analysis Software & Systems (ADASS) XXXIV [here](https://pretalx.com/adass2024/talk/review/AV7THCWCTY89PTKHDBMPVGGCAPKLRT98).
+* Ewen Michel, Ophélie Renaud, Karol Desnos, Adam Deller, Chris Phillips, and Jean-François Nezan, ["Automated Deployment of Radio Astronomy Pipeline on CPU-GPU Processing Systems: DiFX as a Case Study"](https://hal.science/hal-04744986),  Astronomical Data Analysis Software & Systems (ADASS) XXXIV [here](https://pretalx.com/adass2024/talk/review/AV7THCWCTY89PTKHDBMPVGGCAPKLRT98).
 * Ophélie Renaud, Erwan Raffin, Karol Desnos, and Jean-François Nezan, ["Multicore and Network Topology Codesign for Pareto-Optimal Multinode Architecture"](https://hal.science/hal-04608249v1), in: the 32nd European Signal Processing Conference (EUSIPCO).
 
 #### 2023
@@ -121,7 +121,7 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 *   Desnos, Karol; Pelcat, Maxime; Nezan, Jean-François; Aridhi, Slaheddine (2013) ["Pre- and Post-Scheduling Memory Allocation Strategies on MPSoCs"](http://hal.inria.fr/hal-00868945). [ESLSyn13](http://www.ecsi.org/eslsyn), Austin TX, USA.
 *   Heulot, Julien; Boutellier, Jani; Pelcat, Maxime; Nezan, Jean-François; Aridhi, Slaheddine (2013) ["Applying the Adaptive Hybrid Flow-Shop Scheduling Method to Schedule a 3GPP LTE Physical Layer Algorithm onto Many-Core Digital Signal Processors"](http://hal.inria.fr/hal-00877643). [AHS](http://www.see.ed.ac.uk/ahs2013/), Torino, Italy.
 *   Heulot, Julien; Oliva, Yaset; Pelcat, Maxime; Nezan, Jean-François; Prevotet, Jean-Christophe (2013) ["Dataflow-based Adaptive Multicore Execution on a Xilinx Zynk Platform"](https://www.rd-access.eu/edatools/system/files/_edaTools/ubooth_submission/2013/1874.pdf). [DATE University booth](http://www.date-conference.com/group/exhibition/u-booth), Grenoble, France.
-*   Zhou, Zheng; Desnos, Karol; Pelcat, Maxime; Nezan, Jean-François; Plishker, William; Bhattacharyya, Shuvra (2013) ["Scheduling of Parallelized Synchronous Dataflow Actors"](http://www.researchgate.net/publication/258079739_Scheduling_of_Parallelized_Synchronous_Dataflow_Actors). [SoC13](http://soc.cs.tut.fi/2013/index.php), Tampere, Finland.
+*   Zhou, Zheng; raqDesnos, Karol; Pelcat, Maxime; Nezan, Jean-François; Plishker, William; Bhattacharyya, Shuvra (2013) ["Scheduling of Parallelized Synchronous Dataflow Actors"](http://www.researchgate.net/publication/258079739_Scheduling_of_Parallelized_Synchronous_Dataflow_Actors). [SoC13](http://soc.cs.tut.fi/2013/index.php), Tampere, Finland.
 
 #### 2012
 
@@ -155,14 +155,12 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 #### 2020
 
 *    Arrestier, Florian (2020) "[Extension and Analysis of Dataflow Models of Computation for Embedded Runtime](https://theses.fr/2020ISAR0022)". PhD Thesis, INSA Rennes, France.
-
 *    Honorat, Alexandre (2020) "[Modeling, Scheduling, Pipelining and Configuration of Synchronous Dataflow Graphs with Throughput Constraints](https://theses.hal.science/tel-02903493)". PhD Thesis, INSA Rennes, France.
 
 #### 2019
 
 *    Deroui, Hamza (2019) "[Étude et implantation d'algorithmes pour l'ordonnancement
 d'applications Dataflow](https://theses.hal.science/tel-03337988)". PhD Thesis, INSA Rennes, France.
-
 *    Hascoët, Julien (2019) "[Contributions to Software Runtime for Clustered Manycores Applied to Embedded and High-Performance Applications](https://tel.archives-ouvertes.fr/tel-02132613)". PhD Thesis, INSA Rennes, France.
 
 #### 2016
