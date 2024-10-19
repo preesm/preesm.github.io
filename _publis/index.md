@@ -33,6 +33,10 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 
 ### Journal Articles
 
+#### 2024
+
+* Ophélie Renaud, Hugo Miomandre, Karol Desnos, and Jean-François Nezan, « ["Automated Level-Based Clustering of Dataflow Actors for Controlled Scheduling Complexity"](https://hal.science/hal-04629332) », Journal of Systems Architecture (JSA), 2024.
+
 #### 2020
 
 * Suriano, Leonardo, Andrés Otero, Alfonso Rodríguez, Manuel Sánchez-Renedo, and Eduardo de la Torre. ["Exploiting Multi-Level Parallelism for Run-Time Adaptive Inverse Kinematics on Heterogeneous MPSoCs."](https://ieeexplore.ieee.org/document/9126798) IEEE Access (2020).
@@ -59,6 +63,16 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 *   Pelcat, Maxime; Piat, Jonathan; Wipliez, Matthieu; Aridhi, Slaheddine; Nezan, Jean-François (2009). _"[An Open Framework for Rapid Prototyping of Signal Processing Applications](http://An Open Framework for Rapid Prototyping of Signal Processing Applications)"_. EURASIP Journal on Embedded Systems.
 
 ### Conference and Workshop papers
+
+#### 2024
+
+* Ewen Michel, Ophélie Renaud, Karol Desnos, Adam Deller, Chris Phillips, and Jean-François Nezan, "Automated Deployment of Radio Astronomy Pipeline on CPU-GPU Processing Systems: DiFX as a Case Study",  Astronomical Data Analysis Software & Systems (ADASS) XXXIV [here](https://pretalx.com/adass2024/talk/review/AV7THCWCTY89PTKHDBMPVGGCAPKLRT98).
+* Ophélie Renaud, Erwan Raffin, Karol Desnos, and Jean-François Nezan, ["Multicore and Network Topology Codesign for Pareto-Optimal Multinode Architecture"](https://hal.science/hal-04608249v1), in: the 32nd European Signal Processing Conference (EUSIPCO).
+
+#### 2023
+
+* Ophélie Renaud, Naouel Haggui, Karol Desnos, and Jean-François Nezan, [" Automated Clustering and Pipelining of Dataflow Actors for Controlled Scheduling Complexity "](https://hal.science/hal-04253298), 31st European Signal Processing Conference (EUSIPCO), 2023.
+* Ophélie Renaud, Dylan Gageot, Karol Desnos, and Jean-François Nezan, ["SCAPE: HW-Aware Clustering of Dataflow Actors for Tunable Scheduling Complexity"](https://hal.science/hal-04089941) , Design and Architecture for Signal and Image Processing (DASIP) conference.
 
 #### 2020 
 
@@ -133,6 +147,23 @@ _**Pelcat, Maxime; Desnos, Karol; Heulot, Julien; Guy, Clément; Nezan, Jean-Fra
 *   Maxime Pelcat, Karol Desnos and Clément Guy, [PREESM Tutorial: Dataflow Programming of Multicore DSPs](/assets/publis/EDERC2014_PREESM_Tutorial.pdf). EDERC 2014, Milan, Italy. **\[Best Demonstration Award\]**
 
 ### PhD Thesis Using Preesm
+
+#### 2022
+
+*    Miomandre, Hugo (2022) "[Approximated Computing-based Methods for Memory Resources Reduction Targeting Heterogeneous Systems](https://theses.hal.science/tel-04496146)". PhD Thesis, INSA Rennes, France.
+
+#### 2020
+
+*    Arrestier, Florian (2020) "[Extension and Analysis of Dataflow Models of Computation for Embedded Runtime](https://theses.fr/2020ISAR0022)". PhD Thesis, INSA Rennes, France.
+
+*    Honorat, Alexandre (2020) "[Modeling, Scheduling, Pipelining and Configuration of Synchronous Dataflow Graphs with Throughput Constraints](https://theses.hal.science/tel-02903493)". PhD Thesis, INSA Rennes, France.
+
+#### 2019
+
+*    Deroui, Hamza (2019) "[Étude et implantation d'algorithmes pour l'ordonnancement
+d'applications Dataflow](https://theses.hal.science/tel-03337988)". PhD Thesis, INSA Rennes, France.
+
+*    Hascoët, Julien (2019) "[Contributions to Software Runtime for Clustered Manycores Applied to Embedded and High-Performance Applications](https://tel.archives-ouvertes.fr/tel-02132613)". PhD Thesis, INSA Rennes, France.
 
 #### 2016
 
