@@ -85,4 +85,9 @@ Following is the list of contributors to this project:
 *  Antoine Morvan
 *  Matthieu Wipliez
 *  Leonardo Suriano
+* Dylan Gageot
+* Ophélie Renaud
+* Ewen Michel
+
+
 
