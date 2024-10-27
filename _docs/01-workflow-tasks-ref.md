@@ -49,7 +49,7 @@ None.
 
   * **Implementation details**: Sudeep Kanur, Johan Lilius, and Johan Ersfolk. Detecting data-parallel synchronous dataflow graphs. Technical Report 1184, 2017.
 
-  ### Clustering
+### Clustering
 
   * **Identifier**: `org.ietr.preesm.Clustering`
   * **Implementing Class**: `org.preesm.algorithm.clustering.OldClustering`
@@ -317,16 +317,18 @@ Undocumented
 #### Parameters
 None.
 
-### Node Partitioner - 
+### Node Partitioner 
 
   * **Identifier**: `node.partitioner.task.identifier`
-  * **Implementing Class**: `/org.preesm.algorithm.node.partitioner.NodePartitionerTask`
+  * **Implementing Class**: `org.preesm.algorithm.node.partitioner.NodePartitionerTask`
   * **Short description**: Undocumented
 
-  #### Inputs
+#### Inputs
+
   * **scenario** (of _Scenario_)
 
 #### Outputs
+
 None.
 
 #### Description
@@ -1335,7 +1337,7 @@ None.
   * **Identifier**: `IntranodeExporterTask.identifier`
   * **Implementing Class**: `/org.preesm.algorithm.node.simulator.IntranodeExporterTask`
 
-  #### Inputs
+#### Inputs
   * **ABC** (of _LatencyAbc_)
   * **cMem** (of _ClusterMemory_)
 
@@ -1353,7 +1355,7 @@ This task exports the CSV file in order to generate the bar chart (occupation, s
   * **Identifier**: `InternodeExporterTask.identifier`
   * **Implementing Class**: `/org.preesm.algorithm.node.simulator.InternodeExporterTask`
 
-  #### Inputs
+#### Inputs
   * **ABC** (of _LatencyAbc_)
   * **void** (from _Gantt Exporter_)
 
@@ -1369,7 +1371,7 @@ This task exports the CSV file in order to generate the trend chart (latency, st
   * **Identifier**: `RadarExporterTask.identifier`
   * **Implementing Class**: `/org.preesm.algorithm.node.simulator.RadarExporterTask`
 
-  #### Inputs
+#### Inputs
   * **ABC** (of _LatencyAbc_)
   * **void** (from _Internode Stats exporter_)
 
