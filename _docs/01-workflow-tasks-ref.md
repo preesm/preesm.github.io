@@ -49,6 +49,52 @@ None.
 
   * **Implementation details**: Sudeep Kanur, Johan Lilius, and Johan Ersfolk. Detecting data-parallel synchronous dataflow graphs. Technical Report 1184, 2017.
 
+  ### Clustering
+
+  * **Identifier**: `org.ietr.preesm.Clustering`
+  * **Implementing Class**: `org.preesm.algorithm.clustering.OldClustering`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **SDF** (of _SDFGraph_)
+  * **scenario** (of _Scenario_)
+  * **architecture** (of _Design_)
+
+#### Outputs
+  * **SDF** (of _SDFGraph_)
+
+#### Description
+Workflow task responsible for clustering hierarchical actors.
+
+#### Parameters
+None.
+
+
+### Cluster Partitioner
+
+  * **Identifier**: `cluster-partitioner`
+  * **Implementing Class**: `org.preesm.algorithm.clustering.partitioner.ClusterPartitionerTask`
+  * **Short description**: Undocumented
+
+#### Inputs
+  * **PiMM** (of _PiGraph_) : Input PiSDF graph
+  * **scenario** (of _Scenario_) : Scenario
+
+#### Outputs
+  * **PiMM** (of _PiGraph_) : Output PiSDF graph
+
+#### Description
+Undocumented
+
+#### Parameters
+
+##### Number of PEs in clusters
+The number of PEs in compute clusters. This information is used to balance actor firings between coarse and fine-grained levels.
+
+| Value | Effect |
+| --- | --- |
+| _Fixed:=n_ | Where $$n\in \mathbb{N}^*$$. |
+
 ### SCAPE transformation
 
   * **Identifier**: `scape.task.identifier`
@@ -270,6 +316,39 @@ Undocumented
 
 #### Parameters
 None.
+
+### Node Partitioner - 
+
+  * **Identifier**: `node.partitioner.task.identifier`
+  * **Implementing Class**: `/org.preesm.algorithm.node.partitioner.NodePartitionerTask`
+  * **Short description**: Undocumented
+
+  #### Inputs
+  * **scenario** (of _Scenario_)
+
+#### Outputs
+None.
+
+#### Description
+This is part of the SimSDP multinode multicore HPC resource allocation. The purpose of this task partition graph into subgraphs, each associated to a multcicore node architecture. This generate subgraphs, topgraph, node architectures and scenarios.
+
+#### Parameters
+
+##### archi path
+Path of the CSV multinode architecture from the *Archi/* folder. 
+
+| Value | Effect |
+| --- | --- |
+| _path/in/proj_ | Path within the Preesm project containing the workflow where the task is instantiated. E.g: **SimSDP_node.csv**.
+
+##### Partitioning mode
+Partitioning method to build subgraphs. 
+
+| Value | Effect |
+| --- | --- |
+| _equivalentTimed_ | The original SimSDP partitioning method. The method estimate the workload per subgraph to reach balanced-worload partitioning. |
+| _random_ |  The method associate an random workload per subgraph to reach random-worload partitioning. |
+| _manual_ |  The method consider the original subgraphs from the given graph. |
 
 ## Graph Exporters
 
@@ -1249,7 +1328,57 @@ Schedule and map actors according to their periods thanks to a list scheduler. O
 #### Parameters
 None.
 
-## Gantt exporters
+## Stats exporters
+
+### Internode stats exporter
+
+  * **Identifier**: `IntranodeExporterTask.identifier`
+  * **Implementing Class**: `/org.preesm.algorithm.node.simulator.IntranodeExporterTask`
+
+  #### Inputs
+  * **ABC** (of _LatencyAbc_)
+  * **cMem** (of _ClusterMemory_)
+
+#### Outputs
+None.
+
+#### Description
+
+This task exports the CSV file in order to generate the bar chart (occupation, speedup) for SIMSDP intra-node analysis (Thread partitioning workflow).
+
+#### Description
+
+### Internode stats exporter
+
+  * **Identifier**: `InternodeExporterTask.identifier`
+  * **Implementing Class**: `/org.preesm.algorithm.node.simulator.InternodeExporterTask`
+
+  #### Inputs
+  * **ABC** (of _LatencyAbc_)
+  * **void** (from _Gantt Exporter_)
+
+#### Outputs
+* **void** (for _Multicriteria exporter_)
+
+#### Description
+
+This task exports the CSV file in order to generate the trend chart (latency, standard deviation workload) for SIMSDP inter-node analysis (Simulation workflow). Depending on the recognized operating system, nodes are simulated on SimGrid if the system is linux, Preesm otherwise.
+
+### Multicriteria exporter
+
+  * **Identifier**: `RadarExporterTask.identifier`
+  * **Implementing Class**: `/org.preesm.algorithm.node.simulator.RadarExporterTask`
+
+  #### Inputs
+  * **ABC** (of _LatencyAbc_)
+  * **void** (from _Internode Stats exporter_)
+
+#### Outputs
+None.
+
+#### Description
+
+This task exports CSV files to generate a radar chart (final latency, memory, energy, cost per network) for SIMSDP multinet analysis (Node simulation workflow). This task takes input metrics, processes them, and exports the results to CSV files. The exported CSV files are used analyzed with a given notbook.
 
 ### ABC Gantt exporter
 
@@ -1936,8 +2065,6 @@ Enable the PAPI-based code instrumentation provided by PAPIFY
 | --- | --- |
 | _true/false_ | Print C code instrumented with PAPIFY function calls based on the user-defined configuration of PAPIFY tab in the scenario. Currently compatibe with x86 and MPPA-256 |
 
-## Code Generation 2
-
 ### Code Generation 2
 
   * **Identifier**: `codegen2`
@@ -1976,53 +2103,75 @@ Enable the PAPI-based code instrumentation provided by PAPIFY
 | --- | --- |
 | _true/false_ | Print C code instrumented with PAPIFY function calls based on the user-defined configuration of PAPIFY tab in the scenario. Currently compatibe with x86 and MPPA-256 |
 
-## Other
+### Code Generation (SimSDP)
 
-### Clustering
-
-  * **Identifier**: `org.ietr.preesm.Clustering`
-  * **Implementing Class**: `org.preesm.algorithm.clustering.OldClustering`
+  * **Identifier**: `org.ietr.preesm.codegen.xtend.task.CodegenSimSDPTask`
+  * **Implementing Class**: `/org.ietr.preesm.codegen.xtend.task.CodegenSimSDPTask`
   * **Short description**: Undocumented
 
 #### Inputs
-  * **SDF** (of _SDFGraph_)
+  * **MEGs** (of _Map_)
+  * **DAG** (of _DirectedAcyclicGraph_)
   * **scenario** (of _Scenario_)
   * **architecture** (of _Design_)
 
 #### Outputs
-  * **SDF** (of _SDFGraph_)
-
-#### Description
-Workflow task responsible for clustering hierarchical actors.
-
-#### Parameters
 None.
 
-
-### Cluster Partitioner
-
-  * **Identifier**: `cluster-partitioner`
-  * **Implementing Class**: `org.preesm.algorithm.clustering.partitioner.ClusterPartitionerTask`
-  * **Short description**: Undocumented
-
-#### Inputs
-  * **PiMM** (of _PiGraph_) : Input PiSDF graph
-  * **scenario** (of _Scenario_) : Scenario
-
-#### Outputs
-  * **PiMM** (of _PiGraph_) : Output PiSDF graph
-
 #### Description
-Undocumented
+This workflow task is responsible for generating code for the multinode HPC application deployment resulting from the workflow execution. This generated code operate with the **SimSDPmain.c** file connecting thread-based file with MPI functions.
+
+The generated code makes use of 2 macros that can be overridden in the **preesm.h** user header file:
+*  **PREESM_VERBOSE** : if defined, the code will print extra info about actor firing;
+*  **PREESM_LOOP_SIZE** : when set to an integer value $$n > 0$$, the application will terminate after $$n$$ executions of the graph.
+*  **PREESM_NO_AFFINITY** : if defined, the part of the code that sets the affinity to specific cores will be skipped;
+
+When the loop size macro is omitted, the execution can be stopped by setting the global variable **preesmStopThreads** to 1. This variable is defined in the **sub.c** generated file, and should be accessed using extern keyword.
 
 #### Parameters
 
-##### Number of PEs in clusters
-The number of PEs in compute clusters. This information is used to balance actor firings between coarse and fine-grained levels.
+##### Printer
+Specify which printer should be used to generate code. Printers are defined in Preesm source code using an extension mechanism that make it possible to define a single printer name for several targeted architecture. Hence, depending on the type of PEs declared in the architecture model, Preesm will automatically select the associated printer class, if it exists.
 
 | Value | Effect |
 | --- | --- |
-| _Fixed:=n_ | Where $$n\in \mathbb{N}^*$$. |
+| _C_ | Print C code and shared-memory based communications. Currently compatible with x86, c6678, and arm architectures. |
+| _InstrumentedC_ | Print C code instrumented with profiling code, and shared-memory based communications. Currently compatible with x86, c6678 architectures.. |
+| _XML_ | Print XML code with all informations used by other printers to print code. Compatible with x86, c6678. |
+
+##### Papify
+Enable the PAPI-based code instrumentation provided by PAPIFY
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ | Print C code instrumented with PAPIFY function calls based on the user-defined configuration of PAPIFY tab in the scenario. Currently compatibe with x86 and MPPA-256 |
+
+##### Apollo
+Enable the use of Apollo for intra-actor optimization
+
+| Value | Effect |
+| --- | --- |
+| _true/false_ | Print C code with Apollo function calls. Currently compatibe with x86 |
+
+## Other
+
+### Hypervisor
+
+  * **Identifier**: `hypervisor.task.identifier`
+  * **Implementing Class**: `/org.preesm.algorithm.hypervisor.HypervisorTask.java`
+  * **Short description**: Undocumented
+
+  #### Inputs
+  * **void** : Connector from scenario
+
+  #### Parameters
+
+##### Iteration
+Choose the number of SimSDP iteration to balance workload partitioning between architecture nodes.
+
+| Value | Effect |
+| --- | --- |
+| _Integer_ | The resource allocation process iterate until the number of iteration complete. |
 
 
 ### Cluster Scheduler
