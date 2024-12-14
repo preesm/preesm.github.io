@@ -47,15 +47,17 @@ tutos_nav:
         url: /tutos/throughputeval/
       - title: "13 - APOLLO"
         url: /tutos/apollo/
-      - title: "14 - Clustering"
+      - title: "14 - URC Clustering"
         url: /tutos/clustering/
-      - title: "15 - HW/SW code generation for MPSoCs"
+      - title: "15 - SCAPE Clustering"
+        url: /tutos/scape/
+      - title: "16 - HW/SW code generation for MPSoCs"
         url: /tutos/artico3/
-      - title: "16 - Dataflow Code Generation for HLS"
+      - title: "17 - Dataflow Code Generation for HLS"
         url: /tutos/dfhls/
-      - title: "17 - SimSDP: Multinode Design Space Exploration"
+      - title: "18 - SimSDP: Multinode Design Space Exploration"
         url: /tutos/simsdp/
-      - title: "18 - CPU-GPU Design Space Exploration"
+      - title: "19 - CPU-GPU Design Space Exploration"
         url: /tutos/gpu/
         
 docs_nav:
