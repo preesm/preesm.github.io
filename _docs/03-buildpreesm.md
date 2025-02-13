@@ -40,7 +40,7 @@ Run Eclipse by clicking on the eclipse file, you need to choose a workspace, i.e
 In Eclipse:
 
 1.  Go to "Help > Eclipse Marketplace...";
-2.  From the marketplace, install **Checkstyle Plug-in**, and the **SonarCloud** Eclipse plug-in.
+2.  From the marketplace, install **Checkstyle Plug-in**, and the **SonarQube** Eclipse plug-in.
 No need to restart Eclispe when prompted.
 3.  Go to "Help > Install New Software...";
 4.  In "Work with:", choose the first Eclipse address: `2024-12 - https://download.eclipse.org/releases/2024-12/` from the drop-down menu.
