@@ -31,7 +31,7 @@ Latter Java versions have not been tested.
 
 Eclipse is an extensible platform programmed in Java that allows developers to write their own IDE (Integrated Development Environment).
 
-You can download and run the Eclipse installer here: [https://www.eclipse.org/downloads/packages/installer](https://www.eclipse.org/downloads/packages/installer). During installation, choose **"Eclipse IDE for RCP and RAP Developers"** package to develop in Preesm and make sure to select **Java 21** as the java VM (either from your existing installed Java environment or provided by the installer). Install Eclipse in a folder where you have write access.
+You can download and run the Eclipse installer here: [https://www.eclipse.org/downloads/packages/installer](https://www.eclipse.org/downloads/packages/installer). As of writing, the latest version (2025-03) works without issues. During installation, choose **"Eclipse IDE for RCP and RAP Developers"** package to develop in Preesm and make sure to select **Java 21** as the java VM (either from your existing installed Java environment or provided by the installer). Install Eclipse in a folder where you have write access.
 
 Run Eclipse by clicking on the eclipse file, you need to choose a workspace, i.e. a directory where the metadata of and/or your projects will be stored.
 
