@@ -24,8 +24,8 @@ In addition to the default requirements (see [Requirements for Running Tutorial 
 *   Complete [Sobel Preesm Project](/assets/tutos/parasobel/tutorial1_result.zip)
 *   [YUV Sequence (7zip)](/assets/downloads/akiyo_cif.7z) (9 MB)
 *   [DejaVu TTF Font](/assets/downloads/DejaVuSans.ttf) (757KB)
-*   A [TMS320C6678 Evaluation Module (EVM)](http://www.ti.com/tool/tmdsevm6678)
-*   [Code Composer Studio (CCS)](http://processors.wiki.ti.com/index.php/Download_CCS) v5.2.1 with [MCSDK 2.x](/docs/ccssetup)
+*   A [TMS320C6678 Evaluation Module (EVM)](https://www.ti.com/product/TMS320C6678)
+*   [Code Composer Studio (CCS)](https://www.ti.com/tool/download/CCSTUDIO/5.2.1.00018) v5.2.1 with [MCSDK 2.x](/docs/ccssetup)
 
 ⚠ **Linux and Windows users:** CCS versions 5.3 and greater for Linux and Windows do not support the installation of necessary plugins (BIOS MCSDK 2.x) for the use of Keystone I multi-core processors. We thus highly recommend to use a CSS version 5.2.1 and the offline installer. More information on MCSDK versions can be found [here](http://software-dl.ti.com/sdoemb/sdoemb_public_sw/bios_mcsdk/latest/index_FDS.html). ~~Please read the [CCS Setup](/docs/ccssetup) page for detailed information about the installation and configuration.~~
 
