@@ -13,7 +13,7 @@ The following topics are covered in this tutorial:
 Prerequisite: 
 * [Tutorial Introduction](/tutos/intro)
 
-###### Last update the 2023.11.08 - Tutorial created the 07.31.2013 by [K. Desnos](mailto:kdesnos@insa-rennes.fr)
+###### Last update the 2025.12.04 - Tutorial created the 07.31.2013 by [K. Desnos](mailto:kdesnos@insa-rennes.fr)
 
 ## Initial project setup
 
@@ -28,17 +28,11 @@ The first task of this tutorial consists of retrieving and compiling a sample Pr
 
 ### Downloads
 
-In addition to the default requirements (see [Requirements for Running Tutorial Generated Code](/tutos/intro/#requirements-for-running-tutorial-generated-code)), download the following files:
+In addition to the default requirements (see [Requirements for Running Tutorial Generated Code](/tutos/intro/#requirements-for-running-tutorial-generated-code)), download the following file:
 
 *   [Preesm Sobel Project](/assets/tutos/parasobel/org.ietr.preesm.sobel.zip) (28 KB)
-*   [ShakeNDry_1920x1080_120fps_420_8bit_YUV.zip](https://vaader-data.insa-rennes.fr/data/preesm/assets/ShakeNDry_1920x1080_120fps_420_8bit_YUV.zip) (564MB)
-*   [DejaVu TTF Font](/assets/downloads/DejaVuSans.ttf) (757KB)
 
 Uncompress the preesm project in a directory named "**org.ietr.preesm.sobel**".
-
-Follow the instruction given in "/Code/lib/ReadMe.md" and "/Code/dat/ReadMe.md" to make sure that the required libraries and files are in the right place.
-
-On Windows, for the CMake .bat scripts to work properly, you will need to copy the content of the SDL2 lib file from /Code/lib/SDL-2.0..xx/lib/x86 (or .../lib/x64) to /Code/lib/SDL-2.0.xx/lib.
 
 ### Run Preesm Project
 
@@ -51,9 +45,7 @@ The workflow execution generates intermediary dataflow graphs that can be found 
 
 ### Run the generated C Project
 
-Before compilation, in ```/Code/include/yuvRead.h```, make sure that the PATH to the YUV file is correct (the YUV file that should be in the dat folder). Make the same verification in ```/Code/include/yuvDisplay.h``` for the macro PATH_TTF.
-
-To compile and run the generated C code, simply use the CMake project of the ```/Code/``` directory. We strongly advise you to generate the IDE projects and binaries in the ```/Code/bin``` directory so as not to mix the source code with OS/IDE specific files.  In the ```/Code/``` directory, batch scripts (\*.bat and \*.sh) are available to automatically create the appropriate folder and launch the CMake project generation for Windows users of code::blocks (CMakeCodeblock.bat) and Visual Studio 2022 (CMakeVS2022.bat) as well as for Linux GCC users (CMakeGCC.sh).
+To compile and run the generated C code, simply use the CMake project of the ```/Code/``` directory. We strongly advise you to generate the IDE projects and binaries in the ```/Code/bin``` directory so as not to mix the source code with OS/IDE specific files.  In the ```/Code/``` directory, batch scripts (\*.bat and \*.sh) are available to automatically create the appropriate folder and launch the CMake project generation for Windows users of Visual Studio 2022 (CMakeVS2022.bat) as well as for Linux GCC users (CMakeGCC.sh).
 
 The following figure shows how the running application should look like. At this point, the application does not do any "real" computation on the image. The performance figure displayed in frames per second (fps) in the console should be noted, as it will be an upper bound to the performance of the developed video processing application. Indeed, since you will now add new actors to the dataflow graph, the amount of computation will increase and the application performance will decrease.
 
