@@ -59,6 +59,8 @@ tutos_nav:
         url: /tutos/simsdp/
       - title: "19 - CPU-GPU Design Space Exploration"
         url: /tutos/gpu/
+      - title: "20 - Heterogeneous code generation for CPU-FPGA"
+        url: /tutos/heterogeneouscodegen/
         
 docs_nav:
   - title: Documentation
