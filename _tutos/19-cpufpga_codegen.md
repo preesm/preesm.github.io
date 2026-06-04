@@ -18,11 +18,11 @@ Prerequisite:
 
 ## Project Setup
 
-* Download the [Heterogeneous Wavelet project on github in preesm-apps/tutorial](https://github.com/preesm/preesm-apps).
+* Download the [Heterogeneous Wavelet project on github in preesm-apps/tutorials](https://github.com/preesm/preesm-apps).
 * Launch Preesm and open the project using "File > open Projects from File Systems...".
 * Select the project and import it.
 
-Notice that the algorithm is exactly the same as for the FPGA wavelet tuto (TODO : lien) : the differences will be in the architecture and scenario mappings.
+Notice that the algorithm is exactly the same as for the FPGA wavelet tutorial : the differences will be in the architecture and scenario mappings.
 
 ## Architecture specification
 We will describe a system with 2 CPU cores and an FPGA die, all linked through a shared memory. Note the KRIA has 4 cores available, but for simplicity we will only use two.
@@ -78,7 +78,9 @@ Follow these steps to generate the final hardware implementation:
 
 ## Deployment on Kria260
 
-Follow these steps to deply on Kria260:
+First, setup the KRIA260 board by following the tutorial fit to your linux version : https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/linux_boot.html
+
+Then, follow these steps to deply on Kria260:
 - run the packaging script : `bash package_app.sh generated_tuto`. This will store all the necessary files in a single PACKAGE folder.
 - before booting the board, blug the ethernet and uart cables to the computer. Start a uart communication with the board : `picocom -b 115200 /dev/ttyUSB1`.
 - plug the power cord into the board to boot it. The initial login and password are "ubuntu".
