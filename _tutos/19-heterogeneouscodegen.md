@@ -18,7 +18,7 @@ Prerequisite:
 
 ## Project Setup
 
-* Download the [Heterogeneous Wavelet project on github](TODO:lien).
+* Download the [Heterogeneous Wavelet project on github in preesm-apps/tutorial](https://github.com/preesm/preesm-apps).
 * Launch Preesm and open the project using "File > open Projects from File Systems...".
 * Select the project and import it.
 
