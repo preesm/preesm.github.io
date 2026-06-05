@@ -16,6 +16,13 @@ Prerequisite:
 
 ###### Tutorial created the 29.05.2026 by [J. Morin](mailto:jamorin@insa-rennes.fr)
 
+
+## Requirements
+### For the timing extraction step
+wget https://old-releases.ubuntu.com/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_amd64.deb
+sudo apt install ./libffi6_3.2.1-8_amd64.deb
+sudo LD_LIBRARY_PATH=/tools/Xilinx/Vitis/202X.X/tps/lnx64/python-3.X.X/lib/ /tools/Xilinx/Vitis/202X.X/tps/lnx64/python-3.X.X/bin/python3.X -m pip install xlrd openpyxl
+
 ## Project Setup
 
 * Download the [Heterogeneous Wavelet project on github in preesm-apps/tutorials](https://github.com/preesm/preesm-apps).
@@ -68,7 +75,9 @@ Once this is done, re-run the workflow. The scheduling will be done with accurat
 
 ### Hardware synthesis for Kria260
 
-Follow these steps to generate the final hardware implementation:
+First, setup the KRIA260 board by following the tutorial fit to your linux version : https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/linux_boot.html
+
+Then, follow these steps to generate the final hardware implementation:
 
 - Open a terminal with the Xilinx toolchain included in the PATH;
 - Navigate to the Codegen folder
@@ -78,9 +87,7 @@ Follow these steps to generate the final hardware implementation:
 
 ## Deployment on Kria260
 
-First, setup the KRIA260 board by following the tutorial fit to your linux version : https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/linux_boot.html
-
-Then, follow these steps to deply on Kria260:
+Follow these steps to deply on Kria260:
 - run the packaging script : `bash package_app.sh generated_tuto`. This will store all the necessary files in a single PACKAGE folder.
 - before booting the board, blug the ethernet and uart cables to the computer. Start a uart communication with the board : `picocom -b 115200 /dev/ttyUSB1`.
 - plug the power cord into the board to boot it. The initial login and password are "ubuntu".
