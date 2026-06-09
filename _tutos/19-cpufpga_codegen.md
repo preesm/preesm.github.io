@@ -39,7 +39,7 @@ Link the CPUs and the FPGA to the shared memory with undirectedDataLinks.
 
 ## Application development
 
-the application is pre-made in "wavelet_heterogeneous_tuto.pi". Generate the .diagram file. Notic that actors in the DWT and IDWT sub-graphs have HLS-style refinements set, while the threshold actors have C-style refinements set.
+the application is pre-made in "wavelet_heterogeneous_tuto.pi". Generate the .diagram file. Notice that actors in the DWT and IDWT sub-graphs have HLS-style refinements set, while the threshold actors have C-style refinements set.
 
 
 ## Scenario
@@ -51,13 +51,6 @@ In the codegen tab, set the codegen directory to "/Wavelet_Filter/Code/generated
 
 ## Workflow and code generation
 Run the workflow "HeterogeneousWorkflow" on the scenario.
-
-## Timings extraction
-We used inaccurate timings for the FPGA actors in our workflow. Now that the HLS code has been generated, we can synthesize the generated cluster code with vitis to know the actual cycle counts. 
-In the generated_tuto folder, open a terminal with the xilinx envirenment set up and run `vitis -s extract_synth_results.py timings`. This will synthesize the actors and store their associated timings in the "timings.csv" and "timings.xlsx" files.
-Now, go back to the scenario. In the Timings tab, section "Timings file path", click "browse" and select the "timings.xlsx" file.
-In case this does not work, you can also manually write the actors' timings to the scenario.
-Once this is done, re-run the workflow. The scheduling will be done with accurate timings now.
 
 ## Application synthesis
 
@@ -76,6 +69,7 @@ Once this is done, re-run the workflow. The scheduling will be done with accurat
 ### Hardware synthesis for Kria260
 
 First, setup the KRIA260 board by following the tutorial fit to your linux version : https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/linux_boot.html
+*make sure to provide the common image folder as path to the script when prompted* so that the `syroots/` file is extracted directly inside it.
 
 Then, follow these steps to generate the final hardware implementation:
 
