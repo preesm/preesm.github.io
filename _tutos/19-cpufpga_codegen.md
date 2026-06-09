@@ -43,7 +43,7 @@ the application is pre-made in "wavelet_heterogeneous_tuto.pi". Generate the .di
 
 
 ## Scenario
-We will now map the actors to the available processing elements. Open the "tuto_heterogeneous" scenario. Set the algorithm and the scenario to the ones we are using.
+We will now map the actors to the available processing elements. Open the "tuto_heterogeneous" scenario. Set the algorithm and the scenario to the ones we are using. In the Simulation tab, set core0 as the main operator, shared_mem as the main ComNode, and check all operators to execute broadcast/explode/implode.
 In the constraints tab, map the DWT and IDWT sub-graphs to the FPGA, and the other actors to the CPU cores.
 In the timing tab, we will insert an approximation of the FPGA actors' timings. For all FPGA actors, set as execution interval and initation interval the maximum input/output rates of each actor. For example, DWT's "Conv_row_height" actor has a rate of 396 in its "input" port, 5 in its "filter" port, and 396 in its "output" port. The maximum is 396, the number we use for this actos's timings. It corresponds to the minimum number of cycles needed to produce and consume all tokens. (If you're lazy, you can also just set them all to 1000000).
 In the simulation tab, set all the processing elements as able to execute broadcast/implode/explode.
