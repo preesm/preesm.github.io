@@ -71,7 +71,7 @@ Once this is done, re-run the workflow. The scheduling will be done with accurat
 ### Hardware synthesis for Kria260
 
 First, setup the KRIA260 board by following the tutorial fit to your linux version : https://xilinx.github.io/kria-apps-docs/kr260/build/html/docs/linux_boot.html
-*make sure to provide the common image folder as path to the script when prompted* so that the `syroots/` file is extracted directly inside it.
+**make sure to provide the common image folder as path to the script when prompted** so that the `syroots/` file is extracted directly inside it.
 
 Then, follow these steps to generate the final hardware implementation:
 
