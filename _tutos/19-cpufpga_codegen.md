@@ -58,7 +58,7 @@ Application synthesis is performed in 3 steps, 1. by generating a first, timing-
 ### Timings extraction
 Make sure to have followed the step **Code generation**.
 We used inaccurate timings for the FPGA actors: in the scenario, we filled the timings slots with the minimum timing an actor can have (or 10000000 if you were lazy). Now that the HLS code has been generated, we can synthesize the generated cluster code with vitis to know the actual cycle counts. 
-In the generated_tuto folder, open a terminal with the xilinx envirenment set up and run `vitis -s extract_synth_results.py timings`. This will synthesize the actors and store their associated timings in the "timings.csv" and "timings.xlsx" files.
+In the generated_tuto folder, open a terminal with the xilinx environment set up and run `vitis -s extract_synth_results.py timings`. This will synthesize the actors and store their associated timings in the "timings.csv" and "timings.xlsx" files.
 Now, go back to the scenario. In the Timings tab, section "Timings file path", click "browse" and select the "timings.xlsx" file.
 In case this does not work, you can also manually write the actors' timings to the scenario.
 Once this is done, re-run the workflow. The scheduling will be done with accurate timings now.
