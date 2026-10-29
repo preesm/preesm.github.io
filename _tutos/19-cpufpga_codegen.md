@@ -20,9 +20,9 @@ Prerequisite:
 
 ## Requirements
 ### For the timing extraction step
-wget https://old-releases.ubuntu.com/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_amd64.deb
-sudo apt install ./libffi6_3.2.1-8_amd64.deb
-sudo LD_LIBRARY_PATH=/tools/Xilinx/Vitis/202X.X/tps/lnx64/python-3.X.X/lib/ /tools/Xilinx/Vitis/202X.X/tps/lnx64/python-3.X.X/bin/python3.X -m pip install xlrd openpyxl
+`wget https://old-releases.ubuntu.com/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_amd64.deb`
+`sudo apt install ./libffi6_3.2.1-8_amd64.deb`
+`sudo LD_LIBRARY_PATH=/tools/Xilinx/Vitis/202X.X/tps/lnx64/python-3.X.X/lib/ /tools/Xilinx/Vitis/202X.X/tps/lnx64/python-3.X.X/bin/python3.X -m pip install xlrd openpyxl`
 
 ## Project Setup
 
@@ -44,7 +44,8 @@ the application is pre-made in "wavelet_heterogeneous_tuto.pi". Generate the .di
 
 
 ## Scenario
-We will now map the actors to the available processing elements. Open the "tuto_heterogeneous" scenario. Set the algorithm and the scenario to the ones we are using. In the Simulation tab, set core0 as the main operator, shared_mem as the main ComNode, and check all operators to execute broadcast/explode/implode.
+We will now map the actors to the available processing elements. Open the "tuto_heterogeneous" scenario. Set the algorithm and the scenario to the ones we are using. 
+In the Simulation tab, set core0 as the main operator, shared_mem as the main ComNode, and check all operators to execute broadcast/explode/implode.
 In the constraints tab, map the DWT and IDWT sub-graphs to the FPGA, and the other actors to the CPU cores.
 In the timing tab, we will insert an approximation of the FPGA actors' timings. For all FPGA actors, set as execution interval and initation interval the maximum input/output rates of each actor. For example, DWT's "Conv_row_high" actor has a rate of 396 in its "input" port, 5 in its "filter" port, and 396 in its "output" port. The maximum rate is 396, so set its latency and input interval (II) to 396. This number corresponds to the minimum number of cycles needed to produce and consume all tokens. (If you're lazy, you can also just set latency and II to 10000000 for all actors).
 In the codegen tab, set the codegen directory to "/Wavelet_Filter/Code/generated_tuto".
