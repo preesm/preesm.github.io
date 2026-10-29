@@ -13,6 +13,7 @@ Prerequisite:
 * [Preesm installation](/get/)
 * [Vitis >2024.1](https://www.xilinx.com/products/design-tools/vitis/vitis-hls.html), required for timing estimation and hardware synthesis, tested on Ubuntu 20.04, 22.04 and 24.04
 * Previous Preesm tutorials will help understanding the notions of workflow, scenario, etc.
+* This tuto describes deployment for a Kria kr260 board. Deployment should be similar for other ultrascale/ultrascale+ boards. If you don't have one, you can still follow the tutorial until the last step **Deployment on Kria260**. Step **Hardware synthesis for Kria260** takes this board as an example but does not requires to have one.
 
 ###### Tutorial created the 29.05.2026 by [J. Morin](mailto:jamorin@insa-rennes.fr)
 
@@ -78,7 +79,7 @@ Then, follow these steps to generate the final hardware implementation:
 
 ## Deployment on Kria260
 
-Follow these steps to deply on Kria260:
+Follow these steps to deploy on Kria260:
 - run the packaging script : `bash package_app.sh generated_tuto`. This will store all the necessary files in a single PACKAGE folder.
 - before booting the board, blug the ethernet and uart cables to the computer. Start a uart communication with the board : `picocom -b 115200 /dev/ttyUSB1`.
 - plug the power cord into the board to boot it. The initial login and password are "ubuntu".
