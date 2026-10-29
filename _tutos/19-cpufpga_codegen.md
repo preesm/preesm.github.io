@@ -20,9 +20,9 @@ Prerequisite:
 
 ## Requirements
 ### For the timing extraction step
-`wget https://old-releases.ubuntu.com/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_amd64.deb`
-`sudo apt install ./libffi6_3.2.1-8_amd64.deb`
-`sudo LD_LIBRARY_PATH=/tools/Xilinx/Vitis/202X.X/tps/lnx64/python-3.X.X/lib/ /tools/Xilinx/Vitis/202X.X/tps/lnx64/python-3.X.X/bin/python3.X -m pip install xlrd openpyxl`
+```wget https://old-releases.ubuntu.com/ubuntu/pool/main/libf/libffi/libffi6_3.2.1-8_amd64.deb```
+```sudo apt install ./libffi6_3.2.1-8_amd64.deb```
+```sudo LD_LIBRARY_PATH=/tools/Xilinx/Vitis/202X.X/tps/lnx64/python-3.X.X/lib/ /tools/Xilinx/Vitis/202X.X/tps/lnx64/python-3.X.X/bin/python3.X -m pip install xlrd openpyxl```
 
 ## Project Setup
 
