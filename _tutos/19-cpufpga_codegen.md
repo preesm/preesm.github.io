@@ -48,18 +48,16 @@ In the constraints tab, map the DWT and IDWT sub-graphs to the FPGA, and the oth
 In the timing tab, we will insert an approximation of the FPGA actors' timings. For all FPGA actors, set as execution interval and initation interval the maximum input/output rates of each actor. For example, DWT's "Conv_row_high" actor has a rate of 396 in its "input" port, 5 in its "filter" port, and 396 in its "output" port. The maximum rate is 396, so set its latency and input interval (II) to 396. This number corresponds to the minimum number of cycles needed to produce and consume all tokens. (If you're lazy, you can also just set latency and II to 10000000 for all actors).
 In the codegen tab, set the codegen directory to "/Wavelet_Filter/Code/generated_tuto".
 
-## Workflow and code generation
+## Code generation
 Run the workflow "HeterogeneousWorkflow" on the scenario.
 
 ## Application synthesis
 
 Application synthesis is performed in 3 steps, 1. by generating a first, timing-inaccurate C++ implementation for HLS using Preesm, 2. by synthesizing the generating design to extract the timing information, and 3. By re-generating the code and performing hardware implementation. 
 
-### Workflow and code generation
-Run the workflow "HeterogeneousWorkflow" on the scenario.
-
 ### Timings extraction
-We used inaccurate timings for the FPGA actors in our workflow. Now that the HLS code has been generated, we can synthesize the generated cluster code with vitis to know the actual cycle counts. 
+Make sure to have followed the step *Code generation*.
+We used inaccurate timings for the FPGA actors: in the scenario, we filled the timings slots with the minimum timing an actor can have (or 10000000 if you were lazy). Now that the HLS code has been generated, we can synthesize the generated cluster code with vitis to know the actual cycle counts. 
 In the generated_tuto folder, open a terminal with the xilinx envirenment set up and run `vitis -s extract_synth_results.py timings`. This will synthesize the actors and store their associated timings in the "timings.csv" and "timings.xlsx" files.
 Now, go back to the scenario. In the Timings tab, section "Timings file path", click "browse" and select the "timings.xlsx" file.
 In case this does not work, you can also manually write the actors' timings to the scenario.
